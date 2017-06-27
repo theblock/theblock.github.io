@@ -1,0 +1,21 @@
+# GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+[ignore]
+.*/node_modules/conventional-changelog-core/.*
+.*/node_modules/stylelint/.*
+.*/x/.*
+.*/webpack/.*
+.*/postcss.config.js
+.*/webpack.config.js
+
+[include]
+
+[libs]
+
+[options]
+esproposal.decorators=ignore
+module.ignore_non_literal_requires=true
+unsafe.enable_getters_and_setters=true
+module.name_mapper='.*\.abi\.json$' -> 'empty/array'
+module.name_mapper='.*\.json$' -> 'empty/object'
+module.name_mapper='.*\.md$' -> 'empty-string'
+module.name_mapper='.*\.scss$' -> 'empty/object'

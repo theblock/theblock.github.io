@@ -1,0 +1,17 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../../colors.scss';
+
+.ui {
+  cursor: pointer !important;
+
+  .linkIcon {
+    color: $linkColor !important;
+  }
+}
+
+.copy {
+  display: inline-block;
+  margin-left: -0.5em;
+  margin-right: 0.5em;
+}

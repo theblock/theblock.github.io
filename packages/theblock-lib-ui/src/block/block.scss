@@ -1,0 +1,72 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+// Adapted from http://blog.learningspaces.io/animated-loading-indicator-with-isometric-cubes/
+
+$colorLeft: #c02;
+$colorRight: #069;
+$colorTop: #097;
+$delay: 5s;
+$scale: 0.864;
+$size: 10em;
+$posLeft: calc($size * $scale);
+$posTop: $size;
+
+@keyframes colorSide {
+  0%,
+  100% {
+    background: $colorLeft;
+  }
+
+  33% {
+    background: $colorRight;
+  }
+
+  66% {
+    background: $colorTop;
+  }
+}
+
+@define-mixin defineSide $_color, $_degrees, $_delayOffset {
+  animation: colorSide calc(3 * $delay) infinite calc($_delayOffset * $delay);
+  background: $_color;
+  box-sizing: border-box;
+  height: $size;
+  position: absolute;
+  transform: rotate($_degrees) skewX(-30deg) scaleY($scale);
+  transform-origin: 0 0;
+  width: $size;
+}
+
+@define-mixin scaleCube $_scale {
+  transform: rotate(0) scale($_scale);
+}
+
+.ui {
+  position: relative;
+
+  .cube {
+    left: $posLeft;
+    opacity: 0.5;
+    position: absolute;
+    top: $posTop;
+
+    .left {
+      @mixin defineSide $colorLeft, 90deg, -2;
+    }
+
+    .right {
+      @mixin defineSide $colorRight, -30deg, -1;
+    }
+
+    .top {
+      @mixin defineSide $colorTop, 210deg, 0;
+    }
+
+    &.small {
+      @mixin scaleCube 0.66;
+    }
+
+    &.tiny {
+      @mixin scaleCube 0.33;
+    }
+  }
+}

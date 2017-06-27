@@ -1,0 +1,35 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../../colors.scss';
+
+.ui {
+  input {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .menu {
+    background: white;
+    border: $inputBorder;
+    border-style: solid;
+    border-radius: $borderRadius;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+    max-height: 50vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .disabled {
+    opacity: 0.5;
+  }
+
+  &.withOpen {
+    text-align: left;
+    z-index: $naturalZ;
+  }
+}

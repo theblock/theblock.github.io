@@ -1,0 +1,90 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../colors.scss';
+@import '../fonts.scss';
+
+.ui {
+  z-index: 0;
+
+  input,
+  textarea,
+  .input {
+    background: transparent;
+    border: $naturalBorder;
+    border-radius: $borderRadius;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: transparent;
+    display: inline-block;
+    font: $bodyFont;
+    line-height: $bodyLineHeight;
+    outline: 0;
+    padding: 0.5em 0.75em;
+    margin: 0;
+    text-rendering: optimizeLegibility;
+    width: 100%;
+    z-index: 0;
+
+    &:focus,
+    &.focus {
+      background: $inputBackground;
+      border-style: solid;
+      color: $naturalColor;
+      z-index: 1 !important;
+    }
+  }
+
+  textarea {
+    resize: none;
+
+    &:focus {
+      height: 8em;
+    }
+  }
+
+  &.withError {
+    input,
+    textarea,
+    .input {
+      border-color: $inputErrorBorderColor;
+
+      &:focus {
+        color: $inputErrorBorderColor;
+      }
+    }
+  }
+
+  &.withWarning {
+    input,
+    textarea,
+    .input {
+      border-color: $inputWarningBorderColor;
+
+      &:focus {
+        color: $inputWarningBorderColor;
+      }
+    }
+  }
+
+  &.withIcon {
+    input,
+    textarea,
+    .input,
+    .mask {
+      padding-left: 2em;
+    }
+  }
+
+  &.withInvert {
+    input,
+    textarea,
+    .input {
+      border-color: white;
+
+      &:focus {
+        background: $inverseColor;
+        color: white;
+      }
+    }
+  }
+}

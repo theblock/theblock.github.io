@@ -1,0 +1,28 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+.root {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  .address {
+    flex: 1;
+    text-align: center;
+
+    > div {
+      background: transparent;
+      margin: 0 auto;
+    }
+
+    > i,
+    > img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .value {
+    flex: 0;
+    white-space: nowrap;
+  }
+}

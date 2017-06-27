@@ -1,0 +1,16 @@
+{
+  "name": "theblock-lib-services",
+  "version": "0.0.0",
+  "author": "xavieryvez@users.noreply.github.com",
+  "license": "GPL-3.0",
+  "scripts": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "query-string": "^4.3.4"
+  },
+  "peerDependencies": {
+    "theblock-lib-util": "*"
+  }
+}

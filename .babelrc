@@ -1,0 +1,16 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+{
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-react-jsx"
+  ],
+  "presets": [
+    "flow",
+    "es2017",
+    "es2016",
+    "es2015",
+    "stage-0",
+    "react"
+  ]
+}

@@ -1,0 +1,33 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+.root {
+  td {
+    padding: 0.125em 0.5em;
+  }
+
+  .timestamp {
+    text-align: right;
+  }
+
+  .typeIcon {
+    text-align: center;
+  }
+
+  .txHash {
+    a > div {
+      margin: -0.5em 0.5em;
+    }
+  }
+
+  .value {
+    text-align: left;
+
+    .received {
+      color: #097;
+    }
+
+    .sent {
+      color: #c02;
+    }
+  }
+}

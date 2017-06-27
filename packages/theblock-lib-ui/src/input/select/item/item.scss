@@ -1,0 +1,38 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../../../colors.scss';
+
+.ui {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  padding: 0.5em 0.75em;
+  position: relative;
+  vertical-align: top;
+  white-space: nowrap;
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 0.618em;
+    z-index: $naturalZ;
+
+    i {
+      line-height: $bodyLineHeight;
+      margin-top: 0.5em;
+      margin-left: 0.125em;
+    }
+  }
+
+  &:hover {
+    background: rgba(238, 238, 238, 0.25);
+  }
+
+  &.withIcon {
+    padding-left: 1.927em;
+  }
+
+  &.withSelected {
+    color: $naturalColor;
+  }
+}

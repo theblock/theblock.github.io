@@ -1,0 +1,35 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../colors.scss';
+@import '../fonts.scss';
+
+.ui {
+  .children,
+  .links {
+    display: flex;
+    font-size: $navFontSize;
+
+    a {
+      text-transform: uppercase;
+    }
+  }
+
+  .children {
+    align-items: center;
+    justify-content: center;
+    padding: 1.618em 0 0;
+  }
+
+  .links {
+    background: $navBackground;
+    border-bottom: $navBorder;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0.809em 1.618em;
+  }
+
+  .logo {
+    transform: scale(0.175) translateX(2em) translateY(2em);
+    transform-origin: 0;
+  }
+}

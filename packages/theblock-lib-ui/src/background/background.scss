@@ -1,0 +1,29 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@keyframes fadeInOnLoad {
+  0% {
+    opacity: 0;
+    filter: blur(100px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.ui {
+  animation-duration: 2s;
+  animation-name: fadeInOnLoad;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}

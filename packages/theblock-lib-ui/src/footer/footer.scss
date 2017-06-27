@@ -1,0 +1,28 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../colors.scss';
+@import '../fonts.scss';
+
+.ui {
+  background: $navBackground;
+  border-top: $navBorder;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0.5em 1.618em;
+
+  div {
+    font-size: $navFontSize;
+
+    img {
+      height: 1em;
+      width: 1em;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+      margin: 0 0 0 0.5em;
+    }
+  }
+}

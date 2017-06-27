@@ -1,0 +1,56 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../colors.scss';
+@import '../fonts.scss';
+
+.ui {
+  background: $buttonBackground;
+  border-radius: $borderRadius;
+  border: $buttonBorder;
+  color: $buttonColor;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: lighter;
+  line-height: $bodyLineHeight;
+  margin: $fieldMargin;
+  opacity: 0.9;
+  outline: 0 !important;
+  padding: 0 0.75em;
+
+  .content {
+    align-items: center;
+    display: flex;
+
+    .icon {
+      margin-right: 0.75em;
+      width: 1.15em;
+      text-align: center;
+    }
+
+    .label {
+      padding: 0.5em 0;
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.withDisabled {
+    box-shadow: none;
+    cursor: default;
+    filter: grayscale(100%);
+    opacity: 0.5;
+  }
+
+  &.withDanger {
+    background: $errorBackground;
+    border-color: $inputErrorBorderColor;
+  }
+
+  &.withInverse {
+    background: transparent;
+    color: $buttonBackground;
+    border-color: $inputBorderColor;
+  }
+}

@@ -1,0 +1,74 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import './colors.scss';
+@import './fonts.scss';
+
+a,
+a:visited {
+  color: $linkColor;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+body {
+  color: $bodyColor;
+  background: $bodyBackground;
+  font-family: $bodyFont;
+  font-size: $bodyFontSize;
+  line-height: $bodyLineHeight;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $headerFont;
+}
+
+header {
+  margin: 1.618em auto;
+  text-align: center;
+}
+
+footer {
+  margin: 0 auto;
+  padding: 1.618em 0;
+  text-align: center;
+}
+
+main {
+  background: $mainBackground;
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: 1.618em;
+}
+
+nav {
+  margin: 0;
+}
+
+article,
+section {
+  margin: 0 auto;
+  max-width: $maxWidth;
+  padding: 1em 0;
+  vertical-align: middle;
+}
+
+section {
+  // border-bottom: 1px solid #eee;
+  text-align: center;
+
+  span {
+    display: inline-block;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+table {
+  width: 100%;
+}

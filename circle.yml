@@ -1,0 +1,29 @@
+# GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+machine:
+  node:
+    version: v8.1.0
+
+dependencies:
+  override:
+    - npm run clean:local
+    - npm install
+
+test:
+  override:
+    - npm run check
+    - npm run stats
+
+deployment:
+  publish:
+    branch: master
+    commands:
+      - npm --no-git-tag-version version patch
+      - npm run ci:build
+      - git config --global user.email "xavieryvez@users.noreply.github.com"
+      - git config --global user.name "CircleCI"
+      - git config --global push.default simple
+      - rm -rf x/y/z/development
+      - git add -f package.json package-lock.json x
+      - git commit -m "[CI skip] deploy"
+      - git push

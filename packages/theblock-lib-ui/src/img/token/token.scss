@@ -1,0 +1,26 @@
+
+@import '../../colors.scss';
+
+$imageSizeInput: 1em;
+$imageSizeNormal: 1em;
+$imageSizeLarge: 4em;
+
+.ui {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  vertical-align: middle;
+
+  &.inline {
+    font-size: $imageSizeInput;
+  }
+
+  &.large {
+    font-size: $imageSizeLarge;
+  }
+
+  &.normal {
+    font-size: $imageSizeNormal;
+    margin-top: 0.618em;
+  }
+}

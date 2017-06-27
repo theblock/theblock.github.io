@@ -1,0 +1,66 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+$GREEN: #097;
+
+$errorZ: 100;
+$naturalZ: 100;
+$maxWidth: 960px;
+
+$borderRadius: 0.25em;
+$borderWidth: 0.1em;
+$borderThickWidth: 0.5em;
+$fieldMargin: 0.375em 0.5em;
+
+$bodyColor: #414141;
+$bodyBackground: #fffffd;
+$bodyLineHeight: 1.618;
+
+$mainBackground: rgba(255, 255, 253, 0.9);
+$borderColor: #ddd;
+$buttonColor: white;
+$errorColor: white;
+$exampleColor: #aaa;
+$iconColor: #999;
+$inverseColor: #414141;
+$labelColor: #777;
+$labelErrorColor: #c02;
+$labelWarningColor: #f80;
+$linkColor: #069;
+$naturalColor: #097;
+$navBackground: #f5f5f5;
+$navBorderColor: #ddd;
+$radioColor: inherit;
+
+$buttonBackground: $linkColor;
+$errorBackground: $labelErrorColor;
+$iconBackground: #fcfcfc;
+$inputBackground: #f9f9f9;
+$inputBackgroundLite: rgba(0, 153, 119, 0.05);
+$inputBackgroundError: white;
+$inputBackgroundErrorLite: rgba(204, 0, 34, 0.05);
+$inputBackgroundWarning: white;
+$inputBackgroundWarningLite: rgba(255, 136, 0, 0.05);
+$inputBackgroundReadonly: transparent;
+$inputBackgroundLink: white;
+$popupBackground: $bodyBackground;
+$readonlyBackground: #f5f5f5;
+$successBackground: $GREEN;
+$warnBackground: $labelWarningColor;
+
+$buttonBorderColor: $linkColor;
+$iconBorderColor: $borderColor;
+$inputBorderColor: $borderColor;
+$inputErrorBorderColor: $labelErrorColor;
+$inputWarningBorderColor: $labelWarningColor;
+$inputFocusBorderColor: $buttonBorderColor;
+
+$buttonBorder: $borderWidth solid $buttonBorderColor;
+$iconBorder: $borderWidth solid $iconBorderColor;
+$inputBorder: $borderWidth dotted $naturalColor;
+$inputErrorBorder: $borderWidth dotted $inputErrorBorderColor;
+$inputFocusBorder: $borderWidth dotted $inputFocusBorderColor;
+$naturalBorder: $borderWidth dotted $naturalColor;
+$popupBorder: $borderWidth solid $borderColor;
+$popupBorderThick: $borderThickWidth solid $borderColor;
+$readonlyBorder: $borderWidth solid $readonlyBackground;
+$navBorder: $borderThickWidth solid $navBorderColor;
