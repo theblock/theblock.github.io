@@ -9,9 +9,10 @@
   input,
   textarea,
   .input {
-    background: transparent;
-    border: $naturalBorder;
-    border-radius: $borderRadius;
+    background: $inputBackgroundLite;
+    border: none;
+    border-bottom: $naturalBorder;
+    border-radius: $borderRadius $borderRadius 0 0;
     box-shadow: none;
     box-sizing: border-box;
     color: transparent;
@@ -27,8 +28,8 @@
 
     &:focus,
     &.focus {
-      background: $inputBackground;
-      border-style: solid;
+      background: $inputBackgroundFocus !important;
+      border-bottom-style: solid;
       color: $naturalColor;
       z-index: 1 !important;
     }
@@ -46,7 +47,8 @@
     input,
     textarea,
     .input {
-      border-color: $inputErrorBorderColor;
+      background: $inputBackgroundErrorLite;
+      border-bottom-color: $inputErrorBorderColor;
 
       &:focus {
         color: $inputErrorBorderColor;
@@ -58,7 +60,8 @@
     input,
     textarea,
     .input {
-      border-color: $inputWarningBorderColor;
+      background: $inputBackgroundWarningLite;
+      border-bottom-color: $inputWarningBorderColor;
 
       &:focus {
         color: $inputWarningBorderColor;
@@ -79,12 +82,20 @@
     input,
     textarea,
     .input {
-      border-color: white;
+      border-bottom-color: white;
 
       &:focus {
         background: $inverseColor;
         color: white;
       }
+    }
+  }
+
+  &.withReadOnly {
+    input,
+    textarea,
+    .input {
+      background: transparent;
     }
   }
 }

@@ -28,7 +28,7 @@ function Busy ({ className, store, t }: PropTypes): ?React.Element<any> {
         color={
           store.state === 'completed'
             ? 'green'
-            : 'normal'
+            : 'orange'
         }
         onClose={ store.clearState }
         title={
