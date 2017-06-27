@@ -5,13 +5,13 @@
 @import './base.scss';
 
 .ui {
-  border-radius: $borderRadius;
+  border: none;
+  border-radius: $borderRadius $borderRadius 0 0;
   cursor: pointer;
   display: inline-block;
   font-size: $inputFontSize;
   margin: $fieldMargin;
   text-align: left;
-  opacity: 0.9;
   position: relative;
 
   .content {
@@ -28,7 +28,7 @@
   }
 
   .mask {
-    border: $borderWidth solid transparent;
+    border: none;
     box-sizing: border-box;
     color: $naturalColor;
     padding: 0.5em 0.75em;
@@ -71,6 +71,7 @@
   .inputContainer {
     display: inline-block;
     position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
     top: 0;
@@ -78,7 +79,6 @@
   }
 
   &:hover {
-    opacity: 1;
     z-index: 1;
   }
 

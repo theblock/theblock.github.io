@@ -7,7 +7,7 @@ $naturalZ: 100;
 $maxWidth: 960px;
 
 $borderRadius: 0.25em;
-$borderWidth: 0.1em;
+$borderWidth: 0.2em;
 $borderThickWidth: 0.5em;
 $fieldMargin: 0.375em 0.5em;
 
@@ -35,6 +35,7 @@ $buttonBackground: $linkColor;
 $errorBackground: $labelErrorColor;
 $iconBackground: #fcfcfc;
 $inputBackground: #f9f9f9;
+$inputBackgroundFocus: #f9f9f9;
 $inputBackgroundLite: rgba(0, 153, 119, 0.05);
 $inputBackgroundError: white;
 $inputBackgroundErrorLite: rgba(204, 0, 34, 0.05);
