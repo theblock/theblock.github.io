@@ -28,6 +28,7 @@ $posTop: $size;
 @define-mixin defineSide $_color, $_degrees, $_delayOffset {
   animation: colorSide calc(3 * $delay) infinite calc($_delayOffset * $delay);
   background: $_color;
+  border: 0.5em solid white;
   box-sizing: border-box;
   height: $size;
   position: absolute;
@@ -36,8 +37,8 @@ $posTop: $size;
   width: $size;
 }
 
-@define-mixin scaleCube $_scale {
-  transform: rotate(0) scale($_scale);
+@define-mixin scaleCube $_rotate, $_scale {
+  transform: rotate($_rotate) scale($_scale);
 }
 
 .ui {
@@ -48,6 +49,7 @@ $posTop: $size;
     opacity: 0.5;
     position: absolute;
     top: $posTop;
+    transform-origin: 0 0;
 
     .left {
       @mixin defineSide $colorLeft, 90deg, -2;
@@ -62,11 +64,11 @@ $posTop: $size;
     }
 
     &.small {
-      @mixin scaleCube 0.66;
+      @mixin scaleCube 0, 0.66;
     }
 
     &.tiny {
-      @mixin scaleCube 0.33;
+      @mixin scaleCube 0, 0.33;
     }
   }
 }
