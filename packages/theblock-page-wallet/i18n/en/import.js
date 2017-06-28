@@ -19,7 +19,7 @@ export default {
     text: 'create account from {{selectType}}'
   },
   password: {
-    text: 'encrypted with {{inputPassword}} as password'
+    text: 'encrypted with password {{inputPassword}}'
   },
   keytype: {
     bipPhrase: {
