@@ -1,10 +1,17 @@
 # GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 
 machine:
+  environment:
+    CXX: g++-4.8
   node:
     version: v8.1.0
 
 dependencies:
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install build-essential git
+    - sudo apt-get install gcc-4.8 g++-4.8
+    - sudo apt-get install libusb-1.0-0 libusb-1.0-0-dev
   override:
     - npm run clean:local
     - npm install
