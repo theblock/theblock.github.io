@@ -11,8 +11,7 @@ export type LedgerResultSignType = {
   v: string
 };
 
-export type LedgerEthComms = {
-};
+export type LedgerEthComms = {};
 
 export type U2FCommsType = { // eslint-disable-line
   create_async: () => Promise<LedgerEthComms>;

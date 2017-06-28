@@ -6,7 +6,7 @@ import ledger from 'ledgerco';
 import u2f from 'u2f-api';
 
 import type { TransactionType } from 'theblock-lib-util/src/types';
-import type { LedgerComms, LedgerEth, LedgerResultGetAddressType, LedgerResultSignType, U2FApiResultType } from './types';
+import type { LedgerEthComms, LedgerEth, LedgerResultGetAddressType, LedgerResultSignType, U2FApiResultType } from './types';
 
 import { createRawTransaction } from 'theblock-lib-util/src/transaction';
 
@@ -31,7 +31,7 @@ export default class Ledger {
   createLedgerInstance (): Promise<LedgerEth> {
     return ledger.comm_u2f
       .create_async()
-      .then((connection: LedgerComms) => {
+      .then((connection: LedgerEthComms) => {
         return new ledger.eth(connection); // eslint-disable-line new-cap
       })
       .catch((error: Error) => {
@@ -98,10 +98,12 @@ export default class Ledger {
             tx.s = Buffer.from(s, 'hex');
             tx.v = Buffer.from(v, 'hex');
 
+            const txRaw: string = `0x${tx.serialize().toString('hex')}`;
+
             return this
               .destroyLedgerInstance(instance)
               .then(() => {
-                return `0x${tx.serialize().toString('hex')}`;
+                return txRaw;
               });
           });
       })
