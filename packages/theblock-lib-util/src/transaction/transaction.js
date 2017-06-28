@@ -5,6 +5,14 @@ import EthereumTx from 'ethereumjs-tx';
 
 import type { TransactionType } from '../types';
 
+export function createRawTransaction (transaction: TransactionType): EthereumTx {
+  transaction.r = Buffer.from(transaction.r || [transaction.chainId]);
+  transaction.s = Buffer.from(transaction.s || [0]);
+  transaction.v = Buffer.from(transaction.v || [0]);
+
+  return new EthereumTx(transaction);
+}
+
 export function signTransaction (transaction: TransactionType, _privateKey: ?Buffer): Promise<string> {
   const privateKey: Buffer = Buffer.from(_privateKey || []);
 
@@ -14,11 +22,7 @@ export function signTransaction (transaction: TransactionType, _privateKey: ?Buf
     }
 
     try {
-      transaction.r = Buffer.from(transaction.r || [transaction.chainId]);
-      transaction.s = Buffer.from(transaction.s || [0]);
-      transaction.v = Buffer.from(transaction.v || [0]);
-
-      const tx = new EthereumTx(transaction);
+      const tx = createRawTransaction(transaction);
 
       tx.sign(privateKey);
 
