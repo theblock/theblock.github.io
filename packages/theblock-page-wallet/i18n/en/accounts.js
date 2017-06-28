@@ -3,10 +3,10 @@
 
 export default {
   address: {
-    text: 'on my selected {{account}} account'
+    text: 'on my selected account {{account}}'
   },
   name: {
-    text: 'identified by {{name}} as the name',
+    text: 'identified by the name {{name}}',
     defaultName: 'no name'
   },
   balance: {

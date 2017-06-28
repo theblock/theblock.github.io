@@ -58,7 +58,8 @@ export class ImportStore {
   @computed get hasError (): boolean {
     return (this.shouldVerifyPassword && this.hasEmptyPassword) ||
       (this.shouldVerifyJson && this.hasJsonError) ||
-      (this.shouldShowPhrase && this.hasEmptyPhrase);
+      (this.shouldShowPhrase && this.hasEmptyPhrase) ||
+      (this.shouldVerifyKey && this.hasInvalidPrivateKey);
   }
 
   @computed get hasEmptyPassword (): boolean {
@@ -89,6 +90,10 @@ export class ImportStore {
 
   @computed get shouldVerifyJson (): boolean {
     return this.type === 'json';
+  }
+
+  @computed get shouldVerifyKey (): boolean {
+    return this.type === 'privateKey';
   }
 
   @computed get shouldVerifyPassword (): boolean {

@@ -6,14 +6,17 @@ export default {
     text: 'using my {{account}} account'
   },
   token: {
-    text: 'with {{token}} tokens'
+    text: 'and {{token}} tokens'
+  },
+  balance: {
+    text: 'with available balance {{balance}}'
   },
   value: {
-    text: 'from my {{balance}} balance send {{value}}',
+    text: 'send an amount of {{value}}',
     empty: 'zero'
   },
   recipient: {
-    text: 'to account {{recipient}} as recipient',
+    text: 'to recipient account {{recipient}}',
     example: 'e.g. 0x00a329c0648769A73afAc7F9381E08FB43dBEA72'
   },
   data: {

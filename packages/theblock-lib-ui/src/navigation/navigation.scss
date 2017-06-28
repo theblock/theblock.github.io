@@ -21,8 +21,9 @@
   }
 
   .links {
-    background: $navBackground;
-    border-bottom: $navBorder;
+    // background: $navBackground;
+    // border-bottom: $navBorder;
+    box-shadow: $shadow;
     align-items: flex-end;
     justify-content: flex-end;
     padding: 0.809em 1.618em;

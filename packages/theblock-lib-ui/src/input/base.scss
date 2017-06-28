@@ -30,6 +30,7 @@
     &.focus {
       background: $inputBackgroundFocus !important;
       border-bottom-style: solid;
+      box-shadow: $shadow;
       color: $naturalColor;
       z-index: 1 !important;
     }

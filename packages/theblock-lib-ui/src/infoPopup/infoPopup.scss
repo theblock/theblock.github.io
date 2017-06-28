@@ -6,7 +6,8 @@
 .ui {
   .container {
     background: $popupBackground;
-    border-bottom: $popupBorderThick;
+    // border-bottom: $popupBorderThick;
+    box-shadow: $shadow;
     padding: 0;
     text-align: center;
     position: relative;
@@ -33,7 +34,7 @@
 
   &.greenColor {
     .container {
-      border-color: $successBackground;
+      // border-color: $successBackground;
 
       .close,
       .title {
@@ -45,7 +46,7 @@
 
   &.orangeColor {
     .container {
-      border-color: $warnBackground;
+      // border-color: $warnBackground;
 
       .close,
       .title {
@@ -57,7 +58,7 @@
 
   &.redColor {
     .container {
-      border-color: $errorBackground;
+      // border-color: $errorBackground;
 
       .close,
       .title {

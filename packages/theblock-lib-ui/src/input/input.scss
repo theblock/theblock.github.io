@@ -7,7 +7,6 @@
 .ui {
   border: none;
   border-radius: $borderRadius $borderRadius 0 0;
-  cursor: pointer;
   display: inline-block;
   font-size: $inputFontSize;
   margin: $fieldMargin;
@@ -22,7 +21,6 @@
 
   .extraIcon {
     color: #069;
-    cursor: pointer;
     display: inline-block;
     margin: 0 0.5em;
   }
@@ -99,6 +97,7 @@
 
   &.withReadOnly {
     background: $readonlyBackground;
+    border-radius: $borderRadius;
     cursor: text;
 
     .mask {
