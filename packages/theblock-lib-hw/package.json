@@ -1,5 +1,5 @@
 {
-  "name": "theblock-page-wallet",
+  "name": "theblock-lib-hw",
   "version": "0.0.0",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
@@ -8,12 +8,9 @@
   "devDependencies": {
   },
   "dependencies": {
-    "moment": "^2.18.1"
+    "ledgerco": "^1.1.3"
   },
   "peerDependencies": {
-    "theblock-lib-api": "*",
-    "theblock-lib-hw": "*",
-    "theblock-lib-ui": "*",
     "theblock-lib-util": "*"
   }
 }
