@@ -97,6 +97,7 @@
 
   &.withReadOnly {
     background: $readonlyBackground;
+    border-radius: $borderRadius;
     cursor: text;
 
     .mask {
