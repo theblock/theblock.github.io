@@ -1,0 +1,16 @@
+{
+  "name": "theblock-lib-hw",
+  "version": "0.0.0",
+  "author": "xavieryvez@users.noreply.github.com",
+  "license": "GPL-3.0",
+  "scripts": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "ledgerco": "^1.1.3"
+  },
+  "peerDependencies": {
+    "theblock-lib-util": "*"
+  }
+}

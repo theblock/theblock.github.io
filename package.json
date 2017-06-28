@@ -86,6 +86,7 @@
     "lodash.uniq": "^4.5.0",
     "normalize.css": "^7.0.0",
     "theblock-lib-api": "file:packages/theblock-lib-api",
+    "theblock-lib-hw": "file:packages/theblock-lib-hw",
     "theblock-lib-services": "file:packages/theblock-lib-services",
     "theblock-lib-ui": "file:packages/theblock-lib-ui",
     "theblock-lib-util": "file:packages/theblock-lib-util",

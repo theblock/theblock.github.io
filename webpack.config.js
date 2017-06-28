@@ -47,7 +47,10 @@ module.exports = {
       .reduce((result, module) => {
         result[module] = path.resolve(__dirname, `packages/${module}`);
         return result;
-      }, {}),
+      }, {
+        'ledgerco': path.resolve(__dirname, 'node_modules/ledgerco/src/index-browserify.js'),
+        'u2f-api': path.resolve(__dirname, 'node_modules/ledgerco/src/u2f-api.js')
+      }),
     mainFields: [
       'jsnext:main',
       'browser',
