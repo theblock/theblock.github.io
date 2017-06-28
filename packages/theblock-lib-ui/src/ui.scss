@@ -39,9 +39,11 @@ footer {
 
 main {
   background: $mainBackground;
+  border-radius: $borderRadius;
   box-sizing: content-box;
-  margin: 0 auto;
-  padding: 1.618em;
+  margin: 1.618em auto;
+  max-width: $maxWidth;
+  padding: 0 1.618em;
 }
 
 nav {
@@ -50,22 +52,15 @@ nav {
 
 article,
 section {
-  margin: 0 auto;
-  max-width: $maxWidth;
+  margin: 0;
   padding: 0.75em 0;
-  vertical-align: middle;
 }
 
 section {
-  // border-bottom: 1px solid #eee;
   text-align: center;
 
   span {
     display: inline-block;
-  }
-
-  &:last-child {
-    border-bottom: none;
   }
 }
 

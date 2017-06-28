@@ -15,7 +15,7 @@ $bodyColor: #414141;
 $bodyBackground: #fffffd;
 $bodyLineHeight: 1.618;
 
-$mainBackground: rgba(255, 255, 253, 0.9);
+$mainBackground: $bodyBackground;
 $borderColor: #ddd;
 $buttonColor: white;
 $errorColor: white;
@@ -65,3 +65,4 @@ $popupBorder: $borderWidth solid $borderColor;
 $popupBorderThick: $borderThickWidth solid $borderColor;
 $readonlyBorder: $borderWidth solid $readonlyBackground;
 $navBorder: $borderThickWidth solid $navBorderColor;
+$shadow: 0.25em 0.25em 0.25em rgba(68, 68, 68, 0.25);
