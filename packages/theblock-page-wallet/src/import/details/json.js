@@ -6,7 +6,6 @@ import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import InputFile from 'theblock-lib-ui/src/input/file';
-import InputPassword from 'theblock-lib-ui/src/input/password';
 
 import { ImportStore } from '../store';
 
@@ -27,17 +26,6 @@ function Json ({ className, store, t }: PropTypes): React.Element<any> {
             isError={ store.hasJsonError }
             onChange={ store.setJsonFile }
             value={ store.jsonFilename }
-          />
-        }
-      />
-      <Interpolate
-        parent='div'
-        i18nKey='keytype.json.password.text'
-        inputPassword={
-          <InputPassword
-            isWarning={ store.hasEmptyPassword }
-            onChange={ store.setPassword }
-            value={ store.password }
           />
         }
       />

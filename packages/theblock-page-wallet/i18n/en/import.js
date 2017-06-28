@@ -18,6 +18,9 @@ export default {
   details: {
     text: 'create account from {{selectType}}'
   },
+  password: {
+    text: 'encrypted with {{inputPassword}} as password'
+  },
   keytype: {
     bipPhrase: {
       label: 'BIP39 phrase',
@@ -33,9 +36,6 @@ export default {
       label: 'Keystore file',
       file: {
         text: 'from the {{inputFile}} source file'
-      },
-      password: {
-        text: 'unlocked with {{inputPassword}} as password'
       }
     },
     new: {
@@ -52,8 +52,7 @@ export default {
   },
   storagetype: {
     browser: {
-      label: 'browser storage',
-      text: 'encryping with {{inputPassword}} as password'
+      label: 'browser storage'
     },
     session: {
       label: 'session memory'

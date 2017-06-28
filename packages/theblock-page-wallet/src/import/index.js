@@ -7,11 +7,11 @@ import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Button from 'theblock-lib-ui/src/button';
+import InputPassword from 'theblock-lib-ui/src/input/password';
 import Select from 'theblock-lib-ui/src/input/select';
 
 import Busy from './busy';
 import Details from './details';
-import Storage from './storage';
 import store from './store';
 import styles from './import.scss';
 
@@ -39,6 +39,17 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
           }
         />
         <Details store={ store } />
+        <Interpolate
+          parent='div'
+          i18nKey='password.text'
+          inputPassword={
+            <InputPassword
+              isWarning={ store.hasEmptyPassword }
+              onChange={ store.setPassword }
+              value={ store.password }
+            />
+          }
+        />
       </section>
       <section>
         <Interpolate
@@ -48,7 +59,6 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
             <Select store={ store.storeStorage } />
           }
         />
-        <Storage store={ store } />
       </section>
       <section>
         <Button
