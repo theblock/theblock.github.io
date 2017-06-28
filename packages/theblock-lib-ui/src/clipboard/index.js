@@ -10,12 +10,12 @@ import Tooltip from '../tooltip';
 
 import styles from './clipboard.scss';
 
-// type PropTypes = {
-//   className?: string,
-//   value: string
-// };
-
 export default class Clipboard extends PureComponent {
+  props: {
+    className?: string,
+    value: string
+  };
+
   state = {
     fade: false
   };
@@ -46,11 +46,9 @@ export default class Clipboard extends PureComponent {
 
   onCopy = () => {
     this.setState({ fade: true }, () => {
-      setTimeout(this.fadingDone, 1000);
+      setTimeout(() => {
+        this.setState({ fade: false });
+      }, 1000);
     });
-  }
-
-  fadingDone = () => {
-    this.setState({ fade: false });
   }
 }
