@@ -10,11 +10,12 @@
 
   .menu {
     background: white;
-    border: $inputBorder;
-    border-style: solid;
-    border-radius: $borderRadius;
+    // border: $inputBorder;
+    // border-style: solid;
+    border-radius: 0 0 $borderRadius $borderRadius;
     box-sizing: border-box;
-    margin: 0.5em 0;
+    box-shadow: $shadow;
+    margin: 0;
     max-height: 50vh;
     overflow-x: hidden;
     overflow-y: scroll;
