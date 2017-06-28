@@ -64,7 +64,7 @@ export default class Ledger {
       });
   }
 
-  static isSupported (): Promise<boolean> {
+  static isU2FAvailable (): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (window.u2f && !window.u2f.getApiVersion) {
         resolve(true);
