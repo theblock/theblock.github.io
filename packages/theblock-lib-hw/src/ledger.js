@@ -5,7 +5,7 @@
 import ledger from 'ledgerco';
 import u2f from 'u2f-api';
 
-import type { LedgerComms, LedgerEth, LedgerResultGetAddressType } from './types';
+import type { LedgerComms, LedgerEth, LedgerResultGetAddressType, U2FApiResultType } from './types';
 
 const PATH_ETC = "44'/60'/160720'/0'/0";
 const PATH_ETH = "44'/60'/0'/0";
@@ -15,8 +15,7 @@ if (window.u2f === undefined) {
 }
 
 export default class Ledger {
-  _connection: LedgerComms;
-  _instance: LedgerEth;
+  _instance: ?LedgerEth = null;
 
   path (chainId: number) {
     switch (chainId) {
@@ -28,7 +27,7 @@ export default class Ledger {
     }
   }
 
-  getLedgerInstance (): Promise<LedgerEth> {
+  createLedgerInstance (): Promise<LedgerEth> {
     if (this._instance) {
       return Promise.resolve(this._instance);
     }
@@ -36,29 +35,34 @@ export default class Ledger {
     return ledger.comm_u2f
       .create_async()
       .then((connection: LedgerComms) => {
-        this._connection = connection;
         this._instance = new ledger.eth(connection); // eslint-disable-line new-cap
 
         return this._instance;
       })
       .catch((error: Error) => {
-        console.error(error);
+        console.error('Ledger:createLedgerInstance', error);
 
         throw error;
       });
   }
 
+  destroyLedgerInstance () {
+    this._instance = null;
+  }
+
   getAddresses (chainId: number): Promise<Array<string>> {
     return this
-      .getLedgerInstance()
+      .createLedgerInstance()
       .then((instance: LedgerEth) => {
         return instance.getAddress_async(this.path(chainId), true, false);
       })
-      .then(({ address }: LedgerResultGetAddressType) => {
-        return [address.toLowerCase()];
+      .then((result: LedgerResultGetAddressType) => {
+        console.log('Ledger:getAddresses', result);
+
+        return [result.address];
       })
       .catch((error: Error) => {
-        console.error(error);
+        console.error('Ledger:getAddresses', error);
 
         throw error;
       });
@@ -67,15 +71,19 @@ export default class Ledger {
   static isU2FAvailable (): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (window.u2f && !window.u2f.getApiVersion) {
+        console.log('Ledger:isU2FAvailable', 'supported, no getApiVersion');
+
         resolve(true);
       }
 
-      u2f.getApiVersion((error: ?Error, version: string) => {
-        if (error) {
-          console.error(error);
+      u2f.getApiVersion((version: Error | U2FApiResultType) => {
+        if (!version.js_api_version) {
+          console.error('Ledger:isU2FAvailable', version);
 
-          reject(error);
+          reject(version);
         } else {
+          console.log('Ledger:isU2FAvailable', 'available with', version);
+
           resolve(true);
         }
       }, 1000);

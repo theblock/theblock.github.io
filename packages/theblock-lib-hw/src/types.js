@@ -11,3 +11,7 @@ export type LedgerComms = {
 export type LedgerEth = {
   getAddress_async (path: string, confirm: boolean, withChain: false): Promise<LedgerResultGetAddressType>;
 };
+
+export type U2FApiResultType = {
+  js_api_version: string
+};
