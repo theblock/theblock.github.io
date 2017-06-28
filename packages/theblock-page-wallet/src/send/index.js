@@ -51,7 +51,7 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
       </section>
       <section>
         <Interpolate
-          i18nKey='value.text'
+          i18nKey='balance.text'
           parent='div'
           balance={
             <span>
@@ -65,6 +65,10 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
               <Select store={ store.valueType } />
             </span>
           }
+        />
+        <Interpolate
+          i18nKey='value.text'
+          parent='div'
           value={
             <span>
               <InputNumber
