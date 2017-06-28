@@ -3,13 +3,13 @@
 
 export default {
   account: {
-    text: 'using my {{account}} account'
+    text: 'from {{account}}'
   },
   token: {
-    text: 'with {{token}} tokens'
+    text: 'with {{token}}'
   },
   balance: {
-    text: 'from my available {{balance}}'
+    text: 'balance of {{balance}}'
   },
   value: {
     text: 'send an amount of {{value}}',

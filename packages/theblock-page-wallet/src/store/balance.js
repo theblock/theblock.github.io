@@ -32,7 +32,7 @@ export class BalanceStore {
   }
 
   @computed get balanceFormatted (): string {
-    return formatFloat(this.balanceBn, 18, 6);
+    return formatFloat(this.balanceBn, 18, 4);
   }
 
   @computed get balanceFiatFormatted (): string {

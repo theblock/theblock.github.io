@@ -47,25 +47,25 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
               <Select store={ store.tokens } />
             }
           />
+          { ' ' }
+          <Interpolate
+            i18nKey='balance.text'
+            balance={
+              <span>
+                <InputStatic
+                  value={
+                    store.valueType.selected.isNative
+                      ? store.balance.balanceFormatted
+                      : store.balance.balanceFiatFormatted
+                  }
+                />
+                <Select store={ store.valueType } />
+              </span>
+            }
+          />
         </div>
       </section>
       <section>
-        <Interpolate
-          i18nKey='balance.text'
-          parent='div'
-          balance={
-            <span>
-              <InputStatic
-                value={
-                  store.valueType.selected.isNative
-                    ? store.balance.balanceFormatted
-                    : store.balance.balanceFiatFormatted
-                }
-              />
-              <Select store={ store.valueType } />
-            </span>
-          }
-        />
         <Interpolate
           i18nKey='value.text'
           parent='div'
