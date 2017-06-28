@@ -5,6 +5,8 @@
 import ledger from 'ledgerco';
 import u2f from 'u2f-api';
 
+import type { LedgerComms, LedgerEth, LedgerResultGetAddressType } from './types';
+
 const PATH_ETC = "44'/60'/160720'/0'/0";
 const PATH_ETH = "44'/60'/0'/0";
 
@@ -13,8 +15,8 @@ if (window.u2f === undefined) {
 }
 
 export default class Ledger {
-  _connection = null;
-  _instance = null;
+  _connection: LedgerComms;
+  _instance: LedgerEth;
 
   path (chainId: number) {
     switch (chainId) {
@@ -26,29 +28,39 @@ export default class Ledger {
     }
   }
 
-  getLedgerInstance () {
-    if (this.instance) {
-      return Promise.resolve(this.instance);
+  getLedgerInstance (): Promise<LedgerEth> {
+    if (this._instance) {
+      return Promise.resolve(this._instance);
     }
 
     return ledger.comm_u2f
       .create_async()
-      .then((connection) => {
+      .then((connection: LedgerComms) => {
         this._connection = connection;
         this._instance = new ledger.eth(connection); // eslint-disable-line new-cap
 
-        return this.instance;
+        return this._instance;
+      })
+      .catch((error: Error) => {
+        console.error(error);
+
+        throw error;
       });
   }
 
   getAddresses (chainId: number): Promise<Array<string>> {
     return this
       .getLedgerInstance()
-      .then((instance) => {
+      .then((instance: LedgerEth) => {
         return instance.getAddress_async(this.path(chainId), true, false);
       })
-      .then((result: { address: string }) => {
-        return [result.address.toLowerCase()];
+      .then(({ address }: LedgerResultGetAddressType) => {
+        return [address.toLowerCase()];
+      })
+      .catch((error: Error) => {
+        console.error(error);
+
+        throw error;
       });
   }
 
@@ -60,6 +72,8 @@ export default class Ledger {
 
       u2f.getApiVersion((error: ?Error, version: string) => {
         if (error) {
+          console.error(error);
+
           reject(error);
         } else {
           resolve(true);
