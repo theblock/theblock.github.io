@@ -5,6 +5,7 @@ import { action, autorun, computed, observable } from 'mobx';
 
 import type { PrivateKeyType, WalletType } from 'theblock-lib-util/src/types';
 
+import { getLedgerAddresses } from 'theblock-lib-hw/src/ledger';
 import { NULL_ADDRESS } from 'theblock-lib-ui/src/img/identity';
 import { formatAddress } from 'theblock-lib-util/src/format';
 import { createKeyObject, newKeyObject } from 'theblock-lib-util/src/keys';
@@ -13,19 +14,21 @@ import { walletFromPhrase, walletFromPrivateKey, walletFromKeyObject } from 'the
 
 import i18n from '../i18n';
 import accountsStore from '../store/accounts';
+import chainStore from '../store/chains';
 import errors from '../store/errors';
 import importStoreType from './storeType';
 import importStoreStorage from './storeStorage';
 
-type ImportType = 'bipPhrase' | 'brainPhrase' | 'json' | 'newKey' | 'privateKey';
+type ImportType = 'bipPhrase' | 'brainPhrase' | 'json' | 'ledger' | 'newKey' | 'privateKey';
 type StorageType = 'browser' | 'session';
-type StateType = 'completed' | 'empty' | 'error' | 'walletFromPhrase' | 'createKeyObject' | 'walletFromKeyObject' | 'addAccount';
+type StateType = 'completed' | 'empty' | 'error' | 'walletFromPhrase' | 'createKeyObject' | 'walletFromKeyObject' | 'addAccount' | 'commsLedger';
 
 const DEFAULT_TYPE: ImportType = 'newKey';
 const DEFAULT_STORE: StorageType = 'session';
 
 export class ImportStore {
   @observable accountsStore = accountsStore;
+  @observable chains = chainStore;
   @observable isBusy: bool = false;
   @observable jsonFilename: string = '';
   @observable name: string = '';
@@ -101,7 +104,7 @@ export class ImportStore {
   }
 
   @computed get shouldShowPassword (): boolean {
-    return !this.shouldVerifyPassword || this.shouldStore;
+    return !['ledger'].includes(this.type);
   }
 
   @computed get shouldShowPhrase (): boolean {
@@ -143,6 +146,9 @@ export class ImportStore {
 
           case 'json':
             return this.createWalletFromJson();
+
+          case 'ledger':
+            return this.createWalletFromLedger();
 
           case 'newKey':
             return this.createWalletNew();
@@ -195,6 +201,32 @@ export class ImportStore {
 
     return walletFromPrivateKey(this.privateKey)
       .then(this._addFromWallet);
+  }
+
+  createWalletFromLedger = () => {
+    this.setState('commsLedger');
+
+    return getLedgerAddresses(this.chains.selected.chainId).then((result: Array<string>) => {
+      console.log('createWalletFromLedger', result);
+
+      if (!result.length) {
+        throw new Error(i18n.t('import:errors.ledgerComms'));
+      }
+
+      const [address] = result;
+
+      this.setWalletObject({
+        address,
+        name: 'Ledger',
+        meta: {
+          hardware: {
+            type: 'ledger'
+          }
+        }
+      });
+      this.setState('addAccount');
+      this.addAccount();
+    });
   }
 
   createWalletFromPhrase = () => {

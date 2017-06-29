@@ -39,17 +39,23 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
           }
         />
         <Details store={ store } />
-        <Interpolate
-          parent='div'
-          i18nKey='password.text'
-          inputPassword={
-            <InputPassword
-              isWarning={ store.hasEmptyPassword }
-              onChange={ store.setPassword }
-              value={ store.password }
-            />
-          }
-        />
+        {
+          store.shouldShowPassword
+            ? (
+              <Interpolate
+                parent='div'
+                i18nKey='password.text'
+                inputPassword={
+                  <InputPassword
+                    isWarning={ store.hasEmptyPassword }
+                    onChange={ store.setPassword }
+                    value={ store.password }
+                  />
+                }
+              />
+            )
+            : null
+        }
       </section>
       <section>
         <Interpolate
