@@ -1,6 +1,7 @@
 # GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 
 .DS_Store
+bower_components/
 coverage/
 node_modules/
 x/

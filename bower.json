@@ -1,0 +1,6 @@
+{
+  "name": "theblock",
+  "dependencies": {
+    "trezor-connect": "^1.1.3"
+  }
+}

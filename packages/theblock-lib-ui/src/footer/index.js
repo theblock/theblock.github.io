@@ -27,17 +27,26 @@ function Footer ({ className, t }: PropTypes): React.Element<any> {
         i18nKey='ui:footer.text'
         parent='div'
         github={
-          <a href='https://github.com/theblock'>
+          <a
+            href='https://github.com/theblock'
+            rel='noopener'
+          >
             <GitHubIcon /> GitHub
           </a>
         }
         reddit={
-          <a href='https://reddit.com/r/theblockio'>
+          <a
+            href='https://reddit.com/r/theblockio'
+            rel='noopener'
+          >
             <RedditIcon /> Reddit
           </a>
         }
         twitter={
-          <a href='https://twitter.com/theblockio'>
+          <a
+            href='https://twitter.com/theblockio'
+            rel='noopener'
+          >
             <TwitterIcon /> Twitter
           </a>
         }

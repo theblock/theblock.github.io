@@ -8,8 +8,10 @@ import { Interpolate, translate } from 'react-i18next';
 import Button from 'theblock-lib-ui/src/button';
 import InputPassword from 'theblock-lib-ui/src/input/password';
 
-import TransactionType from '../../store/transactions/transaction';
-import { getBlockNumberLink, getTxHashLink } from '../../util/links';
+import TransactionType from '../../../store/transactions/transaction';
+import { getBlockNumberLink, getTxHashLink } from '../../../util/links';
+
+import styles from './status.scss';
 
 type PropTypes = {
   className?: string,
@@ -41,7 +43,9 @@ function Status ({ className, item, t }: PropTypes): ?React.Element<any> {
     case 'error':
       return (
         <section>
-          { item.error }
+          <div className={ styles.text }>
+            { item.error }
+          </div>
         </section>
       );
 
@@ -81,12 +85,16 @@ function Status ({ className, item, t }: PropTypes): ?React.Element<any> {
 
     case 'confirming':
     case 'decrypting':
-    case 'hardware':
+    case 'nonce':
     case 'rejected':
     case 'sending':
+    case 'signing':
+    case 'signingHardware':
       return (
         <section>
-          { t(`state.${item.state}`) }
+          <div className={ styles.text }>
+            { t(`state.${item.state}`) }
+          </div>
         </section>
       );
 

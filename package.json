@@ -17,6 +17,8 @@
     "clean:js": "find ./x -name '*.js*' -delete",
     "clean:local": "find ./node_modules -name 'theblock-*' -exec rm -rf {} \\; || true",
     "clean:logs": "find . -name '*-error.log' -delete",
+    "install:all": "npm install && npm run install:bower",
+    "install:bower": "bower install",
     "start": "webpack-dev-server --progress",
     "stats": "npm-run-all --serial stats:*",
     "stats:coverage": "NOD_ENV=test jest --coverage && cat ./coverage/lcov.info | coveralls",
@@ -39,6 +41,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "bower": "^1.8.0",
     "coveralls": "^2.13.1",
     "css-loader": "^0.28.1",
     "empty": "^0.10.1",
@@ -76,9 +79,9 @@
     "stylelint": "^7.11.0",
     "stylelint-config-standard": "^16.0.0",
     "stylelint-scss": "^1.4.4",
-    "webpack": "^2.6.1",
+    "webpack": "^3.0.0",
     "webpack-bundle-size-analyzer": "^2.7.0",
-    "webpack-dev-server": "^2.4.5",
+    "webpack-dev-server": "^2.5.0",
     "worker-loader": "^0.8.0"
   },
   "dependencies": {
