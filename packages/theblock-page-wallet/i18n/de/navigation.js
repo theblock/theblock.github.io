@@ -3,8 +3,8 @@
 
 export default {
   location: {
-    listAccounts: 'view my accounts',
-    importAccount: 'add an account',
-    send: 'send a transaction'
+    listAccounts: 'Mein Konto ansehen',
+    importAccount: 'Neues Konto',
+    send: 'sende eine Transaktion'
   }
 };
