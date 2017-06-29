@@ -98,7 +98,7 @@ export class ImportStore {
   }
 
   @computed get shouldVerifyPassword (): boolean {
-    return this.shouldStore && !['json'].includes(this.type);
+    return this.shouldStore && !['json', 'ledger'].includes(this.type);
   }
 
   @computed get shouldShowPassword (): boolean {
