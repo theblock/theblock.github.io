@@ -81,6 +81,7 @@ function Status ({ className, item, t }: PropTypes): ?React.Element<any> {
 
     case 'confirming':
     case 'decrypting':
+    case 'hardware':
     case 'rejected':
     case 'sending':
       return (
