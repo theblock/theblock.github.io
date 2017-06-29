@@ -7,15 +7,20 @@ import type { TransactionResultType } from 'theblock-lib-services/src/types';
 
 import accounts from '../store/accounts';
 import balanceStore from '../store/balance';
-import chains from '../store/chains';
+import chainStore from '../store/chains';
 
 export class AccountStore {
   @observable accounts = accounts;
   @observable balance = balanceStore;
+  @observable chains = chainStore;
   @observable transactions = [];
 
   constructor () {
-    autorun(this.retrieveTransactions);
+    autorun(() => {
+      if (this.balance.balanceBn) {
+        this.retrieveTransactions();
+      }
+    });
   }
 
   @computed get hasTransactions (): boolean {
@@ -29,7 +34,7 @@ export class AccountStore {
   retrieveTransactions = () => {
     this.setTransactions([]);
 
-    chains.selected.explorer.api
+    this.chains.selected.explorer.api
       .getTransactions(this.accounts.selected.key)
       .then(this.setTransactions);
   }
