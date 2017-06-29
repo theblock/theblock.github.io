@@ -3,12 +3,13 @@
 
 import { observer } from 'mobx-react';
 import React from 'react';
-import { translate } from 'react-i18next';
+import { Interpolate, translate } from 'react-i18next';
 
 import ImgIdentity from 'theblock-lib-ui/src/img/identity';
 import InputAddress from 'theblock-lib-ui/src/input/address';
 import InputStatic from 'theblock-lib-ui/src/input/static';
 
+import chains from '../../../store/chains';
 import TransactionType from '../../../store/transactions/transaction';
 
 import styles from './info.scss';
@@ -50,6 +51,32 @@ function Info ({ className, item, t }: PropTypes): React.Element<any> {
           />
         </div>
       </div>
+      <Interpolate
+        i18nKey='confirmTx'
+        parent='div'
+        className={ styles.extraInfo }
+        txData={
+          <span>
+            <InputStatic value={ item.txDataFormatted || t('confirmDataNone') } />
+          </span>
+        }
+        txGasLimit={
+          <span>
+            <InputStatic value={ item.txGasLimitFormatted } />
+          </span>
+        }
+        txGasPrice={
+          <span>
+            <InputStatic value={ item.txGasPriceFormatted } />
+          </span>
+        }
+        txTotal={
+          <span>
+            <InputStatic value={ item.txTotalFormatted } />
+            <InputStatic value={ chains.selected.token } />
+          </span>
+        }
+      />
     </section>
   );
 }

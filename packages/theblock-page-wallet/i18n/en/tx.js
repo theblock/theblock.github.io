@@ -2,8 +2,7 @@
 // @flow
 
 export default {
-  confirmTx: 'Sending from {{txFrom}} to {{txTo}} with {{txValue}} value and {{txData}} extra data. Gas limit of {{txGasLimit}} and {{txGasPrice}} Gwei/gas price for a {{txTotal}} overall total',
-  confirmValueNone: 'no',
+  confirmTx: '{{txData}} extra data with gas limit of {{txGasLimit}} and {{txGasPrice}} Gwei/gas price, overall total of {{txTotal}}',
   confirmDataNone: 'no',
   confirmPassword: 'Unlock my account with {{inputPassword}}',
   buttons: {
@@ -39,7 +38,7 @@ export default {
     completed: 'Your transaction {{txHash}} was accepted in block {{blockNumber}}',
     confirming: 'Confirming transaction with supplied credentials',
     decrypting: 'Decrypting your account with the supplied credentials',
-    nonce: 'Caclculating transcation nonce',
+    nonce: 'Retrieving the transaction nonce',
     propagating: 'The transaction {{txHash}} is waiting to be mined',
     queued: 'You are about to send, please enter your account password',
     rejected: 'Your transaction has been rejected and will not be posted',
