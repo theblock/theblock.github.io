@@ -43,7 +43,9 @@ function Status ({ className, item, t }: PropTypes): ?React.Element<any> {
     case 'error':
       return (
         <section>
-          { item.error }
+          <div className={ styles.text }>
+            { item.error }
+          </div>
         </section>
       );
 
