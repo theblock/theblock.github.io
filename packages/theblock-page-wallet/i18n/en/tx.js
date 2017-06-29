@@ -7,7 +7,7 @@ export default {
   confirmDataNone: 'no',
   confirmPassword: 'Unlock my account with {{inputPassword}}',
   buttons: {
-    confirm: 'Sign and send',
+    confirm: 'Confirm, sign and send',
     reject: 'No, reject'
   },
   errors: {
@@ -26,20 +26,25 @@ export default {
     confirming: 'Confirming credentials',
     completed: 'Completed',
     decrypting: 'Decrypting account',
+    nonce: 'Transaction nonce',
     propagating: 'Propagating',
     queued: 'Transaction confirmation',
     rejected: 'Transaction rejected',
     error: 'Error',
-    sending: 'Sending'
+    sending: 'Sending',
+    signing: 'Signing',
+    signingHardware: 'Signing'
   },
   state: {
     completed: 'Your transaction {{txHash}} was accepted in block {{blockNumber}}',
     confirming: 'Confirming transaction with supplied credentials',
     decrypting: 'Decrypting your account with the supplied credentials',
-    hardware: 'Requesting signing and confirmation from hardware device',
+    nonce: 'Caclculating transcation nonce',
     propagating: 'The transaction {{txHash}} is waiting to be mined',
     queued: 'You are about to send, please enter your account password',
     rejected: 'Your transaction has been rejected and will not be posted',
-    sending: 'Your transaction is being sent to the node'
+    sending: 'Your transaction is being sent to the node',
+    signing: 'Signing transaction using private key',
+    signningHardware: 'Requesting signing and confirmation from hardware device'
   }
 };

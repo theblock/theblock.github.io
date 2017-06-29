@@ -237,7 +237,7 @@ export default class Transaction {
   }
 
   postTransaction = (): Promise<string> => {
-    this.setState('sending');
+    this.setState('nonce');
 
     const { data, from, to, gas, gasPrice, value } = this.tx;
 
@@ -247,6 +247,12 @@ export default class Transaction {
         throw new Error(i18n.t('tx:errors.nonce', { message: error.message }));
       })
       .then((nonce) => {
+        this.setState(
+          accountStore.isHardware(from)
+            ? 'signingHardware'
+            : 'signing'
+        );
+
         const chainId: number = chainStore.selected.chainId;
 
         return accountStore
@@ -266,6 +272,8 @@ export default class Transaction {
             throw new Error(i18n.t('tx:errors.sign', { message: error.message }));
           })
           .then((rawTx: string) => {
+            this.setState('sending');
+
             return this.api
               .sendRawTransaction(rawTx)
               .then((txHash: string) => {

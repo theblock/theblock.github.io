@@ -121,6 +121,10 @@ class AccountsStore extends SelectStore<AccountStore> {
       ? signLedgerTransaction(tx)
       : signTransaction(tx, account.privateKey);
   }
+
+  isHardware = (address: ?string): boolean => {
+    return this.find(address).isHardware;
+  }
 }
 
 export default new AccountsStore();

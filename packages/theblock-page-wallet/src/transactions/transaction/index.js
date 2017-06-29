@@ -23,10 +23,6 @@ type PropTypes = {
 
 const colors: { [TxStateType]: PopupColorType } = {
   'completed': 'green',
-  'decrypting': 'orange',
-  'propagating': 'orange',
-  'queued': 'orange',
-  'sending': 'orange',
   'error': 'red',
   'rejected': 'red'
 };
@@ -38,7 +34,7 @@ function Transaction ({ className, item, t }: PropTypes): ?React.Element<any> {
 
   return (
     <InfoPopup
-      color={ colors[item.state] || 'normal' }
+      color={ colors[item.state] || 'orange' }
       onClose={
         item.state === 'queued'
           ? item.reject
