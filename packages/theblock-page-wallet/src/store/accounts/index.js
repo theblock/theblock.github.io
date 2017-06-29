@@ -5,6 +5,7 @@ import { action, autorun, computed } from 'mobx';
 
 import type { PrivateKeyType, StorageValueType, TransactionType } from 'theblock-lib-util/src/types';
 
+import { signLedgerTransaction } from 'theblock-lib-hw/src/ledger';
 import SelectStore from 'theblock-lib-ui/src/input/select/store';
 import { decryptPrivateKey } from 'theblock-lib-util/src/keys';
 import { getStorage, setStorage } from 'theblock-lib-util/src/storage';
@@ -83,7 +84,11 @@ class AccountsStore extends SelectStore<AccountStore> {
   }
 
   needsUnlocking = (address: ?string): boolean => {
-    return !this.find(address).privateKey;
+    const account: AccountStore = this.find(address);
+
+    return account.isHardware
+      ? false
+      : !account.privateKey;
   }
 
   find = (_address: ?string): AccountStore => {
@@ -110,7 +115,11 @@ class AccountsStore extends SelectStore<AccountStore> {
   }
 
   signTransaction = (address: ?string, tx: TransactionType): Promise<string> => {
-    return signTransaction(tx, this.find(address).privateKey);
+    const account: AccountStore = this.find(address);
+
+    return account.isHardware
+      ? signLedgerTransaction(tx)
+      : signTransaction(tx, account.privateKey);
   }
 }
 

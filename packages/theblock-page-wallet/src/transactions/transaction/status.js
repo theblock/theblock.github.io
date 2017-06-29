@@ -49,19 +49,21 @@ function Status ({ className, item, t }: PropTypes): ?React.Element<any> {
       return (
         <div>
           {
-            item.needsUnlocking && (
-              <Interpolate
-                parent='section'
-                i18nKey='confirmPassword'
-                inputPassword={
-                  <InputPassword
-                    isError={ !item.hasPassword }
-                    onChange={ item.setPassword }
-                    value={ item.password }
-                  />
-                }
-              />
-            )
+            item.needsUnlocking
+              ? (
+                <Interpolate
+                  parent='section'
+                  i18nKey='confirmPassword'
+                  inputPassword={
+                    <InputPassword
+                      isError={ !item.hasPassword }
+                      onChange={ item.setPassword }
+                      value={ item.password }
+                    />
+                  }
+                />
+              )
+              : null
           }
           <footer>
             <Button
