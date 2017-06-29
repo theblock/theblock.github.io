@@ -6,6 +6,7 @@ import React from 'react';
 export interface SelectableInterface {
   hint?: ?string,
   icon?: ?React.Element<any>,
+  isHidden?: boolean,
   key: any,
   label?: ?string
 }

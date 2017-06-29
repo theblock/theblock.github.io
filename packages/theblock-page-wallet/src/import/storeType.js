@@ -1,8 +1,12 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
+import { observable } from 'mobx';
+
 import SelectStore from 'theblock-lib-ui/src/input/select/store';
 import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+
+import { isU2FAvailable } from 'theblock-lib-hw/src/u2f';
 
 import i18n from '../i18n';
 
@@ -23,12 +27,26 @@ const TYPES: Array<SelectableInterface> = [
   {
     key: 'privateKey',
     label: i18n.t('import:keytype.privateKey.label')
+  },
+  {
+    isHidden: true,
+    key: 'ledger',
+    label: i18n.t('import:keytype.ledger.label')
   }
 ];
 
 class ImportStoreType extends SelectStore {
+  @observable withLedger: boolean = false;
+
   constructor () {
     super(TYPES, 'newKey');
+
+    isU2FAvailable().then((isAvailable: boolean) => {
+      if (isU2FAvailable) {
+        this.withLedger = true;
+        this.unhideItem('ledger');
+      }
+    });
   }
 }
 

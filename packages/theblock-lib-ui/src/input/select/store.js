@@ -30,7 +30,7 @@ export default class SelectStore<T: SelectableInterface> {
   }
 
   @computed get items (): Array<T> {
-    return this._items;
+    return this._items.filter(({ isHidden }) => !isHidden);
   }
 
   @computed get hasItems (): boolean {
@@ -95,7 +95,7 @@ export default class SelectStore<T: SelectableInterface> {
     this.selectItem('');
   }
 
-  @action selectItem = (_selectedKey: string): void => {
+  @action selectItem = (_selectedKey: string) => {
     const item: SelectableInterface = this.filtered.find(({ key }: T) => key === _selectedKey) || { key: '' };
 
     this.selectedKey = item.key;
@@ -112,5 +112,25 @@ export default class SelectStore<T: SelectableInterface> {
 
   @action toggleOpen = () => {
     this.setOpen(!this.isOpen);
+  }
+
+  @action hideItem = (key: string) => {
+    this._items = this._items.map((item) => {
+      if (key === item.key) {
+        item.isHidden = true;
+      }
+
+      return item;
+    });
+  }
+
+  @action unhideItem = (key: string) => {
+    this._items = this._items.map((item) => {
+      if (key === item.key) {
+        item.isHidden = false;
+      }
+
+      return item;
+    });
   }
 }

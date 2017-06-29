@@ -13,7 +13,8 @@ export default {
     }
   },
   errors: {
-    importFail: 'Import error'
+    importFail: 'Import error',
+    ledgerComms: 'Unable to communicate with your Ledger. Make sure it is available, has the Ethereum application open and is set to browser mode'
   },
   details: {
     text: 'create account from {{selectType}}'
@@ -37,6 +38,9 @@ export default {
       file: {
         text: 'from the {{inputFile}} source file'
       }
+    },
+    ledger: {
+      label: 'Ledger hardware'
     },
     new: {
       label: 'Generated key (new)'

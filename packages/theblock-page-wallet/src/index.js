@@ -6,8 +6,6 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import { isU2FAvailable } from 'theblock-lib-hw/src/u2f';
-import { getLedgerAddresses } from 'theblock-lib-hw/src/ledger';
 import Errors from 'theblock-lib-ui/src/errors';
 import InfoBar from 'theblock-lib-ui/src/infoBar';
 
@@ -25,16 +23,6 @@ type PropTypes = {
   className?: string,
   t: (string) => string
 };
-
-isU2FAvailable().then(() => {
-  return getLedgerAddresses(1);
-})
-.catch(() => {
-  return null;
-})
-.then((result) => {
-  console.log('Ledger', result);
-});
 
 function Wallet ({ className, t }: PropTypes): React.Element<any> {
   return (
