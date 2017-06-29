@@ -151,6 +151,7 @@ module.exports = {
           'common'
         ]
       }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
         filename: `${HASH_PATH}.css`
       }),
