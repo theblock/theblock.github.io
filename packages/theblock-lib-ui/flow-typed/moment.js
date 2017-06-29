@@ -3,6 +3,7 @@
 
 declare module 'moment' {
   declare var exports: (date: Date) => {
-    fromNow: () => string
+    fromNow: () => string;
+    locale: (locale: string) => void;
   }
 }

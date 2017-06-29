@@ -2,6 +2,7 @@
 // @flow
 
 import { action, autorun } from 'mobx';
+import moment from 'moment';
 
 import type { StorageNameType } from 'theblock-lib-util/src/types';
 import type { SelectableInterface } from '../types';
@@ -20,7 +21,11 @@ const LANGUAGES: Array<SelectableInterface> = Object.keys(languages).map((key) =
   };
 });
 
-const defaultLanguage: { selectedKey: string } = getStorage(LS_LANGUAGE);
+const defaultLanguage: { selectedKey: string } = getStorage(LS_LANGUAGE) || {
+  selectedKey: 'en'
+};
+
+moment.locale(defaultLanguage.selectedKey);
 
 export class LanguageStore extends SelectStore {
   i18next: { changeLanguage: (string) => void };
@@ -45,6 +50,7 @@ export class LanguageStore extends SelectStore {
   @action setLanguage = () => {
     if (this.i18next && this.i18next.language !== this.selectedKey) {
       this.i18next.changeLanguage(this.selectedKey);
+      moment.locale(this.selectedKey);
     }
   }
 }

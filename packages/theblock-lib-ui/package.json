@@ -13,6 +13,7 @@
     "lodash.compact": "^3.0.1",
     "mobx": "^3.1.9",
     "mobx-react": "^4.1.8",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-copy-to-clipboard": "^5.0.0",
