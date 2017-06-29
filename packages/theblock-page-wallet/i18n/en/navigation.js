@@ -3,11 +3,8 @@
 
 export default {
   location: {
-    text: 'I want to {{body}} {{extra}}',
-    options: {
-      listAccounts: 'view my accounts',
-      importAccount: 'add an account',
-      send: 'send a transaction'
-    }
+    listAccounts: 'view my accounts',
+    importAccount: 'add an account',
+    send: 'send a transaction'
   }
 };
