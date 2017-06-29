@@ -2,5 +2,5 @@
 // @flow
 
 export default {
-  title: 'Willkommen. Ethereum. Neu interpretiert.'
+  title: 'Willkommen. Ethereum. Neu erfunden.'
 };
