@@ -51,10 +51,18 @@ module.exports = {
         'ledgerco': path.resolve(__dirname, 'node_modules/ledgerco/src/index-browserify.js'),
         'u2f-api': path.resolve(__dirname, 'node_modules/ledgerco/src/u2f-api.js')
       }),
+    descriptionFiles: [
+      'package.json',
+      'bower.json'
+    ],
     mainFields: [
       'jsnext:main',
       'browser',
       'main'
+    ],
+    modules: [
+      'node_modules',
+      'bower_components'
     ]
   },
   externals: {
@@ -64,7 +72,8 @@ module.exports = {
     'moment': 'moment',
     'normalize.css': 'normalize',
     react: 'React',
-    'react-dom': 'ReactDOM'
+    'react-dom': 'ReactDOM',
+    'trezor-connect': 'TrezorConnect'
   },
   module: {
     rules: [
@@ -129,11 +138,11 @@ module.exports = {
     fs: 'empty'
   },
   plugins: [].concat(
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-      BLOG_ENTRIES: BLOG_ENTRIES.join(',')
-    }),
     [
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'development',
+        BLOG_ENTRIES: BLOG_ENTRIES.join(',')
+      }),
       new webpack.optimize.CommonsChunkPlugin({
         minChunks: (module, count) => {
           return count >= 2 && !(/^.*\.md$/).test(module.resource);

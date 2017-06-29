@@ -27,3 +27,22 @@ export type LedgerEth = {
 export type U2FApiResultType = {
   js_api_version: string
 };
+
+type TrezorResultType = {
+  success: boolean,
+  error: string
+};
+
+export type TrezorSignResultType = TrezorResultType & {
+  r: string,
+  s: string,
+  v: number
+};
+
+export type TrezorPubKeyResultType = TrezorPubKeyResultType & {
+  xpubkey: string,
+  path: string,
+  serializedPath: string,
+  chainCode: string,
+  publicKey: string
+};
