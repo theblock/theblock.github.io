@@ -3,5 +3,5 @@
 
 export default {
   en: 'English', // English first as the default
-  de: 'Deutch'
+  de: 'Deutsch'
 };
