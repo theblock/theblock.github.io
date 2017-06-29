@@ -3,18 +3,18 @@
 
 export default {
   address: {
-    text: 'on my selected account {{account}}'
+    text: 'auf meinem ausgewähltem Konto {{account}}'
   },
   name: {
-    text: 'identified by the name {{name}}',
-    defaultName: 'no name'
+    text: 'mit dem Namen {{name}}',
+    defaultName: 'unbenannt'
   },
   balance: {
-    text: 'there is {{balance}} valued at {{fiat}}'
+    text: 'da ist {{balance}} geschätzt {{fiat}}'
   },
   transactions: {
-    powered: 'Powered by {{explorer}}',
-    received: 'Received {{value}}',
-    sent: 'Sent {{value}}'
+    powered: 'Unterstützt von {{explorer}}',
+    received: 'erhalten {{value}}',
+    sent: 'sende {{value}}'
   }
 };

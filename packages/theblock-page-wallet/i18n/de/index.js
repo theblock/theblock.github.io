@@ -2,9 +2,9 @@
 // @flow
 
 import accounts from './accounts';
-import navigation from './navigation';
+import subnav from './subnav';
 
 export default {
   accounts,
-  navigation
+  subnav
 };

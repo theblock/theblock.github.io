@@ -12,15 +12,15 @@ import accounts from '../store/accounts';
 const TYPES: Array<SelectableInterface> = [
   {
     key: 'send',
-    label: i18n.t('navigation:location.send')
+    label: i18n.t('subnav:location.send')
   },
   {
     key: 'importAccount',
-    label: i18n.t('navigation:location.importAccount')
+    label: i18n.t('subnav:location.importAccount')
   },
   {
     key: 'listAccounts',
-    label: i18n.t('navigation:location.listAccounts')
+    label: i18n.t('subnav:location.listAccounts')
   }
 ];
 
