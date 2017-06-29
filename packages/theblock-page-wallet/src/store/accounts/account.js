@@ -22,7 +22,7 @@ export default class AccountStore extends AddressStore {
   }
 
   @computed get isHardware (): boolean {
-    return !!(this.encryptedKey.meta && this.encryptedKey.meta);
+    return !!(this.encryptedKey.meta && this.encryptedKey.meta.hardware);
   }
 
   @action toggleAccountName = (onEditCallback?: (id: string) => void) => {
