@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import { action } from 'mobx';
+import { action, computed } from 'mobx';
 
 import type { PrivateKeyType } from 'theblock-lib-util/src/types';
 
@@ -19,6 +19,10 @@ export default class AccountStore extends AddressStore {
     this.encryptedKey = encryptedKey;
     this.privateKey = privateKey || null;
     this.shouldStore = shouldStore;
+  }
+
+  @computed get isHardware (): boolean {
+    return !!(this.encryptedKey.meta && this.encryptedKey.meta.hardware);
   }
 
   @action toggleAccountName = (onEditCallback?: (id: string) => void) => {

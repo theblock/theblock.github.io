@@ -76,7 +76,7 @@ export function getLedgerAddresses (chainId: number): Promise<Array<string>> {
   });
 }
 
-export function signLedgerTransaction (transaction: TransactionType): Promise<?string> {
+export function signLedgerTransaction (transaction: TransactionType): Promise<string> {
   return deferPromise(() => {
     const tx: EthereumTx = createRawTransaction(transaction);
 
@@ -101,7 +101,7 @@ export function signLedgerTransaction (transaction: TransactionType): Promise<?s
     .catch((error: Error) => {
       console.error('signLedgerTransaction', error);
 
-      return null;
+      throw error;
     });
   });
 }

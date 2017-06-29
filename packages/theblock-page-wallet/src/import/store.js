@@ -23,7 +23,6 @@ type ImportType = 'bipPhrase' | 'brainPhrase' | 'json' | 'ledger' | 'newKey' | '
 type StorageType = 'browser' | 'session';
 type StateType = 'completed' | 'empty' | 'error' | 'walletFromPhrase' | 'createKeyObject' | 'walletFromKeyObject' | 'addAccount' | 'commsLedger';
 
-const DEFAULT_TYPE: ImportType = 'newKey';
 const DEFAULT_STORE: StorageType = 'session';
 
 export class ImportStore {
@@ -37,7 +36,6 @@ export class ImportStore {
   @observable privateKey: string = '0x';
   @observable state: StateType = 'empty';
   @observable storage: StorageType = DEFAULT_STORE;
-  @observable type: ImportType = DEFAULT_TYPE;
   @observable wallet: WalletType = {};
   @observable walletJson: string = '';
   @observable walletObject: PrivateKeyType = {};
@@ -115,6 +113,10 @@ export class ImportStore {
     return this.storage === 'browser';
   }
 
+  @computed get type (): ImportType {
+    return this.storeType.selected.key;
+  }
+
   @action addAccount = () => {
     this.accountsStore.addItem(this.shouldStore, this.walletObject, this.wallet.privateKey);
   }
@@ -123,14 +125,13 @@ export class ImportStore {
     this.isBusy = isBusy;
   }
 
-  @action clear = (type: ?ImportType) => {
+  @action clear = () => {
     this.isBusy = false;
     this.jsonFilename = '';
     this.name = '';
     this.password = '';
     this.privateKey = '0x';
     this.phrase = '';
-    this.type = type || DEFAULT_TYPE;
     this.walletJson = '';
     this.walletObject = {};
   }
