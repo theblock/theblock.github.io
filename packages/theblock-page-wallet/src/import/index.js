@@ -40,6 +40,21 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
         />
         <Details store={ store } />
         {
+          store.shouldShowPath
+            ? (
+              <Interpolate
+                parent='div'
+                i18nKey='path.text'
+                inputPath={
+                  <Select store={ store.storePath } />
+                }
+              />
+            )
+            : null
+        }
+      </section>
+      <section>
+        {
           store.shouldShowPassword
             ? (
               <Interpolate
@@ -56,8 +71,6 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
             )
             : null
         }
-      </section>
-      <section>
         <Interpolate
           parent='div'
           i18nKey='storage.text'

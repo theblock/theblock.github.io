@@ -17,14 +17,14 @@ export default {
     ledgerComms: 'Unable to communicate with your Ledger. Make sure it is available, has the Ethereum application open and is set to browser mode'
   },
   details: {
-    text: 'create account from {{selectType}}'
+    text: 'add account from {{selectType}}'
   },
   password: {
     text: 'encrypted with password {{inputPassword}}'
   },
   keytype: {
     bipPhrase: {
-      label: 'BIP39 phrase',
+      label: 'Mnemonic phrase',
       example: 'e.g. seed sock milk update focus rotate barely fade car face mechanic mercy',
       text: 'with the phrase {{inputPhrase}}'
     },
@@ -43,12 +43,23 @@ export default {
       label: 'Ledger hardware'
     },
     new: {
-      label: 'Generated key (new)'
+      label: 'New generated key'
     },
     privateKey: {
       label: 'Private key',
       example: 'e.g. 0x123456789deadbeef9876543210123456789deadbeef',
       text: 'with the key {{inputKey}}'
+    }
+  },
+  path: {
+    text: 'from path compatible with {{inputPath}}',
+    type: {
+      ledger: {
+        label: 'Ledger'
+      },
+      trezor: {
+        label: 'Trezor'
+      }
     }
   },
   storage: {
