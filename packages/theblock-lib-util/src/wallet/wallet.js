@@ -9,22 +9,14 @@ import createKeccakHash from 'keccak';
 import type { WalletType } from '../types';
 
 import { fromBytesToHex } from '../convert';
-import { formatAddress } from '../format';
-
-function trimPhrase (phrase: string): string {
-  return phrase
-    .toLowerCase()
-    .split(/\s+/)
-    .map((part) => part.trim())
-    .filter((part) => part.length)
-    .join(' ');
-}
+import { formatAddress, trimPhrase } from '../format';
+import { isMnemonicValid } from '../validate';
 
 export function walletFromMnemonic (_mnemonic: string, path: string): Promise<WalletType> {
   const mnemonic: string = trimPhrase(_mnemonic);
 
   return new Promise((resolve, reject) => {
-    if (!bip39.validateMnemonic(mnemonic)) {
+    if (!isMnemonicValid(mnemonic)) {
       reject(new Error('Invalid mnemonic phrase specified'));
       return;
     }

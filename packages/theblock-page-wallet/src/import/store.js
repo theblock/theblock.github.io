@@ -10,7 +10,7 @@ import { getTrezorHDPath } from 'theblock-lib-hw/src/trezor';
 import { NULL_ADDRESS } from 'theblock-lib-ui/src/img/identity';
 import { formatAddress } from 'theblock-lib-util/src/format';
 import { createKeyObject, newKeyObject } from 'theblock-lib-util/src/keys';
-import { isHexValid } from 'theblock-lib-util/src/validate';
+import { isHexValid, isMnemonicValid } from 'theblock-lib-util/src/validate';
 import { walletFromMnemonic, walletFromPhrase, walletFromPrivateKey, walletFromKeyObject } from 'theblock-lib-util/src/wallet';
 
 import i18n from '../i18n';
@@ -72,7 +72,8 @@ export class ImportStore {
   }
 
   @computed get hasEmptyPhrase (): boolean {
-    return !this.phrase.trim();
+    return !this.phrase.trim() ||
+      (['bipPhrase'].includes(this.type) && !isMnemonicValid(this.phrase));
   }
 
   @computed get hasInvalidPrivateKey (): boolean {
