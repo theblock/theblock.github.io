@@ -22,10 +22,14 @@ export function walletFromMnemonic (_mnemonic: string, path: string): Promise<Wa
     }
 
     const seed: Buffer = bip39.mnemonicToSeed(mnemonic);
-    const derivedHd = HDNode.fromSeedHex(seed, networks.bitcoin).derivePath(path);
-    const walletHd = derivedHd.derive(0); // first address, 1 for 2nd, etc.
+    const walletHd = HDNode.fromSeedHex(seed, networks.bitcoin).derivePath(path);
+    const wallet: ?WalletType = walletFromPrivateKey(walletHd.keyPair.d.toBuffer(), false);
 
-    resolve(walletFromPrivateKey(walletHd.keyPair.d.toBuffer(), false));
+    if (wallet) {
+      resolve(wallet);
+    } else {
+      reject(new Error('Unable to create wallet from HD pair'));
+    }
   });
 }
 

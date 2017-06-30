@@ -5,7 +5,7 @@ import { walletFromMnemonic, walletFromPhrase } from './wallet';
 
 const MNE_VALID: string = 'kit destroy choice zebra tribe noodle grunt swift click shuffle chef supply';
 const MNE_INVALID: string = 'evolve feature stay';
-const PATH: string = "m/44'/60'/0'/0";
+const PATH: string = "m/44'/60'/0'/0/0";
 
 describe('wallet', () => {
   describe('walletFromMnemonic', () => {
@@ -18,7 +18,7 @@ describe('wallet', () => {
     it('generates a valid wallet', () => {
       return walletFromMnemonic(MNE_VALID, PATH).then((wallet) => {
         expect(wallet.address).toBe('0x3B0C01F3841Aaf308efF3087Bb41084f59315D96');
-        expect(wallet.privateKey.toString('hex')).toBe('8a3f78e0714ce59231b9a1e15b0d855786d1f2189bc337ef03429a79aaa5a7ea');
+        expect(wallet.privateKey && wallet.privateKey.toString('hex')).toBe('8a3f78e0714ce59231b9a1e15b0d855786d1f2189bc337ef03429a79aaa5a7ea');
       });
     });
   });

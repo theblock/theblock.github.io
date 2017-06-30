@@ -13,7 +13,7 @@ import { createRawTransaction } from 'theblock-lib-util/src/transaction';
 const PATH_ETC = "m/44'/60'/160720'/0'";
 const PATH_ETH = "m/44'/60'/0'";
 
-export function getLedgerHDPath (chainId: number, account?: string) {
+export function getLedgerHDPath (chainId: number, accountIndex?: string) {
   let path;
 
   switch (chainId) {
@@ -26,9 +26,7 @@ export function getLedgerHDPath (chainId: number, account?: string) {
       break;
   }
 
-  return account
-    ? `${path}/${account}`
-    : path;
+  return `${path}/${accountIndex || '0'}`;
 }
 
 function createInstance (): Promise<LedgerEth> {
@@ -67,7 +65,7 @@ export function getLedgerAddresses (chainId: number): Promise<Array<string>> {
   return deferPromise(() => {
     return createInstance().then((instance: LedgerEth) => {
       return instance
-        .getAddress_async(getLedgerHDPath(chainId, '0'), true, false)
+        .getAddress_async(getLedgerHDPath(chainId), true, false)
         .then(({ address }: LedgerResultGetAddressType) => {
           console.log('getLedgerAddresses', address);
 
@@ -96,7 +94,7 @@ export function signLedgerTransaction (transaction: TransactionType): Promise<st
 
       return instance
         .signTransaction_async(
-          getLedgerHDPath(transaction.chainId, '0'),
+          getLedgerHDPath(transaction.chainId),
           tx.serialize().toString('hex')
         )
         .then(({ r, s, v }: LedgerResultSignType) => {

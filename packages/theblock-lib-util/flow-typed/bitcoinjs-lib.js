@@ -5,6 +5,12 @@ type HDNodeType = { // eslint-disable-line
   derive: (index: number) => HDNodeType;
   deriveHardened: (index: number) => HDNodeType;
   derivePath: (path: string) => HDNodeType;
+
+  keyPair: {
+    d: {
+      toBuffer: () => Buffer
+    }
+  }
 };
 
 type NetworkType = { // eslint-disable-line
@@ -13,7 +19,7 @@ type NetworkType = { // eslint-disable-line
 declare module 'bitcoinjs-lib' {
   declare var exports: {
     HDNode: {
-      fromSeedHex: (seed: buffer, network: NetworkType) => HDNodeType;
+      fromSeedHex: (seed: Buffer, network: NetworkType) => HDNodeType;
     },
     networks: {
       bitcoin: NetworkType;
