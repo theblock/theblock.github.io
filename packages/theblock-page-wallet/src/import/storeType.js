@@ -23,7 +23,10 @@ const TYPES: Array<SelectableInterface> = [
     key: 'brainPhrase',
     label: i18n.t('import:keytype.brainPhrase.label')
   },
-  // { key: 'bipPhrase', label: i18n.t('import:keytype.bipPhrase.label') },
+  {
+    key: 'bipPhrase',
+    label: i18n.t('import:keytype.bipPhrase.label')
+  },
   {
     key: 'privateKey',
     label: i18n.t('import:keytype.privateKey.label')

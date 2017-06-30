@@ -11,7 +11,18 @@ import type { WalletType } from '../types';
 import { fromBytesToHex } from '../convert';
 import { formatAddress } from '../format';
 
-export function walletFromMnemonic (mnemonic: string, path: string): Promise<WalletType> {
+function trimPhrase (phrase: string): string {
+  return phrase
+    .toLowerCase()
+    .split(/\s+/)
+    .map((part) => part.trim())
+    .filter((part) => part.length)
+    .join(' ');
+}
+
+export function walletFromMnemonic (_mnemonic: string, path: string): Promise<WalletType> {
+  const mnemonic: string = trimPhrase(_mnemonic);
+
   return new Promise((resolve, reject) => {
     if (!bip39.validateMnemonic(mnemonic)) {
       reject(new Error('Invalid mnemonic phrase specified'));
@@ -46,12 +57,7 @@ export function walletFromPhrase (phrase: string): Promise<WalletType> {
       let wallet: WalletType = {};
       let count: number = 16384;
       let privateKey: Buffer = createKeccakHash('keccak256').update(
-        phrase
-          .toLowerCase()
-          .split(/\s+/)
-          .map((part) => part.trim())
-          .filter((part) => part.length)
-          .join(' ')
+        trimPhrase(phrase)
       ).digest();
 
       while (count--) {

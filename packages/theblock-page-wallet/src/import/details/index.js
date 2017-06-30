@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { translate } from 'react-i18next';
 
+import Bip from './bip';
 import Brain from './brain';
 import Json from './json';
 import PrivateKey from './private';
@@ -18,6 +19,9 @@ type PropTypes = {
 
 function Details ({ className, store, t }: PropTypes): ?React.Element<any> {
   switch (store.storeType.selected.key) {
+    case 'bipPhrase':
+      return <Bip store={ store } />;
+
     case 'brainPhrase':
       return <Brain store={ store } />;
 

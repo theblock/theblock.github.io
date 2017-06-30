@@ -5,21 +5,24 @@ import { action, autorun, computed, observable } from 'mobx';
 
 import type { PrivateKeyType, WalletType } from 'theblock-lib-util/src/types';
 
-import { getLedgerAddresses } from 'theblock-lib-hw/src/ledger';
+import { getLedgerAddresses, getLedgerHDPath } from 'theblock-lib-hw/src/ledger';
+import { getTrezorHDPath } from 'theblock-lib-hw/src/trezor';
 import { NULL_ADDRESS } from 'theblock-lib-ui/src/img/identity';
 import { formatAddress } from 'theblock-lib-util/src/format';
 import { createKeyObject, newKeyObject } from 'theblock-lib-util/src/keys';
 import { isHexValid } from 'theblock-lib-util/src/validate';
-import { walletFromPhrase, walletFromPrivateKey, walletFromKeyObject } from 'theblock-lib-util/src/wallet';
+import { walletFromMnemonic, walletFromPhrase, walletFromPrivateKey, walletFromKeyObject } from 'theblock-lib-util/src/wallet';
 
 import i18n from '../i18n';
 import accountsStore from '../store/accounts';
 import chainStore from '../store/chains';
 import errors from '../store/errors';
+import importStorePath from './storePath';
 import importStoreType from './storeType';
 import importStoreStorage from './storeStorage';
 
 type ImportType = 'bipPhrase' | 'brainPhrase' | 'json' | 'ledger' | 'newKey' | 'privateKey';
+type PathType = 'ledger' | 'trezor';
 type StorageType = 'browser' | 'session';
 type StateType = 'completed' | 'empty' | 'error' | 'walletFromPhrase' | 'createKeyObject' | 'walletFromKeyObject' | 'addAccount' | 'commsLedger';
 
@@ -39,6 +42,7 @@ export class ImportStore {
   @observable wallet: WalletType = {};
   @observable walletJson: string = '';
   @observable walletObject: PrivateKeyType = {};
+  @observable storePath = importStorePath;
   @observable storeStorage = importStoreStorage;
   @observable storeType = importStoreType;
 
@@ -89,6 +93,21 @@ export class ImportStore {
     return !!((this.wallet && this.wallet.privateKey) && (this.walletObject && this.walletObject.address));
   }
 
+  @computed get hdpath (): string {
+    switch (this.hdpathType) {
+      case 'terzor':
+        return getTrezorHDPath(this.chains.selected.chainId);
+
+      case 'ledger':
+      default:
+        return getLedgerHDPath(this.chains.selected.chainId);
+    }
+  }
+
+  @computed get hdpathType (): PathType {
+    return this.storePath.selected.key;
+  }
+
   @computed get shouldVerifyJson (): boolean {
     return this.type === 'json';
   }
@@ -103,6 +122,10 @@ export class ImportStore {
 
   @computed get shouldShowPassword (): boolean {
     return !['ledger'].includes(this.type);
+  }
+
+  @computed get shouldShowPath (): boolean {
+    return ['bipPhrase'].includes(this.type);
   }
 
   @computed get shouldShowPhrase (): boolean {
@@ -142,6 +165,9 @@ export class ImportStore {
 
       (() => {
         switch (this.type) {
+          case 'bipPhrase':
+            return this.createWalletFromMnemonic();
+
           case 'brainPhrase':
             return this.createWalletFromPhrase();
 
@@ -228,6 +254,13 @@ export class ImportStore {
       this.setState('addAccount');
       this.addAccount();
     });
+  }
+
+  createWalletFromMnemonic = () => {
+    this.setState('walletFromPhrase');
+
+    return walletFromMnemonic(this.phrase, this.hdpath)
+      .then(this._addFromWallet);
   }
 
   createWalletFromPhrase = () => {

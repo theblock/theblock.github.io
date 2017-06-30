@@ -72,8 +72,7 @@ module.exports = {
     'moment': 'moment',
     'normalize.css': 'normalize',
     react: 'React',
-    'react-dom': 'ReactDOM',
-    'trezor-connect': 'TrezorConnect'
+    'react-dom': 'ReactDOM'
   },
   module: {
     rules: [
