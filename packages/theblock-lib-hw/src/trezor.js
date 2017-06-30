@@ -14,7 +14,7 @@ const PATH_ETC = "m/44'/61'/0'/0";
 const PATH_ETH = "m/44'/60'/0'/0";
 const PATH_TEST = "m/44'/1'/0'/0";
 
-function getPath (chainId: number) {
+export function getTrezorHDPath (chainId: number) {
   switch (chainId) {
     case 1:
       return PATH_ETH;
@@ -30,7 +30,7 @@ function getPath (chainId: number) {
 export function getTrezorAddresses (chainId: number): Promise<Array<string>> {
   return deferPromise(() => {
     return new Promise((resolve, reject) => {
-      return trezor.getXPubKey(getPath(chainId), ({ error, success, publicKey }: TrezorPubKeyResultType) => {
+      return trezor.getXPubKey(getTrezorHDPath(chainId), ({ error, success, publicKey }: TrezorPubKeyResultType) => {
         if (!success) {
           console.error('getTrezorAddresses', error);
 
@@ -51,7 +51,7 @@ export function signTrezorTransaction (transaction: TransactionType): Promise<st
     return new Promise((resolve, reject) => {
       const { chainId, data, gasPrice, gasLimit, nonce, to, value } = transaction;
 
-      return trezor.signEthereumTx(getPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
+      return trezor.signEthereumTx(getTrezorHDPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
         if (!success) {
           console.error('signTrezorTransaction', error);
 
