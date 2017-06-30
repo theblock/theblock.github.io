@@ -1,6 +1,8 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
+import { HDNode, networks } from 'bitcoinjs-lib';
+import bip39 from 'bip39';
 import ethutil from 'ethereumjs-util';
 import createKeccakHash from 'keccak';
 
@@ -8,6 +10,21 @@ import type { WalletType } from '../types';
 
 import { fromBytesToHex } from '../convert';
 import { formatAddress } from '../format';
+
+export function walletFromMnemonic (mnemonic: string, path: string): Promise<WalletType> {
+  return new Promise((resolve, reject) => {
+    if (!bip39.validateMnemonic(mnemonic)) {
+      reject(new Error('Invalid mnemonic phrase specified'));
+      return;
+    }
+
+    const seed: Buffer = bip39.mnemonicToSeed(mnemonic);
+    const derivedHd = HDNode.fromSeedHex(seed, networks.bitcoin).derivePath(path);
+    const walletHd = derivedHd.derive(0); // first address, 1 for 2nd, etc.
+
+    resolve(walletFromPrivateKey(walletHd.keyPair.d.toBuffer(), false));
+  });
+}
 
 export function walletFromPrivateKey (privateKey: Buffer, checkZero: boolean): ?WalletType {
   const publicBuf: Array<number> = ethutil.privateToPublic(privateKey).slice(-64);

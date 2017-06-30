@@ -10,6 +10,22 @@ import { deferPromise, initWorker } from '../promise';
 const Worker = require('./worker');
 const worker = initWorker(Worker);
 
+export function walletFromMnemonic (mnemonic: string, path: string): Promise<WalletType> {
+  return deferPromise(() => {
+    return worker.postMessage({
+      action: 'walletFromMnemonic',
+      mnemonic,
+      path
+    })
+    .then(({ address, privateKey }: WalletType) => {
+      return {
+        address,
+        privateKey: Buffer.from(privateKey || [])
+      };
+    });
+  });
+}
+
 export function walletFromPhrase (phrase: string): Promise<WalletType> {
   return deferPromise(() => {
     return worker.postMessage({
