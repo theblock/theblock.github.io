@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "ledgerco": "^1.1.3",
-    "trezor-connect": "theblock/trezor-connect"
+    "trezor-connect": "theblock/trezor-connect#4d19e95fbd796b96e024eb5686b85602e4d7ad41"
   },
   "peerDependencies": {
     "theblock-lib-util": "*"
