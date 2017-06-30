@@ -72,8 +72,6 @@ export function signTrezorTransaction (transaction: TransactionType): Promise<st
       const to = padHex(removeHexPrefix(transaction.to));
       const value = padHex(removeHexPrefix(transaction.value));
 
-      console.log('transaction', transaction, nonce, gasPrice, gasLimit, to, value, data, chainId);
-
       return TrezorConnect.signEthereumTx(getTrezorHDPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
         if (!success) {
           console.error('signTrezorTransaction', error);
