@@ -15,7 +15,7 @@ dependencies:
   override:
     - npm run clean:local
     - npm install
-    - npm list
+    - npm list || true
 
 test:
   override:
