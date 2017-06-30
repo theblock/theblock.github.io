@@ -52,6 +52,8 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
             )
             : null
         }
+      </section>
+      <section>
         {
           store.shouldShowPassword
             ? (
@@ -69,8 +71,6 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
             )
             : null
         }
-      </section>
-      <section>
         <Interpolate
           parent='div'
           i18nKey='storage.text'
