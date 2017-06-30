@@ -9,7 +9,7 @@ import type { TransactionType } from 'theblock-lib-util/src/types';
 import type { TrezorPubKeyResultType, TrezorSignResultType } from './types';
 
 import { fromBytesToHex } from 'theblock-lib-util/src/convert';
-import { formatAddress } from 'theblock-lib-util/src/format';
+import { formatAddress, padHex, removeHexPrefix } from 'theblock-lib-util/src/format';
 import { deferPromise } from 'theblock-lib-util/src/promise';
 import { createRawTransaction } from 'theblock-lib-util/src/transaction';
 
@@ -39,7 +39,7 @@ export function getTrezorAddresses (chainId: number): Promise<Array<string>> {
         if (!success) {
           console.error('getTrezorAddresses', error);
 
-          reject(error);
+          reject(new Error(error));
           return;
         }
 
@@ -62,13 +62,23 @@ export function getTrezorAddresses (chainId: number): Promise<Array<string>> {
 export function signTrezorTransaction (transaction: TransactionType): Promise<string> {
   return deferPromise(() => {
     return new Promise((resolve, reject) => {
-      const { chainId, data, gasPrice, gasLimit, nonce, to, value } = transaction;
+      const { chainId } = transaction;
+      const data = [null, '', '0x'].includes(transaction.data)
+        ? null
+        : padHex(removeHexPrefix(transaction.data));
+      const gasLimit = padHex(removeHexPrefix(transaction.gasLimit));
+      const gasPrice = padHex(removeHexPrefix(transaction.gasPrice));
+      const nonce = padHex(removeHexPrefix(transaction.nonce));
+      const to = padHex(removeHexPrefix(transaction.to));
+      const value = padHex(removeHexPrefix(transaction.value));
+
+      console.log('transaction', transaction, nonce, gasPrice, gasLimit, to, value, data, chainId);
 
       return TrezorConnect.signEthereumTx(getTrezorHDPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
         if (!success) {
           console.error('signTrezorTransaction', error);
 
-          reject(error);
+          reject(new Error(error));
           return;
         }
 
