@@ -25,6 +25,10 @@ export default class AccountStore extends AddressStore {
     return !!(this.encryptedKey.meta && this.encryptedKey.meta.hardware);
   }
 
+  @computed get hardwareType (): ?string {
+    return (this.encryptedKey.meta && this.encryptedKey.meta.hardware && this.encryptedKey.meta.hardware.type) || null;
+  }
+
   @action toggleAccountName = (onEditCallback?: (id: string) => void) => {
     this.encryptedKey.name = this.name;
     this.toggleAddressName(onEditCallback);

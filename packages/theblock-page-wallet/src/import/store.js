@@ -6,7 +6,7 @@ import { action, autorun, computed, observable } from 'mobx';
 import type { PrivateKeyType, WalletType } from 'theblock-lib-util/src/types';
 
 import { getLedgerAddresses, getLedgerHDPath } from 'theblock-lib-hw/src/ledger';
-import { getTrezorHDPath } from 'theblock-lib-hw/src/trezor';
+import { getTrezorAddresses, getTrezorHDPath } from 'theblock-lib-hw/src/trezor';
 import { NULL_ADDRESS } from 'theblock-lib-ui/src/img/identity';
 import { formatAddress } from 'theblock-lib-util/src/format';
 import { createKeyObject, newKeyObject } from 'theblock-lib-util/src/keys';
@@ -21,10 +21,10 @@ import importStorePath from './storePath';
 import importStoreType from './storeType';
 import importStoreStorage from './storeStorage';
 
-type ImportType = 'bipPhrase' | 'brainPhrase' | 'json' | 'ledger' | 'newKey' | 'privateKey';
+type ImportType = 'bipPhrase' | 'brainPhrase' | 'json' | 'ledger' | 'newKey' | 'privateKey' | 'trezor';
 type PathType = 'ledger' | 'trezor';
 type StorageType = 'browser' | 'session';
-type StateType = 'completed' | 'empty' | 'error' | 'walletFromPhrase' | 'createKeyObject' | 'walletFromKeyObject' | 'addAccount' | 'commsLedger';
+type StateType = 'completed' | 'empty' | 'error' | 'walletFromPhrase' | 'createKeyObject' | 'walletFromKeyObject' | 'addAccount' | 'commsLedger' | 'commsTrezor';
 
 const DEFAULT_STORE: StorageType = 'session';
 
@@ -118,11 +118,11 @@ export class ImportStore {
   }
 
   @computed get shouldVerifyPassword (): boolean {
-    return this.shouldStore && !['json', 'ledger'].includes(this.type);
+    return this.shouldStore && !['json', 'ledger', 'trezor'].includes(this.type);
   }
 
   @computed get shouldShowPassword (): boolean {
-    return !['ledger'].includes(this.type);
+    return !['ledger', 'trezor'].includes(this.type);
   }
 
   @computed get shouldShowPath (): boolean {
@@ -184,6 +184,9 @@ export class ImportStore {
           case 'privateKey':
             return this.createWalletFromKey();
 
+          case 'trezor':
+            return this.createWalletFromTrezor();
+
           default:
             throw new Error(`Unable to handle creation of ${this.type}`);
         }
@@ -235,8 +238,6 @@ export class ImportStore {
     this.setState('commsLedger');
 
     return getLedgerAddresses(this.chains.selected.chainId).then((result: Array<string>) => {
-      console.log('createWalletFromLedger', result);
-
       if (!result.length) {
         throw new Error(i18n.t('import:errors.ledgerComms'));
       }
@@ -249,6 +250,30 @@ export class ImportStore {
         meta: {
           hardware: {
             type: 'ledger'
+          }
+        }
+      });
+      this.setState('addAccount');
+      this.addAccount();
+    });
+  }
+
+  createWalletFromTrezor = () => {
+    this.setState('commsTrezor');
+
+    return getTrezorAddresses(this.chains.selected.chainId).then((result: Array<string>) => {
+      if (!result.length) {
+        throw new Error(i18n.t('import:errors.trezorComms'));
+      }
+
+      const [address] = result;
+
+      this.setWalletObject({
+        address,
+        name: 'Trezor',
+        meta: {
+          hardware: {
+            type: 'trezor'
           }
         }
       });

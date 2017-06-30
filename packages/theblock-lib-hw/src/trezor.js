@@ -2,32 +2,30 @@
 // @flow
 
 import EthereumTx from 'ethereumjs-tx';
+import ethutil from 'ethereumjs-util';
 import { TrezorConnect } from 'trezor-connect';
 
 import type { TransactionType } from 'theblock-lib-util/src/types';
 import type { TrezorPubKeyResultType, TrezorSignResultType } from './types';
 
+import { fromBytesToHex } from 'theblock-lib-util/src/convert';
+import { formatAddress, padHex, removeHexPrefix } from 'theblock-lib-util/src/format';
 import { deferPromise } from 'theblock-lib-util/src/promise';
 import { createRawTransaction } from 'theblock-lib-util/src/transaction';
 
-const PATH_ETC = "m/44'/61'/0'";
-const PATH_ETH = "m/44'/60'/0'";
-const PATH_TEST = "m/44'/1'/0'";
+const PATH_ETC = "m/44'/61'/0'/0";
+const PATH_ETH = "m/44'/60'/0'/0";
 
 export function getTrezorHDPath (chainId: number, accountIndex?: string) {
   let path;
 
   switch (chainId) {
-    case 1:
-      path = PATH_ETH;
-      break;
-
     case 61:
       path = PATH_ETC;
       break;
 
     default:
-      path = PATH_TEST;
+      path = PATH_ETH;
       break;
   }
 
@@ -41,14 +39,22 @@ export function getTrezorAddresses (chainId: number): Promise<Array<string>> {
         if (!success) {
           console.error('getTrezorAddresses', error);
 
-          reject(error);
+          reject(new Error(error));
           return;
         }
 
-        console.log('getTrezorAddresses', publicKey);
+        try {
+          const publicBuf: Buffer = Buffer.from(publicKey, 'hex');
+          const addressBuf: Array<number> = ethutil.publicToAddress(publicBuf, true).slice(-40);
+          const address: string = formatAddress(fromBytesToHex(addressBuf));
 
-        return [];
-      });
+          resolve([address]);
+        } catch (error) {
+          console.error('getTrezorAddresses', error);
+
+          reject(error);
+        }
+      }, '1.4.0');
     });
   });
 }
@@ -56,17 +62,23 @@ export function getTrezorAddresses (chainId: number): Promise<Array<string>> {
 export function signTrezorTransaction (transaction: TransactionType): Promise<string> {
   return deferPromise(() => {
     return new Promise((resolve, reject) => {
-      const { chainId, data, gasPrice, gasLimit, nonce, to, value } = transaction;
+      const { chainId } = transaction;
+      const data = [null, '', '0x'].includes(transaction.data)
+        ? null
+        : padHex(removeHexPrefix(transaction.data));
+      const gasLimit = padHex(removeHexPrefix(transaction.gasLimit));
+      const gasPrice = padHex(removeHexPrefix(transaction.gasPrice));
+      const nonce = padHex(removeHexPrefix(transaction.nonce));
+      const to = padHex(removeHexPrefix(transaction.to));
+      const value = padHex(removeHexPrefix(transaction.value));
 
       return TrezorConnect.signEthereumTx(getTrezorHDPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
         if (!success) {
           console.error('signTrezorTransaction', error);
 
-          reject(error);
+          reject(new Error(error));
           return;
         }
-
-        console.log('signTrezorTransaction: r,s,v', r, s, v);
 
         const tx: EthereumTx = createRawTransaction(transaction);
 
@@ -74,7 +86,7 @@ export function signTrezorTransaction (transaction: TransactionType): Promise<st
         tx.s = Buffer.from(s, 'hex');
         tx.v = Buffer.from([v]);
 
-        return `0x${tx.serialize().toString('hex')}`;
+        resolve(`0x${tx.serialize().toString('hex')}`);
       });
     });
   });

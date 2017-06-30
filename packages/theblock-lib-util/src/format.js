@@ -61,7 +61,15 @@ export function formatFloat (value: BN | string, decimals?: number = 18, format?
   return parts.join('.');
 }
 
-export function removeHexPrefix (hex?: ?string) {
+export function padHex (hex: string): string {
+  if (hex.length % 2) {
+    return `0${hex}`;
+  }
+
+  return hex;
+}
+
+export function removeHexPrefix (hex?: ?string): string {
   if (hex) {
     if (hex.substr(0, 2) === '0x') {
       return hex.substr(2);

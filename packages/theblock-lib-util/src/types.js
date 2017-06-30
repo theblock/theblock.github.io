@@ -13,15 +13,15 @@ export type StorageValueType = {
 
 export type TransactionType = {
   chainId: number,
-  nonce: string | Buffer,
-  to: ?string | Buffer,
-  data: ?string | Buffer,
-  gasLimit: ?string | Buffer,
-  gasPrice: ?string | Buffer,
-  value: ?string | Buffer,
-  r?: string | Buffer,
-  s?: string | Buffer,
-  v?: string | Buffer
+  nonce: string,
+  to: ?string,
+  data: ?string,
+  gasLimit: ?string,
+  gasPrice: ?string,
+  value: ?string,
+  r?: Buffer,
+  s?: Buffer,
+  v?: Buffer
 };
 
 export type UnencrypedKeyType = {

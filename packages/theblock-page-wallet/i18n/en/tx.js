@@ -44,6 +44,6 @@ export default {
     rejected: 'Your transaction has been rejected and will not be posted',
     sending: 'Your transaction is being sent to the node',
     signing: 'Signing transaction using private key',
-    signningHardware: 'Requesting signing and confirmation from hardware device'
+    signingHardware: 'Requesting signing and confirmation from hardware device'
   }
 };
