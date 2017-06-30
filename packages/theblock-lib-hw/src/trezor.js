@@ -82,15 +82,13 @@ export function signTrezorTransaction (transaction: TransactionType): Promise<st
           return;
         }
 
-        console.log('signTrezorTransaction: r,s,v', r, s, v);
-
         const tx: EthereumTx = createRawTransaction(transaction);
 
         tx.r = Buffer.from(r, 'hex');
         tx.s = Buffer.from(s, 'hex');
         tx.v = Buffer.from([v]);
 
-        return `0x${tx.serialize().toString('hex')}`;
+        resolve(`0x${tx.serialize().toString('hex')}`);
       });
     });
   });
