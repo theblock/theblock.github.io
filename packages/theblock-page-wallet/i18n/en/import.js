@@ -14,7 +14,8 @@ export default {
   },
   errors: {
     importFail: 'Import error',
-    ledgerComms: 'Unable to communicate with your Ledger. Make sure it is available, has the Ethereum application open and is set to browser mode'
+    ledgerComms: 'Unable to communicate with your Ledger. Make sure it is available, has the Ethereum application open and is set to browser mode',
+    trezorComms: 'Unable to communicate with your Trezor. Make sure it is available'
   },
   details: {
     text: 'add account from {{selectType}}'
@@ -40,7 +41,7 @@ export default {
       }
     },
     ledger: {
-      label: 'Ledger hardware'
+      label: 'Ledger wallet'
     },
     new: {
       label: 'New generated key'
@@ -49,6 +50,9 @@ export default {
       label: 'Private key',
       example: 'e.g. 0x123456789deadbeef9876543210123456789deadbeef',
       text: 'with the key {{inputKey}}'
+    },
+    trezor: {
+      label: 'Trezor wallet'
     }
   },
   path: {
