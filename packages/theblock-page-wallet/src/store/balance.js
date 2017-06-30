@@ -63,7 +63,7 @@ export class BalanceStore {
   }
 
   retrieveTokenBalance = () => {
-    if (this.accounts.selected.key && this.chains.selected.api && this.tokens.selected.key) {
+    if (this.accounts.selected && this.chains.selected.api && this.tokens.selected.key) {
       this.setBalance('0.0');
 
       (

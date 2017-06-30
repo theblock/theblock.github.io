@@ -32,11 +32,13 @@ export class AccountStore {
   }
 
   retrieveTransactions = () => {
-    this.setTransactions([]);
+    if (this.accounts.selected) {
+      this.setTransactions([]);
 
-    this.chains.selected.explorer.api
-      .getTransactions(this.accounts.selected.key)
-      .then(this.setTransactions);
+      this.chains.selected.explorer.api
+        .getTransactions(this.accounts.selected.key)
+        .then(this.setTransactions);
+    }
   }
 }
 
