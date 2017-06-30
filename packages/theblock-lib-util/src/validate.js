@@ -1,7 +1,10 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
+import bip39 from 'bip39';
 import createKeccakHash from 'keccak';
+
+import { trimPhrase } from './format';
 
 export function isAddressChecksumValid (_address: string): boolean {
   const address: string = _address.replace('0x', '');
@@ -39,4 +42,8 @@ export function isHexValid (hex: ?string): boolean {
   }
 
   return false;
+}
+
+export function isMnemonicValid (mnemonic: string): boolean {
+  return bip39.validateMnemonic(trimPhrase(mnemonic));
 }

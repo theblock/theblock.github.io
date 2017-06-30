@@ -73,6 +73,15 @@ export function removeHexPrefix (hex?: ?string) {
   return '';
 }
 
+export function trimPhrase (phrase: string): string {
+  return phrase
+    .toLowerCase()
+    .split(/\s+/)
+    .map((part) => part.trim())
+    .filter((part) => part.length)
+    .join(' ');
+}
+
 export function concatHex (_hex: Array<?string>): string {
   return `0x${_hex.map(removeHexPrefix).join('')}`;
 }

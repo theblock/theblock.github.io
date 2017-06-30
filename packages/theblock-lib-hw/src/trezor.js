@@ -2,7 +2,7 @@
 // @flow
 
 import EthereumTx from 'ethereumjs-tx';
-import trezor from 'trezor-connect';
+import { TrezorConnect } from 'trezor-connect';
 
 import type { TransactionType } from 'theblock-lib-util/src/types';
 import type { TrezorPubKeyResultType, TrezorSignResultType } from './types';
@@ -10,27 +10,34 @@ import type { TrezorPubKeyResultType, TrezorSignResultType } from './types';
 import { deferPromise } from 'theblock-lib-util/src/promise';
 import { createRawTransaction } from 'theblock-lib-util/src/transaction';
 
-const PATH_ETC = "m/44'/61'/0'/0";
-const PATH_ETH = "m/44'/60'/0'/0";
-const PATH_TEST = "m/44'/1'/0'/0";
+const PATH_ETC = "m/44'/61'/0'";
+const PATH_ETH = "m/44'/60'/0'";
+const PATH_TEST = "m/44'/1'/0'";
 
-function getPath (chainId: number) {
+export function getTrezorHDPath (chainId: number, accountIndex?: string) {
+  let path;
+
   switch (chainId) {
     case 1:
-      return PATH_ETH;
+      path = PATH_ETH;
+      break;
 
     case 61:
-      return PATH_ETC;
+      path = PATH_ETC;
+      break;
 
     default:
-      return PATH_TEST;
+      path = PATH_TEST;
+      break;
   }
+
+  return `${path}/${accountIndex || '0'}`;
 }
 
 export function getTrezorAddresses (chainId: number): Promise<Array<string>> {
   return deferPromise(() => {
     return new Promise((resolve, reject) => {
-      return trezor.getXPubKey(getPath(chainId), ({ error, success, publicKey }: TrezorPubKeyResultType) => {
+      return TrezorConnect.getXPubKey(getTrezorHDPath(chainId), ({ error, success, publicKey }: TrezorPubKeyResultType) => {
         if (!success) {
           console.error('getTrezorAddresses', error);
 
@@ -51,7 +58,7 @@ export function signTrezorTransaction (transaction: TransactionType): Promise<st
     return new Promise((resolve, reject) => {
       const { chainId, data, gasPrice, gasLimit, nonce, to, value } = transaction;
 
-      return trezor.signEthereumTx(getPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
+      return TrezorConnect.signEthereumTx(getTrezorHDPath(chainId), nonce, gasPrice, gasLimit, to, value, data, chainId, ({ error, success, r, s, v }: TrezorSignResultType) => {
         if (!success) {
           console.error('signTrezorTransaction', error);
 

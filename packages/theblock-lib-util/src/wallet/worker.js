@@ -4,12 +4,15 @@
 import registerPromiseWorker from 'promise-worker/register';
 
 import { removeHexPrefix } from '../format';
-import { walletFromPhrase, walletFromPrivateKey } from './wallet';
+import { walletFromMnemonic, walletFromPhrase, walletFromPrivateKey } from './wallet';
 
 registerPromiseWorker(function (data) {
   switch (data.action) {
     case 'init':
       return Promise.resolve(true);
+
+    case 'walletFromMnemonic':
+      return walletFromMnemonic(data.mnemonic, data.path);
 
     case 'walletFromPhrase':
       return walletFromPhrase(data.phrase);

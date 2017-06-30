@@ -52,8 +52,7 @@ module.exports = {
         'u2f-api': path.resolve(__dirname, 'node_modules/ledgerco/src/u2f-api.js')
       }),
     descriptionFiles: [
-      'package.json',
-      'bower.json'
+      'package.json'
     ],
     mainFields: [
       'jsnext:main',
@@ -61,8 +60,7 @@ module.exports = {
       'main'
     ],
     modules: [
-      'node_modules',
-      'bower_components'
+      'node_modules'
     ]
   },
   externals: {
@@ -72,8 +70,7 @@ module.exports = {
     'moment': 'moment',
     'normalize.css': 'normalize',
     react: 'React',
-    'react-dom': 'ReactDOM',
-    'trezor-connect': 'TrezorConnect'
+    'react-dom': 'ReactDOM'
   },
   module: {
     rules: [

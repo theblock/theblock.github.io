@@ -10,17 +10,23 @@ import type { LedgerEthComms, LedgerEth, LedgerResultGetAddressType, LedgerResul
 import { deferPromise } from 'theblock-lib-util/src/promise';
 import { createRawTransaction } from 'theblock-lib-util/src/transaction';
 
-const PATH_ETC = "44'/60'/160720'/0'/0";
-const PATH_ETH = "44'/60'/0'/0";
+const PATH_ETC = "m/44'/60'/160720'/0'";
+const PATH_ETH = "m/44'/60'/0'";
 
-function getPath (chainId: number) {
+export function getLedgerHDPath (chainId: number, accountIndex?: string) {
+  let path;
+
   switch (chainId) {
     case 61:
-      return PATH_ETC;
+      path = PATH_ETC;
+      break;
 
     default:
-      return PATH_ETH;
+      path = PATH_ETH;
+      break;
   }
+
+  return `${path}/${accountIndex || '0'}`;
 }
 
 function createInstance (): Promise<LedgerEth> {
@@ -59,7 +65,7 @@ export function getLedgerAddresses (chainId: number): Promise<Array<string>> {
   return deferPromise(() => {
     return createInstance().then((instance: LedgerEth) => {
       return instance
-        .getAddress_async(getPath(chainId), true, false)
+        .getAddress_async(getLedgerHDPath(chainId), true, false)
         .then(({ address }: LedgerResultGetAddressType) => {
           console.log('getLedgerAddresses', address);
 
@@ -88,7 +94,7 @@ export function signLedgerTransaction (transaction: TransactionType): Promise<st
 
       return instance
         .signTransaction_async(
-          getPath(transaction.chainId),
+          getLedgerHDPath(transaction.chainId),
           tx.serialize().toString('hex')
         )
         .then(({ r, s, v }: LedgerResultSignType) => {
