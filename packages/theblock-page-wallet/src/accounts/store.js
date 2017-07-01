@@ -16,11 +16,7 @@ export class AccountStore {
   @observable transactions = [];
 
   constructor () {
-    autorun(() => {
-      if (this.balance.balanceBn) {
-        this.retrieveTransactions();
-      }
-    });
+    autorun(this.retrieveTransactions);
   }
 
   @computed get hasTransactions (): boolean {
@@ -32,11 +28,13 @@ export class AccountStore {
   }
 
   retrieveTransactions = () => {
-    this.setTransactions([]);
+    if (this.accounts.selected && this.chains.selected && this.balance.isLoading) {
+      this.setTransactions([]);
 
-    this.chains.selected.explorer.api
-      .getTransactions(this.accounts.selected.key)
-      .then(this.setTransactions);
+      this.chains.selected.explorer.api
+        .getTransactions(this.accounts.selected.key)
+        .then(this.setTransactions);
+    }
   }
 }
 

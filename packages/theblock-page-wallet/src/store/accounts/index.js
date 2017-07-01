@@ -6,6 +6,7 @@ import { action, autorun, computed } from 'mobx';
 import type { PrivateKeyType, StorageValueType, TransactionType } from 'theblock-lib-util/src/types';
 
 import { signLedgerTransaction } from 'theblock-lib-hw/src/ledger';
+import { signTrezorTransaction } from 'theblock-lib-hw/src/trezor';
 import SelectStore from 'theblock-lib-ui/src/input/select/store';
 import { decryptPrivateKey } from 'theblock-lib-util/src/keys';
 import { getStorage, setStorage } from 'theblock-lib-util/src/storage';
@@ -117,9 +118,20 @@ class AccountsStore extends SelectStore<AccountStore> {
   signTransaction = (address: ?string, tx: TransactionType): Promise<string> => {
     const account: AccountStore = this.find(address);
 
-    return account.isHardware
-      ? signLedgerTransaction(tx)
-      : signTransaction(tx, account.privateKey);
+    if (account.isHardware) {
+      switch (account.hardwareType) {
+        case 'ledger':
+          return signLedgerTransaction(tx);
+
+        case 'trezor':
+          return signTrezorTransaction(tx);
+
+        default:
+          throw new Error('Invalid hardware type for signing');
+      }
+    }
+
+    return signTransaction(tx, account.privateKey);
   }
 
   isHardware = (address: ?string): boolean => {

@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
+import Field from 'theblock-lib-ui/src/field';
 import InputTextarea from 'theblock-lib-ui/src/input/textarea';
 
 import { ImportStore } from '../store';
@@ -17,10 +18,12 @@ type PropTypes = {
 
 function Bip ({ className, store, t }: PropTypes): React.Element<any> {
   return (
-    <Interpolate
-      parent='div'
-      i18nKey='keytype.bipPhrase.text'
-      inputPhrase={
+    <Field>
+      <Interpolate
+        parent='div'
+        i18nKey='keytype.bipPhrase.text'
+      />
+      <div>
         <InputTextarea
           example={ t('keytype.bipPhrase.example') }
           isError={ store.hasEmptyPhrase }
@@ -28,8 +31,8 @@ function Bip ({ className, store, t }: PropTypes): React.Element<any> {
           onChange={ store.setPhrase }
           value={ store.phrase }
         />
-      }
-    />
+      </div>
+    </Field>
   );
 }
 

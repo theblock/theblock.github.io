@@ -35,6 +35,10 @@ const TYPES: Array<SelectableInterface> = [
     isHidden: true,
     key: 'ledger',
     label: i18n.t('import:keytype.ledger.label')
+  },
+  {
+    key: 'trezor',
+    label: i18n.t('import:keytype.trezor.label')
   }
 ];
 

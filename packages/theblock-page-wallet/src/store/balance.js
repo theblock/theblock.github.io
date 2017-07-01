@@ -19,7 +19,7 @@ export class BalanceStore {
   @observable chains = chainStore;
   @observable currencies = currencyStore;
   @observable tokens = tokenStore;
-  @observable balance: string = '0.0';
+  @observable balance: string = '';
   @observable tokenFiatPrice: BN = new BN(0);
 
   constructor () {
@@ -41,6 +41,10 @@ export class BalanceStore {
       : formatFloat(this.tokenFiatPrice.mul(this.balanceBn).divRound(CENTS), this.tokens.selected.decimals, 2, true);
   }
 
+  @computed get isLoading (): boolean {
+    return !this.balance;
+  }
+
   @action setBalance = (balance: string) => {
     this.balance = balance;
   }
@@ -50,7 +54,7 @@ export class BalanceStore {
   }
 
   retrieveTokenPrice = () => {
-    if (this.chains.selected.api && this.tokens.selected.key && this.currencies.selected.key) {
+    if (this.tokens.selected && this.currencies.selected) {
       this.chains.selected.api
         .getTokenPrice(this.tokens.selected.token, this.currencies.all)
         .then((prices) => {
@@ -63,8 +67,8 @@ export class BalanceStore {
   }
 
   retrieveTokenBalance = () => {
-    if (this.accounts.selected.key && this.chains.selected.api && this.tokens.selected.key) {
-      this.setBalance('0.0');
+    if (this.accounts.selected && this.chains.selected && this.tokens.selected) {
+      this.setBalance('');
 
       (
         this.tokens.selected.address

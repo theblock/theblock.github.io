@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
+import Field from 'theblock-lib-ui/src/field';
 import InputFile from 'theblock-lib-ui/src/input/file';
 
 import { ImportStore } from '../store';
@@ -17,19 +18,19 @@ type PropTypes = {
 
 function Json ({ className, store, t }: PropTypes): React.Element<any> {
   return (
-    <div>
+    <Field>
       <Interpolate
         parent='div'
         i18nKey='keytype.json.file.text'
-        inputFile={
-          <InputFile
-            isError={ store.hasJsonError }
-            onChange={ store.setJsonFile }
-            value={ store.jsonFilename }
-          />
-        }
       />
-    </div>
+      <div>
+        <InputFile
+          isError={ store.hasJsonError }
+          onChange={ store.setJsonFile }
+          value={ store.jsonFilename }
+        />
+      </div>
+    </Field>
   );
 }
 
