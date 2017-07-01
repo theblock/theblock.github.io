@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
+import Field from 'theblock-lib-ui/src/field';
 import InputStatic from 'theblock-lib-ui/src/input/static';
 import Select from 'theblock-lib-ui/src/input/select';
 
@@ -32,43 +33,45 @@ function Accounts ({ className, t }: PropTypes): React.Element<any> {
       }
     >
       <section>
-        <Interpolate
-          i18nKey='accounts:address.text'
-          parent='div'
-          account={
+        <Field>
+          <Interpolate
+            i18nKey='accounts:address.text'
+            parent='div'
+          />
+          <div>
             <Select
               displayKey
               copyValue={ store.accounts.selected.key }
               store={ store.accounts }
             />
-          }
-        />
-        <Interpolate
-          i18nKey='accounts:name.text'
-          parent='div'
-          name={
+          </div>
+        </Field>
+        <Field>
+          <Interpolate
+            i18nKey='accounts:name.text'
+            parent='div'
+          />
+          <div>
             <InputName
               account={ store.accounts.selected }
               onEditDone={ store.accounts.completedEdit }
             />
-          }
-        />
-        <Interpolate
-          i18nKey='accounts:balance.text'
-          parent='div'
-          balance={
-            <span>
-              <InputStatic value={ store.balance.balanceFormatted } />
-              <Select store={ tokenStore } />
-            </span>
-          }
-          fiat={
-            <span>
-              <InputStatic value={ store.balance.balanceFiatFormatted } />
-              <Select store={ currencyStore } />
-            </span>
-          }
-        />
+          </div>
+        </Field>
+        <Field>
+          <div>there is a balance of</div>
+          <div>
+            <InputStatic value={ store.balance.balanceFormatted } />
+            <Select store={ tokenStore } />
+          </div>
+        </Field>
+        <Field>
+          <div>valued at</div>
+          <div>
+            <InputStatic value={ store.balance.balanceFiatFormatted } />
+            <Select store={ currencyStore } />
+          </div>
+        </Field>
       </section>
       {
         store.hasTransactions

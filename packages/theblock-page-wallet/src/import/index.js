@@ -7,6 +7,7 @@ import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Button from 'theblock-lib-ui/src/button';
+import Field from 'theblock-lib-ui/src/field';
 import InputPassword from 'theblock-lib-ui/src/input/password';
 import Select from 'theblock-lib-ui/src/input/select';
 
@@ -31,53 +32,59 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
     >
       <Busy store={ store } />
       <section>
-        <Interpolate
-          parent='div'
-          i18nKey='details.text'
-          selectType={
+        <Field>
+          <Interpolate
+            parent='div'
+            i18nKey='details.text'
+          />
+          <div>
             <Select store={ store.storeType } />
-          }
-        />
+          </div>
+        </Field>
         <Details store={ store } />
         {
           store.shouldShowPath
             ? (
-              <Interpolate
-                parent='div'
-                i18nKey='path.text'
-                inputPath={
+              <Field>
+                <Interpolate
+                  parent='div'
+                  i18nKey='path.text'
+                />
+                <div>
                   <Select store={ store.storePath } />
-                }
-              />
+                </div>
+              </Field>
             )
             : null
         }
-      </section>
-      <section>
         {
           store.shouldShowPassword
             ? (
-              <Interpolate
-                parent='div'
-                i18nKey='password.text'
-                inputPassword={
+              <Field>
+                <Interpolate
+                  parent='div'
+                  i18nKey='password.text'
+                />
+                <div>
                   <InputPassword
                     isWarning={ store.hasEmptyPassword }
                     onChange={ store.setPassword }
                     value={ store.password }
                   />
-                }
-              />
+                </div>
+              </Field>
             )
             : null
         }
-        <Interpolate
-          parent='div'
-          i18nKey='storage.text'
-          selectStorage={
+        <Field>
+          <Interpolate
+            parent='div'
+            i18nKey='storage.text'
+          />
+          <div>
             <Select store={ store.storeStorage } />
-          }
-        />
+          </div>
+        </Field>
       </section>
       <section>
         <Button

@@ -7,6 +7,7 @@ import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Button from 'theblock-lib-ui/src/button';
+import Field from 'theblock-lib-ui/src/field';
 import InputAddress from 'theblock-lib-ui/src/input/address';
 import InputHex from 'theblock-lib-ui/src/input/hex';
 import InputNumber from 'theblock-lib-ui/src/input/number';
@@ -23,6 +24,86 @@ type PropTypes = {
   t: (string) => string
 };
 
+// <section>
+//   <div>
+//     <Interpolate
+//       i18nKey='account.text'
+//       account={
+//         <Select store={ accounts } />
+//       }
+//     />
+//     { ' ' }
+//     <Interpolate
+//       i18nKey='token.text'
+//       token={
+//         <Select store={ store.tokens } />
+//       }
+//     />
+//     { ' ' }
+//     <Interpolate
+//       i18nKey='balance.text'
+//       balance={
+//         <span>
+//           <InputStatic
+//             value={
+//               store.valueType.selected.isNative
+//                 ? store.balance.balanceFormatted
+//                 : store.balance.balanceFiatFormatted
+//             }
+//           />
+//           <Select store={ store.valueType } />
+//         </span>
+//       }
+//     />
+//   </div>
+// </section>
+// <section>
+//   <Interpolate
+//     i18nKey='value.text'
+//     parent='div'
+//     value={
+//       <span>
+//         <InputNumber
+//           onChange={
+//             store.valueType.selected.isNative
+//               ? store.setTxValue
+//               : store.setTxValueFiat
+//           }
+//           isWarning={ store.txValueBn.isZero() }
+//           step={ 0.001 }
+//           value={
+//             store.valueType.selected.isNative
+//               ? store.txValue
+//               : store.txValueFiat
+//           }
+//           valueDisplay={
+//             (
+//               store.valueType.selected.isNative
+//                 ? store.txValueFormatted
+//                 : store.txValueFiatFormatted
+//             ) || t('value.empty')
+//           }
+//         />
+//         <InputStatic value={ store.valueType.selected.key } />
+//       </span>
+//     }
+//   />
+//   <Interpolate
+//     i18nKey='recipient.text'
+//     parent='div'
+//     recipient={
+//       <InputAddress
+//         example={ t('recipient.example') }
+//         isError={ store.hasRecipientError }
+//         isMaxWidth
+//         onChange={ store.setRecipient }
+//         store={ addresses }
+//         value={ store.recipient }
+//       />
+//     }
+//   />
+// </section>
+
 function Send ({ className, t }: PropTypes): React.Element<any> {
   return (
     <main
@@ -33,73 +114,55 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
       }
     >
       <section>
-        <div>
-          <Interpolate
-            i18nKey='account.text'
-            account={
-              <Select store={ accounts } />
-            }
-          />
-          { ' ' }
-          <Interpolate
-            i18nKey='token.text'
-            token={
-              <Select store={ store.tokens } />
-            }
-          />
-          { ' ' }
-          <Interpolate
-            i18nKey='balance.text'
-            balance={
-              <span>
-                <InputStatic
-                  value={
-                    store.valueType.selected.isNative
-                      ? store.balance.balanceFormatted
-                      : store.balance.balanceFiatFormatted
-                  }
-                />
-                <Select store={ store.valueType } />
-              </span>
-            }
-          />
-        </div>
-      </section>
-      <section>
-        <Interpolate
-          i18nKey='value.text'
-          parent='div'
-          value={
-            <span>
-              <InputNumber
-                onChange={
+        <Field>
+          <div>using my selected account</div>
+          <div>
+            <Select store={ accounts } />
+          </div>
+        </Field>
+        <Field>
+          <div>with an available balance of</div>
+          <div>
+            <InputStatic
+              value={
+                store.valueType.selected.isNative
+                  ? store.balance.balanceFormatted
+                  : store.balance.balanceFiatFormatted
+              }
+            />
+            <Select store={ store.tokens } />
+          </div>
+        </Field>
+        <Field>
+          <div>send an amount of</div>
+          <div>
+            <InputNumber
+              onChange={
+                store.valueType.selected.isNative
+                  ? store.setTxValue
+                  : store.setTxValueFiat
+              }
+              isWarning={ store.txValueBn.isZero() }
+              step={ 0.001 }
+              value={
+                store.valueType.selected.isNative
+                  ? store.txValue
+                  : store.txValueFiat
+              }
+              valueDisplay={
+                (
                   store.valueType.selected.isNative
-                    ? store.setTxValue
-                    : store.setTxValueFiat
-                }
-                isWarning={ store.txValueBn.isZero() }
-                step={ 0.001 }
-                value={
-                  store.valueType.selected.isNative
-                    ? store.txValue
-                    : store.txValueFiat
-                }
-                valueDisplay={
-                  (
-                    store.valueType.selected.isNative
-                      ? store.txValueFormatted
-                      : store.txValueFiatFormatted
-                  ) || t('value.empty')
-                }
-              />
-              <InputStatic value={ store.valueType.selected.key } />
-            </span>
-          }
-        />
-        <Interpolate
-          i18nKey='recipient.text'
-          parent='div'
-          recipient={
+                    ? store.txValueFormatted
+                    : store.txValueFiatFormatted
+                ) || t('value.empty')
+              }
+            />
+            <Select store={ store.valueType } />
+          </div>
+        </Field>
+        <Field>
+          <div>to the recipient account</div>
+          <div>
             <InputAddress
               example={ t('recipient.example') }
               isError={ store.hasRecipientError }
@@ -108,8 +171,8 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
               store={ addresses }
               value={ store.recipient }
             />
-          }
-        />
+          </div>
+        </Field>
       </section>
       <section>
         <Interpolate
