@@ -59,14 +59,20 @@ function Accounts ({ className, t }: PropTypes): React.Element<any> {
           </div>
         </Field>
         <Field>
-          <div>there is a balance of</div>
+          <Interpolate
+            i18nKey='accounts:balance.text'
+            parent='div'
+          />
           <div>
             <InputStatic value={ store.balance.balanceFormatted } />
             <Select store={ tokenStore } />
           </div>
         </Field>
         <Field>
-          <div>valued at</div>
+          <Interpolate
+            i18nKey='accounts:value.text'
+            parent='div'
+          />
           <div>
             <InputStatic value={ store.balance.balanceFiatFormatted } />
             <Select store={ currencyStore } />
