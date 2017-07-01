@@ -3,14 +3,17 @@
 
 export default {
   address: {
-    text: 'on my selected account {{account}}'
+    text: 'on my selected account'
   },
   name: {
-    text: 'identified by the name {{name}}',
+    text: 'identified by the name',
     defaultName: 'no name'
   },
   balance: {
-    text: 'there is {{balance}} valued at {{fiat}}'
+    text: 'there is a balance of'
+  },
+  value: {
+    text: 'valued at'
   },
   transactions: {
     powered: 'Powered by {{explorer}}',

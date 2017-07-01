@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
+import Field from 'theblock-lib-ui/src/field';
 import InputHex from 'theblock-lib-ui/src/input/hex';
 
 import { ImportStore } from '../store';
@@ -17,10 +18,12 @@ type PropTypes = {
 
 function PrivateKey ({ className, store, t }: PropTypes): React.Element<any> {
   return (
-    <Interpolate
-      parent='div'
-      i18nKey='keytype.privateKey.text'
-      inputKey={
+    <Field>
+      <Interpolate
+        parent='div'
+        i18nKey='keytype.privateKey.text'
+      />
+      <div>
         <InputHex
           example={ t('keytype.privateKey.example') }
           isError={ store.hasInvalidPrivateKey }
@@ -28,8 +31,8 @@ function PrivateKey ({ className, store, t }: PropTypes): React.Element<any> {
           onChange={ store.setPrivateKey }
           value={ store.privateKey }
         />
-      }
-    />
+      </div>
+    </Field>
   );
 }
 

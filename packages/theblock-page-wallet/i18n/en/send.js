@@ -3,20 +3,17 @@
 
 export default {
   account: {
-    text: 'using my {{account}} account'
-  },
-  token: {
-    text: 'and {{token}} tokens'
+    text: 'using my selected account'
   },
   balance: {
-    text: 'with available balance {{balance}}'
+    text: 'with an available balance of'
   },
   value: {
-    text: 'send an amount of {{value}}',
+    text: 'send an amount of',
     empty: 'zero'
   },
   recipient: {
-    text: 'to recipient account {{recipient}}',
+    text: 'to recipient account',
     example: 'e.g. 0x00a329c0648769A73afAc7F9381E08FB43dBEA72'
   },
   data: {
