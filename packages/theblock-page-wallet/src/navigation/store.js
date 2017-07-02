@@ -6,21 +6,20 @@ import { computed } from 'mobx';
 import SelectStore from 'theblock-lib-ui/src/input/select/store';
 import type { SelectableInterface } from 'theblock-lib-ui/src/types';
 
-import i18n from '../i18n';
 import accounts from '../store/accounts';
 
 const TYPES: Array<SelectableInterface> = [
   {
     key: 'send',
-    label: i18n.t('subnav:location.send')
+    label: 'subnav:location.send'
   },
   {
     key: 'importAccount',
-    label: i18n.t('subnav:location.importAccount')
+    label: 'subnav:location.importAccount'
   },
   {
     key: 'listAccounts',
-    label: i18n.t('subnav:location.listAccounts')
+    label: 'subnav:location.listAccounts'
   }
 ];
 

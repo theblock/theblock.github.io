@@ -2,6 +2,7 @@
 // @flow
 
 import React from 'react';
+import { translate } from 'react-i18next';
 
 import type { SelectableInterface } from 'theblock-lib-ui/src/types';
 
@@ -11,10 +12,11 @@ type PropTypes = {
   className?: string,
   isSelected?: boolean,
   item: SelectableInterface,
-  onSelect?: (string) => void
+  onSelect?: (string) => void,
+  t: (string) => string
 };
 
-export default function Item ({ className, isSelected, item: { key, label }, onSelect }: PropTypes): React.Element<any> {
+function Item ({ className, isSelected, item: { key, label }, onSelect, t }: PropTypes): React.Element<any> {
   const _onClick = () => {
     onSelect && onSelect(key);
   };
@@ -24,7 +26,9 @@ export default function Item ({ className, isSelected, item: { key, label }, onS
       isInternal
       isReadOnly={ isSelected }
       onClick={ _onClick }
-      value={ label }
+      value={ t(label) }
     />
   );
 }
+
+export default translate([])(Item);
