@@ -8,5 +8,6 @@ export interface SelectableInterface {
   icon?: ?React.Element<any>,
   isHidden?: boolean,
   key: any,
-  label?: ?string
+  label?: ?string,
+  labeli18n?: ?string,
 }
