@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fs = require('fs');
 const HtmlPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const pkgjson = require('./package.json');
 
@@ -152,7 +153,7 @@ module.exports = {
       new ExtractTextPlugin({
         filename: `${HASH_PATH}.css`
       }),
-      isProduction && new webpack.optimize.UglifyJsPlugin({
+      isProduction && new UglifyJsPlugin({
         compress: {
           warnings: false
         },
