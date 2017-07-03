@@ -4,7 +4,7 @@
 import type { ContractType } from '../../types';
 
 export default ({
-  image: 'question-128.png',
+  image: 'ens-128.png',
   key: 'ENSRegistrar',
   name: 'ENS Registrar',
   url: 'https://ens.domains/',
