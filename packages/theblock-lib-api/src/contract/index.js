@@ -36,14 +36,14 @@ export default class Contract {
       });
   }
 
-  findMethod (name: string): AbiMethodType {
+  findMethod (nameOrSignature: string): AbiMethodType {
     const method: ?AbiMethodType = this.methods.find(({ signature, abi }) => {
-      return signature === name ||
-        abi.name === name;
+      return signature === nameOrSignature ||
+        abi.name === nameOrSignature;
     });
 
     if (!method) {
-      throw new Error(`Unable to find method ${name}`);
+      throw new Error(`Unable to find method ${nameOrSignature}`);
     }
 
     return method;
