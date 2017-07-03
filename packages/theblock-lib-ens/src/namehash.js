@@ -21,6 +21,7 @@ export function createNameHash (name?: ?string): string {
     })
     .split('.')
     .reverse()
+    .map((label) => label.trim())
     .reduce((result, label) => {
       return label
         ? sha3(Buffer.from(`${result}${sha3(label)}`, 'hex'))
