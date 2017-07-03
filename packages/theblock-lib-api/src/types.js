@@ -3,34 +3,11 @@
 
 import BN from 'bn.js';
 
+import type { JsonAbiType } from 'theblock-meta-contracts/src/types';
 import type { SignatureType } from 'theblock-lib-services/src/types';
 
 export type DecodedDataType = SignatureType & {
   values: Array<any>
-};
-
-type JsonAbiFunctionType = 'constructor' | 'event' | 'function';
-
-type JsonAbiTypeType = string;
-
-type JsonAbiInputType = {
-  indexed: boolean,
-  name: string,
-  type: JsonAbiTypeType
-};
-
-type JsonAbiOutputType = {
-  name: string,
-  type: JsonAbiTypeType
-};
-
-export type JsonAbiType = {
-  constant: boolean,
-  inputs: Array<JsonAbiInputType>,
-  name: string,
-  outputs: Array<JsonAbiOutputType>,
-  payable: boolean,
-  type: JsonAbiFunctionType
 };
 
 export type AbiMethodType = {
@@ -91,18 +68,18 @@ export type MiddlewareConfigType = {
 };
 
 export type TxObjectType = {
-  data: string,
-  from: string,
-  to: string,
-  gasLimit: BN,
-  gasPrice: BN,
-  value: BN
+  data?: ?string,
+  from?: ?string,
+  to?: ?string,
+  gasLimit?: ?BN,
+  gasPrice?: ?BN,
+  value?: ?BN
 };
 
 export type TxInputType = {
   data: string,
-  from: string,
-  to: string,
+  from: ?string,
+  to: ?string,
   gas: string,
   gasPrice: string,
   value: string

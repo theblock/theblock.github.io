@@ -4,12 +4,11 @@
 import BN from 'bn.js';
 import createKeccakHash from 'keccak';
 
-const ZERO_ADDRESS = '0000000000000000000000000000000000000000';
-const ZERO_ETHER = '000000000000000000';
+import { ZERO_ETHER, NULL_ADDRESS } from './constants';
 
 export function formatAddress (_address: ?string): string {
   if (!_address) {
-    return `0x${ZERO_ADDRESS}`;
+    return NULL_ADDRESS;
   }
 
   const address = _address.replace('0x', '').toLowerCase();

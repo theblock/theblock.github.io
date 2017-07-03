@@ -57,6 +57,15 @@ export default class Api {
     return this._tokenInterface;
   }
 
+  call (tx: TxObjectType): Promise<string> {
+    return this
+      .send('eth_call', [
+        formatInputTx(tx),
+        'latest'
+      ])
+      .then((result: string) => result);
+  }
+
   estimateGas (tx: TxObjectType): Promise<BN> {
     tx.gasLimit = !tx.gasLimit || tx.gasLimit.isZero()
       ? ESTIMATE_GAS_INPUT
@@ -97,15 +106,15 @@ export default class Api {
       .then((result: string) => fromHexToBn(result));
   }
 
-  decodeData (hex: string): Promise<DecodedDataType> {
-    return getMethodSignature(hex.substr(0, 10) || '0x')
+  decodeData (hex: ?string): Promise<DecodedDataType> {
+    return getMethodSignature(hex)
       .then(({ method, name, types }: SignatureType) => {
         return {
           method,
           name,
           types,
           values: (name && types.length)
-            ? decodeData(types, hex.substr(10))
+            ? decodeData(types, hex)
             : []
         };
       });
@@ -120,7 +129,7 @@ export default class Api {
       .then((result: string) => fromHexToBn(result));
   }
 
-  getNonce (address: string): Promise<BN> {
+  getNonce (address: ?string): Promise<BN> {
     return this
       .send('eth_getTransactionCount', [
         formatInputAddress(address),
