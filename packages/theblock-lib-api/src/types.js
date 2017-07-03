@@ -68,18 +68,18 @@ export type MiddlewareConfigType = {
 };
 
 export type TxObjectType = {
-  data: string,
-  from: string,
-  to: string,
-  gasLimit: BN,
-  gasPrice: BN,
-  value: BN
+  data?: ?string,
+  from?: ?string,
+  to?: ?string,
+  gasLimit?: ?BN,
+  gasPrice?: ?BN,
+  value?: ?BN
 };
 
 export type TxInputType = {
   data: string,
-  from: string,
-  to: string,
+  from: ?string,
+  to: ?string,
   gas: string,
   gasPrice: string,
   value: string

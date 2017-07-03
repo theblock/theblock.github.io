@@ -26,18 +26,19 @@ export function findResolver (api: Api, name: string) {
         throw new Error('Unable to find ENS registrar location');
       }
 
-      // encode top-level only
-      const data: string = ensResolve.encode([name]);
-
-      return api.call(data);
+      return api.call({
+        data: ensResolve.encode([name]),
+        to: location.address
+      });
     });
 }
 
 export function lookupName (api: Api, name: string) {
   return findResolver(api, name)
-    .then((resolveAddr) => {
-      const data: string = ensLookup.encode([name]);
-
-      return api.call(data);
+    .then((resolverAddr) => {
+      return api.call({
+        data: ensLookup.encode([name]),
+        to: resolverAddr
+      });
     });
 }

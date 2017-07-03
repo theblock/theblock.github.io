@@ -1,10 +1,14 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
+import BN from 'bn.js';
+
 import { fromBnToHex, fromHexToBn, fromStrToHex } from 'theblock-lib-util/src/convert';
 import { formatAddress } from 'theblock-lib-util/src/format';
 
 import type { ReceiptResultType, ReceiptOutputType, TxInputType, TxObjectType, TxOutputType, TxResultType } from './types';
+
+const ZERO_BN: BN = new BN(0);
 
 export function formatInputAddress (address: ?string): string {
   return formatAddress(address).toLowerCase();
@@ -13,11 +17,15 @@ export function formatInputAddress (address: ?string): string {
 export function formatInputTx (tx: TxObjectType): TxInputType {
   return {
     data: fromStrToHex(tx.data),
-    from: formatInputAddress(tx.from),
-    gas: fromBnToHex(tx.gasLimit),
-    gasPrice: fromBnToHex(tx.gasPrice),
-    to: formatInputAddress(tx.to),
-    value: fromBnToHex(tx.value)
+    from: tx.from
+      ? formatInputAddress(tx.from)
+      : null,
+    gas: fromBnToHex(tx.gasLimit || ZERO_BN),
+    gasPrice: fromBnToHex(tx.gasPrice || ZERO_BN),
+    to: tx.to
+      ? formatInputAddress(tx.to)
+      : null,
+    value: fromBnToHex(tx.value || ZERO_BN)
   };
 }
 
