@@ -8,7 +8,7 @@ const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
 
 describe('format', () => {
   describe('formatAddress', () => {
-    it('resturns 0x00..00 form no address', () => {
+    it('resturns 0x00..00 for no address', () => {
       expect(formatAddress()).toBe(NULL_ADDRESS);
     });
 
