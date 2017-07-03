@@ -8,14 +8,13 @@ import type { ContractLocationType } from 'theblock-meta-contracts/src/types';
 import Contract from 'theblock-lib-api/src/contract';
 import registrarDefinition from 'theblock-meta-contracts/src/contracts/definitions/ensRegistrar';
 import { EnsRegistrar } from 'theblock-meta-contracts/src/abi';
+import { NULL_ADDRESS } from 'theblock-lib-util/src/constants';
 import { formatAddress } from 'theblock-lib-util/src/format';
 
 import { createNameHash } from './namehash';
 
 const ensRegistrar: Contract = new Contract(EnsRegistrar);
 const ensResolve: AbiMethodType = ensRegistrar.findMethod('resolver');
-
-const NULL_ADDR: string = '0x0000000000000000000000000000000000000000';
 
 export function findEnsResolver (api: Api, name: string) {
   return api
@@ -43,7 +42,7 @@ export function findEnsResolver (api: Api, name: string) {
           return ensResolve.decode(result);
         })
         .then(([resolverAddress]) => {
-          if (!resolverAddress || resolverAddress === NULL_ADDR) {
+          if (!resolverAddress || resolverAddress === NULL_ADDRESS) {
             throw new Error(`Unable to find resolver for ${name}`);
           }
 
@@ -51,7 +50,3 @@ export function findEnsResolver (api: Api, name: string) {
         });
     });
 }
-
-export {
-  NULL_ADDR
-};

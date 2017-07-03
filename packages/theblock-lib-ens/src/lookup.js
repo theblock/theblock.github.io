@@ -6,10 +6,11 @@ import type { AbiMethodType } from 'theblock-lib-api/src/types';
 
 import Contract from 'theblock-lib-api/src/contract';
 import { EnsResolver } from 'theblock-meta-contracts/src/abi';
+import { NULL_ADDRESS } from 'theblock-lib-util/src/constants';
 import { formatAddress } from 'theblock-lib-util/src/format';
 
 import { createNameHash } from './namehash';
-import { NULL_ADDR, findEnsResolver } from './registrar';
+import { findEnsResolver } from './registrar';
 
 const ensResolver: Contract = new Contract(EnsResolver);
 const ensLookup: AbiMethodType = ensResolver.findMethod('addr');
@@ -33,7 +34,7 @@ export function lookupEnsName (api: Api, name: string) {
       return ensLookup.decode(result);
     })
     .then(([resolvedAddress]) => {
-      if (!resolvedAddress || resolvedAddress === NULL_ADDR) {
+      if (!resolvedAddress || resolvedAddress === NULL_ADDRESS) {
         throw new Error(`Unable to find endpoint for ${name}`);
       }
 

@@ -1,0 +1,12 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+// @flow
+
+const ZERO_ADDRESS = '0000000000000000000000000000000000000000';
+const ZERO_ETHER = '000000000000000000';
+const NULL_ADDRESS = `0x${ZERO_ADDRESS}`;
+
+export {
+  ZERO_ADDRESS,
+  ZERO_ETHER,
+  NULL_ADDRESS
+};
