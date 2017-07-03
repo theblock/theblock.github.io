@@ -4,6 +4,7 @@
 import BN from 'bn.js';
 import { action, computed, observable } from 'mobx';
 
+import { lookupEnsName } from 'theblock-lib-ens/src/lookup';
 import { fromFloatToBn, fromHexToBn } from 'theblock-lib-util/src/convert';
 import { formatFloat } from 'theblock-lib-util/src/format';
 import { isAddressValid, isHexValid } from 'theblock-lib-util/src/validate';
@@ -19,6 +20,10 @@ import valueTypeStore from '../store/valueType';
 
 const CENTS: BN = new BN(100);
 const BN10: BN = new BN(10);
+
+lookupEnsName(chainStore.selected.api, 'tenxpay.eth').then((address) => {
+  console.log('tenxpay.eth', address);
+});
 
 export class SendStore {
   @observable accounts = accountStore;

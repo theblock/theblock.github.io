@@ -59,8 +59,9 @@ export default class Api {
 
   call (tx: TxObjectType): Promise<string> {
     return this
-      .send('eth_sendTransaction', [
-        formatInputTx(tx)
+      .send('eth_call', [
+        formatInputTx(tx),
+        'latest'
       ])
       .then((result: string) => result);
   }

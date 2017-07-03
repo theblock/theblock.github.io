@@ -12,6 +12,7 @@
   },
   "peerDependencies": {
     "theblock-lib-api": "*",
+    "theblock-lib-ens": "*",
     "theblock-lib-hw": "*",
     "theblock-lib-ui": "*",
     "theblock-lib-util": "*"
