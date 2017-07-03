@@ -28,7 +28,5 @@ export function createNameHash (name?: ?string): string {
         : result;
     }, EMPTY_NAME);
 
-  console.log('createNameHash', `0x${nodeSha3}`);
-
   return `0x${nodeSha3}`;
 }
