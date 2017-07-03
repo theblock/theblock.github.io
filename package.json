@@ -1,6 +1,6 @@
 {
   "name": "theblock",
-  "version": "0.2.15",
+  "version": "0.3.0",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
   "repository": {
@@ -76,8 +76,6 @@
     "stylelint": "^7.11.0",
     "stylelint-config-standard": "^16.0.0",
     "stylelint-scss": "^1.4.4",
-    "uglify-js": "mishoo/UglifyJS2#harmony-v3.0.23",
-    "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.0.0",
     "webpack-bundle-size-analyzer": "^2.7.0",
     "webpack-dev-server": "^2.5.0",

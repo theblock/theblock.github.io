@@ -6,7 +6,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const fs = require('fs');
 const HtmlPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const pkgjson = require('./package.json');
 
@@ -77,7 +76,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: /node_modules\/(ethereumjs-abi|ethereumjs-util|ethereumjs-tx)/,
+        include: /node_modules\/(ethereumjs-tx|idna-uts46)/,
         loader: 'babel-loader'
       },
       {
@@ -153,7 +152,7 @@ module.exports = {
       new ExtractTextPlugin({
         filename: `${HASH_PATH}.css`
       }),
-      isProduction && new UglifyJsPlugin({
+      isProduction && new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false
         },
