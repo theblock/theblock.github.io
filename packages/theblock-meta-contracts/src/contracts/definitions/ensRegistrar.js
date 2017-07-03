@@ -3,7 +3,10 @@
 
 import type { ContractType } from '../../types';
 
+import { EnsRegistrar } from '../../abi';
+
 export default ({
+  abi: EnsRegistrar,
   image: 'ens-128.png',
   key: 'ENSRegistrar',
   name: 'ENS Registrar',

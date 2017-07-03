@@ -3,7 +3,8 @@
 
 import Abi from 'ethereumjs-abi';
 
-import type { AbiMethodType, JsonAbiType } from '../types';
+import type { JsonAbiType } from 'theblock-meta-contracts/src/types';
+import type { AbiMethodType } from '../types';
 
 import { decodeData, encodeData } from './data';
 
