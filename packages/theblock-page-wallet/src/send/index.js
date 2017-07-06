@@ -102,6 +102,7 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
               onChange={ store.setRecipient }
               store={ addresses }
               value={ store.recipient }
+              valueAddress={ store.recipientAddress }
             />
           </div>
         </Field>

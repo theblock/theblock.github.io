@@ -29,17 +29,18 @@ type PropTypes = {
   onChange?: (string) => void,
   hint?: string,
   store?: Store<SelectableInterface>,
-  value: ?string
+  value: ?string,
+  valueAddress: ?string
 };
 
-function InputAddress ({ className, copyValue, example, hideIcon, hint, isDisabled, isError, isReadOnly, isMaxWidth, isWarning, label, onChange, store, value }: PropTypes): React.Element<any> {
+function InputAddress ({ className, copyValue, example, hideIcon, hint, isDisabled, isError, isReadOnly, isMaxWidth, isWarning, label, onChange, store, value, valueAddress }: PropTypes): React.Element<any> {
   const classes: string = compact([
     styles.ui, className
   ]).join(' ');
   const icon: ?React.Element<any> = (
     isError
       ? null
-      : <ImgIdentity value={ value } />
+      : <ImgIdentity value={ valueAddress || value } />
   );
 
   if (store) {
