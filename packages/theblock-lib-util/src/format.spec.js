@@ -41,5 +41,9 @@ describe('format', () => {
     it('returns formatted address on checksum input', () => {
       expect(formatAddress(ADDRESS)).toBe(ADDRESS);
     });
+
+    it('returns formatted address on input without leading 0x', () => {
+      expect(formatAddress(ADDRESS.substr(2))).toBe(ADDRESS);
+    });
   });
 });
