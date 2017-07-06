@@ -14,7 +14,9 @@ const isProduction = process.env.NODE_ENV === 'production';
 const BLOG_ENTRIES = fs
   .readdirSync('packages/theblock-page-blog/i18n')
   .filter((file) => (/^20[0-9]{6}-[0-9]{4}$/).test(file)).sort().reverse();
-const PAGES = ['404', 'blog', 'home', 'wallet'].concat(BLOG_ENTRIES.map((file) => `blog/${file}`));
+const PAGES = [
+  '404', 'blog', 'home', 'talk', 'wallet'
+].concat(BLOG_ENTRIES.map((file) => `blog/${file}`));
 const VERSION = isProduction
   ? pkgjson.version.split('.').map((v) => `000${v}`.slice(-3)).join('.')
   : 'development';

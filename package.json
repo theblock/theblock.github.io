@@ -96,6 +96,7 @@
     "theblock-page-404": "file:packages/theblock-page-404",
     "theblock-page-blog": "file:packages/theblock-page-blog",
     "theblock-page-home": "file:packages/theblock-page-home",
+    "theblock-page-talk": "file:packages/theblock-page-talk",
     "theblock-page-wallet": "file:packages/theblock-page-wallet"
   }
 }

@@ -1,9 +1,8 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
+import en from './en';
+
 export default {
-  home: 'home',
-  blog: 'blog',
-  talk: 'talk',
-  wallet: 'wallet'
+  en
 };

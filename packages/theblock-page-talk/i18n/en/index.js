@@ -2,8 +2,4 @@
 // @flow
 
 export default {
-  home: 'home',
-  blog: 'blog',
-  talk: 'talk',
-  wallet: 'wallet'
 };
