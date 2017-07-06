@@ -15,7 +15,7 @@
     "clean": "npm-run-all --parallel clean:*",
     "clean:css": "find ./x -name '*.css*' -delete",
     "clean:js": "find ./x -name '*.js*' -delete",
-    "clean:local": "find ./node_modules -name 'theblock-*' -exec rm -rf {} \\; || true",
+    "clean:local": "find ./node_modules/@theblock -exec rm -rf {} \\; || true",
     "clean:logs": "find . -name '*-error.log' -delete",
     "delete:modules": "rm -rf ./node_modules",
     "start": "webpack-dev-server --progress",

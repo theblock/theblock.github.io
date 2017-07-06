@@ -4,7 +4,7 @@
 import i18next from 'i18next';
 import uniq from 'lodash.uniq';
 
-import resourcesUI from 'theblock-lib-ui/i18n';
+import resourcesUI from '@theblock/lib-ui/i18n';
 
 function combineWithUI (resources: any): any {
   return uniq(
