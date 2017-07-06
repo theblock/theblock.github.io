@@ -8,11 +8,16 @@ import { ZERO_ETHER, NULL_ADDRESS } from './constants';
 import { isAddressValid } from './validate';
 
 export function formatAddress (_address: ?string): string {
-  if (!_address || !isAddressValid(_address)) {
+  if (!_address) {
     return NULL_ADDRESS;
   }
 
   const address = _address.replace('0x', '').toLowerCase();
+
+  if (!isAddressValid(`0x${address}`)) {
+    return NULL_ADDRESS;
+  }
+
   const hash: string = createKeccakHash('keccak256').update(address).digest().toString('hex');
   let result: string = '';
 
