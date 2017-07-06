@@ -5,10 +5,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 
-import 'theblock-lib-ui/src/ui.scss';
+import '@theblock/lib-ui/src/ui.scss';
 
-import resources from 'theblock-page-home/i18n';
-import Home from 'theblock-page-home/src';
+import resources from '@theblock/page-home/i18n';
+import Home from '@theblock/page-home/src';
 
 import initI18N from './i18n';
 
