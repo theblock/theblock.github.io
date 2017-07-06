@@ -8,6 +8,8 @@ engines:
     config:
       languages:
       - javascript:
+  fixme:
+    enabled: true
 ratings:
   paths:
   - src/**
