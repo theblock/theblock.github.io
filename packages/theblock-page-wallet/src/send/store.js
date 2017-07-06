@@ -7,7 +7,7 @@ import { action, computed, observable } from 'mobx';
 import { lookupEnsName } from 'theblock-lib-ens/src/lookup';
 import { fromFloatToBn, fromHexToBn } from 'theblock-lib-util/src/convert';
 import { formatFloat } from 'theblock-lib-util/src/format';
-import { isAddressValid, isHexValid } from 'theblock-lib-util/src/validate';
+import { isAddressValid, isEnsName, isHexValid } from 'theblock-lib-util/src/validate';
 
 import accountStore from '../store/accounts';
 import addressStore from '../store/addresses';
@@ -20,10 +20,6 @@ import valueTypeStore from '../store/valueType';
 
 const CENTS: BN = new BN(100);
 const BN10: BN = new BN(10);
-
-lookupEnsName(chainStore.selected.api, 'tenxpay.eth').then((address) => {
-  console.log('tenxpay.eth', address);
-});
 
 export class SendStore {
   @observable accounts = accountStore;
@@ -38,6 +34,7 @@ export class SendStore {
   @observable isCompleted: boolean = false;
   @observable isBusySending: boolean = false;
   @observable recipient: string = '';
+  @observable recipientAddress: string = '';
   @observable txData: string = '0x';
   @observable txValue: string = '0';
   @observable txValueFiat: string = '0';
@@ -68,7 +65,7 @@ export class SendStore {
   }
 
   @computed get hasRecipientError (): boolean {
-    return !isAddressValid(this.recipient);
+    return !isAddressValid(this.recipientAddress);
   }
 
   @computed get hasTxTotalError (): boolean {
@@ -115,6 +112,7 @@ export class SendStore {
     this.isCompleted = false;
     this.isBusySending = false;
     this.recipient = '';
+    this.recipientAddress = '';
     this.txData = '0x';
     this.txValue = '0';
     this.txValueFiat = '0';
@@ -126,7 +124,7 @@ export class SendStore {
   @action send = () => {
     const tx = {
       data: this.txData,
-      to: this.recipient,
+      to: this.recipientAddress,
       from: this.accounts.selected.key,
       value: this.txValueBn,
       gasLimit: this.gasLimitBn,
@@ -162,6 +160,26 @@ export class SendStore {
 
   @action setRecipient = (recipient: string) => {
     this.recipient = recipient;
+
+    if (isEnsName(recipient)) {
+      lookupEnsName(chainStore.selected.api, recipient)
+        .catch(() => {
+          return '';
+        })
+        .then((recipientAddress) => {
+          this.setRecipientAddress(recipientAddress);
+        });
+    } else {
+      this.setRecipientAddress(recipient);
+    }
+  }
+
+  @action setRecipientAddress = (recipientAddress: string) => {
+    if (isAddressValid(recipientAddress)) {
+      this.recipientAddress = recipientAddress;
+    } else {
+      this.recipientAddress = '';
+    }
   }
 
   @action setTxData = (txData: string) => {
