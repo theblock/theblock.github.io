@@ -15,5 +15,5 @@ ratings:
   - src/**
   - packages/**
 exclude_paths:
-- x/**/*
-- "**/flow-typed/**/*"
+- x/**
+- "**/flow-typed/**"
