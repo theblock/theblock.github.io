@@ -59,6 +59,10 @@ describe('validate', () => {
       expect(isEnsName('')).toBe(false);
     });
 
+    it('returns false where only extension is present', () => {
+      expect(isEnsName('.eth')).toBe(false);
+    });
+
     it('returns false with short names', () => {
       expect(isEnsName('foo.eth')).toBe(false);
     });
