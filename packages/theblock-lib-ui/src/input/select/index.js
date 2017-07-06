@@ -23,6 +23,7 @@ type PropTypes = {
   hideIcon?: boolean,
   hint?: string,
   icon?: ?React.Element<any>,
+  isBusy?: boolean,
   isDisabled?: boolean,
   isError?: boolean,
   isInverted?: boolean,
@@ -34,7 +35,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Select ({ className, copyValue, displayKey, example, hideIcon, hint, icon, isDisabled, isError, isInverted, isMaxWidth, isReadOnly, label, onChange, store, t }: PropTypes): React.Element<any> {
+function Select ({ className, copyValue, displayKey, example, hideIcon, hint, icon, isBusy, isDisabled, isError, isInverted, isMaxWidth, isReadOnly, label, onChange, store, t }: PropTypes): React.Element<any> {
   const _onBlur = (event) => {
     store.setOpen(false);
   };
@@ -89,6 +90,7 @@ function Select ({ className, copyValue, displayKey, example, hideIcon, hint, ic
       hint={ hint }
       icon={ icon || store.selected.icon }
       iconAction={ <ArrowDownIcon /> }
+      isBusy={ isBusy }
       isDisabled={ isDisabled }
       isError={ isError }
       isInverted={ isInverted }

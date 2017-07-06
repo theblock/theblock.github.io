@@ -97,6 +97,7 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
           <div>
             <InputAddress
               example={ t('recipient.example') }
+              isBusy={ store.isBusyLookup }
               isError={ store.hasRecipientError }
               isMaxWidth
               onChange={ store.setRecipient }

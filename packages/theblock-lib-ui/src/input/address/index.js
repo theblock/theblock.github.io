@@ -20,6 +20,7 @@ type PropTypes = {
   example?: string,
   hideIcon?: boolean,
   hint?: string,
+  isBusy?: boolean,
   isDisabled?: boolean,
   isError?: boolean,
   isReadOnly?: boolean,
@@ -33,7 +34,7 @@ type PropTypes = {
   valueAddress: ?string
 };
 
-function InputAddress ({ className, copyValue, example, hideIcon, hint, isDisabled, isError, isReadOnly, isMaxWidth, isWarning, label, onChange, store, value, valueAddress }: PropTypes): React.Element<any> {
+function InputAddress ({ className, copyValue, example, hideIcon, hint, isBusy, isDisabled, isError, isReadOnly, isMaxWidth, isWarning, label, onChange, store, value, valueAddress }: PropTypes): React.Element<any> {
   const classes: string = compact([
     styles.ui, className
   ]).join(' ');
@@ -52,6 +53,7 @@ function InputAddress ({ className, copyValue, example, hideIcon, hint, isDisabl
         hideIcon={ hideIcon || isError }
         hint={ hint }
         icon={ icon }
+        isBusy={ isBusy }
         isDisabled={ isDisabled }
         isError={ isError }
         isReadOnly={ isReadOnly }
@@ -73,6 +75,7 @@ function InputAddress ({ className, copyValue, example, hideIcon, hint, isDisabl
       hideIcon={ hideIcon || isError }
       hint={ hint }
       icon={ icon }
+      isBusy={ isBusy }
       isDisabled={ isDisabled }
       isError={ isError }
       isReadOnly={ isReadOnly }

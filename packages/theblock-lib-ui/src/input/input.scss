@@ -59,6 +59,20 @@
     }
   }
 
+  .iconBusy {
+    position: absolute;
+    right: 0.6em;
+    top: 0.1em;
+    z-index: 1;
+
+    i {
+      color: $bodyColor;
+      line-height: $bodyLineHeight;
+      margin-top: 0.5em;
+      margin-left: 0.125em;
+    }
+  }
+
   .iconAction {
     color: inherit;
     display: inline-block;
@@ -78,6 +92,9 @@
 
   &:hover {
     z-index: 1;
+  }
+
+  &.withBusy {
   }
 
   &.withDisabled {
