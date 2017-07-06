@@ -3,8 +3,8 @@
 
 import BN from 'bn.js';
 
-import type { JsonAbiType } from 'theblock-meta-contracts/src/types';
-import type { SignatureType } from 'theblock-lib-services/src/types';
+import type { JsonAbiType } from '@theblock/meta-contracts/src/types';
+import type { SignatureType } from '@theblock/lib-services/src/types';
 
 export type DecodedDataType = SignatureType & {
   values: Array<any>

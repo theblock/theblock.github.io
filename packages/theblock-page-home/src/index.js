@@ -5,8 +5,8 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import Footer from 'theblock-lib-ui/src/footer';
-import Navigation from 'theblock-lib-ui/src/navigation';
+import Footer from '@theblock/lib-ui/src/footer';
+import Navigation from '@theblock/lib-ui/src/navigation';
 
 import styles from './home.scss';
 

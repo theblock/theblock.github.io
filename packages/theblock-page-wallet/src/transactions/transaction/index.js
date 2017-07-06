@@ -5,10 +5,10 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import type { PopupColorType } from 'theblock-lib-ui/src/infoPopup/types';
+import type { PopupColorType } from '@theblock/lib-ui/src/infoPopup/types';
 import type { TxStateType } from '../../store/transactions/types';
 
-import InfoPopup from 'theblock-lib-ui/src/infoPopup';
+import InfoPopup from '@theblock/lib-ui/src/infoPopup';
 
 import TransactionType from '../../store/transactions/transaction';
 

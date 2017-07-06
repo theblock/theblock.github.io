@@ -1,12 +1,12 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import type { ContractLocationType, ContractType } from 'theblock-meta-contracts/src/types';
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+import type { ContractLocationType, ContractType } from '@theblock/meta-contracts/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
-import metaContracts from 'theblock-meta-contracts/src/contracts';
-import ImgToken from 'theblock-lib-ui/src/img/token';
-import { preloadImage } from 'theblock-lib-util/src/image';
+import metaContracts from '@theblock/meta-contracts/src/contracts';
+import ImgToken from '@theblock/lib-ui/src/img/token';
+import { preloadImage } from '@theblock/lib-util/src/image';
 
 type SelectableContractType = SelectableInterface & {
   where: Array<ContractLocationType>

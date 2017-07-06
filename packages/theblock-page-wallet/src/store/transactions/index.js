@@ -3,7 +3,7 @@
 
 import { action, computed, observable } from 'mobx';
 
-import type { ProviderInterface, TxInputType } from 'theblock-lib-api/src/types';
+import type { ProviderInterface, TxInputType } from '@theblock/lib-api/src/types';
 
 import Transaction from './transaction';
 

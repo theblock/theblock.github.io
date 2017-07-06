@@ -5,8 +5,8 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import Button from 'theblock-lib-ui/src/button';
-import InputPassword from 'theblock-lib-ui/src/input/password';
+import Button from '@theblock/lib-ui/src/button';
+import InputPassword from '@theblock/lib-ui/src/input/password';
 
 import TransactionType from '../../../store/transactions/transaction';
 import { getBlockNumberLink, getTxHashLink } from '../../../util/links';

@@ -3,7 +3,7 @@
 
 import { action, autorun, computed, observable } from 'mobx';
 
-import type { TransactionResultType } from 'theblock-lib-services/src/types';
+import type { TransactionResultType } from '@theblock/lib-services/src/types';
 
 import accounts from '../store/accounts';
 import balanceStore from '../store/balance';

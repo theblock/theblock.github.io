@@ -3,7 +3,7 @@
 
 import { action, computed } from 'mobx';
 
-import type { PrivateKeyType } from 'theblock-lib-util/src/types';
+import type { PrivateKeyType } from '@theblock/lib-util/src/types';
 
 import AddressStore from '../addresses/address';
 

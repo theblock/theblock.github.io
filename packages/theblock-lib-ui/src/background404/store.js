@@ -3,7 +3,7 @@
 
 import { action, computed, observable } from 'mobx';
 
-import { preloadImage } from 'theblock-lib-util/src/image';
+import { preloadImage } from '@theblock/lib-util/src/image';
 
 const SOURCES: Array<string> = [
   'baby-001-960.jpg',

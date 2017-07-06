@@ -4,7 +4,7 @@
 import compact from 'lodash.compact';
 import React from 'react';
 
-import Navigation from 'theblock-lib-ui/src/navigation';
+import Navigation from '@theblock/lib-ui/src/navigation';
 
 import Summary from './summary';
 import styles from './blog.scss';

@@ -5,8 +5,8 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import InputLink from 'theblock-lib-ui/src/input/link';
-import Html from 'theblock-lib-ui/src/html';
+import InputLink from '@theblock/lib-ui/src/input/link';
+import Html from '@theblock/lib-ui/src/html';
 
 import styles from './summary.scss';
 

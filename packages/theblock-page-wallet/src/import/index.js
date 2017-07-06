@@ -6,10 +6,10 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import Button from 'theblock-lib-ui/src/button';
-import Field from 'theblock-lib-ui/src/field';
-import InputPassword from 'theblock-lib-ui/src/input/password';
-import Select from 'theblock-lib-ui/src/input/select';
+import Button from '@theblock/lib-ui/src/button';
+import Field from '@theblock/lib-ui/src/field';
+import InputPassword from '@theblock/lib-ui/src/input/password';
+import Select from '@theblock/lib-ui/src/input/select';
 
 import Busy from './busy';
 import Details from './details';

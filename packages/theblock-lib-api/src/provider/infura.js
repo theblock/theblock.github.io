@@ -3,7 +3,7 @@
 
 import type { TransportOptionsType } from '../types';
 
-import { APIKEY } from 'theblock-lib-services/src/infura';
+import { APIKEY } from '@theblock/lib-services/src/infura';
 
 import JsonRpcProvider from './jsonrpc';
 

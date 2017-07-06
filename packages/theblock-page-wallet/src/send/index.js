@@ -6,13 +6,13 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import Button from 'theblock-lib-ui/src/button';
-import Field from 'theblock-lib-ui/src/field';
-import InputAddress from 'theblock-lib-ui/src/input/address';
-import InputHex from 'theblock-lib-ui/src/input/hex';
-import InputNumber from 'theblock-lib-ui/src/input/number';
-import InputStatic from 'theblock-lib-ui/src/input/static';
-import Select from 'theblock-lib-ui/src/input/select';
+import Button from '@theblock/lib-ui/src/button';
+import Field from '@theblock/lib-ui/src/field';
+import InputAddress from '@theblock/lib-ui/src/input/address';
+import InputHex from '@theblock/lib-ui/src/input/hex';
+import InputNumber from '@theblock/lib-ui/src/input/number';
+import InputStatic from '@theblock/lib-ui/src/input/static';
+import Select from '@theblock/lib-ui/src/input/select';
 
 import accounts from '../store/accounts';
 import addresses from '../store/addresses';

@@ -4,11 +4,11 @@
 import EthereumTx from 'ethereumjs-tx';
 import ledger from 'ledgerco';
 
-import type { TransactionType } from 'theblock-lib-util/src/types';
+import type { TransactionType } from '@theblock/lib-util/src/types';
 import type { LedgerEthComms, LedgerEth, LedgerResultGetAddressType, LedgerResultSignType } from './types';
 
-import { deferPromise } from 'theblock-lib-util/src/promise';
-import { createRawTransaction } from 'theblock-lib-util/src/transaction';
+import { deferPromise } from '@theblock/lib-util/src/promise';
+import { createRawTransaction } from '@theblock/lib-util/src/transaction';
 
 const PATH_ETC = "m/44'/60'/160720'/0'";
 const PATH_ETH = "m/44'/60'/0'";

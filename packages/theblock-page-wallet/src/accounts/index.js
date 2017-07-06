@@ -6,9 +6,9 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import Field from 'theblock-lib-ui/src/field';
-import InputStatic from 'theblock-lib-ui/src/input/static';
-import Select from 'theblock-lib-ui/src/input/select';
+import Field from '@theblock/lib-ui/src/field';
+import InputStatic from '@theblock/lib-ui/src/input/static';
+import Select from '@theblock/lib-ui/src/input/select';
 
 import chains from '../store/chains';
 import currencyStore from '../store/currencies';

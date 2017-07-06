@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import Input from 'theblock-lib-ui/src/input';
+import Input from '@theblock/lib-ui/src/input';
 
 import AccountStore from '../store/accounts/account';
 

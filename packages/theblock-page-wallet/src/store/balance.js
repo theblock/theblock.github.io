@@ -4,8 +4,8 @@
 import BN from 'bn.js';
 import { action, autorun, computed, observable } from 'mobx';
 
-import { fromFloatToBn } from 'theblock-lib-util/src/convert';
-import { formatFloat } from 'theblock-lib-util/src/format';
+import { fromFloatToBn } from '@theblock/lib-util/src/convert';
+import { formatFloat } from '@theblock/lib-util/src/format';
 
 import accountStore from '../store/accounts';
 import chainStore from '../store/chains';

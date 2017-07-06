@@ -3,15 +3,15 @@
 
 import BN from 'bn.js';
 
-import type { SignatureType } from 'theblock-lib-services/src/types';
+import type { SignatureType } from '@theblock/lib-services/src/types';
 import type { AbiMethodType, DecodedDataType, ProviderInterface, ReceiptResultType, ReceiptOutputType, TxResultType, TxObjectType, TxOutputType } from './types';
 
-import { getTokenPrice } from 'theblock-lib-services/src/cryptocompare';
-import { getMethodSignature } from 'theblock-lib-services/src/fourbyte';
-import { fromBnToHex, fromDecToBn, fromHexToBn } from 'theblock-lib-util/src/convert';
-import { concatHex } from 'theblock-lib-util/src/format';
-import { deferPromise } from 'theblock-lib-util/src/promise';
-import { HumanStandardToken } from 'theblock-meta-contracts/src/abi';
+import { getTokenPrice } from '@theblock/lib-services/src/cryptocompare';
+import { getMethodSignature } from '@theblock/lib-services/src/fourbyte';
+import { fromBnToHex, fromDecToBn, fromHexToBn } from '@theblock/lib-util/src/convert';
+import { concatHex } from '@theblock/lib-util/src/format';
+import { deferPromise } from '@theblock/lib-util/src/promise';
+import { HumanStandardToken } from '@theblock/meta-contracts/src/abi';
 
 import Contract from './contract';
 import { decodeData } from './contract/data';

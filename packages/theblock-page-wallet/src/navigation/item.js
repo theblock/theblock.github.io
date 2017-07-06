@@ -3,9 +3,9 @@
 
 import React from 'react';
 
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
-import InputLink from 'theblock-lib-ui/src//input/link';
+import InputLink from '@theblock/lib-ui/src//input/link';
 
 type PropTypes = {
   className?: string,

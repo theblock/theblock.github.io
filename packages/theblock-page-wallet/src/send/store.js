@@ -4,10 +4,10 @@
 import BN from 'bn.js';
 import { action, computed, observable } from 'mobx';
 
-import { lookupEnsName } from 'theblock-lib-ens/src/lookup';
-import { fromFloatToBn, fromHexToBn } from 'theblock-lib-util/src/convert';
-import { formatFloat } from 'theblock-lib-util/src/format';
-import { isAddressValid, isEnsName, isHexValid } from 'theblock-lib-util/src/validate';
+import { lookupEnsName } from '@theblock/lib-ens/src/lookup';
+import { fromFloatToBn, fromHexToBn } from '@theblock/lib-util/src/convert';
+import { formatFloat } from '@theblock/lib-util/src/format';
+import { isAddressValid, isEnsName, isHexValid } from '@theblock/lib-util/src/validate';
 
 import accountStore from '../store/accounts';
 import addressStore from '../store/addresses';

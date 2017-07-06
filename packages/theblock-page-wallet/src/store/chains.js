@@ -6,20 +6,20 @@ import flatten from 'lodash.flatten';
 import { autorun } from 'mobx';
 import React from 'react';
 
-import type { ProviderInterface } from 'theblock-lib-api/src/types';
-import type { ExplorerInterface } from 'theblock-lib-services/src/types';
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
-import type { StorageNameType, StorageValueType } from 'theblock-lib-util/src/types';
+import type { ProviderInterface } from '@theblock/lib-api/src/types';
+import type { ExplorerInterface } from '@theblock/lib-services/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
+import type { StorageNameType, StorageValueType } from '@theblock/lib-util/src/types';
 
-import Api from 'theblock-lib-api/src';
-import EpoolProvider from 'theblock-lib-api/src/provider/epool';
-import EtherscanProvider from 'theblock-lib-api/src/provider/etherscan';
-import InfuraProvider from 'theblock-lib-api/src/provider/infura';
-import EtherscanExplorer from 'theblock-lib-services/src/etherscan';
-import GastrackerExplorer from 'theblock-lib-services/src/gastracker';
-import { getStorage, setStorage } from 'theblock-lib-util/src/storage';
-import ImgToken from 'theblock-lib-ui/src/img/token';
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
+import Api from '@theblock/lib-api/src';
+import EpoolProvider from '@theblock/lib-api/src/provider/epool';
+import EtherscanProvider from '@theblock/lib-api/src/provider/etherscan';
+import InfuraProvider from '@theblock/lib-api/src/provider/infura';
+import EtherscanExplorer from '@theblock/lib-services/src/etherscan';
+import GastrackerExplorer from '@theblock/lib-services/src/gastracker';
+import { getStorage, setStorage } from '@theblock/lib-util/src/storage';
+import ImgToken from '@theblock/lib-ui/src/img/token';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
 
 type ExplorerType = {
   api: ExplorerInterface,

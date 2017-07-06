@@ -4,10 +4,10 @@
 import { action, observable } from 'mobx';
 import React from 'react';
 
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
-import ImgIdentity from 'theblock-lib-ui/src/img/identity';
-import { formatAddress } from 'theblock-lib-util/src/format';
+import ImgIdentity from '@theblock/lib-ui/src/img/identity';
+import { formatAddress } from '@theblock/lib-util/src/format';
 
 type AddressType = 'account' | 'address';
 

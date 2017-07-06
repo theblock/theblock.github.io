@@ -5,9 +5,9 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import Background from 'theblock-lib-ui/src/background404';
-import Errors from 'theblock-lib-ui/src/errors';
-import InfoBar from 'theblock-lib-ui/src/infoBar';
+import Background from '@theblock/lib-ui/src/background404';
+import Errors from '@theblock/lib-ui/src/errors';
+import InfoBar from '@theblock/lib-ui/src/infoBar';
 
 import styles from './fourOhFour.scss';
 

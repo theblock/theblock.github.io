@@ -3,8 +3,8 @@
 
 import BN from 'bn.js';
 
-import { fromBnToHex, fromHexToBn, fromStrToHex } from 'theblock-lib-util/src/convert';
-import { formatAddress } from 'theblock-lib-util/src/format';
+import { fromBnToHex, fromHexToBn, fromStrToHex } from '@theblock/lib-util/src/convert';
+import { formatAddress } from '@theblock/lib-util/src/format';
 
 import type { ReceiptResultType, ReceiptOutputType, TxInputType, TxObjectType, TxOutputType, TxResultType } from './types';
 

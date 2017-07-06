@@ -3,7 +3,7 @@
 
 import { computed, observable } from 'mobx';
 
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
 
 import type AddressStore from './address';
 

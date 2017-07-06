@@ -3,8 +3,8 @@
 
 import React from 'react';
 
-import ImgIdentity from 'theblock-lib-ui/src/img/identity';
-import InputLink from 'theblock-lib-ui/src/input/link';
+import ImgIdentity from '@theblock/lib-ui/src/img/identity';
+import InputLink from '@theblock/lib-ui/src/input/link';
 
 import chains from '../store/chains';
 

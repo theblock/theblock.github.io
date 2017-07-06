@@ -6,7 +6,7 @@ import qs from 'query-string';
 
 import type { TransactionResultType } from './types';
 
-import { formatAddress } from 'theblock-lib-util/src/format';
+import { formatAddress } from '@theblock/lib-util/src/format';
 
 type TxListItemType = {
   blockNumber: string,

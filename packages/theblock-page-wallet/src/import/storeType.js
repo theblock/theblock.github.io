@@ -3,10 +3,10 @@
 
 import { observable } from 'mobx';
 
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
-import { isU2FAvailable } from 'theblock-lib-hardware/src/u2f';
+import { isU2FAvailable } from '@theblock/lib-hardware/src/u2f';
 
 import i18n from '../i18n';
 

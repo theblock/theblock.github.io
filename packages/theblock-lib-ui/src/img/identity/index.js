@@ -5,7 +5,7 @@ import blockies from 'blockies';
 import compact from 'lodash.compact';
 import React from 'react';
 
-import { isAddressValid } from 'theblock-lib-util/src/validate';
+import { isAddressValid } from '@theblock/lib-util/src/validate';
 
 import { EmptyIcon, NullIcon } from '../../icons';
 

@@ -3,14 +3,14 @@
 
 import { action, autorun, computed } from 'mobx';
 
-import type { PrivateKeyType, StorageValueType, TransactionType } from 'theblock-lib-util/src/types';
+import type { PrivateKeyType, StorageValueType, TransactionType } from '@theblock/lib-util/src/types';
 
-import { signLedgerTransaction } from 'theblock-lib-hardware/src/ledger';
-import { signTrezorTransaction } from 'theblock-lib-hardware/src/trezor';
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
-import { decryptPrivateKey } from 'theblock-lib-util/src/keys';
-import { getStorage, setStorage } from 'theblock-lib-util/src/storage';
-import { signTransaction } from 'theblock-lib-util/src/transaction';
+import { signLedgerTransaction } from '@theblock/lib-hardware/src/ledger';
+import { signTrezorTransaction } from '@theblock/lib-hardware/src/trezor';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
+import { decryptPrivateKey } from '@theblock/lib-util/src/keys';
+import { getStorage, setStorage } from '@theblock/lib-util/src/storage';
+import { signTransaction } from '@theblock/lib-util/src/transaction';
 
 import AccountStore from './account';
 

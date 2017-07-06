@@ -6,8 +6,8 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import Errors from 'theblock-lib-ui/src/errors';
-import InfoBar from 'theblock-lib-ui/src/infoBar';
+import Errors from '@theblock/lib-ui/src/errors';
+import InfoBar from '@theblock/lib-ui/src/infoBar';
 
 import injectHandlers from './handlers';
 import errorStore from './store/errors';

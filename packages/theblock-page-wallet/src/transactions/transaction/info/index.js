@@ -5,9 +5,9 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import ImgIdentity from 'theblock-lib-ui/src/img/identity';
-import InputAddress from 'theblock-lib-ui/src/input/address';
-import InputStatic from 'theblock-lib-ui/src/input/static';
+import ImgIdentity from '@theblock/lib-ui/src/img/identity';
+import InputAddress from '@theblock/lib-ui/src/input/address';
+import InputStatic from '@theblock/lib-ui/src/input/static';
 
 import chains from '../../../store/chains';
 import TransactionType from '../../../store/transactions/transaction';

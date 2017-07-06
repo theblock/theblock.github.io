@@ -4,7 +4,7 @@
 import compact from 'lodash.compact';
 import React from 'react';
 
-import { preloadImage } from 'theblock-lib-util/src/image';
+import { preloadImage } from '@theblock/lib-util/src/image';
 
 import type { SizeType } from '../identity';
 

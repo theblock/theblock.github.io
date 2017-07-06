@@ -4,12 +4,12 @@
 import BN from 'bn.js';
 import { action, computed, observable } from 'mobx';
 
-import type { DecodedDataType, ProviderInterface, ReceiptOutputType, TxInputType } from 'theblock-lib-api/src/types';
+import type { DecodedDataType, ProviderInterface, ReceiptOutputType, TxInputType } from '@theblock/lib-api/src/types';
 import type { TxStateType } from './types';
 
-import Api from 'theblock-lib-api/src';
-import { fromBnToDec, fromBnToHex, fromDecToHex, fromHexToBn, fromHexToDec } from 'theblock-lib-util/src/convert';
-import { formatAddress, formatFloat } from 'theblock-lib-util/src/format';
+import Api from '@theblock/lib-api/src';
+import { fromBnToDec, fromBnToHex, fromDecToHex, fromHexToBn, fromHexToDec } from '@theblock/lib-util/src/convert';
+import { formatAddress, formatFloat } from '@theblock/lib-util/src/format';
 
 import i18n from '../../i18n';
 import accountStore from '../accounts';

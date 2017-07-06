@@ -1,5 +1,5 @@
 {
-  "name": "theblock-lib-hardware",
+  "name": "@theblock/lib-hardware",
   "version": "0.0.0",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
@@ -12,6 +12,6 @@
     "trezor-connect": "theblock/trezor-connect#d399ca0374e593739976d70332d17eca3a652008"
   },
   "peerDependencies": {
-    "theblock-lib-util": "*"
+    "@theblock/lib-util": "*"
   }
 }

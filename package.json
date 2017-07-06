@@ -83,19 +83,19 @@
     "worker-loader": "^0.8.1"
   },
   "dependencies": {
+    "@theblock/lib-api": "file:packages/lib-api",
+    "@theblock/lib-ens": "file:packages/lib-ens",
+    "@theblock/lib-hardware": "file:packages/lib-hardware",
+    "@theblock/lib-services": "file:packages/lib-services",
+    "@theblock/lib-ui": "file:packages/lib-ui",
+    "@theblock/lib-util": "file:packages/lib-util",
+    "@theblock/meta-contracts": "file:packages/meta-contracts",
+    "@theblock/page-404": "file:packages/page-404",
+    "@theblock/page-blog": "file:packages/page-blog",
+    "@theblock/page-home": "file:packages/page-home",
+    "@theblock/page-wallet": "file:packages/page-wallet",
     "lodash.flatten": "^4.4.0",
     "lodash.uniq": "^4.5.0",
-    "normalize.css": "^7.0.0",
-    "theblock-lib-api": "file:packages/theblock-lib-api",
-    "theblock-lib-ens": "file:packages/theblock-lib-ens",
-    "theblock-lib-hardware": "file:packages/theblock-lib-hardware",
-    "theblock-lib-services": "file:packages/theblock-lib-services",
-    "theblock-lib-ui": "file:packages/theblock-lib-ui",
-    "theblock-lib-util": "file:packages/theblock-lib-util",
-    "theblock-meta-contracts": "file:packages/theblock-meta-contracts",
-    "theblock-page-404": "file:packages/theblock-page-404",
-    "theblock-page-blog": "file:packages/theblock-page-blog",
-    "theblock-page-home": "file:packages/theblock-page-home",
-    "theblock-page-wallet": "file:packages/theblock-page-wallet"
+    "normalize.css": "^7.0.0"
   }
 }

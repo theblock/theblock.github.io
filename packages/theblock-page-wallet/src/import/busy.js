@@ -5,9 +5,9 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import InfoBar from 'theblock-lib-ui/src/infoBar';
-import InfoPopup from 'theblock-lib-ui/src/infoPopup';
-import InputAddress from 'theblock-lib-ui/src/input/address';
+import InfoBar from '@theblock/lib-ui/src/infoBar';
+import InfoPopup from '@theblock/lib-ui/src/infoPopup';
+import InputAddress from '@theblock/lib-ui/src/input/address';
 
 import { ImportStore } from './store';
 

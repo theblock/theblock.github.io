@@ -4,12 +4,12 @@
 import flatten from 'lodash.flatten';
 import { observable, computed } from 'mobx';
 
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
-import ImgToken from 'theblock-lib-ui/src/img/token';
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
-import { preloadImage } from 'theblock-lib-util/src/image';
-import metaTokens from 'theblock-meta-contracts/src/tokens';
+import ImgToken from '@theblock/lib-ui/src/img/token';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
+import { preloadImage } from '@theblock/lib-util/src/image';
+import metaTokens from '@theblock/meta-contracts/src/tokens';
 
 import chainStore, { type SelectChainType } from './chains';
 

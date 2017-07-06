@@ -1,5 +1,5 @@
 {
-  "name": "theblock-lib-api",
+  "name": "@theblock/lib-api",
   "version": "0.0.0",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
@@ -11,8 +11,8 @@
     "ethereumjs-abi": "^0.6.4"
   },
   "peerDependencies": {
-    "theblock-lib-services": "*",
-    "theblock-lib-util": "*",
-    "theblock-meta-contracts": "*"
+    "@theblock/lib-services": "*",
+    "@theblock/lib-util": "*",
+    "@theblock/meta-contracts": "*"
   }
 }

@@ -5,13 +5,13 @@ import EthereumTx from 'ethereumjs-tx';
 import ethutil from 'ethereumjs-util';
 import { TrezorConnect } from 'trezor-connect';
 
-import type { TransactionType } from 'theblock-lib-util/src/types';
+import type { TransactionType } from '@theblock/lib-util/src/types';
 import type { TrezorPubKeyResultType, TrezorSignResultType } from './types';
 
-import { fromBytesToHex } from 'theblock-lib-util/src/convert';
-import { formatAddress, padHex, removeHexPrefix } from 'theblock-lib-util/src/format';
-import { deferPromise } from 'theblock-lib-util/src/promise';
-import { createRawTransaction } from 'theblock-lib-util/src/transaction';
+import { fromBytesToHex } from '@theblock/lib-util/src/convert';
+import { formatAddress, padHex, removeHexPrefix } from '@theblock/lib-util/src/format';
+import { deferPromise } from '@theblock/lib-util/src/promise';
+import { createRawTransaction } from '@theblock/lib-util/src/transaction';
 
 const PATH_ETC = "m/44'/61'/0'/0";
 const PATH_ETH = "m/44'/60'/0'/0";

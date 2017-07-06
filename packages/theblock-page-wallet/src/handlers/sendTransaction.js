@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import type { ProviderCallbackType, ProviderInterface } from 'theblock-lib-api/src/types';
+import type { ProviderCallbackType, ProviderInterface } from '@theblock/lib-api/src/types';
 
 import transactionStore from '../store/transactions';
 

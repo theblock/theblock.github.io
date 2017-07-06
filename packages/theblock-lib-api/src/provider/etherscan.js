@@ -3,8 +3,8 @@
 
 import qs from 'query-string';
 
-import { APIKEY } from 'theblock-lib-services/src/etherscan';
-import { fromDecToHex } from 'theblock-lib-util/src/convert';
+import { APIKEY } from '@theblock/lib-services/src/etherscan';
+import { fromDecToHex } from '@theblock/lib-util/src/convert';
 
 import HttpFetchTransport from '../transport/httpFetch';
 import type { JsonRpcResponse, ProviderCallbackType, ProviderInterface, TransportOptionsType } from '../types';

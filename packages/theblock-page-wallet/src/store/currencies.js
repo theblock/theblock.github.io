@@ -3,12 +3,12 @@
 
 import { autorun, computed, observable } from 'mobx';
 
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
-import type { StorageNameType, StorageValueType } from 'theblock-lib-util/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
+import type { StorageNameType, StorageValueType } from '@theblock/lib-util/src/types';
 
-import { getStorage, setStorage } from 'theblock-lib-util/src/storage';
-// import { FiatEurIcon, FiatUsdIcon } from 'theblock-lib-ui/src/icons';
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
+import { getStorage, setStorage } from '@theblock/lib-util/src/storage';
+// import { FiatEurIcon, FiatUsdIcon } from '@theblock/lib-ui/src/icons';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
 
 import chainStore from './chains';
 

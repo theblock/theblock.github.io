@@ -1,5 +1,5 @@
 {
-  "name": "theblock-lib-ens",
+  "name": "@theblock/lib-ens",
   "version": "0.0.0",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
@@ -11,9 +11,9 @@
     "idna-uts46": "^1.1.0"
   },
   "peerDependencies": {
-    "theblock-lib-api": "*",
-    "theblock-lib-services": "*",
-    "theblock-lib-util": "*",
-    "theblock-meta-contracts": "*"
+    "@theblock/lib-api": "*",
+    "@theblock/lib-services": "*",
+    "@theblock/lib-util": "*",
+    "@theblock/meta-contracts": "*"
   }
 }

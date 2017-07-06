@@ -3,7 +3,7 @@
 
 import Abi from 'ethereumjs-abi';
 
-import { formatAddress, removeHexPrefix } from 'theblock-lib-util/src/format';
+import { formatAddress, removeHexPrefix } from '@theblock/lib-util/src/format';
 
 const ZERO_ADDR: string = '0000000000000000000000000000000000000000';
 

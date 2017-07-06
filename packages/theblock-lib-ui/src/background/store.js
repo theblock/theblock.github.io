@@ -3,7 +3,7 @@
 
 import { action, computed, observable } from 'mobx';
 
-import { preloadImage } from 'theblock-lib-util/src/image';
+import { preloadImage } from '@theblock/lib-util/src/image';
 
 const CHANGE_DURATION: number = 60000;
 const SOURCES: Array<string> = [

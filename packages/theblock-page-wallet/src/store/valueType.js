@@ -3,9 +3,9 @@
 
 import { action, autorun, computed, observable } from 'mobx';
 
-import type { SelectableInterface } from 'theblock-lib-ui/src/types';
+import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
-import SelectStore from 'theblock-lib-ui/src/input/select/store';
+import SelectStore from '@theblock/lib-ui/src/input/select/store';
 
 import chainStore from './chains';
 import currencyStore from './currencies';

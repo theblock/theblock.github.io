@@ -3,10 +3,10 @@
 
 import { action, autorun } from 'mobx';
 
-import type { StorageNameType } from 'theblock-lib-util/src/types';
+import type { StorageNameType } from '@theblock/lib-util/src/types';
 import type { SelectableInterface } from '../types';
 
-import { getStorage, setStorage } from 'theblock-lib-util/src/storage';
+import { getStorage, setStorage } from '@theblock/lib-util/src/storage';
 
 import languages from '../../i18n/en/languages';
 import SelectStore from '../input/select/store';

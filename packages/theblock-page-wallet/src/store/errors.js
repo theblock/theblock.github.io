@@ -3,8 +3,8 @@
 
 import { action, observable } from 'mobx';
 
-import type { ErrorType } from 'theblock-lib-ui/src/errors';
-import { fromDecToHex } from 'theblock-lib-util/src/convert';
+import type { ErrorType } from '@theblock/lib-ui/src/errors';
+import { fromDecToHex } from '@theblock/lib-util/src/convert';
 
 export class ErrorStore {
   @observable errors: Array<ErrorType> = [];

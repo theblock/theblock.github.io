@@ -6,8 +6,8 @@ import moment from 'moment';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import { ReceiveIcon, SendIcon } from 'theblock-lib-ui/src/icons';
-import { formatFloat } from 'theblock-lib-util/src/format';
+import { ReceiveIcon, SendIcon } from '@theblock/lib-ui/src/icons';
+import { formatFloat } from '@theblock/lib-util/src/format';
 
 import chains from '../../store/chains';
 import { getTxHashLink } from '../../util/links';

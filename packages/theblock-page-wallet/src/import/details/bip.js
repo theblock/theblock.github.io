@@ -5,8 +5,8 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import Field from 'theblock-lib-ui/src/field';
-import InputTextarea from 'theblock-lib-ui/src/input/textarea';
+import Field from '@theblock/lib-ui/src/field';
+import InputTextarea from '@theblock/lib-ui/src/input/textarea';
 
 import { ImportStore } from '../store';
 

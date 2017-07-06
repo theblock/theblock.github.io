@@ -5,7 +5,7 @@ import u2f from 'u2f-api';
 
 import type { U2FApiResultType } from './types';
 
-import { deferPromise } from 'theblock-lib-util/src/promise';
+import { deferPromise } from '@theblock/lib-util/src/promise';
 
 if (window.u2f === undefined) {
   window.u2f = u2f;
