@@ -1,42 +1,11 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import { isAddressChecksumValid, isAddressValid, isEnsName, isMnemonicValid } from './validate';
+import { isAddressChecksumValid, isAddressValid, isEnsName, isHexValid, isMnemonicValid } from './validate';
 
 const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
 
 describe('validate', () => {
-  describe('isEnsName', () => {
-    it('returns false on empty', () => {
-      expect(isEnsName('')).toBe(false);
-    });
-
-    it('returns true on valid .eth', () => {
-      expect(isEnsName('foo.eth')).toBe(true);
-    });
-
-    it('returns true with extra spaces with .eth', () => {
-      expect(isEnsName(' foo.eth ')).toBe(true);
-    });
-  });
-
-  describe('isMnemonicValid', () => {
-    const MNE_VALID: string = 'kit destroy choice zebra tribe noodle grunt swift click shuffle chef supply';
-    const MNE_INVALID: string = 'evolve feature stay';
-
-    it('returns false on invalid mnemonics', () => {
-      expect(isMnemonicValid(MNE_INVALID)).toBe(false);
-    });
-
-    it('returns true on valid mnemonics', () => {
-      expect(isMnemonicValid(MNE_VALID)).toBe(true);
-    });
-
-    it('returns true on extra-whitespaced mnemonics', () => {
-      expect(isMnemonicValid(` ${MNE_VALID.split(' ').join('  ')}  `)).toBe(true);
-    });
-  });
-
   describe('isAddressChecksumValid', () => {
     it('returns false on invalid address', () => {
       expect(isAddressChecksumValid('0xinvalid')).toBe(false);
@@ -74,6 +43,63 @@ describe('validate', () => {
 
     it('returns false when invalid address', () => {
       expect(isAddressValid('0xinvalid')).toBe(false);
+    });
+  });
+
+  describe('isEnsName', () => {
+    it('returns false on empty', () => {
+      expect(isEnsName('')).toBe(false);
+    });
+
+    it('returns true on valid .eth', () => {
+      expect(isEnsName('foo.eth')).toBe(true);
+    });
+
+    it('returns true with extra spaces with .eth', () => {
+      expect(isEnsName(' foo.eth ')).toBe(true);
+    });
+  });
+
+  describe('isHexValid', () => {
+    it('returns false on empty', () => {
+      expect(isHexValid()).toBe(false);
+    });
+
+    it('returns false on non-prefixed', () => {
+      expect(isHexValid('123456')).toBe(false);
+    });
+
+    it('returns false when non % 2', () => {
+      expect(isHexValid('0x1')).toBe(false);
+    });
+
+    it('returns true on valid', () => {
+      expect(isHexValid('0xab12df')).toBe(true);
+    });
+
+    it('returns true on uppercase valid', () => {
+      expect(isHexValid('0xAB12DF')).toBe(true);
+    });
+
+    it('returns true on mixed valid', () => {
+      expect(isHexValid('0xaB12Df')).toBe(true);
+    });
+  });
+
+  describe('isMnemonicValid', () => {
+    const MNE_VALID: string = 'kit destroy choice zebra tribe noodle grunt swift click shuffle chef supply';
+    const MNE_INVALID: string = 'evolve feature stay';
+
+    it('returns false on invalid mnemonics', () => {
+      expect(isMnemonicValid(MNE_INVALID)).toBe(false);
+    });
+
+    it('returns true on valid mnemonics', () => {
+      expect(isMnemonicValid(MNE_VALID)).toBe(true);
+    });
+
+    it('returns true on extra-whitespaced mnemonics', () => {
+      expect(isMnemonicValid(` ${MNE_VALID.split(' ').join('  ')}  `)).toBe(true);
     });
   });
 });
