@@ -1,0 +1,15 @@
+{
+  "name": "@theblock/page-blog",
+  "version": "0.0.0",
+  "author": "xavieryvez@users.noreply.github.com",
+  "license": "GPL-3.0",
+  "scripts": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@theblock/lib-ui": "*"
+  }
+}
