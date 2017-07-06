@@ -5,7 +5,7 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { translate } from 'react-i18next';
 
-import Navigation from 'theblock-lib-ui/src/navigation';
+import Navigation from '@theblock/lib-ui/src/navigation';
 
 import styles from './talk.scss';
 
