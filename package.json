@@ -88,7 +88,7 @@
     "normalize.css": "^7.0.0",
     "theblock-lib-api": "file:packages/theblock-lib-api",
     "theblock-lib-ens": "file:packages/theblock-lib-ens",
-    "theblock-lib-hw": "file:packages/theblock-lib-hw",
+    "theblock-lib-hardware": "file:packages/theblock-lib-hardware",
     "theblock-lib-services": "file:packages/theblock-lib-services",
     "theblock-lib-ui": "file:packages/theblock-lib-ui",
     "theblock-lib-util": "file:packages/theblock-lib-util",

@@ -5,8 +5,8 @@ import { action, autorun, computed, observable } from 'mobx';
 
 import type { PrivateKeyType, WalletType } from 'theblock-lib-util/src/types';
 
-import { getLedgerAddresses, getLedgerHDPath } from 'theblock-lib-hw/src/ledger';
-import { getTrezorAddresses, getTrezorHDPath } from 'theblock-lib-hw/src/trezor';
+import { getLedgerAddresses, getLedgerHDPath } from 'theblock-lib-hardware/src/ledger';
+import { getTrezorAddresses, getTrezorHDPath } from 'theblock-lib-hardware/src/trezor';
 import { NULL_ADDRESS } from 'theblock-lib-ui/src/img/identity';
 import { formatAddress } from 'theblock-lib-util/src/format';
 import { createKeyObject, newKeyObject } from 'theblock-lib-util/src/keys';
