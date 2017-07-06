@@ -12,7 +12,7 @@ The full web application for [https://theblock.io](https://theblock.io), a clien
 
 Handled as a mono-repo, all library packages and pages are within the [packages/](packages/) folder structure.
 
-|&nbsp;&nbsp;&nbsp;&nbsp;Dependencies&nbsp;&nbsp;&nbsp;&nbsp;|Link|Description|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dependencies&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Link|Description|
 |:--:|:--:|:--|
 |[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-api)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-api)|[theblock&#x2011;lib&#x2011;api](packages/theblock-lib-api)|The API layer used in Ethereum-based pages, e.g. the wallet. A think JSONRPC wrapper, exposing only the calls used, along with helpers such as retrieving token balances.|
 |[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-ens)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-ens)|[theblock&#x2011;lib&#x2011;ens](packages/theblock-lib-ens)|An interface to the Ethereum Name Service, providing lookups of names against the registry and associated resolvers.|
