@@ -76,7 +76,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: /node_modules\/(ethereumjs-abi|ethereumjs-util|ethereumjs-tx)/,
+        include: /node_modules\/(ethereumjs-tx|idna-uts46)/,
         loader: 'babel-loader'
       },
       {

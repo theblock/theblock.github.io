@@ -34,7 +34,13 @@ function createUrl (action: string, params: { [string]: string }): string {
   return `${URL}${action}/?${qs.stringify(params)}`;
 }
 
-export function getMethodSignature (signature: string): Promise<SignatureType> {
+export function getMethodSignature (_signature: ?string): Promise<SignatureType> {
+  let signature = '0x';
+
+  if (_signature) {
+    signature = _signature.substr(0, 10) || '0x';
+  }
+
   if (cache.signatures[signature]) {
     return Promise.resolve(cache.signatures[signature]);
   }

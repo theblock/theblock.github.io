@@ -7,8 +7,8 @@ import { formatAddress, removeHexPrefix } from 'theblock-lib-util/src/format';
 
 const ZERO_ADDR: string = '0000000000000000000000000000000000000000';
 
-export function decodeData (types: Array<string>, data: string): Array<any> {
-  const values: Array<any> = Abi.rawDecode(types, Buffer.from(removeHexPrefix(data), 'hex'));
+export function decodeData (types: Array<string>, data: ?string): Array<any> {
+  const values: Array<any> = Abi.rawDecode(types, Buffer.from(removeHexPrefix(data || '0x'), 'hex'));
 
   return values.map((value, index) => {
     switch (types[index]) {

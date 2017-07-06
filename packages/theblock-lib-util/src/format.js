@@ -4,15 +4,20 @@
 import BN from 'bn.js';
 import createKeccakHash from 'keccak';
 
-const ZERO_ADDRESS = '0000000000000000000000000000000000000000';
-const ZERO_ETHER = '000000000000000000';
+import { ZERO_ETHER, NULL_ADDRESS } from './constants';
+import { isAddressValid } from './validate';
 
 export function formatAddress (_address: ?string): string {
   if (!_address) {
-    return `0x${ZERO_ADDRESS}`;
+    return NULL_ADDRESS;
   }
 
   const address = _address.replace('0x', '').toLowerCase();
+
+  if (!isAddressValid(`0x${address}`)) {
+    return NULL_ADDRESS;
+  }
+
   const hash: string = createKeccakHash('keccak256').update(address).digest().toString('hex');
   let result: string = '';
 
@@ -27,7 +32,7 @@ export function formatFloat (value: BN | string, decimals?: number = 18, format?
   let strValue: string;
 
   if (BN.isBN(value)) {
-    strValue = value.toString(10);
+    strValue = (value: BN).toString(10);
   } else {
     const [pre, post = '0'] = value.toString().split('.');
 

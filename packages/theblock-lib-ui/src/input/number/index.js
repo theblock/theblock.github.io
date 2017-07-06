@@ -37,7 +37,7 @@ export default function InputNumber ({ className, example, hint, icon, isDisable
       ? value.replace(/[^0-9]/g, '')
       : value;
 
-    onChange && onChange(change.length ? change : `${min}`);
+    onChange && onChange(change);
   };
 
   return (

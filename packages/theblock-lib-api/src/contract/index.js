@@ -3,7 +3,8 @@
 
 import Abi from 'ethereumjs-abi';
 
-import type { AbiMethodType, JsonAbiType } from '../types';
+import type { JsonAbiType } from 'theblock-meta-contracts/src/types';
+import type { AbiMethodType } from '../types';
 
 import { decodeData, encodeData } from './data';
 
@@ -35,14 +36,14 @@ export default class Contract {
       });
   }
 
-  findMethod (name: string): AbiMethodType {
+  findMethod (nameOrSignature: string): AbiMethodType {
     const method: ?AbiMethodType = this.methods.find(({ signature, abi }) => {
-      return signature === name ||
-        abi.name === name;
+      return signature === nameOrSignature ||
+        abi.name === nameOrSignature;
     });
 
     if (!method) {
-      throw new Error(`Unable to find method ${name}`);
+      throw new Error(`Unable to find method ${nameOrSignature}`);
     }
 
     return method;

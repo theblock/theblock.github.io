@@ -56,15 +56,15 @@ export function fromFloatToBn (value?: string, decimals?: number = 18): BN {
   return preBn.add(sufBn);
 }
 
-export function fromHexToBn (value?: string): BN {
-  return new BN(removeHexPrefix(value), 16);
+export function fromHexToBn (value?: ?string): BN {
+  return new BN(removeHexPrefix(value || '0'), 16);
 }
 
 export function fromHexToDec (value?: any): string {
   return fromHexToBn(value).toString(10);
 }
 
-export function fromStrToHex (value?: string): string {
+export function fromStrToHex (value?: ?string): string {
   if (!value || !value.length) {
     return '0x';
   }
