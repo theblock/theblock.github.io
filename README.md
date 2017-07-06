@@ -1,7 +1,7 @@
 # theBlock.io
 
 [![GPLv3](https://img.shields.io/badge/license-GPL%20v3-green.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![CircleCI](https://circleci.com/gh/theblock/theblock.github.io/status.svg?style=shield)](https://circleci.com/gh/theblock/theblock.github.io)
+[![CircleCI](https://circleci.com/gh/theblock/theblock.github.io.svg?style=shield)](https://circleci.com/gh/theblock/theblock.github.io)
 [![Coverage Status](https://coveralls.io/repos/github/theblock/theblock.github.io/badge.svg?branch=master)](https://coveralls.io/github/theblock/theblock.github.io?branch=master)
 [![semistandard](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard)
 
