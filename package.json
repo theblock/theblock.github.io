@@ -1,6 +1,6 @@
 {
   "name": "theblock",
-  "version": "0.3.5",
+  "version": "0.3.9",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
   "repository": {
@@ -13,11 +13,9 @@
     "check:jslint": "eslint ./i18n/**/*.js ./src/**/*.js ./packages/**/i18n/**/*.js ./packages/**/src/**/*.js",
     "check:jstype": "flow check",
     "clean": "npm-run-all --parallel clean:*",
-    "clean:css": "find ./x -name '*.css*' -delete",
-    "clean:js": "find ./x -name '*.js*' -delete",
-    "clean:local": "find ./node_modules -name 'theblock-*' -exec rm -rf {} \\; || true",
-    "clean:logs": "find . -name '*-error.log' -delete",
-    "delete:modules": "rm -rf ./node_modules",
+    "clean:local": "rimraf ./node_modules/@theblock",
+    "clean:logs": "rimraf *-error.log",
+    "delete:modules": "rimraf ./node_modules",
     "start": "webpack-dev-server --progress",
     "stats": "npm-run-all --serial stats:*",
     "stats:coverage": "NOD_ENV=test jest --coverage && cat ./coverage/lcov.info | coveralls",
@@ -72,6 +70,7 @@
     "postcss-scss": "^1.0.0",
     "postcss-simple-vars": "^4.0.0",
     "postcss-strip-inline-comments": "^0.1.5",
+    "rimraf": "^2.6.1",
     "script-ext-html-webpack-plugin": "^1.8.0",
     "style-loader": "^0.18.2",
     "stylelint": "^7.11.0",
@@ -83,19 +82,19 @@
     "worker-loader": "^0.8.1"
   },
   "dependencies": {
+    "@theblock/lib-api": "file:packages/lib-api",
+    "@theblock/lib-ens": "file:packages/lib-ens",
+    "@theblock/lib-hardware": "file:packages/lib-hardware",
+    "@theblock/lib-services": "file:packages/lib-services",
+    "@theblock/lib-ui": "file:packages/lib-ui",
+    "@theblock/lib-util": "file:packages/lib-util",
+    "@theblock/meta-contracts": "file:packages/meta-contracts",
+    "@theblock/page-404": "file:packages/page-404",
+    "@theblock/page-blog": "file:packages/page-blog",
+    "@theblock/page-home": "file:packages/page-home",
+    "@theblock/page-wallet": "file:packages/page-wallet",
     "lodash.flatten": "^4.4.0",
     "lodash.uniq": "^4.5.0",
-    "normalize.css": "^7.0.0",
-    "theblock-lib-api": "file:packages/theblock-lib-api",
-    "theblock-lib-ens": "file:packages/theblock-lib-ens",
-    "theblock-lib-hw": "file:packages/theblock-lib-hw",
-    "theblock-lib-services": "file:packages/theblock-lib-services",
-    "theblock-lib-ui": "file:packages/theblock-lib-ui",
-    "theblock-lib-util": "file:packages/theblock-lib-util",
-    "theblock-meta-contracts": "file:packages/theblock-meta-contracts",
-    "theblock-page-404": "file:packages/theblock-page-404",
-    "theblock-page-blog": "file:packages/theblock-page-blog",
-    "theblock-page-home": "file:packages/theblock-page-home",
-    "theblock-page-wallet": "file:packages/theblock-page-wallet"
+    "normalize.css": "^7.0.0"
   }
 }

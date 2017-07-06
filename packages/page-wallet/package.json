@@ -1,0 +1,19 @@
+{
+  "name": "@theblock/page-wallet",
+  "version": "0.0.0",
+  "author": "xavieryvez@users.noreply.github.com",
+  "license": "GPL-3.0",
+  "scripts": {
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@theblock/lib-api": "*",
+    "@theblock/lib-ens": "*",
+    "@theblock/lib-hardware": "*",
+    "@theblock/lib-ui": "*",
+    "@theblock/lib-util": "*"
+  }
+}

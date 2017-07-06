@@ -12,7 +12,7 @@ const pkgjson = require('./package.json');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const BLOG_ENTRIES = fs
-  .readdirSync('packages/theblock-page-blog/i18n')
+  .readdirSync('packages/page-blog/i18n')
   .filter((file) => (/^20[0-9]{6}-[0-9]{4}$/).test(file)).sort().reverse();
 const PAGES = ['404', 'blog', 'home', 'wallet'].concat(BLOG_ENTRIES.map((file) => `blog/${file}`));
 const VERSION = isProduction
@@ -43,7 +43,8 @@ module.exports = {
   resolve: {
     alias: Object
       .keys(pkgjson.dependencies)
-      .filter((module) => /^theblock-/.test(module))
+      .filter((module) => /^@theblock\//.test(module))
+      .map((module) => module.replace('@theblock', ''))
       .reduce((result, module) => {
         result[module] = path.resolve(__dirname, `packages/${module}`);
         return result;
