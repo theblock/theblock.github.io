@@ -26,6 +26,7 @@ export class SendStore {
   @observable addresses = addressStore;
   @observable balance = balanceStore;
   @observable chains = chainStore;
+  @observable countBusyLookup: number = 0;
   @observable currencies = currencyStore;
   @observable tokens = tokenStore;
   @observable transactions = transactionStore;
@@ -76,6 +77,10 @@ export class SendStore {
     return !isHexValid(this.txData);
   }
 
+  @computed get isBusyLookup (): boolean {
+    return this.countBusyLookup > 0;
+  }
+
   @computed get txDataBn (): BN {
     return fromHexToBn(this.txData);
   }
@@ -107,6 +112,7 @@ export class SendStore {
   }
 
   @action clear = () => {
+    this.countBusyLookup = 0;
     this.gasPrice = '0';
     this.gasLimit = '0';
     this.isCompleted = false;
@@ -146,6 +152,16 @@ export class SendStore {
       });
   }
 
+  @action decBusyLookup = () => {
+    if (this.countBusyLookup) {
+      this.countBusyLookup--;
+    }
+  }
+
+  @action incBusyLookup = () => {
+    this.countBusyLookup++;
+  }
+
   @action setBusySending = (isBusy: boolean) => {
     this.isBusySending = isBusy;
   }
@@ -162,11 +178,14 @@ export class SendStore {
     this.recipient = recipient;
 
     if (isEnsName(recipient)) {
+      this.incBusyLookup();
+
       lookupEnsName(chainStore.selected.api, recipient)
         .catch(() => {
           return '';
         })
         .then((recipientAddress) => {
+          this.decBusyLookup();
           this.setRecipientAddress(recipientAddress);
         });
     } else {

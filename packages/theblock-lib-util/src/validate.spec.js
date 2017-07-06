@@ -59,12 +59,24 @@ describe('validate', () => {
       expect(isEnsName('')).toBe(false);
     });
 
+    it('returns false where only extension is present', () => {
+      expect(isEnsName('.eth')).toBe(false);
+    });
+
+    it('returns false with short names', () => {
+      expect(isEnsName('foo.eth')).toBe(false);
+    });
+
+    it('returns false where extension is not .eth', () => {
+      expect(isEnsName('something.baz')).toBe(false);
+    });
+
     it('returns true on valid .eth', () => {
-      expect(isEnsName('foo.eth')).toBe(true);
+      expect(isEnsName('fooandbar.eth')).toBe(true);
     });
 
     it('returns true with extra spaces with .eth', () => {
-      expect(isEnsName(' foo.eth ')).toBe(true);
+      expect(isEnsName(' fooandbar.eth ')).toBe(true);
     });
   });
 

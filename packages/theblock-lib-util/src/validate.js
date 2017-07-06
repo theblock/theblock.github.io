@@ -34,8 +34,13 @@ export function isAddressValid (address: ?string): boolean {
   return isAddressChecksumValid(address);
 }
 
-export function isEnsName (address: ?string): boolean {
-  return /\.eth$/.test((address || '').trim());
+export function isEnsName (_address: ?string): boolean {
+  const address = (_address || '').trim();
+  const parts = address.split('.');
+
+  return /\.eth$/.test(address) &&
+    parts.length >= 2 &&
+    parts[parts.length - 2].length >= 7;
 }
 
 export function isHexValid (hex: ?string): boolean {

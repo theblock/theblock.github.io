@@ -5,7 +5,7 @@ import compact from 'lodash.compact';
 import React from 'react';
 
 import Clipboard from '../clipboard';
-import { EditIcon } from '../icons';
+import { BusyIcon, EditIcon } from '../icons';
 
 import styles from './input.scss';
 
@@ -20,6 +20,7 @@ type PropTypes = {
   iconAction?: ?React.Element<any>,
   iconExtra?: ?React.Element<any>,
   inputProps?: { [string]: any },
+  isBusy?: boolean,
   isDisabled?: boolean,
   isError?: boolean,
   isInverted?: boolean,
@@ -36,7 +37,7 @@ type PropTypes = {
   valueDisplay?: ?string
 };
 
-export default function Input ({ children, className, copyValue, example, hideIcon, hint, icon, iconAction, iconExtra, inputProps = {}, isDisabled, isError, isInverted, isLink, isMaxWidth, isMedWidth, isReadOnly, isWarning, label, onBlur, onChange, type = 'text', value, valueDisplay }: PropTypes): React.Element<any> {
+export default function Input ({ children, className, copyValue, example, hideIcon, hint, icon, iconAction, iconExtra, inputProps = {}, isBusy, isDisabled, isError, isInverted, isLink, isMaxWidth, isMedWidth, isReadOnly, isWarning, label, onBlur, onChange, type = 'text', value, valueDisplay }: PropTypes): React.Element<any> {
   const _onBlur = (): void => {
     onBlur && onBlur();
   };
@@ -51,7 +52,7 @@ export default function Input ({ children, className, copyValue, example, hideIc
     <div
       className={
         compact([
-          styles.ui, (icon && !hideIcon) && styles.withIcon, isDisabled && styles.withDisabled, isError && styles.withError, isInverted && styles.withInvert, isLink && styles.withLink, isMaxWidth && styles.withMaxWidth, isMedWidth && styles.withMedWidth, isReadOnly && styles.withReadOnly, isWarning && styles.withWarning, className
+          styles.ui, (icon && !hideIcon) && styles.withIcon, isBusy && styles.withBusy, isDisabled && styles.withDisabled, isError && styles.withError, isInverted && styles.withInvert, isLink && styles.withLink, isMaxWidth && styles.withMaxWidth, isMedWidth && styles.withMedWidth, isReadOnly && styles.withReadOnly, isWarning && styles.withWarning, className
         ]).join(' ')
       }
     >
@@ -101,6 +102,15 @@ export default function Input ({ children, className, copyValue, example, hideIc
               ? (
                 <div className={ styles.icon }>
                   { icon }
+                </div>
+              )
+              : null
+          }
+          {
+            isBusy
+              ? (
+                <div className={ styles.iconBusy }>
+                  <BusyIcon />
                 </div>
               )
               : null
