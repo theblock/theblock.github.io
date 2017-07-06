@@ -4,10 +4,10 @@
 import React from 'react';
 
 export interface SelectableInterface {
-  hint?: ?string,
+  hint?: string,
   icon?: ?React.Element<any>,
   isHidden?: boolean,
   key: any,
-  label?: ?string,
-  labeli18n?: ?string,
+  label?: string,
+  labeli18n?: boolean,
 }

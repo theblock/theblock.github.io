@@ -16,7 +16,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Item ({ className, isSelected, item: { labeli18n, key }, onSelect, t }: PropTypes): React.Element<any> {
+function Item ({ className, isSelected, item: { key, label, labeli18n }, onSelect, t }: PropTypes): React.Element<any> {
   const _onClick = () => {
     onSelect && onSelect(key);
   };
@@ -26,7 +26,11 @@ function Item ({ className, isSelected, item: { labeli18n, key }, onSelect, t }:
       isInternal
       isReadOnly={ isSelected }
       onClick={ _onClick }
-      value={ t(labeli18n) }
+      value={
+        labeli18n
+          ? t(label || '')
+          : label
+      }
     />
   );
 }

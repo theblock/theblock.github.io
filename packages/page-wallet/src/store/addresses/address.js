@@ -13,10 +13,10 @@ type AddressType = 'account' | 'address';
 
 export default class AddressStore implements SelectableInterface {
   @observable addressType: AddressType = 'address';
-  @observable hint: ?string = '';
+  @observable hint: string = '';
   @observable icon: ?React.Element<any> = null;
   @observable key: string = '';
-  @observable label: ?string = '';
+  @observable label: string = '';
   @observable name: string = '';
 
   constructor (_address: string, name: string, addressType?: AddressType) {
