@@ -22,12 +22,24 @@ describe('format', () => {
   });
 
   describe('formatAddress', () => {
-    it('resturns 0x00..00 for no address', () => {
+    it('returns 0x00..00 for no address', () => {
       expect(formatAddress()).toBe(NULL_ADDRESS);
     });
 
-    it('converts to the checksummed address', () => {
+    it('returns 0x00..00 on invalid address', () => {
+      expect(formatAddress('0xnotaddress')).toBe(NULL_ADDRESS);
+    });
+
+    it('converts lowercase to the checksummed address', () => {
       expect(formatAddress(ADDRESS.toLowerCase())).toBe(ADDRESS);
+    });
+
+    it('converts uppercase to the checksummed address', () => {
+      expect(formatAddress(ADDRESS.toUpperCase().replace('0X', '0x'))).toBe(ADDRESS);
+    });
+
+    it('returns formatted address on checksum input', () => {
+      expect(formatAddress(ADDRESS)).toBe(ADDRESS);
     });
   });
 });

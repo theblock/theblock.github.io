@@ -5,9 +5,10 @@ import BN from 'bn.js';
 import createKeccakHash from 'keccak';
 
 import { ZERO_ETHER, NULL_ADDRESS } from './constants';
+import { isAddressValid } from './validate';
 
 export function formatAddress (_address: ?string): string {
-  if (!_address) {
+  if (!_address || !isAddressValid(_address)) {
     return NULL_ADDRESS;
   }
 
