@@ -30,21 +30,25 @@ export default function InfoPopup ({ children, className, color, onClose, title 
       <Overlay isVisible />
       <div className={ styles.container }>
         {
-          title && (
-            <div className={ styles.title }>
-              { title }
-            </div>
-          )
+          title
+            ? (
+              <div className={ styles.title }>
+                { title }
+              </div>
+            )
+            : null
         }
         <div className={ styles.content }>
           { children }
         </div>
         {
-          onClose && (
-            <div className={ styles.close }>
-              <CloseIcon onClick={ onClose } />
-            </div>
-          )
+          onClose
+            ? (
+              <div className={ styles.close }>
+                <CloseIcon onClick={ onClose } />
+              </div>
+            )
+            : null
         }
       </div>
     </div>

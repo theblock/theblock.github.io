@@ -46,7 +46,7 @@ function Select ({ className, copyValue, displayKey, example, hideIcon, hint, ic
   };
 
   const _onClick = () => {
-    store.toggleOpen(true);
+    store.toggleOpen();
   };
 
   const _onKeyDown = () => {
@@ -100,12 +100,11 @@ function Select ({ className, copyValue, displayKey, example, hideIcon, hint, ic
           store.isOpen
             ? longestText
             : displayText
-        ) || (
-          (
-            store.isSearch
-              ? store.search
-              : ''
-          )
+        ) ||
+        (
+          store.isSearch
+            ? store.search
+            : ''
         )
       }
     >

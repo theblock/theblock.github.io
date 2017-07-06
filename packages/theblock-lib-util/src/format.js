@@ -27,7 +27,7 @@ export function formatFloat (value: BN | string, decimals?: number = 18, format?
   let strValue: string;
 
   if (BN.isBN(value)) {
-    strValue = value.toString(10);
+    strValue = (value: BN).toString(10);
   } else {
     const [pre, post = '0'] = value.toString().split('.');
 

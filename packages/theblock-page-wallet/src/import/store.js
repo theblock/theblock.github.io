@@ -48,7 +48,7 @@ export class ImportStore {
 
   constructor () {
     autorun(() => {
-      this.clear(this.storeType.selectedKey);
+      this.clear();
     });
 
     autorun(() => {

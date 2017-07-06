@@ -82,24 +82,28 @@ export default function Input ({ children, className, copyValue, example, hideIc
         </div>
         <div className={ styles.inputContainer }>
           {
-            (!isReadOnly && !isLink) && (
-              children || (
-                <input
-                  onBlur={ _onBlur }
-                  onChange={ _onChange }
-                  type={ type }
-                  value={ value }
-                  { ...inputProps }
-                />
+            (!isReadOnly && !isLink)
+              ? (
+                children || (
+                  <input
+                    onBlur={ _onBlur }
+                    onChange={ _onChange }
+                    type={ type }
+                    value={ value }
+                    { ...inputProps }
+                  />
+                )
               )
-            )
+              : null
           }
           {
-            (icon && !hideIcon) && (
-              <div className={ styles.icon }>
-                { icon }
-              </div>
-            )
+            (icon && !hideIcon)
+              ? (
+                <div className={ styles.icon }>
+                  { icon }
+                </div>
+              )
+              : null
           }
         </div>
       </div>
