@@ -36,6 +36,10 @@ export function isAddressValid (address: ?string): boolean {
   return false;
 }
 
+export function isEnsName (address: ?string): boolean {
+  return /\.eth$/.test((address || '').trim());
+}
+
 export function isHexValid (hex: ?string): boolean {
   if (hex && hex.substr(0, 2) === '0x' && hex.length % 2 === 0) {
     return hex === '0x' || /^0x[0-9a-fA-F]+$/.test(hex);
