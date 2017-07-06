@@ -48,11 +48,13 @@ function Navigation ({ children, className, links, t }: PropTypes): React.Elemen
         { links }
       </div>
       {
-        children && (
-          <div className={ styles.children }>
-            { children }
-          </div>
-        )
+        children
+          ? (
+            <div className={ styles.children }>
+              { children }
+            </div>
+          )
+          : null
       }
     </nav>
   );

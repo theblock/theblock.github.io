@@ -31,22 +31,26 @@ export default function Button ({ className, icon, isBusy, isDisabled, isDanger,
     >
       <div className={ styles.content }>
         {
-          icon && (
-            <div className={ styles.icon }>
-              {
-                isBusy
-                  ? <BusyIcon />
-                  : icon
-              }
-            </div>
-          )
+          icon
+            ? (
+              <div className={ styles.icon }>
+                {
+                  isBusy
+                    ? <BusyIcon />
+                    : icon
+                }
+              </div>
+            )
+            : null
         }
         {
-          label && (
-            <div className={ styles.label }>
-              { label }
-            </div>
-          )
+          label
+            ? (
+              <div className={ styles.label }>
+                { label }
+              </div>
+            )
+            : null
         }
       </div>
     </button>
