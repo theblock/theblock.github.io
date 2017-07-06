@@ -25,11 +25,6 @@ export function lookupEnsName (api: Api, name: string) {
         to: resolverAddr
       });
     })
-    .catch((error) => {
-      console.error('lookupEnsName', error);
-
-      throw error;
-    })
     .then((result) => {
       return ensLookup.decode(result);
     })
