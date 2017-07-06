@@ -12,26 +12,18 @@ The full web application for [https://theblock.io](https://theblock.io), a clien
 
 Handled as a mono-repo, all library packages and pages are within the [packages/](packages/) folder structure.
 
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-api)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-api) [packages/theblock-lib-api](packages/theblock-lib-api)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-ens)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-ens) [packages/theblock-lib-ens](packages/theblock-lib-ens)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-hw)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-hw) [packages/theblock-lib-hw](packages/theblock-lib-hw)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-services)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-services) [packages/theblock-lib-services](packages/theblock-lib-services)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-ui)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-ui) [packages/theblock-lib-ui](packages/theblock-lib-ui)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-util)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-util) [packages/theblock-lib-util](packages/theblock-lib-util)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-meta-contracts)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-meta-contracts) [packages/theblock-meta-contracts](packages/theblock-meta-contracts)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-404)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-404) [packages/theblock-page-404](packages/theblock-page-404)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-blog)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-blog) [packages/theblock-page-blog](packages/theblock-page-blog)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-home)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-home) [packages/theblock-page-home](packages/theblock-page-home)
-
-[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-wallet)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-wallet) [packages/theblock-page-wallet](packages/theblock-page-wallet)
+|Dependencies|Link|
+|--|--|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-api)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-api)|[theblock-lib-api](packages/theblock-lib-api)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-ens)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-ens)|[theblock-lib-ens](packages/theblock-lib-ens)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-hw)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-hw) [theblock-lib-hw](packages/theblock-lib-hw)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-services)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-services)|[theblock-lib-services](packages/theblock-lib-services)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-ui)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-ui) [theblock-lib-ui](packages/theblock-lib-ui)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-lib-util)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-lib-util)|[theblock-lib-util](packages/theblock-lib-util)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-meta-contracts)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-meta-contracts)|[theblock-meta-contracts](packages/theblock-meta-contracts)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-404)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-404)|[theblock-page-404](packages/theblock-page-404)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-blog)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-blog)|[theblock-page-blog](packages/theblock-page-blog)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-home)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-home)|[theblock-page-home](packages/theblock-page-home)|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/theblock-page-wallet)](https://david-dm.org/theblock/theblock.github.io?path=packages/theblock-page-wallet)|[theblock-page-wallet](packages/theblock-page-wallet)|
 
 _[GPLv3](LICENSE), Copyright (C) 2017, theBlock, [https://theblock.io](https://theblock.io)_
