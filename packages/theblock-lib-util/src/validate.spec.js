@@ -41,8 +41,16 @@ describe('validate', () => {
       expect(isAddressValid(ADDRESS)).toBe(true);
     });
 
+    it('returns false when empty address', () => {
+      expect(isAddressValid()).toBe(false);
+    });
+
     it('returns false when invalid address', () => {
       expect(isAddressValid('0xinvalid')).toBe(false);
+    });
+
+    it('returns false when invalid address of correct length', () => {
+      expect(isAddressValid('0xinvalid000123456789012345678901234567890')).toBe(false);
     });
   });
 

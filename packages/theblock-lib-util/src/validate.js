@@ -23,7 +23,7 @@ export function isAddressChecksumValid (_address: string): boolean {
 }
 
 export function isAddressValid (address: ?string): boolean {
-  if (address.length !== 42 || !isHexValid(address)) {
+  if (!address || address.length !== 42 || !isHexValid(address)) {
     return false;
   }
 
