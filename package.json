@@ -17,7 +17,7 @@
     "clean:js": "find ./x -name '*.js*' -delete",
     "clean:local": "find ./node_modules -name 'theblock-*' -exec rm -rf {} \\; || true",
     "clean:logs": "find . -name '*-error.log' -delete",
-    "delete:modules": "rm -rf ./node-modules",
+    "delete:modules": "rm -rf ./node_modules",
     "start": "webpack-dev-server --progress",
     "stats": "npm-run-all --serial stats:*",
     "stats:coverage": "NOD_ENV=test jest --coverage && cat ./coverage/lcov.info | coveralls",
