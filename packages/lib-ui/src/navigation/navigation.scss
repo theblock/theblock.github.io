@@ -8,7 +8,7 @@
 
   .subbar,
   .topbar {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $navBorderColor;
     display: flex;
     font-size: $navFontSize;
     // margin-bottom: calc($borderWidth / -2);
