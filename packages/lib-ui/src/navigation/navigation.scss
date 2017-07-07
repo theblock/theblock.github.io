@@ -11,6 +11,10 @@
 
     a {
       text-transform: uppercase;
+
+      > div {
+        padding: 0.809em 0;
+      }
     }
   }
 
@@ -18,7 +22,7 @@
     // box-shadow: $shadow;
     align-items: center;
     justify-content: space-between;
-    padding: 0.809em 1.618em;
+    padding: 0 1.618em;
 
     .links {
     }
@@ -31,7 +35,7 @@
         left: 0;
         position: absolute;
         top: 0;
-        transform: scale(0.15) translateX(0) translateY(0);
+        transform: scale(0.2) translateX(0) translateY(1.3em); // magic :(
         transform-origin: 0;
       }
     }
@@ -39,7 +43,8 @@
 
   .subbar {
     align-items: center;
+    background: $navBackground;
     justify-content: center;
-    padding: 1.618em 0 0;
+    padding: 0;
   }
 }
