@@ -19,6 +19,7 @@
     display: inline-block;
     font: $bodyFont;
     line-height: $bodyLineHeight;
+    opacity: 0.75;
     outline: 0;
     padding: 0.5em 0.75em;
     margin: 0;
@@ -32,6 +33,7 @@
       border-bottom-style: solid;
       box-shadow: $shadow;
       color: $naturalColor;
+      opacity: 1;
       z-index: 1 !important;
     }
   }
