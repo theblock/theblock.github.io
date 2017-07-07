@@ -27,7 +27,7 @@ export default class Contract {
           abi,
           signature,
           decode: (data: string): Array<any> => {
-            return decodeData(outputTypes, data);
+            return decodeData(outputTypes, data, false);
           },
           encode: (params: Array<any>): string => {
             return encodeData(inputTypes, params, signature);
