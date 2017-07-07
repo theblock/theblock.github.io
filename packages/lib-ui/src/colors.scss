@@ -29,8 +29,8 @@ $labelWarningColor: #f80;
 $linkColor: #069;
 $naturalColor: #097;
 $navBackground: transparent;
-$navTopBackground: #f5f5f5;
-$navSubBackground: #f9f9f9;
+$navTopBackground: #f2f2f2;
+$navSubBackground: #fafafa;
 $navBorderColor: #ddd;
 $radioColor: inherit;
 
@@ -61,10 +61,10 @@ $inputFocusBorderColor: $buttonBorderColor;
 
 $buttonBorder: $borderWidth solid $buttonBorderColor;
 $iconBorder: $borderWidth solid $iconBorderColor;
-$inputBorder: $borderWidth dotted $naturalColor;
-$inputErrorBorder: $borderWidth dotted $inputErrorBorderColor;
-$inputFocusBorder: $borderWidth dotted $inputFocusBorderColor;
-$naturalBorder: $borderWidth dotted $naturalColor;
+$inputBorder: $borderWidth solid $naturalColor;
+$inputErrorBorder: $borderWidth solid $inputErrorBorderColor;
+$inputFocusBorder: $borderWidth solid $inputFocusBorderColor;
+$naturalBorder: $borderWidth solid $naturalColor;
 $popupBorder: $borderWidth solid $borderColor;
 $popupBorderThick: $borderThickWidth solid $borderColor;
 $readonlyBorder: $borderWidth solid $readonlyBackground;
