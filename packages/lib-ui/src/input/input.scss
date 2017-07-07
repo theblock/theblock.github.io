@@ -10,7 +10,7 @@
   border-top: $borderWidth solid transparent;
   display: inline-block;
   font-size: $inputFontSize;
-  margin: 0 $fieldMargin;
+  margin: 0 $inputMargin;
   text-align: left;
   position: relative;
 
@@ -23,7 +23,7 @@
   .extraIcon {
     color: #069;
     display: inline-block;
-    margin: 0 0.5em;
+    margin: 0 $inputMargin;
   }
 
   .mask {
