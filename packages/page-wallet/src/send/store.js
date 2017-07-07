@@ -18,8 +18,8 @@ import tokenStore from '../store/tokens';
 import transactionStore from '../store/transactions';
 import valueTypeStore from '../store/valueType';
 
-const CENTS: BN = new BN(100);
-const BN10: BN = new BN(10);
+const BN0: BN = new BN(0);
+const BN100: BN = new BN(100);
 
 export class SendStore {
   @observable accounts = accountStore;
@@ -38,7 +38,6 @@ export class SendStore {
   @observable recipientAddress: string = '';
   @observable txData: string = '0x';
   @observable txValue: string = '0';
-  @observable txValueFiat: string = '0';
   @observable valueType = valueTypeStore;
 
   @computed get gasPriceBn (): BN {
@@ -95,20 +94,22 @@ export class SendStore {
     return fromFloatToBn(this.txValue, this.tokens.selected.decimals);
   }
 
+  @computed get txValueNativeBn (): BN {
+    if (this.valueType.selected.isNative) {
+      return this.txValueBn;
+    }
+
+    if (this.balance.tokenFiatPrice.isZero()) {
+      return BN0;
+    }
+
+    return this.txValueBn.mul(BN100).divRound(this.balance.tokenFiatPrice);
+  }
+
   @computed get txValueFormatted (): string {
     return this.txValueBn.isZero()
       ? ''
       : this.txValue;
-  }
-
-  @computed get txValueFiatBn (): BN {
-    return this.txValueBn.mul(this.balance.tokenFiatPrice).divRound(CENTS);
-  }
-
-  @computed get txValueFiatFormatted (): string {
-    return this.txValueFiatBn.isZero()
-      ? ''
-      : formatFloat(this.txValueFiatBn, this.tokens.selected.decimals, 2, true);
   }
 
   @action clear = () => {
@@ -121,7 +122,6 @@ export class SendStore {
     this.recipientAddress = '';
     this.txData = '0x';
     this.txValue = '0';
-    this.txValueFiat = '0';
 
     this.addresses.clear();
     this.valueType.selectToken();
@@ -132,7 +132,7 @@ export class SendStore {
       data: this.txData,
       to: this.recipientAddress,
       from: this.accounts.selected.key,
-      value: this.txValueBn,
+      value: this.txValueNativeBn,
       gasLimit: this.gasLimitBn,
       gasPrice: this.gasPriceBn
     };
@@ -207,19 +207,6 @@ export class SendStore {
 
   @action setTxValue = (txValue: string) => {
     this.txValue = txValue;
-    this.txValueFiat = this.txValueFiatFormatted;
-  }
-
-  @action setTxValueFiat = (txValueFiat: string) => {
-    const decimals: BN = BN10.pow(new BN(this.tokens.selected.decimals));
-
-    this.txValueFiat = txValueFiat;
-    this.txValue = formatFloat(
-      fromFloatToBn(txValueFiat, 2)
-        .mul(decimals)
-        .divRound(this.balance.tokenFiatPrice),
-      this.tokens.selected.decimals
-    );
   }
 }
 

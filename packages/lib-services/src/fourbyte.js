@@ -49,34 +49,36 @@ export function getMethodSignature (_signature: ?string): Promise<SignatureType>
     hex_signature: signature
   });
 
-  return fetch(url, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json'
-    },
-    mode: 'cors'
-  })
-  .then((response: Response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
+  return fetch(
+    url,
+    {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      },
+      mode: 'cors'
+    })
+    .then((response: Response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
 
-    return response.json();
-  })
-  .catch((error: Error) => {
-    console.error(url, error);
+      return response.json();
+    })
+    .catch((error: Error) => {
+      console.error(url, error);
 
-    return { results: [] };
-  })
-  .then(({ results }: SignatureResponseType) => {
-    const value: SignatureType = decodeMethodString(
-      results.length
-        ? results[0].text_signature
-        : ''
-    );
+      return { results: [] };
+    })
+    .then(({ results }: SignatureResponseType) => {
+      const value: SignatureType = decodeMethodString(
+        results.length
+          ? results[0].text_signature
+          : ''
+      );
 
-    cache.signatures[signature] = value;
+      cache.signatures[signature] = value;
 
-    return value;
-  });
+      return value;
+    });
 }
