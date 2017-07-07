@@ -114,7 +114,7 @@ export default class Api {
           name,
           types,
           values: (name && types.length)
-            ? decodeData(types, hex)
+            ? decodeData(types, hex.substr(10))
             : []
         };
       });
@@ -208,21 +208,18 @@ export default class Api {
   sendTokenTransaction (token: string, tx: TxObjectType): Promise<string> {
     try {
       const method: AbiMethodType = this._tokenInterface.findMethod('transfer');
-      const data: string = method.encode([tx.to, fromBnToHex(tx.value)]);
 
-      return this
-        ._estimateTxGasValues(tx)
-        .then((tx: TxObjectType) => {
-          return this.sendTransaction({
-            data: concatHex([data, tx.data]),
-            to: token,
-            from: tx.from,
-            value: new BN(0),
-            gasLimit: tx.gasLimit,
-            gasPrice: tx.gasPrice
-          });
-        })
-        .then((result: string) => result);
+      return this.sendTransaction({
+        data: concatHex([
+          method.encode([tx.to, fromBnToHex(tx.value)]),
+          tx.data
+        ]),
+        to: token,
+        from: tx.from,
+        value: new BN(0),
+        gasLimit: tx.gasLimit,
+        gasPrice: tx.gasPrice
+      });
     } catch (error) {
       return Promise.reject(error);
     }
