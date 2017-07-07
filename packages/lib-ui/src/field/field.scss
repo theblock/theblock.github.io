@@ -1,8 +1,11 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 
+@import '../colors.scss';
+
 .ui {
   align-items: center;
   display: flex;
+  margin: $fieldMargin 0;
 
   > div {
     flex: 1 1 50%;
