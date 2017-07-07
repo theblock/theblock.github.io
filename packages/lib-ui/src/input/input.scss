@@ -10,7 +10,7 @@
   border-top: $borderWidth solid transparent;
   display: inline-block;
   font-size: $inputFontSize;
-  margin: 0 $inputMargin;
+  margin: calc($borderWidth / -2) $inputMargin;
   text-align: left;
   position: relative;
 

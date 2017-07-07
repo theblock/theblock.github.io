@@ -10,16 +10,6 @@
   .topbar {
     border-bottom: 1px solid $navBorderColor;
     display: flex;
-    font-size: $navFontSize;
-    // margin-bottom: calc($borderWidth / -2);
-
-    a {
-      text-transform: uppercase;
-
-      > div {
-        padding: 0.809em 0;
-      }
-    }
   }
 
   .topbar {
@@ -39,7 +29,7 @@
         left: 0;
         position: absolute;
         top: 0;
-        transform: scale(0.2) translateX(0) translateY(1.3em); // magic :(
+        transform: scale(0.19) translateX(0) translateY(4em); // magic :(
         transform-origin: 0;
       }
     }
