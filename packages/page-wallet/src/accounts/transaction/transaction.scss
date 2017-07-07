@@ -1,8 +1,17 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 
 .root {
+  &:nth-child(even) {
+  }
+
+  &:nth-child(odd) {
+    background: #f5f5f5;
+  }
+
   td {
-    padding: 0.25em;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 0.5em 0.809em;
   }
 
   .timestamp {

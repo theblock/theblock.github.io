@@ -9,7 +9,7 @@
   input,
   textarea,
   .input {
-    background: $inputBackgroundLite;
+    background: transparent; // $inputBackgroundLite;
     border: none;
     border-bottom: $naturalBorder;
     border-radius: $borderRadius $borderRadius 0 0;
@@ -48,7 +48,7 @@
     input,
     textarea,
     .input {
-      background: $inputBackgroundErrorLite;
+      // background: $inputBackgroundErrorLite;
       border-bottom-color: $inputErrorBorderColor;
 
       &:focus {
@@ -61,7 +61,7 @@
     input,
     textarea,
     .input {
-      background: $inputBackgroundWarningLite;
+      // background: $inputBackgroundWarningLite;
       border-bottom-color: $inputWarningBorderColor;
 
       &:focus {
