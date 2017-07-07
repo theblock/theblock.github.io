@@ -10,6 +10,7 @@ $borderRadius: 0.375em;
 $borderWidth: 0.2em;
 $borderThickWidth: 0.5em;
 $fieldMargin: 0.5em;
+$inputMargin: 0.809em;
 
 $bodyColor: #414141;
 $bodyBackground: #fffffd;
@@ -45,6 +46,7 @@ $inputBackgroundReadonly: transparent;
 $inputBackgroundLink: white;
 $popupBackground: $bodyBackground;
 $readonlyBackground: #f5f5f5;
+$readonlyBorderColor: #ddd;
 $successBackground: $GREEN;
 $warnBackground: $labelWarningColor;
 

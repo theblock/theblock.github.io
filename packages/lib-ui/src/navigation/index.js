@@ -31,26 +31,30 @@ function Navigation ({ children, className, links, t }: PropTypes): React.Elemen
         ]).join(' ')
       }
     >
-      <Block className={ styles.logo } />
-      <div className={ styles.links }>
-        {
-          LINKS.map((link) => (
-            <InputLink
-              href={ `/x/${link}` }
-              isInternal
-              isReadOnly={ path === link }
-              key={ link }
-              value={ t(`ui:navigation.${link}`) }
-            />
-          ))
-        }
-        <Language />
-        { links }
+      <div className={ styles.topbar }>
+        <div className={ styles.navigation }>
+          {
+            LINKS.map((link) => (
+              <InputLink
+                href={ `/x/${link}` }
+                isInternal
+                isReadOnly={ path === link }
+                key={ link }
+                value={ t(`ui:navigation.${link}`) }
+              />
+            ))
+          }
+          <Block className={ styles.logo } />
+        </div>
+        <div className={ styles.links }>
+          <Language />
+          { links }
+        </div>
       </div>
       {
         children
           ? (
-            <div className={ styles.children }>
+            <div className={ styles.subbar }>
               { children }
             </div>
           )

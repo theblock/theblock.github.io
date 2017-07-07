@@ -5,11 +5,12 @@
 @import './base.scss';
 
 .ui {
-  border: none;
+  border-bottom: $borderWidth solid transparent;
   border-radius: $borderRadius $borderRadius 0 0;
+  border-top: $borderWidth solid transparent;
   display: inline-block;
   font-size: $inputFontSize;
-  margin: $fieldMargin;
+  margin: 0 $inputMargin;
   text-align: left;
   position: relative;
 
@@ -22,7 +23,7 @@
   .extraIcon {
     color: #069;
     display: inline-block;
-    margin: 0 0.5em;
+    margin: 0 $inputMargin;
   }
 
   .mask {
@@ -113,8 +114,7 @@
   }
 
   &.withReadOnly {
-    background: $readonlyBackground;
-    border-radius: $borderRadius;
+    border-bottom-color: $readonlyBorderColor;
     cursor: text;
 
     .mask {
@@ -122,11 +122,9 @@
     }
 
     &.withLink {
-      background: $inverseColor;
-
-      .mask {
-        color: white;
-      }
+      background: transparent;
+      border-bottom-color: $bodyColor;
+      border-radius: 0;
     }
   }
 

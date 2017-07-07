@@ -4,8 +4,8 @@
 @import '../fonts.scss';
 
 .ui {
-  .children,
-  .links {
+  .subbar,
+  .topbar {
     display: flex;
     font-size: $navFontSize;
 
@@ -14,23 +14,32 @@
     }
   }
 
-  .children {
+  .topbar {
+    // box-shadow: $shadow;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.809em 1.618em;
+
+    .links {
+    }
+
+    .navigation {
+      padding-left: 4em;
+      position: relative;
+
+      .logo {
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: scale(0.15) translateX(0) translateY(0);
+        transform-origin: 0;
+      }
+    }
+  }
+
+  .subbar {
     align-items: center;
     justify-content: center;
     padding: 1.618em 0 0;
-  }
-
-  .links {
-    // background: $navBackground;
-    // border-bottom: $navBorder;
-    box-shadow: $shadow;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 0.809em 1.618em;
-  }
-
-  .logo {
-    transform: scale(0.175) translateX(2em) translateY(2em);
-    transform-origin: 0;
   }
 }
