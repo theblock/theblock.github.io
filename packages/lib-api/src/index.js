@@ -214,11 +214,11 @@ export default class Api {
           method.encode([tx.to, fromBnToHex(tx.value)]),
           tx.data
         ]),
-        to: tokenAddress,
         from: tx.from,
-        value: new BN(0),
         gasLimit: tx.gasLimit,
-        gasPrice: tx.gasPrice
+        gasPrice: tx.gasPrice,
+        to: tokenAddress,
+        value: new BN(0)
       });
     } catch (error) {
       return Promise.reject(error);
