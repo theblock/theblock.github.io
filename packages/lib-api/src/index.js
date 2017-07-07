@@ -114,7 +114,7 @@ export default class Api {
           name,
           types,
           values: (name && types.length)
-            ? decodeData(types, hex.substr(10))
+            ? decodeData(types, hex, true)
             : []
         };
       });
