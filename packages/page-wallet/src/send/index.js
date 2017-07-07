@@ -66,24 +66,12 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
           />
           <div>
             <InputNumber
-              onChange={
-                store.valueType.selected.isNative
-                  ? store.setTxValue
-                  : store.setTxValueFiat
-              }
+              onChange={ store.setTxValue }
               isWarning={ store.txValueBn.isZero() }
               step={ 0.001 }
-              value={
-                store.valueType.selected.isNative
-                  ? store.txValue
-                  : store.txValueFiat
-              }
+              value={ store.txValue }
               valueDisplay={
-                (
-                  store.valueType.selected.isNative
-                    ? store.txValueFormatted
-                    : store.txValueFiatFormatted
-                ) || t('value.empty')
+                store.txValueFormatted || t('value.empty')
               }
             />
             <Select store={ store.valueType } />
