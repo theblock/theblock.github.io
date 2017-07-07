@@ -205,7 +205,7 @@ export default class Api {
       });
   }
 
-  sendTokenTransaction (token: string, tx: TxObjectType): Promise<string> {
+  sendTokenTransaction (tokenAddress: string, tx: TxObjectType): Promise<string> {
     try {
       const method: AbiMethodType = this._tokenInterface.findMethod('transfer');
 
@@ -214,7 +214,7 @@ export default class Api {
           method.encode([tx.to, fromBnToHex(tx.value)]),
           tx.data
         ]),
-        to: token,
+        to: tokenAddress,
         from: tx.from,
         value: new BN(0),
         gasLimit: tx.gasLimit,
