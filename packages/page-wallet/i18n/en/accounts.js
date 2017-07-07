@@ -16,8 +16,8 @@ export default {
     text: 'valued at'
   },
   transactions: {
-    powered: 'Powered by {{explorer}}',
-    received: 'Received {{value}}',
-    sent: 'Sent {{value}}'
+    powered: 'powered by {{explorer}}',
+    received: 'received {{value}}',
+    sent: 'sent {{value}}'
   }
 };
