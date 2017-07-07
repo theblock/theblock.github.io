@@ -29,15 +29,15 @@ type PropTypes = {
 
 export default function InputNumber ({ className, example, hint, icon, isDisabled, isError, isInteger, isReadOnly, isWarning, label, max, min = 0, onChange, step = 0.01, value, valueDisplay }: PropTypes): React.Element<any> {
   const _onChange = (value: string): void => {
-    if (!/^[0-9]+([.]?[0-9]*)?$/.test(value)) {
+    if (value && !/^[0-9]+([.]?[0-9]*)?$/.test(value)) {
       return;
     }
 
-    const change: string = isInteger
-      ? value.replace(/[^0-9]/g, '')
-      : value;
-
-    onChange && onChange(change);
+    onChange && onChange(
+      isInteger
+        ? value.replace(/[^0-9]/g, '')
+        : value
+    );
   };
 
   return (
