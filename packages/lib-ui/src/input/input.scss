@@ -123,8 +123,12 @@
 
     &.withLink {
       background: transparent;
-      border-bottom-color: $bodyColor;
+      border-bottom-color: $linkColor;
       border-radius: 0;
+
+      .mask {
+        color: $linkColor;
+      }
     }
   }
 
