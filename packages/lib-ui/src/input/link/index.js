@@ -52,11 +52,9 @@ export default function InputLink ({ className, copyValue, href, icon, isInterna
           ]).join(' ')
         }
         icon={
-          icon || (
-            isInternal
-              ? null
-              : <LinkIcon className={ styles.linkIcon } />
-          )
+          isInternal
+            ? icon
+            : <LinkIcon className={ styles.linkIcon } />
         }
         isLink
         isInverted={ isInverted }
