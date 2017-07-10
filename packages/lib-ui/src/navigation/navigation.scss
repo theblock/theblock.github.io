@@ -5,7 +5,7 @@
 
 .ui {
   background: $navBackground;
-  font-size: 1rem;
+  font-size: $navFontSize;
 
   .subbar,
   .topbar {
