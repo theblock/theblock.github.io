@@ -1,0 +1,15 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+@import '../colors.scss';
+
+.ui {
+  display: flex;
+
+  > div {
+    flex: 1 1 calc(2 * 100% / 3);
+  }
+
+  > aside {
+    flex: 1 1 calc(1 * 100% / 3);
+  }
+}

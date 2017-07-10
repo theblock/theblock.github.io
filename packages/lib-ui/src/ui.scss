@@ -10,6 +10,12 @@ a:visited {
   text-decoration: none;
 }
 
+aside {
+  background: $sideBackground;
+  border-radius: $borderRadius;
+  padding: 1.5em 1em;
+}
+
 body {
   color: $bodyColor;
   background: $bodyBackground;
@@ -43,7 +49,7 @@ main {
   box-sizing: content-box;
   margin: 1em auto;
   max-width: $maxWidth;
-  padding: 0 1.618em;
+  padding: 0;
 }
 
 nav {
