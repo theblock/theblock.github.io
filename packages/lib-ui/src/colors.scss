@@ -29,9 +29,9 @@ $labelWarningColor: #f80;
 $linkColor: #069;
 $naturalColor: #097;
 $navBackground: transparent;
-$navTopBackground: #f2f2f2;
-$navSubBackground: #fafafa;
-$navBorderColor: #ddd;
+$navTopBackground: hsla(0, 0%, 100%, 0.65);
+$navSubBackground: hsla(0, 0%, 100%, 0.80);
+$navBorderColor: hsla(0, 0%, 100%, 0.5);
 $radioColor: inherit;
 $sideBackground: #f2f2f2;
 

@@ -6,6 +6,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 
 import Block from '../block';
+import { createPatternStyle } from '../img/pattern';
 import InputLink from '../input/link';
 import Language from '../language';
 
@@ -30,6 +31,7 @@ function Navigation ({ children, className, links, t }: PropTypes): React.Elemen
           styles.ui, className
         ]).join(' ')
       }
+      style={ createPatternStyle() }
     >
       <div className={ styles.topbar }>
         <div className={ styles.navigation }>
