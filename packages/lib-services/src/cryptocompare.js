@@ -30,31 +30,33 @@ export function getTokenPrice (token: string, currencies: Array<string>): Promis
     tsyms: currencies.join(',')
   });
 
-  return fetch(url, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json'
-    },
-    mode: 'cors'
-  })
-  .then((response: Response) => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
+  return fetch(
+    url,
+    {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      },
+      mode: 'cors'
+    })
+    .then((response: Response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
 
-    return response.json();
-  })
-  .catch((error: Error) => {
-    console.error(url, error);
+      return response.json();
+    })
+    .catch((error: Error) => {
+      console.error(url, error);
 
-    return {};
-  })
-  .then((price: { [string]: number }) => {
-    cache.price[token] = currencies.reduce((result, currency) => {
-      result[currency] = new BN((price[currency] || 0) * 100);
-      return result;
-    }, {});
+      return {};
+    })
+    .then((price: { [string]: number }) => {
+      cache.price[token] = currencies.reduce((result, currency) => {
+        result[currency] = new BN((price[currency] || 0) * 100);
+        return result;
+      }, {});
 
-    return cache.price[token];
-  });
+      return cache.price[token];
+    });
 }

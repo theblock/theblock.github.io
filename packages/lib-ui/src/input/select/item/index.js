@@ -33,11 +33,13 @@ export default function Item ({ className, isSelected, item, onSelect }: PropTyp
     >
       { label || key }
       {
-        icon && (
-          <div className={ styles.icon }>
-            { icon }
-          </div>
-        )
+        icon
+          ? (
+            <div className={ styles.icon }>
+              { icon }
+            </div>
+          )
+          : null
       }
     </div>
   );
