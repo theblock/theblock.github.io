@@ -20,10 +20,11 @@ type StyleType = {
 export function createPatternStyle (seed?: any): StyleType {
   return {
     backgroundImage: `url(${Trianglify({
-      cell_size: 75,
+      cell_size: 50,
       height: 120,
       seed: seed || Date.now(),
       stroke_width: 1,
+      variance: 0.75,
       width: 1200
     }).png()})`,
     backgroundPosition: 'center center',
