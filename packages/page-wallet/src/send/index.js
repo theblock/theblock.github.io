@@ -8,6 +8,7 @@ import { Interpolate, translate } from 'react-i18next';
 
 import Button from '@theblock/lib-ui/src/button';
 import Field from '@theblock/lib-ui/src/field';
+import Form from '@theblock/lib-ui/src/form';
 import InputAddress from '@theblock/lib-ui/src/input/address';
 import InputHex from '@theblock/lib-ui/src/input/hex';
 import InputNumber from '@theblock/lib-ui/src/input/number';
@@ -34,67 +35,72 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
       }
     >
       <section>
-        <Field>
-          <Interpolate
-            i18nKey='account.text'
-            parent='div'
-          />
+        <Form>
           <div>
-            <Select store={ accounts } />
+            <Field>
+              <Interpolate
+                i18nKey='account.text'
+                parent='div'
+              />
+              <div>
+                <Select store={ accounts } />
+              </div>
+            </Field>
+            <Field>
+              <Interpolate
+                i18nKey='balance.text'
+                parent='div'
+              />
+              <div>
+                <InputStatic
+                  value={
+                    store.valueType.selected.isNative
+                      ? store.balance.balanceFormatted
+                      : store.balance.balanceFiatFormatted
+                  }
+                />
+                <Select store={ store.tokens } />
+              </div>
+            </Field>
+            <Field>
+              <Interpolate
+                i18nKey='value.text'
+                parent='div'
+              />
+              <div>
+                <InputNumber
+                  onChange={ store.setTxValue }
+                  isWarning={ store.txValueBn.isZero() }
+                  step={ 0.001 }
+                  value={ store.txValue }
+                  valueDisplay={
+                    store.txValueFormatted || t('value.empty')
+                  }
+                />
+                <Select store={ store.valueType } />
+              </div>
+            </Field>
+            <Field>
+              <Interpolate
+                i18nKey='recipient.text'
+                parent='div'
+              />
+              <div>
+                <InputAddress
+                  example={ t('recipient.example') }
+                  isBusy={ store.isBusyLookup }
+                  isError={ store.hasRecipientError }
+                  isMaxWidth
+                  onChange={ store.setRecipient }
+                  store={ addresses }
+                  value={ store.recipient }
+                  valueAddress={ store.recipientAddress }
+                />
+              </div>
+            </Field>
           </div>
-        </Field>
-        <Field>
-          <Interpolate
-            i18nKey='balance.text'
-            parent='div'
-          />
-          <div>
-            <InputStatic
-              value={
-                store.valueType.selected.isNative
-                  ? store.balance.balanceFormatted
-                  : store.balance.balanceFiatFormatted
-              }
-            />
-            <Select store={ store.tokens } />
-          </div>
-        </Field>
-        <Field>
-          <Interpolate
-            i18nKey='value.text'
-            parent='div'
-          />
-          <div>
-            <InputNumber
-              onChange={ store.setTxValue }
-              isWarning={ store.txValueBn.isZero() }
-              step={ 0.001 }
-              value={ store.txValue }
-              valueDisplay={
-                store.txValueFormatted || t('value.empty')
-              }
-            />
-            <Select store={ store.valueType } />
-          </div>
-        </Field>
-        <Field>
-          <Interpolate
-            i18nKey='recipient.text'
-            parent='div'
-          />
-          <div>
-            <InputAddress
-              example={ t('recipient.example') }
-              isBusy={ store.isBusyLookup }
-              isError={ store.hasRecipientError }
-              isMaxWidth
-              onChange={ store.setRecipient }
-              store={ addresses }
-              value={ store.recipient }
-              valueAddress={ store.recipientAddress }
-            />
-          </div>
-        </Field>
+          <aside />
+        </Form>
       </section>
       <section>
         <Interpolate
