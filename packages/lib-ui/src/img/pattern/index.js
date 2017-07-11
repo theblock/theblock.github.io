@@ -3,27 +3,30 @@
 
 import compact from 'lodash.compact';
 import React from 'react';
+import { observer } from 'mobx-react';
 import Trianglify from 'trianglify';
 
+import store from './store';
 import styles from './pattern.scss';
 
 type PropTypes = {
   children?: React.Element<any>,
-  className?: string,
-  seed?: string
+  className?: string
 };
 
 type StyleType = {
   [string]: string
 };
 
-const INITIAL_SEED: string = `${Date.now()}`;
+export function createPatternStyle (_seed: string): StyleType {
+  const seed = _seed || store.seed;
 
-export function createPatternStyle (seed?: string): StyleType {
   return {
     backgroundImage: `url(${Trianglify({
-      height: 225,
-      seed: seed || INITIAL_SEED,
+      height: 300,
+      seed: seed === '0'
+        ? Date.now()
+        : seed,
       stroke_color: '#ffffff',
       stroke_width: 1,
       variance: 1,
@@ -35,7 +38,7 @@ export function createPatternStyle (seed?: string): StyleType {
   };
 }
 
-export default function Pattern ({ children, className, seed }: PropTypes): ?React.Element<any> {
+function ImgPattern ({ children, className }: PropTypes): ?React.Element<any> {
   return (
     <div
       className={
@@ -43,9 +46,11 @@ export default function Pattern ({ children, className, seed }: PropTypes): ?Rea
           styles.ui, className
         ]).join(' ')
       }
-      style={ createPatternStyle(seed) }
+      style={ createPatternStyle(store.seed) }
     >
       { children }
     </div>
   );
 }
+
+export default observer(ImgPattern);
