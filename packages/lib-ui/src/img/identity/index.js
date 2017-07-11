@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import blockies from 'blockies';
+import blockies from 'ethereum-blockies';
 import compact from 'lodash.compact';
 import React from 'react';
 
