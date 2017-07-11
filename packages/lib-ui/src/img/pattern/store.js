@@ -7,7 +7,7 @@ import type { StorageNameType } from '@theblock/lib-util/src/types';
 
 import { getStorage, setStorage } from '@theblock/lib-util/src/storage';
 
-const INITIAL_SEED: string = `${Date.now()}`;
+const DEFAULT_SEED: string = '1499771680724';
 const LS_BACKGROUND: StorageNameType = 'background';
 const defaults: { seed: string } = getStorage(LS_BACKGROUND);
 
@@ -30,4 +30,4 @@ class Store {
   }
 }
 
-export default new Store(defaults.seed || INITIAL_SEED);
+export default new Store(defaults.seed || DEFAULT_SEED);
