@@ -100,6 +100,16 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
                 )
                 : null
             }
+            {
+              store.isHardware
+                ? (
+                  <Interpolate
+                    parent='div'
+                    i18nKey='help.hardware'
+                  />
+                )
+                : null
+            }
             <Interpolate
               parent='div'
               i18nKey='help.storage'
