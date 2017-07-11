@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import blockies from 'ethereum-blockies';
+import blockies from 'blockies';
 import compact from 'lodash.compact';
 import React from 'react';
 
@@ -28,12 +28,12 @@ type PropTypes = {
   value: ?string
 };
 
-export function createImgIdentity (address: ?string, size: SizeType = 'normal') {
+export function createImgIdentity (address: ?string, size: SizeType = 'normal'): string {
   return blockies({
     seed: (address || '').toLowerCase(),
     size: 8,
     scale: SCALE_MATRIX[size] || SCALE_DEFAULT
-  }).toDataURL();
+  }).toDataURL('image/png');
 }
 
 export default function ImgIdentity ({ className, size = 'normal', value }: PropTypes): React.Element<any> {
