@@ -10,18 +10,20 @@ import styles from './pattern.scss';
 type PropTypes = {
   children?: React.Element<any>,
   className?: string,
-  seed?: any
+  seed?: string
 };
 
 type StyleType = {
   [string]: string
 };
 
-export function createPatternStyle (seed?: any): StyleType {
+const INITIAL_SEED: string = `${Date.now()}`;
+
+export function createPatternStyle (seed?: string): StyleType {
   return {
     backgroundImage: `url(${Trianglify({
       height: 225,
-      seed: seed || Date.now(),
+      seed: seed || INITIAL_SEED,
       variance: 1,
       width: 1500
     }).png()})`,
