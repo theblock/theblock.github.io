@@ -9,6 +9,7 @@ import { Interpolate, translate } from 'react-i18next';
 import Field from '@theblock/lib-ui/src/field';
 import Form from '@theblock/lib-ui/src/form';
 import InputStatic from '@theblock/lib-ui/src/input/static';
+import QrCode from '@theblock/lib-ui/src/qrcode';
 import Select from '@theblock/lib-ui/src/input/select';
 
 import chains from '../store/chains';
@@ -82,7 +83,9 @@ function Accounts ({ className, t }: PropTypes): React.Element<any> {
               </div>
             </Field>
           </div>
-          <aside />
+          <aside>
+            <QrCode value={ store.accounts.selected.key } />
+          </aside>
         </Form>
       </section>
       {
