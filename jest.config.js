@@ -2,5 +2,13 @@
 // @flow
 
 module.exports = {
+  browser: true,
+  moduleFileExtensions: ['js'],
+  moduleNameMapper: {
+    '@theblock/(.*)': '<rootDir>/packages/$1'
+  },
+  transform: {
+    '^.+\\.js$': 'babel-jest'
+  },
   verbose: true
 };

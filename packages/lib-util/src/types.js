@@ -35,4 +35,4 @@ export type WalletType = {
   privateKey?: ?Buffer
 };
 
-export type StorageNameType = 'accounts' | 'accountDefault' | 'chainDefault' | 'currencyDefault' | 'i18nDefault';
+export type StorageNameType = 'accounts' | 'accountDefault' | 'background' | 'chainDefault' | 'currencyDefault' | 'i18nDefault';

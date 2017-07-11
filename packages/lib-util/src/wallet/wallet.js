@@ -4,12 +4,12 @@
 import { HDNode, networks } from 'bitcoinjs-lib';
 import bip39 from 'bip39';
 import ethutil from 'ethereumjs-util';
-import createKeccakHash from 'keccak';
 
 import type { WalletType } from '../types';
 
 import { fromBytesToHex } from '../convert';
 import { formatAddress, trimPhrase } from '../format';
+import { createSha3Buffer } from '../sha3';
 import { isMnemonicValid } from '../validate';
 
 export function walletFromMnemonic (_mnemonic: string, path: string): Promise<WalletType> {
@@ -52,16 +52,14 @@ export function walletFromPhrase (phrase: string): Promise<WalletType> {
     try {
       let wallet: WalletType = {};
       let count: number = 16384;
-      let privateKey: Buffer = createKeccakHash('keccak256').update(
-        trimPhrase(phrase)
-      ).digest();
+      let privateKey: Buffer = createSha3Buffer(trimPhrase(phrase));
 
       while (count--) {
-        privateKey = createKeccakHash('keccak256').update(privateKey).digest();
+        privateKey = createSha3Buffer(privateKey);
       }
 
       while (!wallet.privateKey) {
-        privateKey = createKeccakHash('keccak256').update(privateKey).digest();
+        privateKey = createSha3Buffer(privateKey);
         wallet = walletFromPrivateKey(privateKey, true) || {};
       }
 

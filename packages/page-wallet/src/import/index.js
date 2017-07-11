@@ -8,6 +8,7 @@ import { Interpolate, translate } from 'react-i18next';
 
 import Button from '@theblock/lib-ui/src/button';
 import Field from '@theblock/lib-ui/src/field';
+import Form from '@theblock/lib-ui/src/form';
 import InputPassword from '@theblock/lib-ui/src/input/password';
 import Select from '@theblock/lib-ui/src/input/select';
 
@@ -32,59 +33,89 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
     >
       <Busy store={ store } />
       <section>
-        <Field>
-          <Interpolate
-            parent='div'
-            i18nKey='details.text'
-          />
+        <Form>
           <div>
-            <Select store={ store.storeType } />
+            <Field>
+              <Interpolate
+                parent='div'
+                i18nKey='details.text'
+              />
+              <div>
+                <Select store={ store.storeType } />
+              </div>
+            </Field>
+            <Details store={ store } />
+            {
+              store.shouldShowPath
+                ? (
+                  <Field>
+                    <Interpolate
+                      parent='div'
+                      i18nKey='path.text'
+                    />
+                    <div>
+                      <Select store={ store.storePath } />
+                    </div>
+                  </Field>
+                )
+                : null
+            }
+            {
+              store.shouldShowPassword
+                ? (
+                  <Field>
+                    <Interpolate
+                      parent='div'
+                      i18nKey='password.text'
+                    />
+                    <div>
+                      <InputPassword
+                        isWarning={ store.hasEmptyPassword }
+                        onChange={ store.setPassword }
+                        value={ store.password }
+                      />
+                    </div>
+                  </Field>
+                )
+                : null
+            }
+            <Field>
+              <Interpolate
+                parent='div'
+                i18nKey='storage.text'
+              />
+              <div>
+                <Select store={ store.storeStorage } />
+              </div>
+            </Field>
           </div>
-        </Field>
-        <Details store={ store } />
-        {
-          store.shouldShowPath
-            ? (
-              <Field>
-                <Interpolate
-                  parent='div'
-                  i18nKey='path.text'
-                />
-                <div>
-                  <Select store={ store.storePath } />
-                </div>
-              </Field>
-            )
-            : null
-        }
-        {
-          store.shouldShowPassword
-            ? (
-              <Field>
-                <Interpolate
-                  parent='div'
-                  i18nKey='password.text'
-                />
-                <div>
-                  <InputPassword
-                    isWarning={ store.hasEmptyPassword }
-                    onChange={ store.setPassword }
-                    value={ store.password }
+          <aside>
+            {
+              store.shouldShowPassword
+                ? (
+                  <Interpolate
+                    parent='div'
+                    i18nKey='help.password'
                   />
-                </div>
-              </Field>
-            )
-            : null
-        }
-        <Field>
-          <Interpolate
-            parent='div'
-            i18nKey='storage.text'
-          />
-          <div>
-            <Select store={ store.storeStorage } />
-          </div>
-        </Field>
+                )
+                : null
+            }
+            {
+              store.isHardware
+                ? (
+                  <Interpolate
+                    parent='div'
+                    i18nKey='help.hardware'
+                  />
+                )
+                : null
+            }
+            <Interpolate
+              parent='div'
+              i18nKey='help.storage'
+            />
+          </aside>
+        </Form>
       </section>
       <section>
         <Button

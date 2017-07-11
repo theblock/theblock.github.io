@@ -94,6 +94,10 @@ export class ImportStore {
     return !!((this.wallet && this.wallet.privateKey) && (this.walletObject && this.walletObject.address));
   }
 
+  @computed get isHardware (): boolean {
+    return ['ledger', 'trezor'].includes(this.type);
+  }
+
   @computed get hdpath (): string {
     switch (this.hdpathType) {
       case 'terzor':
@@ -122,7 +126,7 @@ export class ImportStore {
   }
 
   @computed get shouldShowPassword (): boolean {
-    return !['ledger', 'trezor'].includes(this.type);
+    return !this.isHardware;
   }
 
   @computed get shouldShowPath (): boolean {

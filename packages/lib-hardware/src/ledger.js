@@ -63,22 +63,23 @@ function destroyInstance (instance: LedgerEth): Promise<boolean> {
 
 export function getLedgerAddresses (chainId: number): Promise<Array<string>> {
   return deferPromise(() => {
-    return createInstance().then((instance: LedgerEth) => {
-      return instance
-        .getAddress_async(getLedgerHDPath(chainId), true, false)
-        .then(({ address }: LedgerResultGetAddressType) => {
-          console.log('getLedgerAddresses', address);
+    return createInstance()
+      .then((instance: LedgerEth) => {
+        return instance
+          .getAddress_async(getLedgerHDPath(chainId), true, false)
+          .then(({ address }: LedgerResultGetAddressType) => {
+            console.log('getLedgerAddresses', address);
 
-          return destroyInstance(instance).then(() => {
-            return [address];
+            return destroyInstance(instance).then(() => {
+              return [address];
+            });
           });
-        });
-    })
-    .catch((error: Error) => {
-      console.error('getLedgerAddresses', error);
+      })
+      .catch((error: Error) => {
+        console.error('getLedgerAddresses', error);
 
-      return [];
-    });
+        return [];
+      });
   });
 }
 
@@ -86,33 +87,34 @@ export function signLedgerTransaction (transaction: TransactionType): Promise<st
   return deferPromise(() => {
     const tx: EthereumTx = createRawTransaction(transaction);
 
-    return createInstance().then((instance: LedgerEth) => {
-      // set r, s, v values to what Ledger expects
-      tx.raw[6] = Buffer.from([transaction.chainId]);
-      tx.raw[7] = Buffer.from([]);
-      tx.raw[8] = Buffer.from([]);
+    return createInstance()
+      .then((instance: LedgerEth) => {
+        // set r, s, v values to what Ledger expects
+        tx.raw[6] = Buffer.from([transaction.chainId]);
+        tx.raw[7] = Buffer.from([]);
+        tx.raw[8] = Buffer.from([]);
 
-      return instance
-        .signTransaction_async(
-          getLedgerHDPath(transaction.chainId),
-          tx.serialize().toString('hex')
-        )
-        .then(({ r, s, v }: LedgerResultSignType) => {
-          tx.r = Buffer.from(r, 'hex');
-          tx.s = Buffer.from(s, 'hex');
-          tx.v = Buffer.from(v, 'hex');
+        return instance
+          .signTransaction_async(
+            getLedgerHDPath(transaction.chainId),
+            tx.serialize().toString('hex')
+          )
+          .then(({ r, s, v }: LedgerResultSignType) => {
+            tx.r = Buffer.from(r, 'hex');
+            tx.s = Buffer.from(s, 'hex');
+            tx.v = Buffer.from(v, 'hex');
 
-          const txRaw: string = `0x${tx.serialize().toString('hex')}`;
+            const txRaw: string = `0x${tx.serialize().toString('hex')}`;
 
-          return destroyInstance(instance).then(() => {
-            return txRaw;
+            return destroyInstance(instance).then(() => {
+              return txRaw;
+            });
           });
-        });
-    })
-    .catch((error: Error) => {
-      console.error('signLedgerTransaction', error);
+      })
+      .catch((error: Error) => {
+        console.error('signLedgerTransaction', error);
 
-      throw error;
-    });
+        throw error;
+      });
   });
 }

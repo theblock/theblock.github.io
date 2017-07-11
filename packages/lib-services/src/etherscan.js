@@ -63,50 +63,52 @@ export default class Etherscan {
       sort: 'desc'
     });
 
-    return fetch(url, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json'
-      },
-      mode: 'cors'
-    })
-    .then((response: Response) => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
+    return fetch(
+      url,
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json'
+        },
+        mode: 'cors'
+      })
+      .then((response: Response) => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
 
-      return response.json();
-    })
-    .catch((error: Error) => {
-      console.error(url, error);
+        return response.json();
+      })
+      .catch((error: Error) => {
+        console.error(url, error);
 
-      return {
-        message: 'Not OK',
-        result: [],
-        status: ''
-      };
-    })
-    .then(({ status, message, result }: TxListResponseType) => {
-      if (message !== 'OK') {
-        return [];
-      }
+        return {
+          message: 'Not OK',
+          result: [],
+          status: ''
+        };
+      })
+      .then(({ status, message, result }: TxListResponseType) => {
+        if (message !== 'OK') {
+          return [];
+        }
 
-      return result.map(({ blockNumber, confirmations, from, gas, gasPrice, gasUsed, hash, input, timeStamp, to, value }: TxListItemType) => {
-        return ({
-          blockNumber: new BN(blockNumber),
-          confirmations: new BN(confirmations),
-          data: input,
-          from: formatAddress(from),
-          gasLimit: new BN(gas),
-          gasPrice: new BN(gasPrice),
-          gasUsed: new BN(gasUsed),
-          hash,
-          timeStamp: new Date(parseInt(timeStamp, 10) * 1000),
-          to: formatAddress(to),
-          value: new BN(value)
-        }: TransactionResultType);
+        return result.map(({ blockNumber, confirmations, from, gas, gasPrice, gasUsed, hash, input, timeStamp, to, value }: TxListItemType) => {
+          return ({
+            blockNumber: new BN(blockNumber),
+            confirmations: new BN(confirmations),
+            data: input,
+            from: formatAddress(from),
+            gasLimit: new BN(gas),
+            gasPrice: new BN(gasPrice),
+            gasUsed: new BN(gasUsed),
+            hash,
+            timeStamp: new Date(parseInt(timeStamp, 10) * 1000),
+            to: formatAddress(to),
+            value: new BN(value)
+          }: TransactionResultType);
+        });
       });
-    });
   }
 
   linkAddress (address: string): string {

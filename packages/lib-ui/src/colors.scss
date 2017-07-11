@@ -29,10 +29,11 @@ $labelWarningColor: #f80;
 $linkColor: #069;
 $naturalColor: #097;
 $navBackground: transparent;
-$navTopBackground: #f2f2f2;
-$navSubBackground: #fafafa;
-$navBorderColor: #ddd;
+$navTopBackground: hsla(0, 0%, 100%, 0.65);
+$navSubBackground: hsla(0, 0%, 100%, 0.75);
+$navBorderColor: hsla(0, 0%, 100%, 0.9);
 $radioColor: inherit;
+$sideBackground: #f2f2f2;
 
 $buttonBackground: $linkColor;
 $errorBackground: $labelErrorColor;

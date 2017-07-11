@@ -2,9 +2,9 @@
 // @flow
 
 import BN from 'bn.js';
-import createKeccakHash from 'keccak';
 
 import { ZERO_ETHER, NULL_ADDRESS } from './constants';
+import { createSha3Raw } from './sha3';
 import { isAddressValid } from './validate';
 
 export function formatAddress (_address: ?string): string {
@@ -18,7 +18,7 @@ export function formatAddress (_address: ?string): string {
     return NULL_ADDRESS;
   }
 
-  const hash: string = createKeccakHash('keccak256').update(address).digest().toString('hex');
+  const hash: string = createSha3Raw(address);
   let result: string = '';
 
   for (let index: number = 0; index < 40; index++) {

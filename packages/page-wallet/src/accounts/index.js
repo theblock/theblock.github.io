@@ -7,7 +7,9 @@ import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Field from '@theblock/lib-ui/src/field';
+import Form from '@theblock/lib-ui/src/form';
 import InputStatic from '@theblock/lib-ui/src/input/static';
+import QrCode from '@theblock/lib-ui/src/qrcode';
 import Select from '@theblock/lib-ui/src/input/select';
 
 import chains from '../store/chains';
@@ -33,51 +35,58 @@ function Accounts ({ className, t }: PropTypes): React.Element<any> {
       }
     >
       <section>
-        <Field>
-          <Interpolate
-            i18nKey='accounts:address.text'
-            parent='div'
-          />
+        <Form>
           <div>
-            <Select
-              displayKey
-              copyValue={ store.accounts.selected.key }
-              store={ store.accounts }
-            />
+            <Field>
+              <Interpolate
+                i18nKey='accounts:address.text'
+                parent='div'
+              />
+              <div>
+                <Select
+                  displayKey
+                  copyValue={ store.accounts.selected.key }
+                  store={ store.accounts }
+                />
+              </div>
+            </Field>
+            <Field>
+              <Interpolate
+                i18nKey='accounts:name.text'
+                parent='div'
+              />
+              <div>
+                <InputName
+                  account={ store.accounts.selected }
+                  onEditDone={ store.accounts.completedEdit }
+                />
+              </div>
+            </Field>
+            <Field>
+              <Interpolate
+                i18nKey='accounts:balance.text'
+                parent='div'
+              />
+              <div>
+                <InputStatic value={ store.balance.balanceFormatted } />
+                <Select store={ tokenStore } />
+              </div>
+            </Field>
+            <Field>
+              <Interpolate
+                i18nKey='accounts:value.text'
+                parent='div'
+              />
+              <div>
+                <InputStatic value={ store.balance.balanceFiatFormatted } />
+                <Select store={ currencyStore } />
+              </div>
+            </Field>
           </div>
-        </Field>
-        <Field>
-          <Interpolate
-            i18nKey='accounts:name.text'
-            parent='div'
-          />
-          <div>
-            <InputName
-              account={ store.accounts.selected }
-              onEditDone={ store.accounts.completedEdit }
-            />
-          </div>
-        </Field>
-        <Field>
-          <Interpolate
-            i18nKey='accounts:balance.text'
-            parent='div'
-          />
-          <div>
-            <InputStatic value={ store.balance.balanceFormatted } />
-            <Select store={ tokenStore } />
-          </div>
-        </Field>
-        <Field>
-          <Interpolate
-            i18nKey='accounts:value.text'
-            parent='div'
-          />
-          <div>
-            <InputStatic value={ store.balance.balanceFiatFormatted } />
-            <Select store={ currencyStore } />
-          </div>
-        </Field>
+          <aside>
+            <QrCode value={ store.accounts.selected.key } />
+          </aside>
+        </Form>
       </section>
       {
         store.hasTransactions
