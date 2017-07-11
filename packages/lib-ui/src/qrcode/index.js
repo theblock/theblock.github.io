@@ -4,6 +4,7 @@
 import qrcode from 'qrcode-generator';
 import React from 'react';
 
+import { calculateType } from './calc';
 import Html from '../html';
 
 type PropTypes = {
@@ -12,7 +13,7 @@ type PropTypes = {
 };
 
 export default function QrCode ({ className, value }: PropTypes): React.Element<any> {
-  const qr = qrcode(5, 'M');
+  const qr = qrcode(calculateType(value.length), 'M');
 
   qr.addData(value, 'Byte');
   qr.make();
