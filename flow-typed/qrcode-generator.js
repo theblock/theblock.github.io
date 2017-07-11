@@ -3,7 +3,7 @@
 
 declare module 'qrcode-generator' {
   declare var exports: (type: number, errorLevel: string) => {
-    addData: (data: any) => void;
+    addData: (data: any, type: string) => void;
     make: () => void;
     createImgTag: (cellSize?: number, margin?: number) => string;
   }

@@ -14,7 +14,7 @@ type PropTypes = {
 export default function QrCode ({ className, value }: PropTypes): React.Element<any> {
   const qr = qrcode(5, 'M');
 
-  qr.addData(value);
+  qr.addData(value, 'Byte');
   qr.make();
 
   return (
