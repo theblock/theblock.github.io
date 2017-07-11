@@ -14,7 +14,7 @@ const defaults: { seed: string } = getStorage(LS_BACKGROUND);
 class Store {
   @observable seed: string;
 
-  constructor (seed) {
+  constructor (seed: string) {
     this.setSeed(seed);
   }
 
