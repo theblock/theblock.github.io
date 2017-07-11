@@ -99,7 +99,16 @@ function Send ({ className, t }: PropTypes): React.Element<any> {
               </div>
             </Field>
           </div>
-          <aside />
+          <aside>
+            <Interpolate
+              i18nKey='help.overview'
+              parent='div'
+            />
+            <Interpolate
+              i18nKey='help.gas'
+              parent='div'
+            />
+          </aside>
         </Form>
       </section>
       <section>
