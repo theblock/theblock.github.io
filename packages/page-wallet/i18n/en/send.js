@@ -34,5 +34,9 @@ export default {
       label: 'I want to make this transfer',
       busy: 'Creating transaction'
     }
+  },
+  help: {
+    overview: 'Please review your originating and recipient addresses, the amount and well as the type of transfer carefully before making the transaction.',
+    gas: 'Generally you will not need to change the estimated gas or network gas price, but it can be optimised for faster or cheaper transactions. For contract calls that are only open after the current block, a specific limit should be set.'
   }
 };
