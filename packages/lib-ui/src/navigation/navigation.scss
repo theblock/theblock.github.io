@@ -9,9 +9,8 @@
 
   .subbar,
   .topbar {
-    // border-bottom: 1px solid $navBorderColor;
     display: flex;
-    padding: calc($borderWidth / 2) 1.618em;
+    padding: $borderWidth 1.618em;
 
     a {
       text-transform: uppercase;
