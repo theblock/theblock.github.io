@@ -1,7 +1,8 @@
 // GPLv3,  Copyright (C) 2017,  theBlock,  https://theblock.io
 // @flow
 
-// adpted from https://github.com/paritytech/parity/blob/1b36a381e80ce20f8bdd3dfc849434c7ed1a4496/js/src/ui/QrCode/qrSize.js
+// adpted, typed & simplified from
+// https://github.com/paritytech/parity/blob/1b36a381e80ce20f8bdd3dfc849434c7ed1a4496/js/src/ui/QrCode/qrSize.js
 
 type ErrorLevelType = 'L' | 'M' | 'H' | 'Q';
 type SizeType = {

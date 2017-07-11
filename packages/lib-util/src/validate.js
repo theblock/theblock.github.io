@@ -2,13 +2,13 @@
 // @flow
 
 import bip39 from 'bip39';
-import createKeccakHash from 'keccak';
 
 import { trimPhrase } from './format';
+import { createSha3Raw } from './sha3';
 
 export function isAddressChecksumValid (_address: string): boolean {
   const address: string = _address.replace('0x', '');
-  const hash: string = createKeccakHash('keccak256').update(address.toLowerCase()).digest().toString('hex');
+  const hash: string = createSha3Raw(address.toLowerCase());
 
   for (let index: number = 0; index < 40; index++) {
     const char: string = address[index];
