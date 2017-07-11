@@ -89,7 +89,22 @@ function Import ({ className, t }: PropTypes): React.Element<any> {
               </div>
             </Field>
           </div>
-          <aside />
+          <aside>
+            {
+              store.shouldShowPassword
+                ? (
+                  <Interpolate
+                    parent='div'
+                    i18nKey='help.password'
+                  />
+                )
+                : null
+            }
+            <Interpolate
+              parent='div'
+              i18nKey='help.storage'
+            />
+          </aside>
         </Form>
       </section>
       <section>

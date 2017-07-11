@@ -82,5 +82,9 @@ export default {
       label: 'I want to create this account',
       busy: 'Creating account'
     }
+  },
+  help: {
+    password: 'Select a strong password to encrypt your account. Any unauhorised access to your keyfile with a weak password may result in a loss of funds.',
+    storage: 'Accounts stored in session will not be available after a browser refresh. Accounts in bowser storage will be and should your machine be compromised, password encrypted keyfiles can be extracted.'
   }
 };

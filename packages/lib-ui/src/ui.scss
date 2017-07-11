@@ -14,7 +14,12 @@ aside {
   // background: $sideBackground;
   border-radius: $borderRadius;
   font-size: $sideFontSize;
+  opacity: 0.8;
   padding: 1.5em 1em;
+
+  > div+div {
+    margin-top: 1em;
+  }
 }
 
 body {
