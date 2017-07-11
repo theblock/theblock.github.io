@@ -24,6 +24,8 @@ export function createPatternStyle (seed?: string): StyleType {
     backgroundImage: `url(${Trianglify({
       height: 225,
       seed: seed || INITIAL_SEED,
+      stroke_color: '#ffffff',
+      stroke_width: 1,
       variance: 1,
       width: 1500
     }).png()})`,
