@@ -3,9 +3,12 @@
 
 // adpted from https://github.com/paritytech/parity/blob/1b36a381e80ce20f8bdd3dfc849434c7ed1a4496/js/src/ui/QrCode/qrSize.js
 
-const ErrorLevelType = 'L' | 'M' | 'H' | 'Q';
+type ErrorLevelType = 'L' | 'M' | 'H' | 'Q';
+type SizeType = {
+  [ErrorLevelType]: Array<number>
+}
 
-const QR_SIZES: { [ErrorLevelType]: Array<number> } = {
+const SIZES: SizeType = {
   'L': [
     19, 34, 55, 80, 108, 136, 156, 194, 232, 274, 324, 370, 428, 461, 523, 589, 647, 721, 795, 861, 932, 1006, 1094, 1174, 1276, 1370, 1468, 1531, 1631, 1735, 1843, 1955, 2071, 2191, 2306, 2434, 2566, 2702, 2812, 2956
   ],
@@ -20,11 +23,11 @@ const QR_SIZES: { [ErrorLevelType]: Array<number> } = {
   ]
 };
 
-export function calculateType (lengthBytes: number, errorLevel: ErrorLevelType = 'M'): number {
-  const sizes: Array<number> = QR_SIZES[errorLevel];
+export function calculateType (length: number, errorLevel: ErrorLevelType = 'M'): number {
+  const available: Array<number> = SIZES[errorLevel];
   let type: number = 5;
 
-  while (type < 40 && lengthBytes > sizes[type - 1] - 3) {
+  while (type < 40 && length > available[type - 1] - 3) {
     type++;
   }
 
