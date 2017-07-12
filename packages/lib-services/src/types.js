@@ -23,6 +23,10 @@ export type TransactionResultType = {
   value: BN
 };
 
+export type PriceResultType = {
+  [string]: BN
+};
+
 export type ExplorerInterface = {
   getTransactions (address: string): Promise<Array<TransactionResultType>>,
   linkAddress (address: string): string,

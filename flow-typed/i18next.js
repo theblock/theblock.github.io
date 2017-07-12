@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'i18next' {
-  declare var exports: {
+  declare module.exports: {
     init: ({ lng?: string, fallbackLng: string, resources: Object }) => Object;
     t: (key: string, values?: { [string]: any }) => string;
   }

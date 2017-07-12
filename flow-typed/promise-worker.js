@@ -7,4 +7,6 @@ declare module 'promise-worker' {
 
     postMessage: (data: { action: string, [string]: any }) => Promise<any>;
   }
+
+  declare module.exports: typeof PromiseWorker;
 }

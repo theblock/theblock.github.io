@@ -21,7 +21,7 @@
     "react-dropzone": "^3.13.2",
     "react-i18next": "^4.6.1",
     "react-tooltip": "^3.3.0",
-    "trianglify": "theblock/qrohlf-trianglify#8ea9b771362706050c6ef09c94917b240a672ec1"
+    "trianglify": "theblock/qrohlf-trianglify#575e43a672a43b1440ad34e01f110d092c58a01e"
   },
   "peerDependencies": {
     "@theblock/lib-util": "*"

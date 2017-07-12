@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import type { SignatureType } from '@theblock/lib-services/src/types';
+import type { PriceResultType, SignatureType } from '@theblock/lib-services/src/types';
 import type { AbiMethodType, DecodedDataType, ProviderInterface, ReceiptResultType, ReceiptOutputType, TxResultType, TxObjectType, TxOutputType } from './types';
 
 import { getTokenPrice } from '@theblock/lib-services/src/cryptocompare';
@@ -146,7 +146,7 @@ export default class Api {
       .then((result: ReceiptResultType) => formatOutputReceipt(result));
   }
 
-  getTokenPrice (token: string, currencies: Array<string>): Promise<BN> {
+  getTokenPrice (token: string, currencies: Array<string>): Promise<PriceResultType> {
     return getTokenPrice(token, currencies);
   }
 

@@ -39,11 +39,13 @@ type ChainType = {
   tokenName?: string,
 }
 
-export type SelectChainType = SelectableInterface & ChainType & {
+type ChainInstanceType = {
   api: Api,
   chainId: number,
   token: string
-}
+};
+
+export type SelectChainType = SelectableInterface & ChainType & ChainInstanceType;
 
 type ChainDefaultType = StorageValueType & {
   selectedKey: string;

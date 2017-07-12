@@ -2,5 +2,5 @@
 // @flow
 
 declare module 'lodash.compact' {
-  declare var exports: (Array<any>) => Array<any>;
+  declare module.exports: (Array<any>) => Array<any>;
 }

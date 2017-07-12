@@ -17,7 +17,7 @@ type NetworkType = { // eslint-disable-line
 };
 
 declare module 'bitcoinjs-lib' {
-  declare var exports: {
+  declare module.exports: {
     HDNode: {
       fromSeedHex: (seed: Buffer, network: NetworkType) => HDNodeType;
     },

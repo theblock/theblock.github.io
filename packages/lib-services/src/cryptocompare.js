@@ -4,9 +4,11 @@
 import BN from 'bn.js';
 import qs from 'query-string';
 
+import type { PriceResultType } from './types';
+
 type CacheType = {
   price: {
-    [string]: BN
+    [string]: PriceResultType
   }
 };
 
@@ -20,7 +22,7 @@ function createUrl (action: string, params: { [string]: string }): string {
   return `${URL}price?${qs.stringify(params)}`;
 }
 
-export function getTokenPrice (token: string, currencies: Array<string>): Promise<BN> {
+export function getTokenPrice (token: string, currencies: Array<string>): Promise<PriceResultType> {
   if (cache.price[token]) {
     return Promise.resolve(cache.price[token]);
   }
@@ -52,10 +54,10 @@ export function getTokenPrice (token: string, currencies: Array<string>): Promis
       return {};
     })
     .then((price: { [string]: number }) => {
-      cache.price[token] = currencies.reduce((result, currency) => {
+      cache.price[token] = (currencies.reduce((result, currency) => {
         result[currency] = new BN((price[currency] || 0) * 100);
         return result;
-      }, {});
+      }, {}): PriceResultType);
 
       return cache.price[token];
     });

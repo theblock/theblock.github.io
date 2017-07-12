@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'moment' {
-  declare var exports: (date: Date) => {
+  declare module.exports: (date: Date) => {
     fromNow: () => string
   }
 }

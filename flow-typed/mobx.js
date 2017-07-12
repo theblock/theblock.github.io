@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'mobx' {
-  declare var exports: {
+  declare module.exports: {
     action: (() => void) => void,
     autorun: (() => void) => void,
     computed: (() => mixed) => mixed,

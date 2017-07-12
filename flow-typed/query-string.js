@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'query-string' {
-  declare var exports: {
+  declare module.exports: {
     stringify: (any) => string;
   }
 }

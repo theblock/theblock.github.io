@@ -8,7 +8,7 @@ type IdnaOptionsType = { // eslint-disable-line
 };
 
 declare module 'idna-uts46' {
-  declare var exports: {
+  declare module.exports: {
     toUnicode: (name: string, options: IdnaOptionsType) => string;
   }
 }

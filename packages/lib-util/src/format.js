@@ -28,16 +28,10 @@ export function formatAddress (_address: ?string): string {
   return `0x${result}`;
 }
 
-export function formatFloat (value: BN | string, decimals?: number = 18, format?: number = decimals, fixed?: boolean = false): string {
+export function formatFloat (value: BN, decimals?: number = 18, format?: number = decimals, fixed?: boolean = false): string {
   let strValue: string;
 
-  if (BN.isBN(value)) {
-    strValue = (value: BN).toString(10);
-  } else {
-    const [pre, post = '0'] = value.toString().split('.');
-
-    strValue = pre + `${post}${ZERO_ETHER}`.substr(0, decimals);
-  }
+  strValue = (value: BN).toString(10);
 
   if (strValue.length < decimals) {
     strValue = `${ZERO_ETHER}${strValue}`.slice(-1 * decimals);

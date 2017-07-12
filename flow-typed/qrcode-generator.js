@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'qrcode-generator' {
-  declare var exports: (type: number, errorLevel: string) => {
+  declare module.exports: (type: number, errorLevel: string) => {
     addData: (data: any, type: string) => void;
     make: () => void;
     createImgTag: (cellSize?: number, margin?: number) => string;

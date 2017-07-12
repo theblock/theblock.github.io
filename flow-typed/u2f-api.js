@@ -4,7 +4,7 @@
 import type { U2FApiResultType } from '../src/types'; // eslint-disable-line
 
 declare module 'u2f-api' {
-  declare var exports: {
+  declare module.exports: {
     getApiVersion: ((version: Error | U2FApiResultType) => void, timeout?: number) => void
   }
 }
