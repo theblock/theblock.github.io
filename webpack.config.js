@@ -38,7 +38,14 @@ module.exports = {
   entry: PAGES.reduce(
     (result, page) => Object.assign(result, {
       [page]: `./src/${page}.js`
-    }), {}
+    }), {
+      'ethereum': [
+        'bip39', 'bitcoinjs-lib', 'blockies', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'idna-uts46', 'keythereum', 'ledgerco', 'trezor-connect'
+      ],
+      'vendor': [
+        'bn.js', 'keccak', 'lodash.compact', 'lz-string', 'qrcode-generator', 'react-i18next', 'query-string', 'u2f-api', 'trianglify'
+      ]
+    }
   ),
   resolve: {
     alias: Object
@@ -146,6 +153,8 @@ module.exports = {
           return count >= 2 && !(/^.*\.md$/).test(module.resource);
         },
         name: [
+          'ethereum',
+          'vendor',
           'common'
         ]
       }),
@@ -162,6 +171,8 @@ module.exports = {
     ],
     PAGES.map((page) => new HtmlPlugin({
       chunks: [
+        'ethereum',
+        'vendor',
         'common',
         page
       ],
