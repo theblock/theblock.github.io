@@ -34,28 +34,23 @@ export async function getTokenPrice (token: string, currencies: Array<string>): 
     return cache.price[token];
   }
 
-  const url: string = createUrl('price', {
+  cache.price[token] = {};
+
+  const response: Response = await fetch(createUrl('price', {
     fsym: token,
     tsyms: currencies.join(',')
-  });
-  const response: Response = await fetch(url, GET_HEADERS);
+  }), GET_HEADERS);
 
-  try {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-
-    const price: { [string]: number } = await response.json();
-
-    cache.price[token] = (currencies.reduce((result, currency) => {
-      result[currency] = new BN((price[currency] || 0) * 100);
-      return result;
-    }, {}): PriceResultType);
-
-    return cache.price[token];
-  } catch (error) {
-    console.error(url, error);
-
-    return {};
+  if (!response.ok) {
+    throw new Error(response.status);
   }
+
+  const price: { [string]: number } = await response.json();
+
+  cache.price[token] = (currencies.reduce((result, currency) => {
+    result[currency] = new BN((price[currency] || 0) * 100);
+    return result;
+  }, {}): PriceResultType);
+
+  return cache.price[token];
 }

@@ -4,7 +4,7 @@
 import BN from 'bn.js';
 
 export type SignatureType = {
-  method: string,
+  method: ?string,
   name: string,
   types: Array<string>
 };

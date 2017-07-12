@@ -4,7 +4,7 @@
 import type { SignatureType } from './types';
 
 export function decodeMethodString (method?: string): SignatureType {
-  if (!method.length) {
+  if (!method || !method.length) {
     return {
       method,
       name: '',

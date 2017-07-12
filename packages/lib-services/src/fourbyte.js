@@ -42,39 +42,32 @@ function createUrl (action: string, params: { [string]: string }): string {
 }
 
 export async function getMethodSignature (_signature: ?string): Promise<SignatureType> {
-  let signature = '0x';
-
-  if (_signature) {
-    signature = _signature.substr(0, 10) || '0x';
-  }
+  const signature: string = _signature
+    ? _signature.substr(0, 10) || '0x'
+    : '0x';
 
   if (cache.signatures[signature]) {
     return cache.signatures[signature];
   }
 
-  const url: string = createUrl('signatures', {
+  cache.signatures[signature] = decodeMethodString();
+
+  const response: Response = await fetch(createUrl('signatures', {
     hex_signature: signature
-  });
-  const response: Response = await fetch(url, GET_HEADERS);
+  }), GET_HEADERS);
 
-  try {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-
-    const { results }: SignatureResponseType = await response.json();
-    const value: SignatureType = decodeMethodString(
-      results.length
-        ? results[0].text_signature
-        : ''
-    );
-
-    cache.signatures[signature] = value;
-
-    return value;
-  } catch (error) {
-    console.error(url, error);
-
-    return decodeMethodString();
+  if (!response.ok) {
+    throw new Error(response.status);
   }
+
+  const { results }: SignatureResponseType = await response.json();
+  const value: SignatureType = decodeMethodString(
+    results.length
+      ? results[0].text_signature
+      : ''
+  );
+
+  cache.signatures[signature] = value;
+
+  return cache.signatures[signature];
 }

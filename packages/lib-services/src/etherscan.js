@@ -72,37 +72,31 @@ export default class Etherscan {
 
     const response: Response = await fetch(url, GET_HEADERS);
 
-    try {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-
-      const { message, result }: TxListResponseType = await response.json();
-
-      if (message !== 'OK') {
-        throw new Error(message);
-      }
-
-      return result.map(({ blockNumber, confirmations, from, gas, gasPrice, gasUsed, hash, input, timeStamp, to, value }: TxListItemType) => {
-        return ({
-          blockNumber: new BN(blockNumber),
-          confirmations: new BN(confirmations),
-          data: input,
-          from: formatAddress(from),
-          gasLimit: new BN(gas),
-          gasPrice: new BN(gasPrice),
-          gasUsed: new BN(gasUsed),
-          hash,
-          timeStamp: new Date(parseInt(timeStamp, 10) * 1000),
-          to: formatAddress(to),
-          value: new BN(value)
-        }: TransactionResultType);
-      });
-    } catch (error) {
-      console.error(url, error);
-
-      return [];
+    if (!response.ok) {
+      throw new Error(response.status);
     }
+
+    const { message, result }: TxListResponseType = await response.json();
+
+    if (message !== 'OK') {
+      throw new Error(message);
+    }
+
+    return result.map(({ blockNumber, confirmations, from, gas, gasPrice, gasUsed, hash, input, timeStamp, to, value }: TxListItemType) => {
+      return ({
+        blockNumber: new BN(blockNumber),
+        confirmations: new BN(confirmations),
+        data: input,
+        from: formatAddress(from),
+        gasLimit: new BN(gas),
+        gasPrice: new BN(gasPrice),
+        gasUsed: new BN(gasUsed),
+        hash,
+        timeStamp: new Date(parseInt(timeStamp, 10) * 1000),
+        to: formatAddress(to),
+        value: new BN(value)
+      }: TransactionResultType);
+    });
   }
 
   linkAddress (address: string): string {
