@@ -96,7 +96,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: /node_modules\/(ethereumjs-tx|idna-uts46)/,
+        include: /node_modules\/(ethereumjs-tx|ethjs-util|idna-uts46)/,
         loader: 'babel-loader'
       },
       {
