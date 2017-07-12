@@ -63,7 +63,6 @@ module.exports = {
       }, {
         'ethereumjs-tx': resolve('node_modules/ethereumjs-tx/index.js'),
         'ethereumjs-util': resolve('node_modules/ethereumjs-util/index.js'),
-        'ethjs-util': resolve('node_modules/ethjs-util/src/index.js'),
         'keccak/js': resolve('node_modules/keccak/js'),
         'keccak': resolve('node_modules/keccak/js'),
         'ledgerco': resolve('node_modules/ledgerco/src/index-browserify.js'),
@@ -96,7 +95,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: /node_modules\/(ethereumjs-tx|ethjs-util|idna-uts46)/,
+        include: /node_modules\/(ethereumjs-tx|idna-uts46)/,
         loader: 'babel-loader'
       },
       {
