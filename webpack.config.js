@@ -56,8 +56,10 @@ module.exports = {
         result[module] = path.resolve(__dirname, `packages/${module}`);
         return result;
       }, {
+        'keccak/js': path.resolve(__dirname, 'node_modules/keccak/js'),
         'keccak': path.resolve(__dirname, 'node_modules/keccak/js'),
         'ledgerco': path.resolve(__dirname, 'node_modules/ledgerco/src/index-browserify.js'),
+        'secp256k1/elliptic': path.resolve(__dirname, 'node_modules/secp256k1/elliptic'),
         'secp256k1': path.resolve(__dirname, 'node_modules/secp256k1/elliptic'),
         'u2f-api': path.resolve(__dirname, 'node_modules/ledgerco/src/u2f-api.js')
       }),
