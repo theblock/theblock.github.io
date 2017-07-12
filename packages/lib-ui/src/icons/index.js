@@ -8,7 +8,7 @@ import styles from './icons.scss';
 
 type PropTypes = {
   className?: string,
-  onClick?: (Event) => void,
+  onClick?: (Event) => mixed,
   style?: { [string]: string }
 };
 

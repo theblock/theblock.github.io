@@ -14,7 +14,7 @@ type PropTypes = {
   children?: React.Element<any>,
   className?: string,
   color?: PopupColorType,
-  onClose?: () => void,
+  onClose?: () => mixed,
   title?: string
 };
 

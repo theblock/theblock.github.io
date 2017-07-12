@@ -12,7 +12,7 @@ type PropTypes = {
   className?: string,
   isSelected?: boolean,
   item: SelectableInterface,
-  onSelect?: (event: Event, key: string) => void
+  onSelect?: (event: Event, key: string) => mixed
 };
 
 export default function Item ({ className, isSelected, item, onSelect }: PropTypes): React.Element<any> {

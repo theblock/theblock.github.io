@@ -27,7 +27,7 @@ type PropTypes = {
   isMaxWidth?: boolean,
   isWarning?: boolean,
   label?: string,
-  onChange?: (string) => void,
+  onChange?: (string) => mixed,
   hint?: string,
   store?: Store<SelectableInterface>,
   value: ?string,

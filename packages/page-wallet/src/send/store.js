@@ -184,7 +184,6 @@ export class SendStore {
       try {
         recipientAddress = await lookupEnsName(chainStore.selected.api, recipient);
       } catch (error) {
-        console.error(error);
       }
 
       this.decBusyLookup();

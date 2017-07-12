@@ -16,7 +16,7 @@ type PropTypes = {
   icon?: ?React.Element<any>,
   isError?: boolean,
   isWarning?: boolean,
-  onChange: (name: string, contents: string) => void,
+  onChange: (name: string, contents: string) => mixed,
   t: (string) => string,
   value?: ?string
 };

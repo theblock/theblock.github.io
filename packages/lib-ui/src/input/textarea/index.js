@@ -20,7 +20,7 @@ type PropTypes = {
   isReadOnly?: boolean,
   isWarning?: boolean,
   label?: string,
-  onChange?: (string) => void,
+  onChange?: (string) => mixed,
   rows?: number,
   value?: string,
   valueDisplay?: ?string,

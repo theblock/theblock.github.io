@@ -11,7 +11,7 @@ import styles from './errors.scss';
 export type ErrorType = {
   id?: string,
   message: string,
-  onClose?: () => void,
+  onClose?: () => mixed,
   title: string
 };
 

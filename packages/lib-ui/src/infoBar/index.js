@@ -8,7 +8,7 @@ import styles from './infoBar.scss';
 
 export type ErrorType = {
   message: string,
-  onClose?: () => void,
+  onClose?: () => mixed,
   title: string
 };
 
