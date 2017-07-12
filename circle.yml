@@ -1,8 +1,6 @@
 # GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 
 machine:
-  environment:
-    CXX: g++-4.8
   node:
     version: v8.1.0
 
