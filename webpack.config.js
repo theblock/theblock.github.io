@@ -162,12 +162,9 @@ module.exports = {
         minChunks: Infinity,
         name: [
           'ethereum',
-          'vendor'
+          'vendor',
+          'manifest'
         ]
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        minChunks: Infinity,
-        name: 'manifest'
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
@@ -182,8 +179,8 @@ module.exports = {
     ],
     PAGES.map((page) => new HtmlPlugin({
       chunks: [
-        'ethereum',
         'vendor',
+        'ethereum',
         'manifest',
         page
       ],
