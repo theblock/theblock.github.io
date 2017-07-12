@@ -3,7 +3,7 @@
 
 import type { SignatureType } from './types';
 
-export function decodeMethodString (method: string): SignatureType {
+export function decodeMethodString (method?: string): SignatureType {
   if (!method.length) {
     return {
       method,
