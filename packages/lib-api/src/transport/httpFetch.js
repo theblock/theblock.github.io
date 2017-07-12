@@ -15,17 +15,13 @@ export default class HttpFetchTransport extends BaseTransport {
     this.url = options.url || '';
   }
 
-  fetch (url: string, options: Object): Promise<any> {
-    return fetch(url, options)
-      .catch((error: Error) => {
-        throw new Error(`${this.url}: Error from transport: ${error.toString()}`);
-      })
-      .then((response: Response) => {
-        if (!response.ok) {
-          throw new Error(`${this.url}: Error from service: ${response.status}`);
-        }
+  async fetch (url: string, options: Object): Promise<any> {
+    const response: Response = await fetch(url, options);
 
-        return response.json();
-      });
+    if (!response.ok) {
+      throw new Error(`${this.url}: Error from service: ${response.status}`);
+    }
+
+    return response.json();
   }
 }

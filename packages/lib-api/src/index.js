@@ -57,190 +57,172 @@ export default class Api {
     return this._tokenInterface;
   }
 
-  call (tx: TxObjectType): Promise<string> {
-    return this
-      .send('eth_call', [
-        formatInputTx(tx),
-        'latest'
-      ])
-      .then((result: string) => result);
+  async call (tx: TxObjectType): Promise<string> {
+    const result: string = await this.send('eth_call', [
+      formatInputTx(tx),
+      'latest'
+    ]);
+
+    return result;
   }
 
-  estimateGas (tx: TxObjectType): Promise<BN> {
+  async estimateGas (tx: TxObjectType): Promise<BN> {
     tx.gasLimit = !tx.gasLimit || tx.gasLimit.isZero()
       ? ESTIMATE_GAS_INPUT
       : tx.gasLimit;
 
-    return this
-      .send('eth_estimateGas', [
-        formatInputTx(tx)
-      ])
-      .then((result: string) => fromHexToBn(result));
+    const result: string = await this.send('eth_estimateGas', [
+      formatInputTx(tx)
+    ]);
+
+    return fromHexToBn(result);
   }
 
-  getBlockNumber (): Promise<BN> {
-    return this
-      .send('eth_blockNumber', [])
-      .then((result: string) => fromHexToBn(result));
+  async getBlockNumber (): Promise<BN> {
+    const result: string = await this.send('eth_blockNumber', []);
+
+    return fromHexToBn(result);
   }
 
-  getChainId (): Promise<number> {
+  async getChainId (): Promise<number> {
     if (this._providerInterface.chainId !== 0) {
-      return Promise.resolve(this._providerInterface.chainId);
+      return this._providerInterface.chainId;
     } else if (this._chainId !== 0) {
-      return Promise.resolve(this._chainId);
+      return this._chainId;
     }
 
-    return this
-      .send('net_version', [])
-      .then((chainId: string) => {
-        this._chainId = parseInt(chainId, 10);
+    const chainId: string = await this.send('net_version', []);
 
-        return this._chainId;
-      });
+    this._chainId = parseInt(chainId, 10);
+
+    return this._chainId;
   }
 
-  getGasPrice (): Promise<BN> {
-    return this
-      .send('eth_gasPrice', [])
-      .then((result: string) => fromHexToBn(result));
+  async getGasPrice (): Promise<BN> {
+    const result: string = await this.send('eth_gasPrice', []);
+
+    return fromHexToBn(result);
   }
 
-  decodeData (hex: ?string): Promise<DecodedDataType> {
-    return getMethodSignature(hex)
-      .then(({ method, name, types }: SignatureType) => {
-        return {
-          method,
-          name,
-          types,
-          values: (name && types.length)
-            ? decodeData(types, hex, true)
-            : []
-        };
-      });
+  async decodeData (hex: ?string): Promise<DecodedDataType> {
+    const { method, name, types }: SignatureType = await getMethodSignature(hex);
+
+    return {
+      method,
+      name,
+      types,
+      values: (name && types.length)
+        ? decodeData(types, hex, true)
+        : []
+    };
   }
 
-  getNetworkBalance (address: string): Promise<BN> {
-    return this
-      .send('eth_getBalance', [
-        formatInputAddress(address),
-        'latest'
-      ])
-      .then((result: string) => fromHexToBn(result));
+  async getNetworkBalance (address: string): Promise<BN> {
+    const result: string = await this.send('eth_getBalance', [
+      formatInputAddress(address),
+      'latest'
+    ]);
+
+    return fromHexToBn(result);
   }
 
-  getNonce (address: ?string): Promise<BN> {
-    return this
-      .send('eth_getTransactionCount', [
-        formatInputAddress(address),
-        'latest'
-      ])
-      .then((result: string) => fromHexToBn(result));
+  async getNonce (address: ?string): Promise<BN> {
+    const result: string = await this.send('eth_getTransactionCount', [
+      formatInputAddress(address),
+      'latest'
+    ]);
+
+    return fromHexToBn(result);
   }
 
-  getReceipt (txHash: string): Promise<?ReceiptOutputType> {
-    return this
-      .send('eth_getTransactionReceipt', [
-        txHash
-      ])
-      .then((result: ReceiptResultType) => formatOutputReceipt(result));
+  async getReceipt (txHash: string): Promise<?ReceiptOutputType> {
+    const result: ReceiptResultType = await this.send('eth_getTransactionReceipt', [
+      txHash
+    ]);
+
+    return formatOutputReceipt(result);
   }
 
   getTokenPrice (token: string, currencies: Array<string>): Promise<PriceResultType> {
     return getTokenPrice(token, currencies);
   }
 
-  getTokenBalance (token: string, address: string): Promise<BN> {
-    try {
-      const from: string = formatInputAddress(address);
-      const method: AbiMethodType = this._tokenInterface.findMethod('balanceOf');
+  async getTokenBalance (token: string, address: string): Promise<BN> {
+    const from: string = formatInputAddress(address);
+    const method: AbiMethodType = this._tokenInterface.findMethod('balanceOf');
 
-      return this
-        .send('eth_call', [
-          {
-            to: formatInputAddress(token),
-            data: method.encode([formatInputAddress(from)])
-          },
-          'latest'
-        ])
-        .then((result: string) => (method.decode(result)[0]: BN));
-    } catch (error) {
-      return Promise.reject(error);
-    }
+    const result: string = await this.send('eth_call', [
+      {
+        to: formatInputAddress(token),
+        data: method.encode([formatInputAddress(from)])
+      },
+      'latest'
+    ]);
+
+    return (method.decode(result)[0]: BN);
   }
 
-  getTransaction (txHash: string): Promise<?TxOutputType> {
-    return this
-      .send('eth_getTransactionByHash', [
-        txHash
-      ])
-      .then((result: TxResultType) => formatOutputTx(result));
+  async getTransaction (txHash: string): Promise<?TxOutputType> {
+    const result: TxResultType = await this.send('eth_getTransactionByHash', [
+      txHash
+    ]);
+
+    return formatOutputTx(result);
   }
 
-  _estimateTxGasValues (tx: TxObjectType): Promise<TxObjectType> {
-    const _getGasPrice = () => {
-      return (!tx.gasPrice || tx.gasPrice.isZero())
-        ? this.getGasPrice().then((gasPrice) => [gasPrice, true])
-        : Promise.resolve([tx.gasPrice, false]);
-    };
+  async _estimateTxGasValues (tx: TxObjectType): Promise<TxObjectType> {
+    const [[gasPrice], [gasLimit, isLimitEstimated]] = await Promise.all([
+      async () => {
+        return (!tx.gasPrice || tx.gasPrice.isZero())
+          ? this.getGasPrice().then((gasPrice) => [gasPrice, true])
+          : [tx.gasPrice, false];
+      },
+      async () => {
+        return (!tx.gasLimit || tx.gasLimit.isZero())
+          ? this.estimateGas(tx).then((gasLimit) => [gasLimit, true])
+          : [tx.gasLimit, false];
+      }
+    ]);
 
-    const _getGasLimit = () => {
-      return (!tx.gasLimit || tx.gasLimit.isZero())
-        ? this.estimateGas(tx).then((gasLimit) => [gasLimit, true])
-        : Promise.resolve([tx.gasLimit, false]);
-    };
+    tx.gasPrice = gasPrice;
+    tx.gasLimit = isLimitEstimated && gasLimit.gt(BASE_GAS_LIMIT)
+      ? gasLimit.mul(BN125).divRound(BN100)
+      : gasLimit;
 
-    return Promise
-      .all([
-        _getGasPrice(),
-        _getGasLimit()
-      ])
-      .then(([[gasPrice], [gasLimit, isLimitEstimated]]) => {
-        tx.gasPrice = gasPrice;
-        tx.gasLimit = isLimitEstimated && gasLimit.gt(BASE_GAS_LIMIT)
-          ? gasLimit.mul(BN125).divRound(BN100)
-          : gasLimit;
-
-        return tx;
-      });
+    return tx;
   }
 
-  sendTokenTransaction (tokenAddress: string, tx: TxObjectType): Promise<string> {
-    try {
-      const method: AbiMethodType = this._tokenInterface.findMethod('transfer');
+  async sendTokenTransaction (tokenAddress: string, tx: TxObjectType): Promise<string> {
+    const method: AbiMethodType = this._tokenInterface.findMethod('transfer');
+    const result: string = await this.sendTransaction({
+      data: concatHex([
+        method.encode([tx.to, fromBnToHex(tx.value)]),
+        tx.data
+      ]),
+      from: tx.from,
+      gasLimit: tx.gasLimit,
+      gasPrice: tx.gasPrice,
+      to: tokenAddress,
+      value: new BN(0)
+    });
 
-      return this.sendTransaction({
-        data: concatHex([
-          method.encode([tx.to, fromBnToHex(tx.value)]),
-          tx.data
-        ]),
-        from: tx.from,
-        gasLimit: tx.gasLimit,
-        gasPrice: tx.gasPrice,
-        to: tokenAddress,
-        value: new BN(0)
-      });
-    } catch (error) {
-      return Promise.reject(error);
-    }
+    return result;
   }
 
-  sendTransaction (tx: TxObjectType): Promise<string> {
-    return this
-      ._estimateTxGasValues(tx)
-      .then((tx: TxObjectType) => {
-        return this.send('eth_sendTransaction', [
-          formatInputTx(tx)
-        ]);
-      })
-      .then((result: string) => result);
+  async sendTransaction (_tx: TxObjectType): Promise<string> {
+    const tx: TxObjectType = await this._estimateTxGasValues(_tx);
+    const result: string = await this.send('eth_sendTransaction', [
+      formatInputTx(tx)
+    ]);
+
+    return result;
   }
 
-  sendRawTransaction (rawTx: string): Promise<string> {
-    return this
-      .send('eth_sendRawTransaction', [
-        rawTx
-      ])
-      .then((result: string) => result);
+  async sendRawTransaction (rawTx: string): Promise<string> {
+    const result: string = await this.send('eth_sendRawTransaction', [
+      rawTx
+    ]);
+
+    return result;
   }
 }

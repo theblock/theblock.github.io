@@ -8,18 +8,17 @@ import HttpFetchTransport from '../transport/httpFetch';
 export default class JsonRpcProvider extends HttpFetchTransport implements ProviderInterface {
   id: number = 0;
 
-  send (method: string, params: Array<any>, callback: ProviderCallbackType): void {
-    this
-      .post(method, params)
-      .then((result: any) => {
-        callback(null, result);
-      })
-      .catch((error: Error) => {
-        callback(error, null);
-      });
+  async send (method: string, params: Array<any>, callback: ProviderCallbackType): Promise<void> {
+    try {
+      const result: any = await this.post(method, params);
+
+      callback(null, result);
+    } catch (error) {
+      callback(error, null);
+    }
   }
 
-  post (method: string, params: Array<any>): Promise<any> {
+  async post (method: string, params: Array<any>): Promise<any> {
     const body = JSON.stringify({
       id: this.id++,
       jsonrpc: '2.0',
@@ -27,23 +26,21 @@ export default class JsonRpcProvider extends HttpFetchTransport implements Provi
       params
     });
 
-    return this
-      .fetch(this.url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Content-Length': body.length
-        },
-        mode: 'cors',
-        body
-      })
-      .then((response: JsonRpcResponse) => {
-        if (response.error) {
-          throw new Error(response.error.message);
-        }
+    const { error, result }: JsonRpcResponse = await this.fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Content-Length': body.length
+      },
+      mode: 'cors',
+      body
+    });
 
-        return response.result;
-      });
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return result;
   }
 }

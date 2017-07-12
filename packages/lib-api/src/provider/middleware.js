@@ -23,7 +23,7 @@ export default class MiddlewareProvider implements ProviderInterface {
     MiddlewareProvider.handlers[method] = handler;
   }
 
-  send (method: string, params: Array<any>, callback: ProviderCallbackType): void {
+  async send (method: string, params: Array<any>, callback: ProviderCallbackType): Promise<void> {
     const _callback = (error: ?Error, result: ?any) => {
       if (error) {
         console.error(method, params, error);
