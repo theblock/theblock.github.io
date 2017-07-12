@@ -40,10 +40,10 @@ module.exports = {
       [page]: `./src/${page}.js`
     }), {
       'ethereum': [
-        'bip39', 'bitcoinjs-lib', 'blockies', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'idna-uts46', 'keythereum', 'ledgerco', 'trezor-connect'
+        'bip39', 'bitcoinjs-lib', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keythereum'
       ],
       'vendor': [
-        'bn.js', 'keccak', 'lodash.compact', 'lz-string', 'qrcode-generator', 'react-i18next', 'query-string', 'u2f-api', 'trianglify'
+        'bn.js', 'blockies', 'idna-uts46', 'keccak', 'ledgerco', 'lodash.compact', 'lz-string', 'qrcode-generator', 'react-i18next', 'query-string', 'trezor-connect', 'u2f-api', 'trianglify'
       ]
     }
   ),
