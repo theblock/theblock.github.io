@@ -48,7 +48,7 @@ module.exports = {
         'blockies', 'bn.js', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keccak', 'keythereum', 'secp256k1'
       ],
       'vendor': [
-        'bip39', 'bip66', 'bitcoinjs-lib', 'ledgerco', 'moment', 'trezor-connect', 'u2f-api'
+        'bip39', 'bip66', 'bitcoinjs-lib', 'ledgerco', 'trezor-connect', 'u2f-api'
       ]
     }
   ),
@@ -61,7 +61,9 @@ module.exports = {
         result[module] = resolve(`packages/${module}`);
         return result;
       }, {
-        'ethereumjs-util': resolve('node_modules/ethereumjs-util'),
+        'ethereumjs-tx': resolve('node_modules/ethereumjs-tx/index.js'),
+        'ethereumjs-util': resolve('node_modules/ethereumjs-util/index.js'),
+        'ethjs-util': resolve('node_modules/ethjs-util/src/index.js'),
         'keccak/js': resolve('node_modules/keccak/js'),
         'keccak': resolve('node_modules/keccak/js'),
         'ledgerco': resolve('node_modules/ledgerco/src/index-browserify.js'),
