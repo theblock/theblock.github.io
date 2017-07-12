@@ -19,7 +19,6 @@
     "start": "NODE_ENV=development webpack-dev-server --progress",
     "stats": "npm-run-all --serial stats:*",
     "stats:coverage": "NOD_ENV=test jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "stats:size": "webpack --json | webpack-bundle-size-analyzer",
     "test": "NOD_ENV=test jest",
     "watch": "npm-run-all --parallel watch:*",
     "watch:jsflow": "flow-watch --ignore node_modules/ --watch .flowconfig",
