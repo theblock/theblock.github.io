@@ -152,6 +152,7 @@ module.exports = {
         NODE_ENV: 'development',
         BLOG_ENTRIES: BLOG_ENTRIES.join(',')
       }),
+      new webpack.optimize.OccurrenceOrderPlugin(true),
       new webpack.optimize.CommonsChunkPlugin({
         minChunks: (module, count) => {
           return count >= 2 && !(/^.*\.md$/).test(module.resource);
