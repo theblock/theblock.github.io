@@ -40,7 +40,7 @@ module.exports = {
       [page]: `./src/${page}.js`
     }), {
       'ethereum': [
-        'bip39', 'bitcoinjs-lib', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keythereum'
+        'bip39', 'bip66', 'bitcoinjs-lib', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keythereum', 'secp256k1'
       ],
       'vendor': [
         'bn.js', 'blockies', 'idna-uts46', 'keccak', 'ledgerco', 'lodash.compact', 'lz-string', 'qrcode-generator', 'react-i18next', 'query-string', 'trezor-connect', 'u2f-api', 'trianglify'
@@ -56,7 +56,9 @@ module.exports = {
         result[module] = path.resolve(__dirname, `packages/${module}`);
         return result;
       }, {
+        'keccak': path.resolve(__dirname, 'node_modules/keccak/js'),
         'ledgerco': path.resolve(__dirname, 'node_modules/ledgerco/src/index-browserify.js'),
+        'secp256k1': path.resolve(__dirname, 'node_modules/secp256k1/elliptic'),
         'u2f-api': path.resolve(__dirname, 'node_modules/ledgerco/src/u2f-api.js')
       }),
     descriptionFiles: [
