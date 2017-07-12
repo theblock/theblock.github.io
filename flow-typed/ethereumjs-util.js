@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'ethereumjs-util' {
-  declare var exports: {
+  declare module.exports: {
     privateToPublic: (privBuf: Buffer | Array<number>) => Array<number>;
     publicToAddress: (pubBuf: Buffer | Array<number>, compressed?: boolean) => Array<number>;
   }

@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'bip39' {
-  declare var exports: {
+  declare module.exports: {
     mnemonicToSeed: (mnemonic: string) => Buffer;
     validateMnemonic: (mnemonic: string) => boolean;
   }

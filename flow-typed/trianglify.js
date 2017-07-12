@@ -6,7 +6,7 @@ type TriOptionsType = { // eslint-disable-line
 };
 
 declare module 'trianglify' {
-  declare var exports: (options: TriOptionsType) => {
+  declare module.exports: (options: TriOptionsType) => {
     png (): string;
   }
 }

@@ -5,7 +5,7 @@ type DigestType = 'hex'; // eslint-disable-line
 type KeccakType = 'keccak256'; // eslint-disable-line
 
 declare module 'keccak' {
-  declare var exports: (type: KeccakType) => {
+  declare module.exports: (type: KeccakType) => {
     update: (value: Buffer | string) => {
       digest: () => Buffer;
     }

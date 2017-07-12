@@ -4,7 +4,7 @@
 import type { PrivateKeyType, UnencrypedKeyType } from '../packages/lib-util/src/types'; // eslint-disable-line
 
 declare module 'keythereum' {
-  declare var exports: {
+  declare module.exports: {
     crypto: {
       randomBytes: (number) => Buffer
     },

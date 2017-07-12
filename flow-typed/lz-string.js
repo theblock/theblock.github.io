@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'lz-string' {
-  declare var exports: {
+  declare module.exports: {
     compressToUTF16: (string) => string;
     decompressFromUTF16: (string) => string;
   }

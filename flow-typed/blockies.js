@@ -2,7 +2,7 @@
 // @flow
 
 declare module 'blockies' {
-  declare var exports: (struct: { scale: number, seed: string, size: number }) => {
+  declare module.exports: (struct: { scale: number, seed: string, size: number }) => {
     toDataURL: (type: string) => string
   }
 }

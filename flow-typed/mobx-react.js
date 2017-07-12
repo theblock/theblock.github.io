@@ -4,7 +4,7 @@
 import React from 'react'; // eslint-disable-line
 
 declare module 'mobx-react' {
-  declare var exports: {
+  declare module.exports: {
     observer: (React.Element<any>) => React.Element<any>
   };
 }

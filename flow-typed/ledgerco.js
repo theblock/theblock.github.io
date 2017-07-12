@@ -10,6 +10,6 @@ declare module 'ledgerco' {
 
   declare module.exports: {
     comm_u2f: U2FCommsType;
-    eth: Eth;
+    eth: typeof Eth;
   }
 }
