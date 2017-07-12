@@ -179,8 +179,8 @@ module.exports = {
     ],
     PAGES.map((page) => new HtmlPlugin({
       chunks: [
-        'vendor',
         'ethereum',
+        'vendor',
         'manifest',
         page
       ],
