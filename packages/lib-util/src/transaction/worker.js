@@ -5,15 +5,15 @@ import registerPromiseWorker from 'promise-worker/register';
 
 import { signTransaction } from './transaction';
 
-registerPromiseWorker(function (data) {
+registerPromiseWorker(async function (data) {
   switch (data.action) {
     case 'init':
-      return Promise.resolve(true);
+      return true;
 
     case 'signTransaction':
       return signTransaction(data.transaction, data.privateKey);
 
     default:
-      return Promise.reject(new Error(`worker:transaction unkown action ${data.action}`));
+      throw new Error(`worker:transaction unkown action ${data.action}`);
   }
 });

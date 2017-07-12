@@ -5,10 +5,10 @@ import registerPromiseWorker from 'promise-worker/register';
 
 import { createKeyObject, decryptPrivateKey, newKeyObject } from './keys';
 
-registerPromiseWorker(function (data) {
+registerPromiseWorker(async function (data) {
   switch (data.action) {
     case 'init':
-      return Promise.resolve(true);
+      return true;
 
     case 'createKeyObject':
       return createKeyObject(data.privateKey, data.password);
@@ -20,6 +20,6 @@ registerPromiseWorker(function (data) {
       return newKeyObject(data.password);
 
     default:
-      return Promise.reject(new Error(`worker:keys unkown action ${data.action}`));
+      throw new Error(`worker:keys unkown action ${data.action}`);
   }
 });
