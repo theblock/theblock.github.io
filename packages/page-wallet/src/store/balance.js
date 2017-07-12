@@ -4,6 +4,8 @@
 import BN from 'bn.js';
 import { action, autorun, computed, observable } from 'mobx';
 
+import type { PriceResultType } from '@theblock/lib-services/src/types';
+
 import { fromFloatToBn } from '@theblock/lib-util/src/convert';
 import { formatFloat } from '@theblock/lib-util/src/format';
 
@@ -57,7 +59,7 @@ export class BalanceStore {
     if (this.tokens.selected && this.currencies.selected) {
       this.chains.selected.api
         .getTokenPrice(this.tokens.selected.token, this.currencies.all)
-        .then((prices) => {
+        .then((prices: PriceResultType) => {
           this.setTokenFiatPrice(prices[this.currencies.selected.key]);
         })
         .catch((error) => {

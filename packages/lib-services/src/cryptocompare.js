@@ -4,12 +4,12 @@
 import BN from 'bn.js';
 import qs from 'query-string';
 
-type PriceType = {
-  [string]: BN
-};
+import type { PriceResultType } from './types';
 
 type CacheType = {
-  price: PriceType
+  price: {
+    [string]: PriceResultType
+  }
 };
 
 const URL: string = 'https://min-api.cryptocompare.com/data/';
@@ -22,7 +22,7 @@ function createUrl (action: string, params: { [string]: string }): string {
   return `${URL}price?${qs.stringify(params)}`;
 }
 
-export function getTokenPrice (token: string, currencies: Array<string>): Promise<BN> {
+export function getTokenPrice (token: string, currencies: Array<string>): Promise<PriceResultType> {
   if (cache.price[token]) {
     return Promise.resolve(cache.price[token]);
   }
@@ -54,10 +54,10 @@ export function getTokenPrice (token: string, currencies: Array<string>): Promis
       return {};
     })
     .then((price: { [string]: number }) => {
-      cache.price[token] = currencies.reduce((result, currency): PriceType => {
+      cache.price[token] = (currencies.reduce((result, currency) => {
         result[currency] = new BN((price[currency] || 0) * 100);
         return result;
-      }, ({}: PriceType));
+      }, {}): PriceResultType);
 
       return cache.price[token];
     });
