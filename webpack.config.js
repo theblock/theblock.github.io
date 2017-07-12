@@ -20,6 +20,10 @@ const VERSION = isProduction
   : 'development';
 const HASH_PATH = `y/z/${VERSION}/[name]`; // [name]/[chunkhash] or [hash]/[name]
 
+function resolve (modulePath) {
+  return path.resolve(__dirname, modulePath);
+}
+
 module.exports = {
   output: {
     chunkFilename: `${HASH_PATH}.js`,
@@ -43,7 +47,7 @@ module.exports = {
         'bip39', 'bip66', 'bitcoinjs-lib', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keythereum', 'secp256k1'
       ],
       'vendor': [
-        'bn.js', 'blockies', 'idna-uts46', 'keccak', 'ledgerco', 'lodash.compact', 'lz-string', 'qrcode-generator', 'react-i18next', 'query-string', 'trezor-connect', 'u2f-api', 'trianglify'
+        'bn.js', 'blockies', 'i18next', 'idna-uts46', 'keccak', 'ledgerco', 'lodash.compact', 'lz-string', 'mobx', 'mobx-react', 'moment', 'qrcode-generator', 'react', 'react-dom', 'react-i18next', 'query-string', 'trezor-connect', 'u2f-api', 'trianglify'
       ]
     }
   ),
@@ -53,15 +57,16 @@ module.exports = {
       .filter((module) => /^@theblock\//.test(module))
       .map((module) => module.replace('@theblock', ''))
       .reduce((result, module) => {
-        result[module] = path.resolve(__dirname, `packages/${module}`);
+        result[module] = resolve(`packages/${module}`);
         return result;
       }, {
-        'keccak/js': path.resolve(__dirname, 'node_modules/keccak/js'),
-        'keccak': path.resolve(__dirname, 'node_modules/keccak/js'),
-        'ledgerco': path.resolve(__dirname, 'node_modules/ledgerco/src/index-browserify.js'),
-        'secp256k1/elliptic': path.resolve(__dirname, 'node_modules/secp256k1/elliptic'),
-        'secp256k1': path.resolve(__dirname, 'node_modules/secp256k1/elliptic'),
-        'u2f-api': path.resolve(__dirname, 'node_modules/ledgerco/src/u2f-api.js')
+        'ethereumjs-util': resolve('node_modules/ethereumjs-util'),
+        'keccak/js': resolve('node_modules/keccak/js'),
+        'keccak': resolve('node_modules/keccak/js'),
+        'ledgerco': resolve('node_modules/ledgerco/src/index-browserify.js'),
+        'secp256k1/elliptic': resolve('node_modules/secp256k1/elliptic'),
+        'secp256k1': resolve('node_modules/secp256k1/elliptic'),
+        'u2f-api': resolve('node_modules/ledgerco/src/u2f-api.js')
       }),
     descriptionFiles: [
       'package.json'
@@ -154,14 +159,15 @@ module.exports = {
       }),
       new webpack.optimize.OccurrenceOrderPlugin(true),
       new webpack.optimize.CommonsChunkPlugin({
-        minChunks: (module, count) => {
-          return count >= 2 && !(/^.*\.md$/).test(module.resource);
-        },
+        minChunks: Infinity,
         name: [
           'ethereum',
-          'vendor',
-          'common'
+          'vendor'
         ]
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        minChunks: Infinity,
+        name: 'manifest'
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
@@ -178,7 +184,7 @@ module.exports = {
       chunks: [
         'ethereum',
         'vendor',
-        'common',
+        'manifest',
         page
       ],
       filename: `${page}/index.html`,

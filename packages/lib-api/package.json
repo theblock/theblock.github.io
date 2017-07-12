@@ -8,7 +8,8 @@
   "devDependencies": {
   },
   "dependencies": {
-    "ethereumjs-abi": "^0.6.4"
+    "ethereumjs-abi": "^0.6.4",
+    "ethereumjs-util": "^5.1.2"
   },
   "peerDependencies": {
     "@theblock/lib-services": "*",
