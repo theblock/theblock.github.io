@@ -6,7 +6,7 @@ import type { TrezorPubKeyResultType, TrezorSignResultType } from '../packages/l
 declare module 'trezor-connect' {
   declare var exports: {
     TrezorConnect: {
-      signEthereumTx: (path: string, nonce: string, gasPrice: string, gasLimit: string, to: string, value: string, data: string, chainId: number, (result: TrezorSignResultType) => void) => void;
+      signEthereumTx: (path: string, nonce: string, gasPrice: string, gasLimit: string, to: string, value: string, data: ?string, chainId: number, (result: TrezorSignResultType) => void) => void;
       getXPubKey: (path: string, (result: TrezorPubKeyResultType) => void, version: string) => void;
     }
   };
