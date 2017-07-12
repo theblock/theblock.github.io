@@ -14,7 +14,7 @@ dependencies:
     - sudo apt-get install libusb-1.0-0 libusb-1.0-0-dev
   override:
     - npm run delete:modules
-    - npm install
+    - npm run install:modules
     - npm list || true
 
 test:
