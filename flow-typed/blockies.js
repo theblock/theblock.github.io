@@ -3,6 +3,6 @@
 
 declare module 'blockies' {
   declare var exports: (struct: { scale: number, seed: string, size: number }) => {
-    toDataURL: () => string
+    toDataURL: (type: string) => string
   }
 }

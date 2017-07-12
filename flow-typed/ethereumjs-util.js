@@ -3,7 +3,7 @@
 
 declare module 'ethereumjs-util' {
   declare var exports: {
-    privateToPublic: (Buffer | Array<number>) => Array<number>;
-    publicToAddress: (Buffer | Array<number>) => Array<number>;
+    privateToPublic: (privBuf: Buffer | Array<number>) => Array<number>;
+    publicToAddress: (pubBuf: Buffer | Array<number>, compressed?: boolean) => Array<number>;
   }
 }
