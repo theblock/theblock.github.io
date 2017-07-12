@@ -172,16 +172,12 @@ export default class Api {
 
   async _estimateTxGasValues (tx: TxObjectType): Promise<TxObjectType> {
     const [[gasPrice], [gasLimit, isLimitEstimated]] = await Promise.all([
-      async () => {
-        return (!tx.gasPrice || tx.gasPrice.isZero())
-          ? this.getGasPrice().then((gasPrice) => [gasPrice, true])
-          : [tx.gasPrice, false];
-      },
-      async () => {
-        return (!tx.gasLimit || tx.gasLimit.isZero())
-          ? this.estimateGas(tx).then((gasLimit) => [gasLimit, true])
-          : [tx.gasLimit, false];
-      }
+      (!tx.gasPrice || tx.gasPrice.isZero())
+        ? this.getGasPrice().then((gasPrice) => [gasPrice, true])
+        : [tx.gasPrice, false],
+      (!tx.gasLimit || tx.gasLimit.isZero())
+        ? this.estimateGas(tx).then((gasLimit) => [gasLimit, true])
+        : [tx.gasLimit, false]
     ]);
 
     tx.gasPrice = gasPrice;

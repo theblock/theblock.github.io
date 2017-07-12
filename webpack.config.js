@@ -96,7 +96,17 @@ module.exports = {
       {
         test: /\.js$/,
         include: /node_modules\/(ethereumjs-tx|idna-uts46)/,
-        loader: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              'transform-runtime'
+            ],
+            presets: [
+              'es2015'
+            ]
+          }
+        }
       },
       {
         test: /worker\.js$/,
