@@ -7,6 +7,7 @@ const fs = require('fs');
 const HtmlPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const pkgjson = require('./package.json');
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -44,10 +45,10 @@ module.exports = {
       [page]: `./src/${page}.js`
     }), {
       'ethereum': [
-        'bip39', 'bip66', 'bitcoinjs-lib', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keythereum', 'secp256k1'
+        'blockies', 'bn.js', 'ethereumjs-abi', 'ethereumjs-tx', 'ethereumjs-util', 'keccak', 'keythereum', 'secp256k1'
       ],
       'vendor': [
-        'bn.js', 'blockies', 'i18next', 'idna-uts46', 'keccak', 'ledgerco', 'lodash.compact', 'lz-string', 'mobx', 'mobx-react', 'moment', 'qrcode-generator', 'react', 'react-dom', 'react-i18next', 'query-string', 'trezor-connect', 'u2f-api', 'trianglify'
+        'bip39', 'bip66', 'bitcoinjs-lib', 'ledgerco', 'moment', 'trezor-connect', 'u2f-api'
       ]
     }
   ),
@@ -159,6 +160,16 @@ module.exports = {
       }),
       new webpack.optimize.OccurrenceOrderPlugin(true),
       new webpack.optimize.CommonsChunkPlugin({
+        minChunks: (module, count) => {
+          const isMarkdown = /^.*\.md$/.test(module.resource);
+          const isPopular = count >= 2;
+
+          return isPopular && !isMarkdown;
+        },
+        name: 'common',
+        chunks: PAGES
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
         minChunks: Infinity,
         name: [
           'ethereum',
@@ -167,6 +178,14 @@ module.exports = {
         ]
       }),
       new webpack.optimize.ModuleConcatenationPlugin(),
+      !isProduction && new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        analyzerPort: 8088,
+        reportFilename: 'report.html',
+        openAnalyzer: true,
+        generateStatsFile: false,
+        statsFilename: 'stats.json'
+      }),
       new ExtractTextPlugin({
         filename: `${HASH_PATH}.css`
       }),
@@ -179,6 +198,7 @@ module.exports = {
     ],
     PAGES.map((page) => new HtmlPlugin({
       chunks: [
+        'common',
         'ethereum',
         'vendor',
         'manifest',
