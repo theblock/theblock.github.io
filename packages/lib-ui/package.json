@@ -10,6 +10,7 @@
   "dependencies": {
     "blockies": "^0.0.2",
     "i18next": "^8.4.2",
+    "jdenticon": "theblock/dmester-jdenticon#e06f30a93a34d50ece871e3bf5cff54215912c16",
     "lodash.compact": "^3.0.1",
     "mobx": "^3.1.16",
     "mobx-react": "^4.2.2",

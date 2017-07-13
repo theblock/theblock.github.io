@@ -29,6 +29,7 @@ Handled as a mono-repo, all library packages and pages are within the [packages/
 |[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/page-404)](https://david-dm.org/theblock/theblock.github.io?path=packages/page-404)|[page&#x2011;404](packages/page-404)|The 404 page.|
 |[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/page-blog)](https://david-dm.org/theblock/theblock.github.io?path=packages/page-blog)|[page&#x2011;blog](packages/page-blog)|The blog and all blog entries.|
 |[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/page-home)](https://david-dm.org/theblock/theblock.github.io?path=packages/page-home)|[page&#x2011;home](packages/page-home)|The main landing page.|
+|[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/page-settings)](https://david-dm.org/theblock/theblock.github.io?path=packages/page-settings)|[page&#x2011;settings](packages/page-settings)|Settings that affect the overall operation of the applications.|
 |[![David](https://david-dm.org/theblock/theblock.github.io/status.svg?path=packages/page-wallet)](https://david-dm.org/theblock/theblock.github.io?path=packages/page-wallet)|[page&#x2011;wallet](packages/page-wallet)|Where all the Wallet magic happens. A basic Ethereum wallet that includes account management, account details and transactions.|
 
 _[GPLv3](LICENSE), Copyright (C) 2017, theBlock, [https://theblock.io](https://theblock.io)_

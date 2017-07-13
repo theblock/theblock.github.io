@@ -7,6 +7,7 @@ import React from 'react';
 import { translate } from 'react-i18next';
 
 import Errors from '@theblock/lib-ui/src/errors';
+import Fingerprint from '@theblock/lib-ui/src/fingerprint';
 import InfoBar from '@theblock/lib-ui/src/infoBar';
 
 import injectHandlers from './handlers';
@@ -33,6 +34,7 @@ function Wallet ({ className, t }: PropTypes): React.Element<any> {
         ]).join(' ')
       }
     >
+      <Fingerprint />
       <InfoBar>
         <Errors errors={ errorStore.errors } />
         <Transactions />

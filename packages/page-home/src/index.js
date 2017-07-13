@@ -5,6 +5,7 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { translate } from 'react-i18next';
 
+import Fingerprint from '@theblock/lib-ui/src/fingerprint';
 import Footer from '@theblock/lib-ui/src/footer';
 import Navigation from '@theblock/lib-ui/src/navigation';
 
@@ -24,6 +25,7 @@ function Home ({ className, t }: PropTypes): React.Element<any> {
         ]).join(' ')
       }
     >
+      <Fingerprint />
       <div className={ styles.base }>
         <Navigation />
         <div className={ styles.overlay }>

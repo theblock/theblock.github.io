@@ -1,0 +1,27 @@
+// GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
+
+.root {
+  .patterns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .pattern {
+      border: 0.2em solid transparent;
+      border-radius: 0.25em;
+      box-sizing: border-box;
+      cursor: pointer;
+      flex: 0 0 33%;
+      height: 6.5em;
+      opacity: 0.7;
+
+      &.selected {
+        border-color: #097;
+      }
+
+      &:hover {
+        border-color: #069;
+      }
+    }
+  }
+}

@@ -94,6 +94,7 @@
     "@theblock/page-404": "file:packages/page-404",
     "@theblock/page-blog": "file:packages/page-blog",
     "@theblock/page-home": "file:packages/page-home",
+    "@theblock/page-settings": "file:packages/page-settings",
     "@theblock/page-wallet": "file:packages/page-wallet",
     "babel-runtime": "^6.23.0",
     "lodash.flatten": "^4.4.0",

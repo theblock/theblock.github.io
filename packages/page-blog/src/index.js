@@ -4,6 +4,7 @@
 import compact from 'lodash.compact';
 import React from 'react';
 
+import Fingerprint from '@theblock/lib-ui/src/fingerprint';
 import Navigation from '@theblock/lib-ui/src/navigation';
 
 import Summary from './summary';
@@ -27,6 +28,7 @@ export default function Blog ({ className, summaries }: PropTypes): ?React.Eleme
         ]).join(' ')
       }
     >
+      <Fingerprint />
       <Navigation />
       <main>
         {

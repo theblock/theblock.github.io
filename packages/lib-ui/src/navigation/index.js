@@ -12,7 +12,7 @@ import Language from '../language';
 
 import styles from './navigation.scss';
 
-const LINKS: Array<string> = ['home', 'blog', 'wallet'];
+const LINKS: Array<string> = ['home', 'blog', 'wallet', 'settings'];
 
 type PropTypes = {
   children?: React.Element<any>,
