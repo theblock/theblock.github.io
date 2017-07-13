@@ -11,14 +11,14 @@ import { removeHexPrefix } from '@theblock/lib-util/src/format';
 import Html from '../../html';
 import store from '../pattern/store';
 
-import styles from './hash.scss';
+import styles from './fingerprint.scss';
 
 type PropTypes = {
   className?: string,
   seed?: string
 };
 
-function ImgHash ({ className, seed }: PropTypes): ?React.Element<any> {
+function ImgFingerprint ({ className, seed }: PropTypes): ?React.Element<any> {
   return (
     <Html
       className={
@@ -33,4 +33,4 @@ function ImgHash ({ className, seed }: PropTypes): ?React.Element<any> {
   );
 }
 
-export default observer(ImgHash);
+export default observer(ImgFingerprint);

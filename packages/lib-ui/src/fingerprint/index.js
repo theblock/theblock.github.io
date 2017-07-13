@@ -4,7 +4,7 @@
 import compact from 'lodash.compact';
 import React from 'react';
 
-import ImgHash from '../img/hash';
+import ImgFingerprint from '../img/fingerprint';
 
 import styles from './fingerprint.scss';
 
@@ -14,7 +14,7 @@ type PropTypes = {
 
 export default function Fingerprint ({ className }: PropTypes): React.Element<any> {
   return (
-    <ImgHash
+    <ImgFingerprint
       className={
         compact([
           styles.ui, className

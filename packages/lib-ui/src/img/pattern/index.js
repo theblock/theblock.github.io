@@ -12,7 +12,7 @@ import styles from './pattern.scss';
 type PropTypes = {
   children?: React.Element<any>,
   className?: string,
-  onClick?: (event) => mixed,
+  onClick?: (Event) => mixed,
   seed?: string
 };
 
