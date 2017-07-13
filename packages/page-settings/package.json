@@ -10,6 +10,7 @@
   "dependencies": {
   },
   "peerDependencies": {
-    "@theblock/lib-ui": "*"
+    "@theblock/lib-ui": "*",
+    "@theblock/lib-util": "*"
   }
 }

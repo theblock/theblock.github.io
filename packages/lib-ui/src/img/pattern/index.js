@@ -12,6 +12,7 @@ import styles from './pattern.scss';
 type PropTypes = {
   children?: React.Element<any>,
   className?: string,
+  onClick?: (event) => mixed,
   seed?: string
 };
 
@@ -39,7 +40,7 @@ export function createPatternStyle (_seed: string): StyleType {
   };
 }
 
-function ImgPattern ({ children, className, seed }: PropTypes): ?React.Element<any> {
+function ImgPattern ({ children, className, onClick, seed }: PropTypes): ?React.Element<any> {
   return (
     <div
       className={
@@ -47,6 +48,7 @@ function ImgPattern ({ children, className, seed }: PropTypes): ?React.Element<a
           styles.ui, className
         ]).join(' ')
       }
+      onClick={ onClick }
       style={ createPatternStyle(seed || store.seed) }
     >
       { children }
