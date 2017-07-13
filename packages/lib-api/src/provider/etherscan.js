@@ -104,21 +104,22 @@ export default class EtherscanProvider extends HttpFetchTransport implements Pro
     });
   }
 
-  send (method: string, params: Array<any>, callback: ProviderCallbackType): void {
+  async send (method: string, params: Array<any>, callback: ProviderCallbackType): Promise<void> {
     const mapped: ?MethodType = METHODS[method];
 
     if (!mapped) {
       return callback(new Error(`Unimplemented method ${method} specified`), null);
     }
 
-    this
-      .post(mapped.section || 'proxy', mapped.action || method, this.expandParams(params, mapped.params))
-      .then((result: any) => {
-        callback(null, mapped.format ? mapped.format(result) : result);
-      })
-      .catch((error: Error) => {
-        callback(error, null);
-      });
+    try {
+      const result = await this.post(
+        mapped.section || 'proxy', mapped.action || method, this.expandParams(params, mapped.params)
+      );
+
+      callback(null, mapped.format ? mapped.format(result) : result);
+    } catch (error) {
+      callback(error, null);
+    }
   }
 
   expandParams (params: Array<any>, dict: Array<ParamType>): { [any]: any } {
@@ -139,7 +140,7 @@ export default class EtherscanProvider extends HttpFetchTransport implements Pro
     }, {});
   }
 
-  post (section: ModuleType, action: string, data?: { [any]: any } = {}): Promise<any> {
+  async post (section: ModuleType, action: string, data?: { [any]: any } = {}): Promise<any> {
     const body = qs.stringify(
       Object.assign({
         action,
@@ -148,25 +149,25 @@ export default class EtherscanProvider extends HttpFetchTransport implements Pro
       }, data)
     );
 
-    return super
-      .fetch(this.url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': body.length
-        },
-        mode: 'cors',
-        body
-      })
-      .then((response: ModuleResult) => {
-        if (response.message && response.message !== 'OK') {
-          throw new Error(response.result);
-        } else if (response.error) {
-          throw new Error(response.error.message);
-        }
+    const response: ModuleResult = await super.fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': body.length
+      },
+      mode: 'cors',
+      body
+    });
 
-        return response.result;
-      });
+    if (response.message && response.message !== 'OK') {
+      throw new Error(response.result);
+    }
+
+    if (response.error) {
+      throw new Error(response.error.message);
+    }
+
+    return response.result;
   }
 }

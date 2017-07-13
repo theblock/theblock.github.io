@@ -6,10 +6,10 @@ import registerPromiseWorker from 'promise-worker/register';
 import { removeHexPrefix } from '../format';
 import { walletFromMnemonic, walletFromPhrase, walletFromPrivateKey } from './wallet';
 
-registerPromiseWorker(function (data) {
+registerPromiseWorker(async function (data) {
   switch (data.action) {
     case 'init':
-      return Promise.resolve(true);
+      return true;
 
     case 'walletFromMnemonic':
       return walletFromMnemonic(data.mnemonic, data.path);
@@ -24,6 +24,6 @@ registerPromiseWorker(function (data) {
       );
 
     default:
-      return Promise.reject(new Error(`worker:wallet unkown action ${data.action}`));
+      throw new Error(`worker:wallet unkown action ${data.action}`);
   }
 });

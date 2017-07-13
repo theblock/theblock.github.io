@@ -21,7 +21,7 @@ type PropTypes = {
   label?: string,
   max?: number,
   min?: number,
-  onChange?: (string) => void,
+  onChange?: (string) => mixed,
   step?: number,
   value?: string,
   valueDisplay?: ?string,

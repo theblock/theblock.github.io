@@ -5,7 +5,8 @@
     "development": {
       "plugins": [
         "transform-decorators-legacy",
-        "transform-react-jsx"
+        "transform-react-jsx",
+        "transform-runtime"
       ],
       "presets": [
         "flow",
@@ -17,7 +18,8 @@
     "production": {
       "plugins": [
         "transform-decorators-legacy",
-        "transform-react-jsx"
+        "transform-react-jsx",
+        "transform-runtime"
       ],
       "presets": [
         "flow",
@@ -29,7 +31,8 @@
     "test": {
       "plugins": [
         "transform-decorators-legacy",
-        "transform-react-jsx"
+        "transform-react-jsx",
+        "transform-runtime"
       ],
       "presets": [
         "flow",

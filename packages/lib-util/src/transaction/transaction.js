@@ -13,22 +13,16 @@ export function createRawTransaction (transaction: TransactionType): EthereumTx 
   return new EthereumTx(transaction);
 }
 
-export function signTransaction (transaction: TransactionType, _privateKey: ?Buffer): Promise<string> {
+export async function signTransaction (transaction: TransactionType, _privateKey: ?Buffer): Promise<string> {
   const privateKey: Buffer = Buffer.from(_privateKey || []);
 
-  return new Promise((resolve, reject) => {
-    if (!privateKey.length) {
-      return resolve('0x');
-    }
+  if (!privateKey.length) {
+    return '0x';
+  }
 
-    try {
-      const tx = createRawTransaction(transaction);
+  const tx = createRawTransaction(transaction);
 
-      tx.sign(privateKey);
+  tx.sign(privateKey);
 
-      return resolve(`0x${tx.serialize().toString('hex')}`);
-    } catch (error) {
-      reject(error);
-    }
-  });
+  return `0x${tx.serialize().toString('hex')}`;
 }

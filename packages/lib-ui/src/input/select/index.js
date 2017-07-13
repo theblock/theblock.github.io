@@ -30,7 +30,7 @@ type PropTypes = {
   isReadOnly?: boolean,
   isMaxWidth?: boolean,
   label?: string,
-  onChange?: (string) => void,
+  onChange?: (string) => mixed,
   store: Store<SelectableInterface>,
   t: (string) => string
 };

@@ -16,7 +16,7 @@ type PropTypes = {
   isDisabled?: boolean,
   isInverse?: boolean,
   label?: string,
-  onClick?: (Event) => void
+  onClick?: (Event) => mixed
 }
 
 export default function Button ({ className, icon, isBusy, isDisabled, isDanger, isInverse, label, onClick }: PropTypes): React.Element<any> {

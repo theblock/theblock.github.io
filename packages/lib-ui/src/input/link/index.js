@@ -20,7 +20,7 @@ type PropTypes = {
   isReadOnly?: boolean,
   isWarning?: boolean,
   icon?: ?React.Element<any>,
-  onClick?: () => void,
+  onClick?: () => mixed,
   value?: ?string
 };
 

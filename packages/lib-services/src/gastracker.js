@@ -6,8 +6,8 @@ import type { TransactionResultType } from './types';
 export default class Gastracker {
   url: string = 'https://gastracker.io/';
 
-  getTransactions (address: string): Promise<Array<TransactionResultType>> {
-    return Promise.resolve([]);
+  async getTransactions (address: string): Promise<Array<TransactionResultType>> {
+    return [];
   }
 
   linkAddress (address: string): string {

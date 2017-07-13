@@ -27,13 +27,13 @@ export class AccountStore {
     this.transactions = transactions;
   }
 
-  retrieveTransactions = () => {
+  retrieveTransactions = async () => {
     if (this.accounts.selected && this.chains.selected && this.balance.isLoading) {
       this.setTransactions([]);
 
-      this.chains.selected.explorer.api
-        .getTransactions(this.accounts.selected.key)
-        .then(this.setTransactions);
+      const transactions: Array<TransactionResultType> = await this.chains.selected.explorer.api.getTransactions(this.accounts.selected.key);
+
+      this.setTransactions(transactions);
     }
   }
 }

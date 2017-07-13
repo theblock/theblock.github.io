@@ -12,6 +12,13 @@ type CacheType = {
   }
 };
 
+const GET_HEADERS = {
+  method: 'GET',
+  mode: 'cors',
+  headers: {
+    'Accept': 'application/json'
+  }
+};
 const URL: string = 'https://min-api.cryptocompare.com/data/';
 
 const cache: CacheType = {
@@ -19,46 +26,31 @@ const cache: CacheType = {
 };
 
 function createUrl (action: string, params: { [string]: string }): string {
-  return `${URL}price?${qs.stringify(params)}`;
+  return `${URL}${action}?${qs.stringify(params)}`;
 }
 
-export function getTokenPrice (token: string, currencies: Array<string>): Promise<PriceResultType> {
+export async function getTokenPrice (token: string, currencies: Array<string>): Promise<PriceResultType> {
   if (cache.price[token]) {
-    return Promise.resolve(cache.price[token]);
+    return cache.price[token];
   }
 
-  const url: string = createUrl('price', {
+  cache.price[token] = {};
+
+  const response: Response = await fetch(createUrl('price', {
     fsym: token,
     tsyms: currencies.join(',')
-  });
+  }), GET_HEADERS);
 
-  return fetch(
-    url,
-    {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json'
-      },
-      mode: 'cors'
-    })
-    .then((response: Response) => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
 
-      return response.json();
-    })
-    .catch((error: Error) => {
-      console.error(url, error);
+  const price: { [string]: number } = await response.json();
 
-      return {};
-    })
-    .then((price: { [string]: number }) => {
-      cache.price[token] = (currencies.reduce((result, currency) => {
-        result[currency] = new BN((price[currency] || 0) * 100);
-        return result;
-      }, {}): PriceResultType);
+  cache.price[token] = (currencies.reduce((result, currency) => {
+    result[currency] = new BN((price[currency] || 0) * 100);
+    return result;
+  }, {}): PriceResultType);
 
-      return cache.price[token];
-    });
+  return cache.price[token];
 }

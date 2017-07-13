@@ -10,7 +10,7 @@ type PropTypes = {
   children?: React.Element<any>,
   className?: string,
   isVisible?: boolean,
-  onClick?: (event: Event) => void
+  onClick?: (Event) => mixed
 };
 
 export default function Overlay ({ children, className, isVisible, onClick }: PropTypes): ?React.Element<any> {

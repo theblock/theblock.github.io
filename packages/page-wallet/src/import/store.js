@@ -238,52 +238,48 @@ export class ImportStore {
       .then(this._addFromWallet);
   }
 
-  createWalletFromLedger = () => {
+  createWalletFromLedger = async () => {
     this.setState('commsLedger');
 
-    return getLedgerAddresses(this.chains.selected.chainId).then((result: Array<string>) => {
-      if (!result.length) {
-        throw new Error(i18n.t('import:errors.ledgerComms'));
-      }
+    const [address]: Array<string> = await getLedgerAddresses(this.chains.selected.chainId);
 
-      const [address] = result;
+    if (!address) {
+      throw new Error(i18n.t('import:errors.ledgerComms'));
+    }
 
-      this.setWalletObject({
-        address,
-        name: 'Ledger',
-        meta: {
-          hardware: {
-            type: 'ledger'
-          }
+    this.setWalletObject({
+      address,
+      name: 'Ledger',
+      meta: {
+        hardware: {
+          type: 'ledger'
         }
-      });
-      this.setState('addAccount');
-      this.addAccount();
+      }
     });
+    this.setState('addAccount');
+    this.addAccount();
   }
 
-  createWalletFromTrezor = () => {
+  createWalletFromTrezor = async () => {
     this.setState('commsTrezor');
 
-    return getTrezorAddresses(this.chains.selected.chainId).then((result: Array<string>) => {
-      if (!result.length) {
-        throw new Error(i18n.t('import:errors.trezorComms'));
-      }
+    const [address]: Array<string> = await getTrezorAddresses(this.chains.selected.chainId);
 
-      const [address] = result;
+    if (!address) {
+      throw new Error(i18n.t('import:errors.trezorComms'));
+    }
 
-      this.setWalletObject({
-        address,
-        name: 'Trezor',
-        meta: {
-          hardware: {
-            type: 'trezor'
-          }
+    this.setWalletObject({
+      address,
+      name: 'Trezor',
+      meta: {
+        hardware: {
+          type: 'trezor'
         }
-      });
-      this.setState('addAccount');
-      this.addAccount();
+      }
     });
+    this.setState('addAccount');
+    this.addAccount();
   }
 
   createWalletFromMnemonic = () => {

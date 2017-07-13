@@ -34,6 +34,13 @@ type EtherscanOptionsType = {
   [string]: any
 };
 
+const GET_HEADERS = {
+  method: 'GET',
+  mode: 'cors',
+  headers: {
+    'Accept': 'application/json'
+  }
+};
 const APIKEY: string = '279BSAWA2EAHS938FAIH4X7FEWW4NDE7ZE';
 
 export {
@@ -53,7 +60,7 @@ export default class Etherscan {
     return `${this.apiUrl}api?apiKey=${APIKEY}&${qs.stringify(options)}`;
   }
 
-  getTransactions (address: string): Promise<Array<TransactionResultType>> {
+  async getTransactions (address: string): Promise<Array<TransactionResultType>> {
     const url: string = this.getApiUrl({
       module: 'account',
       action: 'txlist',
@@ -63,52 +70,33 @@ export default class Etherscan {
       sort: 'desc'
     });
 
-    return fetch(
-      url,
-      {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json'
-        },
-        mode: 'cors'
-      })
-      .then((response: Response) => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
+    const response: Response = await fetch(url, GET_HEADERS);
 
-        return response.json();
-      })
-      .catch((error: Error) => {
-        console.error(url, error);
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
 
-        return {
-          message: 'Not OK',
-          result: [],
-          status: ''
-        };
-      })
-      .then(({ status, message, result }: TxListResponseType) => {
-        if (message !== 'OK') {
-          return [];
-        }
+    const { message, result }: TxListResponseType = await response.json();
 
-        return result.map(({ blockNumber, confirmations, from, gas, gasPrice, gasUsed, hash, input, timeStamp, to, value }: TxListItemType) => {
-          return ({
-            blockNumber: new BN(blockNumber),
-            confirmations: new BN(confirmations),
-            data: input,
-            from: formatAddress(from),
-            gasLimit: new BN(gas),
-            gasPrice: new BN(gasPrice),
-            gasUsed: new BN(gasUsed),
-            hash,
-            timeStamp: new Date(parseInt(timeStamp, 10) * 1000),
-            to: formatAddress(to),
-            value: new BN(value)
-          }: TransactionResultType);
-        });
-      });
+    if (message !== 'OK') {
+      throw new Error(message);
+    }
+
+    return result.map(({ blockNumber, confirmations, from, gas, gasPrice, gasUsed, hash, input, timeStamp, to, value }: TxListItemType) => {
+      return ({
+        blockNumber: new BN(blockNumber),
+        confirmations: new BN(confirmations),
+        data: input,
+        from: formatAddress(from),
+        gasLimit: new BN(gas),
+        gasPrice: new BN(gasPrice),
+        gasUsed: new BN(gasUsed),
+        hash,
+        timeStamp: new Date(parseInt(timeStamp, 10) * 1000),
+        to: formatAddress(to),
+        value: new BN(value)
+      }: TransactionResultType);
+    });
   }
 
   linkAddress (address: string): string {

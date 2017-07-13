@@ -57,7 +57,7 @@ export interface ProviderInterface {
 
   constructor (chainId: number, options: TransportOptionsType): ProviderInterface;
 
-  send (methodName: string, params: Array<any>, callback: (error: ?Error, result: ?any) => void): void;
+  send (methodName: string, params: Array<any>, callback: (error: ?Error, result: ?any) => void): Promise<void>;
 }
 export type ProviderCallbackType = (error: ?Error, result: ?any) => void;
 

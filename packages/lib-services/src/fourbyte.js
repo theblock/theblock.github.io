@@ -25,6 +25,13 @@ type CacheType = {
   }
 }
 
+const GET_HEADERS = {
+  method: 'GET',
+  mode: 'cors',
+  headers: {
+    'Accept': 'application/json'
+  }
+};
 const URL: string = 'https://www.4byte.directory/api/v1/';
 const cache: CacheType = {
   signatures: defaultSignatures
@@ -34,51 +41,33 @@ function createUrl (action: string, params: { [string]: string }): string {
   return `${URL}${action}/?${qs.stringify(params)}`;
 }
 
-export function getMethodSignature (_signature: ?string): Promise<SignatureType> {
-  let signature = '0x';
-
-  if (_signature) {
-    signature = _signature.substr(0, 10) || '0x';
-  }
+export async function getMethodSignature (_signature: ?string): Promise<SignatureType> {
+  const signature: string = _signature
+    ? _signature.substr(0, 10) || '0x'
+    : '0x';
 
   if (cache.signatures[signature]) {
-    return Promise.resolve(cache.signatures[signature]);
+    return cache.signatures[signature];
   }
 
-  const url: string = createUrl('signatures', {
+  cache.signatures[signature] = decodeMethodString();
+
+  const response: Response = await fetch(createUrl('signatures', {
     hex_signature: signature
-  });
+  }), GET_HEADERS);
 
-  return fetch(
-    url,
-    {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json'
-      },
-      mode: 'cors'
-    })
-    .then((response: Response) => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
 
-      return response.json();
-    })
-    .catch((error: Error) => {
-      console.error(url, error);
+  const { results }: SignatureResponseType = await response.json();
+  const value: SignatureType = decodeMethodString(
+    results.length
+      ? results[0].text_signature
+      : ''
+  );
 
-      return { results: [] };
-    })
-    .then(({ results }: SignatureResponseType) => {
-      const value: SignatureType = decodeMethodString(
-        results.length
-          ? results[0].text_signature
-          : ''
-      );
+  cache.signatures[signature] = value;
 
-      cache.signatures[signature] = value;
-
-      return value;
-    });
+  return cache.signatures[signature];
 }

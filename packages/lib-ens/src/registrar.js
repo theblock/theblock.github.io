@@ -16,37 +16,23 @@ import { createNameHash } from './namehash';
 const ensRegistrar: Contract = new Contract(EnsRegistrar);
 const ensResolve: AbiMethodType = ensRegistrar.findMethod('resolver');
 
-export function findEnsResolver (api: Api, name: string) {
-  return api
-    .getChainId()
-    .then((_chainId: number) => {
-      const registrar: ?ContractLocationType = registrarDefinition.where.find(({ chainId }) => chainId === _chainId);
+export async function findEnsResolver (api: Api, name: string): Promise<string> {
+  const _chainId: number = await api.getChainId();
+  const registrar: ?ContractLocationType = registrarDefinition.where.find(({ chainId }) => chainId === _chainId);
 
-      if (!registrar) {
-        throw new Error('Unable to find ENS registrar location');
-      }
+  if (!registrar) {
+    throw new Error('Unable to find ENS registrar location');
+  }
 
-      return api
-        .call({
-          data: ensResolve.encode([
-            createNameHash(name)
-          ]),
-          to: registrar.address
-        })
-        .catch((error) => {
-          console.error('findEnsResolver', error);
+  const resolverResult: string = await api.call({
+    data: ensResolve.encode([createNameHash(name)]),
+    to: registrar.address
+  });
+  const [resolverAddress: string] = await ensResolve.decode(resolverResult);
 
-          throw error;
-        })
-        .then((result) => {
-          return ensResolve.decode(result);
-        })
-        .then(([resolverAddress]) => {
-          if (!resolverAddress || resolverAddress === NULL_ADDRESS) {
-            throw new Error(`Unable to find resolver for ${name}`);
-          }
+  if (!resolverAddress || resolverAddress === NULL_ADDRESS) {
+    throw new Error(`Unable to find resolver for ${name}`);
+  }
 
-          return formatAddress(resolverAddress);
-        });
-    });
+  return formatAddress(resolverAddress);
 }

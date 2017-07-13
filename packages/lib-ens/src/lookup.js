@@ -15,24 +15,17 @@ import { findEnsResolver } from './registrar';
 const ensResolver: Contract = new Contract(EnsResolver);
 const ensLookup: AbiMethodType = ensResolver.findMethod('addr');
 
-export function lookupEnsName (api: Api, name: string) {
-  return findEnsResolver(api, name)
-    .then((resolverAddr) => {
-      return api.call({
-        data: ensLookup.encode([
-          createNameHash(name)
-        ]),
-        to: resolverAddr
-      });
-    })
-    .then((result) => {
-      return ensLookup.decode(result);
-    })
-    .then(([resolvedAddress]) => {
-      if (!resolvedAddress || resolvedAddress === NULL_ADDRESS) {
-        throw new Error(`Unable to find endpoint for ${name}`);
-      }
+export async function lookupEnsName (api: Api, name: string): Promise<string> {
+  const resolverAddr: string = await findEnsResolver(api, name);
+  const lookupResult: string = await api.call({
+    data: ensLookup.encode([createNameHash(name)]),
+    to: resolverAddr
+  });
+  const [lookupAddress: string] = await ensLookup.decode(lookupResult);
 
-      return formatAddress(resolvedAddress);
-    });
+  if (!lookupAddress || lookupAddress === NULL_ADDRESS) {
+    throw new Error(`Unable to find endpoint for ${name}`);
+  }
+
+  return formatAddress(lookupAddress);
 }

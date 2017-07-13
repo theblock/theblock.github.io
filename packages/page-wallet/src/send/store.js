@@ -127,7 +127,7 @@ export class SendStore {
     this.valueType.selectToken();
   }
 
-  @action send = () => {
+  @action send = async () => {
     const tx = {
       data: this.txData,
       to: this.recipientAddress,
@@ -139,17 +139,16 @@ export class SendStore {
 
     this.setBusySending(true);
 
-    (
+    try {
       this.tokens.selected.address
         ? this.chains.selected.api.sendTokenTransaction(this.tokens.selected.address, tx)
-        : this.chains.selected.api.sendTransaction(tx)
-    )
-      .then(() => {
-        this.clear();
-      })
-      .catch(() => {
-        this.setBusySending(false);
-      });
+        : this.chains.selected.api.sendTransaction(tx);
+      this.clear();
+    } catch (error) {
+      console.error(error);
+    }
+
+    this.setBusySending(false);
   }
 
   @action decBusyLookup = () => {
@@ -174,20 +173,21 @@ export class SendStore {
     this.gasLimit = gasLimit;
   }
 
-  @action setRecipient = (recipient: string) => {
+  @action setRecipient = async (recipient: string) => {
     this.recipient = recipient;
 
     if (isEnsName(recipient)) {
       this.incBusyLookup();
 
-      lookupEnsName(chainStore.selected.api, recipient)
-        .catch(() => {
-          return '';
-        })
-        .then((recipientAddress) => {
-          this.decBusyLookup();
-          this.setRecipientAddress(recipientAddress);
-        });
+      let recipientAddress: string = '';
+
+      try {
+        recipientAddress = await lookupEnsName(chainStore.selected.api, recipient);
+      } catch (error) {
+      }
+
+      this.decBusyLookup();
+      this.setRecipientAddress(recipientAddress);
     } else {
       this.setRecipientAddress(recipient);
     }

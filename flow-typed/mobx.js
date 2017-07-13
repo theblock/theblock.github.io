@@ -3,10 +3,10 @@
 
 declare module 'mobx' {
   declare module.exports: {
-    action: (() => void) => void,
-    autorun: (() => void) => void,
+    action: (() => mixed) => void,
+    autorun: (() => mixed) => void,
     computed: (() => mixed) => mixed,
-    observable: (() => void) => void,
-    transaction: (() => void) => void
+    observable: (() => mixed) => void,
+    transaction: (() => mixed) => void
   };
 }
