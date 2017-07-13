@@ -174,7 +174,7 @@ module.exports = {
         NODE_ENV: 'development',
         BLOG_ENTRIES: BLOG_ENTRIES.join(',')
       }),
-      new webpack.optimize.OccurrenceOrderPlugin(true),
+      isProduction && new webpack.optimize.OccurrenceOrderPlugin(true),
       new webpack.optimize.CommonsChunkPlugin({
         minChunks: (module, count) => {
           const isMarkdown = /^.*\.md$/.test(module.resource);
@@ -193,7 +193,7 @@ module.exports = {
           'manifest'
         ]
       }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
+      isProduction && new webpack.optimize.ModuleConcatenationPlugin(),
       !isProduction && new BundleAnalyzerPlugin({
         analyzerMode: 'server',
         analyzerPort: 8088,
