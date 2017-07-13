@@ -30,91 +30,79 @@ export function getLedgerHDPath (chainId: number, accountIndex?: string) {
 }
 
 function createInstance (): Promise<LedgerEth> {
-  return deferPromise(() => {
-    return ledger.comm_u2f
-      .create_async()
-      .then((connection: LedgerEthComms) => {
-        return new ledger.eth(connection); // eslint-disable-line new-cap
-      })
-      .catch((error: Error) => {
-        console.error('Ledger:createInstance', error);
+  return deferPromise(async () => {
+    try {
+      const connection: LedgerEthComms = await ledger.comm_u2f.create_async();
 
-        throw error;
-      });
+      return new ledger.eth(connection); // eslint-disable-line new-cap
+    } catch (error) {
+      console.error('Ledger:createInstance', error);
+
+      throw error;
+    }
   });
 }
 
 function destroyInstance (instance: LedgerEth): Promise<boolean> {
-  if (!instance) {
-    return Promise.resolve(true);
-  }
+  return deferPromise(async () => {
+    try {
+      await instance.comm.close_async();
+    } catch (error) {
+      console.error('Ledger:destroyInstance', error);
+    }
 
-  return deferPromise(() => {
-    return instance.comm
-      .close_async()
-      .catch((error) => {
-        console.error('Ledger:destroyInstance', error);
-      })
-      .then(() => {
-        return true;
-      });
+    return true;
   });
 }
 
 export function getLedgerAddresses (chainId: number): Promise<Array<string>> {
-  return deferPromise(() => {
-    return createInstance()
-      .then((instance: LedgerEth) => {
-        return instance
-          .getAddress_async(getLedgerHDPath(chainId), true, false)
-          .then(({ address }: LedgerResultGetAddressType) => {
-            console.log('getLedgerAddresses', address);
+  return deferPromise(async () => {
+    try {
+      const instance: LedgerEth = await createInstance();
+      const { address }: LedgerResultGetAddressType = await instance.getAddress_async(getLedgerHDPath(chainId), true, false);
 
-            return destroyInstance(instance).then(() => {
-              return [address];
-            });
-          });
-      })
-      .catch((error: Error) => {
-        console.error('getLedgerAddresses', error);
+      console.log('getLedgerAddresses', address);
 
-        return [];
-      });
+      await destroyInstance(instance);
+
+      return [address];
+    } catch (error) {
+      console.error('getLedgerAddresses', error);
+    }
+
+    return [];
   });
 }
 
 export function signLedgerTransaction (transaction: TransactionType): Promise<string> {
-  return deferPromise(() => {
-    const tx: EthereumTx = createRawTransaction(transaction);
+  return deferPromise(async () => {
+    try {
+      const tx: EthereumTx = createRawTransaction(transaction);
+      const instance: LedgerEth = await createInstance();
 
-    return createInstance()
-      .then((instance: LedgerEth) => {
-        // set r, s, v values to what Ledger expects
-        tx.raw[6] = Buffer.from([transaction.chainId]);
-        tx.raw[7] = Buffer.from([]);
-        tx.raw[8] = Buffer.from([]);
+      // set r, s, v values to what Ledger expects
+      tx.raw[6] = Buffer.from([transaction.chainId]);
+      tx.raw[7] = Buffer.from([]);
+      tx.raw[8] = Buffer.from([]);
 
-        return instance
-          .signTransaction_async(
-            getLedgerHDPath(transaction.chainId),
-            tx.serialize().toString('hex')
-          )
-          .then(({ r, s, v }: LedgerResultSignType) => {
-            tx.r = Buffer.from(r, 'hex');
-            tx.s = Buffer.from(s, 'hex');
-            tx.v = Buffer.from(v, 'hex');
+      const { r, s, v }: LedgerResultSignType = await instance.signTransaction_async(
+        getLedgerHDPath(transaction.chainId),
+        tx.serialize().toString('hex')
+      );
 
-            const txRaw: string = `0x${tx.serialize().toString('hex')}`;
+      tx.r = Buffer.from(r, 'hex');
+      tx.s = Buffer.from(s, 'hex');
+      tx.v = Buffer.from(v, 'hex');
 
-            return destroyInstance(instance).then(() => {
-              return txRaw;
-            });
-          });
-      })
-      .catch((error: Error) => {
-        console.error('signLedgerTransaction', error);
+      const txRaw: string = `0x${tx.serialize().toString('hex')}`;
 
-        throw error;
-      });
+      await destroyInstance(instance);
+
+      return txRaw;
+    } catch (error) {
+      console.error('signLedgerTransaction', error);
+
+      throw error;
+    }
   });
 }
