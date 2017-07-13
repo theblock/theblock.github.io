@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 import { translate } from 'react-i18next';
 
+import ImgHash from '@theblock/lib-ui/src/img/hash';
 import ImgPattern from '@theblock/lib-ui/src/img/pattern';
 import Navigation from '@theblock/lib-ui/src/navigation';
 
@@ -32,7 +33,12 @@ function Settings ({ className, t }: PropTypes): React.Element<any> {
           <ImgPattern
             className={ [styles.pattern, styles.selected].join(' ') }
             seed={ store.seed }
-          />
+          >
+            <ImgHash
+              className={ styles.hash }
+              seed={ store.seed }
+            />
+          </ImgPattern>
           {
             store.seeds.map((seed, index) => {
               const _onClick = () => store.setSeed(seed, index);
@@ -43,7 +49,12 @@ function Settings ({ className, t }: PropTypes): React.Element<any> {
                   key={ seed }
                   onClick={ _onClick }
                   seed={ seed }
-                />
+                >
+                  <ImgHash
+                    className={ styles.hash }
+                    seed={ seed }
+                  />
+                </ImgPattern>
               );
             })
           }
