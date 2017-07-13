@@ -24,7 +24,7 @@ function ImgHash ({ className, seed }: PropTypes): ?React.Element<any> {
           styles.ui, className
         ]).join(' ')
       }
-      html={ jdenticon.toSvg((seed || store.seed).substr(2, 13), 200, 0) }
+      html={ jdenticon.toSvg((seed || store.seed).substr(2), 200, 0) }
     />
   );
 }
