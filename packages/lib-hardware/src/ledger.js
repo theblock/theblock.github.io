@@ -78,18 +78,19 @@ export function signLedgerTransaction (transaction: TransactionType): Promise<st
   return deferPromise(async () => {
     try {
       const tx: EthereumTx = createRawTransaction(transaction);
-      const instance: LedgerEth = await createInstance();
 
       // set r, s, v values to what Ledger expects
       tx.raw[6] = Buffer.from([transaction.chainId]);
       tx.raw[7] = Buffer.from([]);
       tx.raw[8] = Buffer.from([]);
 
+      const instance: LedgerEth = await createInstance();
       const { r, s, v }: LedgerResultSignType = await instance.signTransaction_async(
         getLedgerHDPath(transaction.chainId),
         tx.serialize().toString('hex')
       );
 
+      // set received r, s, v values
       tx.r = Buffer.from(r, 'hex');
       tx.s = Buffer.from(s, 'hex');
       tx.v = Buffer.from(v, 'hex');
