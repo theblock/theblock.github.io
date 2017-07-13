@@ -5,6 +5,7 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { translate } from 'react-i18next';
 
+import Fingerprint from '@theblock/lib-ui/src/fingerprint';
 import Html from '@theblock/lib-ui/src/html';
 import Navigation from '@theblock/lib-ui/src/navigation';
 
@@ -24,6 +25,7 @@ function Entry ({ className, t }: PropTypes): React.Element<any> {
         ]).join(' ')
       }
     >
+      <Fingerprint />
       <Navigation />
       <main>
         <article>

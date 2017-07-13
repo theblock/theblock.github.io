@@ -27,9 +27,9 @@ function Settings ({ className, t }: PropTypes): React.Element<any> {
         ]).join(' ')
       }
     >
+      <Fingerprint />
       <Navigation />
       <main>
-        <Fingerprint />
         <section className={ styles.patterns }>
           <ImgPattern
             className={ [styles.pattern, styles.selected].join(' ') }
