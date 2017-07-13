@@ -6,6 +6,8 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import { removeHexPrefix } from '@theblock/lib-util/src/format';
+
 import Html from '../../html';
 import store from '../pattern/store';
 
@@ -24,7 +26,9 @@ function ImgHash ({ className, seed }: PropTypes): ?React.Element<any> {
           styles.ui, className
         ]).join(' ')
       }
-      html={ jdenticon.toSvg((seed || store.seed).substr(2), 200, 0) }
+      html={
+        jdenticon.toSvg(removeHexPrefix(seed || store.seed), 200, 0)
+      }
     />
   );
 }

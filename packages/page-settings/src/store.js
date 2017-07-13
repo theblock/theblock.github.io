@@ -3,8 +3,7 @@
 
 import { action, computed, observable } from 'mobx';
 
-import patternStore from '@theblock/lib-ui/src/img/pattern/store';
-import { createSha3 } from '@theblock/lib-util/src/sha3';
+import patternStore, { toPatternSeed } from '@theblock/lib-ui/src/img/pattern/store';
 
 let counter = Date.now();
 
@@ -23,7 +22,7 @@ class Store {
     const seeds: Array<string> = this.seeds.filter((seed, index) => index > start);
 
     while (seeds.length !== 14) {
-      seeds.push(createSha3(`${this.seed}${counter++}`));
+      seeds.push(toPatternSeed(`${this.seed}${counter++}`));
     }
 
     this.seeds = seeds;

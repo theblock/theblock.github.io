@@ -5,9 +5,13 @@ import { action, observable } from 'mobx';
 
 import type { StorageNameType } from '@theblock/lib-util/src/types';
 
+import { createSha3Raw } from '@theblock/lib-util/src/sha3';
 import { getStorage, setStorage } from '@theblock/lib-util/src/storage';
 
-const DEFAULT_SEED: string = '0x614a94c05b231269918a0a6265f80b3d5209835d710e0e0022f44a5e9d17cd6f';
+export function toPatternSeed (value: number | string) {
+  return createSha3Raw(`${value}`);
+}
+
 const LS_BACKGROUND: StorageNameType = 'background';
 const defaults: { seed: string } = getStorage(LS_BACKGROUND);
 
@@ -30,4 +34,4 @@ class Store {
   }
 }
 
-export default new Store(defaults.seed || DEFAULT_SEED);
+export default new Store(defaults.seed || toPatternSeed(Date.now()));
