@@ -6,26 +6,24 @@ import { action, computed, observable } from 'mobx';
 import patternStore from '@theblock/lib-ui/src/img/pattern/store';
 import { createSha3 } from '@theblock/lib-util/src/sha3';
 
-let counter = 0;
+let counter = Date.now();
 
 class Store {
   @observable seeds: Array<string> = [];
 
   constructor () {
-    this.generateSeeds(14);
+    this.generateSeeds(0);
   }
 
   @computed get seed (): string {
     return patternStore.seed;
   }
 
-  @action generateSeeds = (index: number) => {
-    const time: number = Date.now();
-    const seeds: Array<string> = [];
-    let count: number = 14;
+  @action generateSeeds = (start: number) => {
+    const seeds: Array<string> = this.seeds.filter((seed, index) => index > start);
 
-    while (count--) {
-      seeds.push(createSha3(`${this.seed}_${time}_${counter++}`));
+    while (seeds.length !== 14) {
+      seeds.push(createSha3(`${this.seed}${counter++}`));
     }
 
     this.seeds = seeds;

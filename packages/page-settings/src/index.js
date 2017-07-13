@@ -40,6 +40,7 @@ function Settings ({ className, t }: PropTypes): React.Element<any> {
               return (
                 <ImgPattern
                   className={ styles.pattern }
+                  key={ seed }
                   onClick={ _onClick }
                   seed={ seed }
                 />
