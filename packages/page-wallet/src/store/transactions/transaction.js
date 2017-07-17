@@ -40,7 +40,10 @@ export default class Transaction {
     this.api = new Api(provider);
     this.tx = tx;
 
-    this.api.decodeData(this.tx.data).then(this.setDecoded).catch(console.error);
+    this.api
+      .decodeData(this.tx.data)
+      .then(this.setDecoded)
+      .catch(console.error);
   }
 
   @computed get receiptBlockNumber (): string {
