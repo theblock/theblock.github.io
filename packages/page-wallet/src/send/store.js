@@ -140,9 +140,11 @@ export class SendStore {
     this.setBusySending(true);
 
     try {
-      this.tokens.selected.address
-        ? this.chains.selected.api.sendTokenTransaction(this.tokens.selected.address, tx)
-        : this.chains.selected.api.sendTransaction(tx);
+      await (
+        this.tokens.selected.address
+          ? this.chains.selected.api.sendTokenTransaction(this.tokens.selected.address, tx)
+          : this.chains.selected.api.sendTransaction(tx)
+      );
       this.clear();
     } catch (error) {
       console.error(error);
