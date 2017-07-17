@@ -57,8 +57,10 @@ export class TokenStore extends SelectStore<SelectableTokenType> {
     return this.items.filter(({ chainId }: SelectableTokenType) => chainId === this.chains.selected.chainId);
   }
 
-  findByAddress = (_address: string): ?SelectableTokenType => {
-    return this.filtered.find(({ address }) => address === _address);
+  findByAddress = (address: string): ?SelectableTokenType => {
+    const laddress = address.toLowerCase();
+
+    return this.filtered.find(({ address }) => address && address.toLowerCase() === laddress);
   }
 }
 

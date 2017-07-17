@@ -11,7 +11,7 @@ export default ({
   url: 'https://www.civic.com',
   where: [
     {
-      address: '0x41e5560054824ea6b0732e656e3ad64e20e94e45',
+      address: '0x41e5560054824eA6B0732E656E3Ad64E20e94E45',
       chainId: 1
     }
   ]
