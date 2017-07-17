@@ -9,12 +9,14 @@ import bancor from './definitions/bancor';
 import bat from './definitions/bat';
 import bcap from './definitions/bcap';
 import bitether from './definitions/bitether';
+import civic from './defintions/civic';
 import digixglobal from './definitions/digixglobal';
 import firstblood from './definitions/firstblood';
 import gavcoin from './definitions/gavcoin';
 import gnosis from './definitions/gnosis';
 import golem from './definitions/golem';
 import guppy from './definitions/guppy';
+import lunyr from './defintions/lunyr';
 import maker from './definitions/maker';
 import melon from './definitions/melon';
 import pluton from './definitions/pluton';
@@ -30,12 +32,14 @@ export default ([
   bat,
   bcap,
   bitether,
+  civic,
   digixglobal,
   firstblood,
   gavcoin,
   gnosis,
   golem,
   guppy,
+  lunyr,
   maker,
   melon,
   pluton,
