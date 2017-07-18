@@ -14,6 +14,8 @@ type PropTypes = {
   t: (string) => string
 };
 
+console.log('v', process.env.APP_VERSION);
+
 function Footer ({ className, t }: PropTypes): React.Element<any> {
   return (
     <footer
@@ -50,6 +52,7 @@ function Footer ({ className, t }: PropTypes): React.Element<any> {
             <TwitterIcon /> Twitter
           </a>
         }
+        version={ process.env.APP_VERSION }
       />
     </footer>
   );

@@ -173,7 +173,7 @@ module.exports = {
       new webpack.EnvironmentPlugin({
         NODE_ENV: 'development',
         BLOG_ENTRIES: BLOG_ENTRIES.join(','),
-        APP_VERSION: JSON.stringify(VERSION)
+        APP_VERSION: `${pkgjson.version}`
       }),
       isProduction && new webpack.optimize.OccurrenceOrderPlugin(true),
       new webpack.optimize.CommonsChunkPlugin({
