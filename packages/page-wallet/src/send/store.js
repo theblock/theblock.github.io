@@ -18,8 +18,8 @@ import tokenStore from '../store/tokens';
 import transactionStore from '../store/transactions';
 import valueTypeStore from '../store/valueType';
 
-const BN0: BN = new BN(0);
-const BN100: BN = new BN(100);
+const CENTS: BN = new BN(10000);
+const ZERO: BN = new BN(0);
 
 export class SendStore {
   @observable accounts = accountStore;
@@ -100,10 +100,10 @@ export class SendStore {
     }
 
     if (this.balance.tokenFiatPrice.isZero()) {
-      return BN0;
+      return ZERO;
     }
 
-    return this.txValueBn.mul(BN100).divRound(this.balance.tokenFiatPrice);
+    return this.txValueBn.mul(CENTS).divRound(this.balance.tokenFiatPrice);
   }
 
   @computed get txValueFormatted (): string {

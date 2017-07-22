@@ -14,7 +14,7 @@ import chainStore from '../store/chains';
 import currencyStore from '../store/currencies';
 import tokenStore from '../store/tokens';
 
-const CENTS: BN = new BN(100);
+const CENTS: BN = new BN(10000);
 const ZERO: BN = new BN(0);
 
 export class BalanceStore {
