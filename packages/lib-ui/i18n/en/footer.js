@@ -2,5 +2,5 @@
 // @flow
 
 export default {
-  text: 'GPLv3, Copyright (C) 2017, theBlock, {{github}} {{reddit}} {{twitter}}'
+  text: 'v{{version}}, GPLv3, Copyright (C) 2017, theBlock, {{github}} {{reddit}} {{twitter}}'
 };

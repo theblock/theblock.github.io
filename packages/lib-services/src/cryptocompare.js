@@ -48,7 +48,7 @@ export async function getTokenPrice (token: string, currencies: Array<string>): 
   const price: { [string]: number } = await response.json();
 
   cache.price[token] = (currencies.reduce((result, currency) => {
-    result[currency] = new BN((price[currency] || 0) * 100);
+    result[currency] = new BN((price[currency] || 0) * 10000);
     return result;
   }, {}): PriceResultType);
 

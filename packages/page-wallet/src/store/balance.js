@@ -14,7 +14,8 @@ import chainStore from '../store/chains';
 import currencyStore from '../store/currencies';
 import tokenStore from '../store/tokens';
 
-const CENTS: BN = new BN(100);
+const CENTS: BN = new BN(10000);
+const ZERO: BN = new BN(0);
 
 export class BalanceStore {
   @observable accounts = accountStore;
@@ -22,7 +23,7 @@ export class BalanceStore {
   @observable currencies = currencyStore;
   @observable tokens = tokenStore;
   @observable balance: string = '';
-  @observable tokenFiatPrice: BN = new BN(0);
+  @observable prices: PriceResultType = {};
 
   constructor () {
     autorun(this.retrieveTokenBalance);
@@ -30,37 +31,43 @@ export class BalanceStore {
   }
 
   @computed get balanceBn (): BN {
-    return fromFloatToBn(this.balance);
+    return fromFloatToBn(this.balance, this.tokens.selected.decimals);
   }
 
   @computed get balanceFormatted (): string {
-    return formatFloat(this.balanceBn, 18, 4);
+    return formatFloat(this.balanceBn, this.tokens.selected.decimals, 4);
   }
 
   @computed get balanceFiatFormatted (): string {
     return this.tokenFiatPrice.isZero() || this.balanceBn.isZero()
       ? '-'
-      : formatFloat(this.tokenFiatPrice.mul(this.balanceBn).divRound(CENTS), this.tokens.selected.decimals, 2, true);
+      : formatFloat(
+        this.tokenFiatPrice.mul(this.balanceBn).divRound(CENTS), this.tokens.selected.decimals, 2, true
+      );
   }
 
   @computed get isLoading (): boolean {
     return !this.balance;
   }
 
+  @computed get tokenFiatPrice (): BN {
+    return this.prices[this.currencies.selected.key] || ZERO;
+  }
+
   @action setBalance = (balance: string) => {
     this.balance = balance;
   }
 
-  @action setTokenFiatPrice = (tokenFiatPrice: BN) => {
-    this.tokenFiatPrice = tokenFiatPrice;
+  @action setPrices = (prices: PriceResultType) => {
+    this.prices = prices;
   }
 
   retrieveTokenPrice = () => {
-    if (this.tokens.selected && this.currencies.selected) {
+    if (this.tokens.selected) {
       this.chains.selected.api
         .getTokenPrice(this.tokens.selected.token, this.currencies.all)
         .then((prices: PriceResultType) => {
-          this.setTokenFiatPrice(prices[this.currencies.selected.key]);
+          this.setPrices(prices);
         })
         .catch((error) => {
           console.error(error);
