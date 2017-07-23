@@ -5,16 +5,15 @@
 .ui {
   box-sizing: border-box;
   cursor: pointer;
-  display: flex;
   padding: 0.5em 0.75em;
   position: relative;
-  vertical-align: top;
+  vertical-align: middle;
   white-space: nowrap;
 
   .icon {
     position: absolute;
-    top: 0;
-    left: 0.618em;
+    top: 0.5em;
+    left: 0.5em;
     z-index: $naturalZ;
 
     i {
@@ -29,7 +28,7 @@
   }
 
   &.withIcon {
-    padding-left: 1.927em;
+    padding-left: 2.75em;
   }
 
   &.withSelected {
