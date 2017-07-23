@@ -48,14 +48,14 @@
 
   .icon {
     position: absolute;
-    left: 0.6em;
-    top: 0.1em;
+    left: 0.5em;
+    top: 0.5em;
     z-index: 1;
 
     i {
       color: $bodyColor;
       line-height: $bodyLineHeight;
-      margin-top: 0.5em;
+      margin-top: 0;
       margin-left: 0.125em;
     }
   }
@@ -63,13 +63,13 @@
   .iconBusy {
     position: absolute;
     right: 0.6em;
-    top: 0.1em;
+    top: 0.6em;
     z-index: 1;
 
     i {
       color: $bodyColor;
       line-height: $bodyLineHeight;
-      margin-top: 0.5em;
+      margin-top: 0;
       margin-left: 0.125em;
     }
   }

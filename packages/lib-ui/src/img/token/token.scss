@@ -1,8 +1,8 @@
 
 @import '../../colors.scss';
 
-$imageSizeInput: 1em;
-$imageSizeNormal: 1em;
+$imageSizeInput: 1.5625em;
+$imageSizeNormal: 1.5625em;
 $imageSizeLarge: 4em;
 
 .ui {
@@ -21,6 +21,5 @@ $imageSizeLarge: 4em;
 
   &.normal {
     font-size: $imageSizeNormal;
-    margin-top: 0.5em;
   }
 }
