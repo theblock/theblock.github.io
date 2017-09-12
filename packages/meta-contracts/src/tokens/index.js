@@ -16,9 +16,11 @@ import gavcoin from './definitions/gavcoin';
 import gnosis from './definitions/gnosis';
 import golem from './definitions/golem';
 import guppy from './definitions/guppy';
+import kikkin from './definitions/kikkin';
 import lunyr from './definitions/lunyr';
 import maker from './definitions/maker';
 import melon from './definitions/melon';
+import omisego from './definitions/omisego';
 import pluton from './definitions/pluton';
 import singularDtv from './definitions/singularDtv';
 import status from './definitions/status';
@@ -39,9 +41,11 @@ export default ([
   gnosis,
   golem,
   guppy,
+  kikkin,
   lunyr,
   maker,
   melon,
+  omisego,
   pluton,
   singularDtv,
   status,
