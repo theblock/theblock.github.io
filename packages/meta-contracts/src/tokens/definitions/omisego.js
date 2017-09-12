@@ -12,7 +12,7 @@ export default ({
   where: [
     {
       address: '0xd26114cd6EE289AccF82350c8d8487fedB8A0C07',
-      chainId: 18
+      chainId: 1
     }
   ]
 }: TokenType);
