@@ -78,8 +78,8 @@ export type TxObjectType = {
 
 export type TxInputType = {
   data: string,
-  from: ?string,
-  to: ?string,
+  from?: ?string,
+  to?: ?string,
   gas: string,
   gasPrice: string,
   value: string
