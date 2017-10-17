@@ -3,6 +3,7 @@
 
 import type { TokenType } from '../types';
 
+import aion from './definitions/aion';
 import aragon from './definitions/aragon';
 import augur from './definitions/augur';
 import bancor from './definitions/bancor';
@@ -22,12 +23,14 @@ import maker from './definitions/maker';
 import melon from './definitions/melon';
 import omisego from './definitions/omisego';
 import pluton from './definitions/pluton';
+import polkadot from './definitions/polkadot';
 import singularDtv from './definitions/singularDtv';
 import status from './definitions/status';
 import tenx from './definitions/tenx';
 import wings from './definitions/wings';
 
 export default ([
+  aion,
   aragon,
   augur,
   bancor,
@@ -47,6 +50,7 @@ export default ([
   melon,
   omisego,
   pluton,
+  polkadot,
   singularDtv,
   status,
   tenx,
