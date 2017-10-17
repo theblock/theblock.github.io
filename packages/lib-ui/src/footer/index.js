@@ -5,7 +5,8 @@ import compact from 'lodash.compact';
 import React from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
-import { GitHubIcon, RedditIcon, TwitterIcon } from '../icons';
+// import { GitHubIcon, RedditIcon, TwitterIcon } from '../icons';
+import { GitHubIcon } from '../icons';
 
 import styles from './footer.scss';
 
@@ -15,6 +16,23 @@ type PropTypes = {
 };
 
 console.log('v', process.env.APP_VERSION);
+
+// reddit={
+//   <a
+//     href='https://reddit.com/r/theblockio'
+//     rel='noopener'
+//   >
+//     <RedditIcon /> Reddit
+//   </a>
+// }
+// twitter={
+//   <a
+//     href='https://twitter.com/theblockio'
+//     rel='noopener'
+//   >
+//     <TwitterIcon /> Twitter
+//   </a>
+// }
 
 function Footer ({ className, t }: PropTypes): React.Element<any> {
   return (
@@ -34,22 +52,6 @@ function Footer ({ className, t }: PropTypes): React.Element<any> {
             rel='noopener'
           >
             <GitHubIcon /> GitHub
-          </a>
-        }
-        reddit={
-          <a
-            href='https://reddit.com/r/theblockio'
-            rel='noopener'
-          >
-            <RedditIcon /> Reddit
-          </a>
-        }
-        twitter={
-          <a
-            href='https://twitter.com/theblockio'
-            rel='noopener'
-          >
-            <TwitterIcon /> Twitter
           </a>
         }
         version={ process.env.APP_VERSION }

@@ -3,7 +3,6 @@
 
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const fs = require('fs');
 const HtmlPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const webpack = require('webpack');
@@ -12,13 +11,9 @@ const pkgjson = require('./package.json');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const BLOG_ENTRIES = fs
-  .readdirSync('packages/page-blog/i18n')
-  .filter((file) => (/^20[0-9]{6}-[0-9]{4}$/).test(file)).sort().reverse();
-
 const PAGES = [
-  '404', 'blog', 'home', 'settings', 'wallet'
-].concat(BLOG_ENTRIES.map((file) => `blog/${file}`));
+  '404', 'home', 'settings', 'wallet'
+];
 
 const VERSION = isProduction
   ? pkgjson.version.split('.').map((v) => `000${v}`.slice(-3)).join('.')
@@ -172,7 +167,6 @@ module.exports = {
     [
       new webpack.EnvironmentPlugin({
         NODE_ENV: 'development',
-        BLOG_ENTRIES: BLOG_ENTRIES.join(','),
         APP_VERSION: `${pkgjson.version}`
       }),
       isProduction && new webpack.optimize.OccurrenceOrderPlugin(true),
