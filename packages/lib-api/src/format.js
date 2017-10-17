@@ -15,18 +15,16 @@ export function formatInputAddress (address: ?string): string {
 }
 
 export function formatInputTx (tx: TxObjectType): TxInputType {
-  return {
-    data: fromStrToHex(tx.data),
-    from: tx.from
-      ? formatInputAddress(tx.from)
-      : null,
-    gas: fromBnToHex(tx.gasLimit || ZERO_BN),
-    gasPrice: fromBnToHex(tx.gasPrice || ZERO_BN),
-    to: tx.to
-      ? formatInputAddress(tx.to)
-      : null,
-    value: fromBnToHex(tx.value || ZERO_BN)
-  };
+  return Object.assign(
+    {
+      data: fromStrToHex(tx.data),
+      gas: fromBnToHex(tx.gasLimit || ZERO_BN),
+      gasPrice: fromBnToHex(tx.gasPrice || ZERO_BN),
+      value: fromBnToHex(tx.value || ZERO_BN)
+    },
+    tx.from ? { from: formatInputAddress(tx.from) } : {},
+    tx.to ? { to: formatInputAddress(tx.to) } : {}
+  );
 }
 
 export function formatOutputReceipt (receipt: ?ReceiptResultType): ?ReceiptOutputType {
