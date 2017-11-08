@@ -1,11 +1,11 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import type { JsonRpcResponse, ProviderCallbackType, ProviderInterface } from '../types';
+import type { JsonRpcResponse, ProviderCallbackType, ProviderStandardInterface } from '../types';
 
 import HttpFetchTransport from '../transport/httpFetch';
 
-export default class JsonRpcProvider extends HttpFetchTransport implements ProviderInterface {
+export default class JsonRpcProvider extends HttpFetchTransport implements ProviderStandardInterface {
   id: number = 0;
 
   async send (method: string, params: Array<any>, callback: ProviderCallbackType): Promise<void> {

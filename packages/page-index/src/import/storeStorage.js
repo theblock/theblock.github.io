@@ -17,7 +17,7 @@ const TYPES: Array<SelectableInterface> = [
   }
 ];
 
-class ImportStoreStorage extends SelectStore {
+class ImportStoreStorage extends SelectStore<SelectableInterface> {
   constructor () {
     super(TYPES, 'session');
   }

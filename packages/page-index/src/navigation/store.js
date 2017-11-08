@@ -28,7 +28,7 @@ const TYPES: Array<SelectableInterface> = [
   }
 ];
 
-class NavigationStore extends SelectStore {
+class NavigationStore extends SelectStore<SelectableInterface> {
   constructor () {
     super(TYPES, 'listAccounts');
   }

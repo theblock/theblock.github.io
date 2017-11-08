@@ -42,7 +42,7 @@ const TYPES: Array<SelectableInterface> = [
   }
 ];
 
-class ImportStoreType extends SelectStore {
+class ImportStoreType extends SelectStore<SelectableInterface> {
   @observable withLedger: boolean = false;
 
   constructor () {

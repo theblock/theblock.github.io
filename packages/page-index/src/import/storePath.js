@@ -17,7 +17,7 @@ const TYPES: Array<SelectableInterface> = [
   }
 ];
 
-class ImportStorePath extends SelectStore {
+class ImportStorePath extends SelectStore<SelectableInterface> {
   constructor () {
     super(TYPES, 'ledger');
   }

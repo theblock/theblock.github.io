@@ -6,7 +6,7 @@ import flatten from 'lodash.flatten';
 import { autorun } from 'mobx';
 import React, { type Element } from 'react';
 
-import type { ProviderInterface } from '@theblock/lib-api/src/types';
+import type { ProviderStandardInterface } from '@theblock/lib-api/src/types';
 import type { ExplorerInterface } from '@theblock/lib-services/src/types';
 import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 import type { StorageNameType, StorageValueType } from '@theblock/lib-util/src/types';
@@ -27,7 +27,7 @@ type ExplorerType = {
   url: string
 };
 
-type ProviderType = Class<ProviderInterface>; // eslint-disable-line no-undef
+type ProviderType = Class<ProviderStandardInterface>; // eslint-disable-line no-undef
 
 type ChainType = {
   chainId: number,
@@ -105,7 +105,7 @@ const CHAINS: Array<ChainType> = [
 const chains: Array<SelectChainType> = compact(flatten(
   CHAINS.map((chain: ChainType) => {
     return chain.providers.filter((Provider, index: number) => index === 0).map((Provider: ProviderType, index: number) => {
-      const provider: ProviderInterface = new Provider(chain.chainId, {});
+      const provider: ProviderStandardInterface = new Provider(chain.chainId, {});
 
       console.log(`Instantiated provider ${provider.name} for chainId ${chain.chainId}`);
 
