@@ -3,7 +3,7 @@
 
 /* eslint-disable no-unused-vars */
 
-import type { LedgerEthComms, LedgerEth, U2FCommsType } from '../packages/lib-hradware/src/types';
+import type { LedgerEthComms, LedgerEth, U2FCommsType } from '../packages/lib-hardware/src/types';
 
 declare module 'ledgerco' {
   declare class Eth {
