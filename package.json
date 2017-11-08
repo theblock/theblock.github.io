@@ -20,8 +20,9 @@
     "start": "npm run install:modules && NODE_ENV=development webpack-dev-server --progress",
     "stats": "npm-run-all --serial stats:*",
     "stats:coverage": "NOD_ENV=test jest --coverage && cat ./coverage/lcov.info | coveralls",
-    "test": "NOD_ENV=test jest",
+    "test": "NODE_ENV=test jest",
     "watch": "npm-run-all --parallel watch:*",
+    "watch:build": "webpack --watch",
     "watch:jsflow": "flow-watch --ignore node_modules/ --watch .flowconfig",
     "ci:build": "npm-run-all --serial ci:build:*",
     "ci:build:all": "NODE_ENV=production webpack"

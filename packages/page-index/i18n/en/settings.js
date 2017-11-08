@@ -2,4 +2,10 @@
 // @flow
 
 export default {
+  chain: {
+    text: 'using the default chain'
+  },
+  language: {
+    text: 'display interface in'
+  }
 };

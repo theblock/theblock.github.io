@@ -14,11 +14,12 @@ import styles from './navigation.scss';
 type PropTypes = {
   children?: React.Element<any>,
   className?: string,
+  empty?: boolean,
   links?: React.Element<any>,
   t: (string) => string
 };
 
-function Navigation ({ children, className, links, t }: PropTypes): React.Element<any> {
+function Navigation ({ children, className, empty, links, t }: PropTypes): React.Element<any> {
   return (
     <nav
       className={
@@ -28,19 +29,28 @@ function Navigation ({ children, className, links, t }: PropTypes): React.Elemen
       }
     >
       <ImgPattern>
-        <div className={ styles.topbar }>
-          <div className={ styles.navigation }>
-            <Block className={ styles.logo } />
-          </div>
-          <div className={ styles.links }>
-            <Language />
-            { links }
-          </div>
-        </div>
+        {
+          empty
+            ? null
+            : (
+              <div className={ styles.topbar }>
+                <Block className={ styles.logo } />
+                <div className={ styles.links }>
+                  <Language />
+                  { links }
+                </div>
+              </div>
+            )
+        }
         {
           children
             ? (
               <div className={ styles.subbar }>
+                {
+                  empty
+                    ? <Block className={ styles.logo } />
+                    : null
+                }
                 { children }
               </div>
             )

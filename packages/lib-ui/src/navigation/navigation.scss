@@ -7,6 +7,14 @@
   background: $navBackground;
   font-size: $navFontSize;
 
+  .logo {
+    left: 1em;
+    position: absolute;
+    top: 0;
+    transform: scale(0.186) translateX(0) translateY(1.9em); // magic :(
+    transform-origin: 0;
+  }
+
   .subbar,
   .topbar {
     display: flex;
@@ -23,16 +31,6 @@
     justify-content: space-between;
 
     .links {
-    }
-
-    .navigation {
-      .logo {
-        left: 1em;
-        position: absolute;
-        top: 0;
-        transform: scale(0.186) translateX(0) translateY(1.9em); // magic :(
-        transform-origin: 0;
-      }
     }
   }
 

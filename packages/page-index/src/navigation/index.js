@@ -6,9 +6,7 @@ import { observer } from 'mobx-react';
 import { translate } from 'react-i18next';
 
 import Navigation from '@theblock/lib-ui/src/navigation';
-import Select from '@theblock/lib-ui/src/input/select';
 
-import chains from '../store/chains';
 import store from './store';
 import Item from './item';
 
@@ -19,13 +17,7 @@ type PropTypes = {
 
 function WalletNavigation ({ className, t }: PropTypes): React.Element<any> {
   return (
-    <Navigation
-      links={
-        <Select
-          store={ chains }
-        />
-      }
-    >
+    <Navigation empty>
       {
         store.filtered.map((item) => (
           <Item
