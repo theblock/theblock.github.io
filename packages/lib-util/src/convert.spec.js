@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import { fromBnToDec, fromBnToHex } from './convert';
+import { fromBnToDec, fromBnToHex, fromDecToBn, fromDecToHex } from './convert';
 
 describe('convert', () => {
   describe('fromBnToDec', () => {
@@ -39,6 +39,18 @@ describe('convert', () => {
 
     it('resturns strings as-is', () => {
       expect(fromBnToHex('0x12345')).toBe('0x12345');
+    });
+  });
+
+  describe('fromDecToBn', () => {
+    it('converts to decimal BN', () => {
+      expect(fromDecToBn(10).toNumber()).toBe(10);
+    });
+  });
+
+  describe('fromDecToHex', () => {
+    it('converts to hex value', () => {
+      expect(fromDecToHex(10)).toBe('0xa');
     });
   });
 });
