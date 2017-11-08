@@ -3,7 +3,7 @@
 
 import compact from 'lodash.compact';
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import type { SelectableInterface } from '../../types';
 import type Store from '../select/store';
@@ -34,11 +34,11 @@ type PropTypes = {
   valueAddress: ?string
 };
 
-function InputAddress ({ className, copyValue, example, hideIcon, hint, isBusy, isDisabled, isError, isReadOnly, isMaxWidth, isWarning, label, onChange, store, value, valueAddress }: PropTypes): React.Element<any> {
+function InputAddress ({ className, copyValue, example, hideIcon, hint, isBusy, isDisabled, isError, isReadOnly, isMaxWidth, isWarning, label, onChange, store, value, valueAddress }: PropTypes): Element<any> {
   const classes: string = compact([
     styles.ui, className
   ]).join(' ');
-  const icon: ?React.Element<any> = (
+  const icon: ?Element<any> = (
     isError
       ? null
       : <ImgIdentity value={ valueAddress || value } />

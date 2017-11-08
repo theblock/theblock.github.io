@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import { preloadImage } from '@theblock/lib-util/src/image';
 
@@ -24,7 +24,7 @@ const TOKENS: { [?TokenType]: string } = {
   eth: preloadImage('/assets/tokens/eth-128.png')
 };
 
-export default function ImgToken ({ className, size = 'normal', src, value }: PropTypes): React.Element<any> {
+export default function ImgToken ({ className, size = 'normal', src, value }: PropTypes): Element<any> {
   return (
     <img
       className={

@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import Background from '@theblock/lib-ui/src/background404';
@@ -16,7 +16,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function FourOhFour ({ className, t }: PropTypes): React.Element<any> {
+function FourOhFour ({ className, t }: PropTypes): Element<any> {
   return (
     <div
       className={

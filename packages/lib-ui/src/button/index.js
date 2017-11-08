@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import { BusyIcon } from '../icons';
 
@@ -10,7 +10,7 @@ import styles from './button.scss';
 
 type PropTypes = {
   className?: string,
-  icon?: React.Element<any>,
+  icon?: Element<any>,
   isBusy?: boolean,
   isDanger?: boolean,
   isDisabled?: boolean,
@@ -19,7 +19,7 @@ type PropTypes = {
   onClick?: (Event) => mixed
 }
 
-export default function Button ({ className, icon, isBusy, isDisabled, isDanger, isInverse, label, onClick }: PropTypes): React.Element<any> {
+export default function Button ({ className, icon, isBusy, isDisabled, isDanger, isInverse, label, onClick }: PropTypes): Element<any> {
   return (
     <button
       className={

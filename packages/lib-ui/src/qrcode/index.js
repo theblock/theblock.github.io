@@ -2,7 +2,7 @@
 // @flow
 
 import qrcode from 'qrcode-generator';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import { calculateType } from './calc';
 import Html from '../html';
@@ -12,7 +12,7 @@ type PropTypes = {
   value: string
 };
 
-export default function QrCode ({ className, value }: PropTypes): React.Element<any> {
+export default function QrCode ({ className, value }: PropTypes): Element<any> {
   const qr = qrcode(calculateType(value.length), 'M');
 
   qr.addData(value, 'Byte');

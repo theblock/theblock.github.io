@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import Input from '../index';
 
@@ -10,13 +10,13 @@ import styles from './static.scss';
 
 type PropTypes = {
   className?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isError?: boolean,
   isWarning?: boolean,
   value?: string
 };
 
-export default function InputStatic ({ className, icon, isError, isWarning, value }: PropTypes): React.Element<any> {
+export default function InputStatic ({ className, icon, isError, isWarning, value }: PropTypes): Element<any> {
   return (
     <Input
       className={

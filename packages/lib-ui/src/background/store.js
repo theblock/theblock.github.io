@@ -15,7 +15,7 @@ const SOURCES: Array<string> = [
   'mountain-006-960.jpg',
   'mountain-007-960.jpg',
   'mountain-008-960.jpg'
-].map((image) => `/assets/backgrounds/${image}`);
+].map((image) => `assets/backgrounds/${image}`);
 
 export class BackgroundStore {
   @observable isLoaded: boolean = false;

@@ -1,8 +1,10 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-type DigestType = 'hex'; // eslint-disable-line
-type KeccakType = 'keccak256'; // eslint-disable-line
+/* eslint-disable no-unused-vars */
+
+type DigestType = 'hex';
+type KeccakType = 'keccak256';
 
 declare module 'keccak' {
   declare module.exports: (type: KeccakType) => {

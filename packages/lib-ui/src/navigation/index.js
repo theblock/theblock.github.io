@@ -2,28 +2,24 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 import { translate } from 'react-i18next';
 
 import Block from '../block';
 import ImgPattern from '../img/pattern';
-import InputLink from '../input/link';
 import Language from '../language';
 
 import styles from './navigation.scss';
 
-const LINKS: Array<string> = ['home', 'wallet', 'settings'];
-
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string,
-  links?: React.Element<any>,
+  empty?: boolean,
+  links?: Element<any>,
   t: (string) => string
 };
 
-function Navigation ({ children, className, links, t }: PropTypes): React.Element<any> {
-  const path: string = window.location.pathname.split('/')[2];
-
+function Navigation ({ children, className, empty, links, t }: PropTypes): Element<any> {
   return (
     <nav
       className={
@@ -33,30 +29,28 @@ function Navigation ({ children, className, links, t }: PropTypes): React.Elemen
       }
     >
       <ImgPattern>
-        <div className={ styles.topbar }>
-          <div className={ styles.navigation }>
-            {
-              LINKS.map((link) => (
-                <InputLink
-                  href={ `/x/${link}` }
-                  isInternal
-                  isReadOnly={ path === link }
-                  key={ link }
-                  value={ t(`ui:navigation.${link}`) }
-                />
-              ))
-            }
-            <Block className={ styles.logo } />
-          </div>
-          <div className={ styles.links }>
-            <Language />
-            { links }
-          </div>
-        </div>
+        {
+          empty
+            ? null
+            : (
+              <div className={ styles.topbar }>
+                <Block className={ styles.logo } />
+                <div className={ styles.links }>
+                  <Language />
+                  { links }
+                </div>
+              </div>
+            )
+        }
         {
           children
             ? (
               <div className={ styles.subbar }>
+                {
+                  empty
+                    ? <Block className={ styles.logo } />
+                    : null
+                }
                 { children }
               </div>
             )

@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import styles from './html.scss';
 
@@ -11,7 +11,7 @@ type PropTypes = {
   html: string
 };
 
-export default function Html ({ className, html }: PropTypes): React.Element<any> {
+export default function Html ({ className, html }: PropTypes): Element<any> {
   return (
     <div
       className={

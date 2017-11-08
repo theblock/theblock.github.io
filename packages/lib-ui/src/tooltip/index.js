@@ -2,20 +2,20 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import styles from './tooltip.scss';
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string,
   value?: string
 };
 
 let tooltipIdNext = 0;
 
-export default function Tooltip ({ children, className, value }: PropTypes): ?React.Element<any> {
+export default function Tooltip ({ children, className, value }: PropTypes): ?Element<any> {
   if (!value) {
     return null;
   }

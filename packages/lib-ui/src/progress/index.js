@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import styles from './progress.scss';
 
@@ -11,7 +11,7 @@ type PropTypes = {
   label?: string
 };
 
-export default function Progress ({ className, label }: PropTypes): ?React.Element<any> {
+export default function Progress ({ className, label }: PropTypes): ?Element<any> {
   return (
     <div
       className={

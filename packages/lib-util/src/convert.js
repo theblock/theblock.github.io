@@ -4,6 +4,7 @@
 import BN from 'bn.js';
 
 import { removeHexPrefix } from './format';
+import { hasHexPrefix } from './validate';
 
 const ETH_ZEROS: string = '000000000000000000';
 
@@ -40,7 +41,7 @@ export function fromBytesToHex (bytes: Array<number> | Buffer): string {
 }
 
 export function fromDecToBn (value?: any): BN {
-  return new BN(value, 10);
+  return new BN(value || '0', 10);
 }
 
 export function fromDecToHex (value?: any): string {
@@ -69,7 +70,7 @@ export function fromStrToHex (value?: ?string): string {
     return '0x';
   }
 
-  if (value.substr(0, 2) === '0x') {
+  if (hasHexPrefix(value)) {
     return value.toLowerCase();
   }
 

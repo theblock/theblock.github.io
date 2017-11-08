@@ -7,6 +7,13 @@ module.exports = {
     'stylelint-scss'
   ],
   rules: {
+    'at-rule-no-unknown': [true, {
+      'ignoreAtRules': [
+        'define-mixin',
+        'for',
+        'mixin'
+      ]
+    }],
     'block-no-empty': null,
     'no-invalid-double-slash-comments': null
   }

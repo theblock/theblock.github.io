@@ -3,7 +3,7 @@
 
 import jdenticon from 'jdenticon';
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 import { observer } from 'mobx-react';
 
 import { removeHexPrefix } from '@theblock/lib-util/src/format';
@@ -18,7 +18,7 @@ type PropTypes = {
   seed?: string
 };
 
-function ImgFingerprint ({ className, seed }: PropTypes): ?React.Element<any> {
+function ImgFingerprint ({ className, seed }: PropTypes): ?Element<any> {
   return (
     <Html
       className={

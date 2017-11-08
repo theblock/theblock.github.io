@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import Input from '../index';
 
@@ -12,7 +12,7 @@ type PropTypes = {
   className?: string,
   example?: string,
   hint?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isDisabled?: boolean,
   isError?: boolean,
   isInteger?: boolean,
@@ -26,7 +26,7 @@ type PropTypes = {
   valueDisplay?: ?string,
 };
 
-export default function InputTextarea ({ className, example, hint, icon, isDisabled, isError, isInteger, isMaxWidth, isReadOnly, isWarning, label, onChange, rows = 5, value, valueDisplay }: PropTypes): React.Element<any> {
+export default function InputTextarea ({ className, example, hint, icon, isDisabled, isError, isInteger, isMaxWidth, isReadOnly, isWarning, label, onChange, rows = 5, value, valueDisplay }: PropTypes): Element<any> {
   const _onChange = ({ target: { value } }: { target: HTMLInputElement }): void => {
     onChange && onChange(value);
   };

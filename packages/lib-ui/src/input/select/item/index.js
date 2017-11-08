@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import type { SelectableInterface } from '../../../types';
 
@@ -15,7 +15,7 @@ type PropTypes = {
   onSelect?: (event: Event, key: string) => mixed
 };
 
-export default function Item ({ className, isSelected, item, onSelect }: PropTypes): React.Element<any> {
+export default function Item ({ className, isSelected, item, onSelect }: PropTypes): Element<any> {
   const { icon, key, label } = item;
 
   const _onClick = (event) => {

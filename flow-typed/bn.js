@@ -13,6 +13,7 @@ declare module 'bn.js' {
     eq (value: BN): boolean;
     lt (value: BN): boolean;
     gt (value: BN): boolean;
+    toNumber (): number;
     toString (base?: number, padding?: number): string;
     static isBN (value?: any): boolean;
   }

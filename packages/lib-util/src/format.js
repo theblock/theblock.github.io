@@ -5,7 +5,7 @@ import BN from 'bn.js';
 
 import { ZERO_ETHER, NULL_ADDRESS } from './constants';
 import { createSha3Raw } from './sha3';
-import { isAddressValid } from './validate';
+import { isAddressValid, hasHexPrefix } from './validate';
 
 export function formatAddress (_address: ?string): string {
   if (!_address) {
@@ -61,7 +61,11 @@ export function formatFloat (value: BN, decimals?: number = 18, format?: number 
 }
 
 export function padHex (hex: string): string {
-  if (hex.length % 2) {
+  if (hasHexPrefix(hex)) {
+    return `0x${padHex(removeHexPrefix(hex))}`;
+  }
+
+  if (hex && hex.length % 2) {
     return `0${hex}`;
   }
 
@@ -70,7 +74,7 @@ export function padHex (hex: string): string {
 
 export function removeHexPrefix (hex?: ?string): string {
   if (hex) {
-    if (hex.substr(0, 2) === '0x') {
+    if (hasHexPrefix(hex)) {
       return hex.substr(2);
     } else {
       return hex;

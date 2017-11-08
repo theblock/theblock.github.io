@@ -2,7 +2,7 @@
 // @flow
 
 import { NULL_ADDRESS } from './constants';
-import { concatHex, formatAddress } from './format';
+import { concatHex, formatAddress, padHex } from './format';
 
 const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
 
@@ -44,6 +44,20 @@ describe('format', () => {
 
     it('returns formatted address on input without leading 0x', () => {
       expect(formatAddress(ADDRESS.substr(2))).toBe(ADDRESS);
+    });
+  });
+
+  describe('padHex', () => {
+    it('pads uneven digits', () => {
+      expect(padHex('a')).toBe('0a');
+    });
+
+    it('pads even digits', () => {
+      expect(padHex('ab')).toBe('ab');
+    });
+
+    it('keeps hex prefix in-tact on conversions', () => {
+      expect(padHex('0xa')).toBe('0x0a');
     });
   });
 });

@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import Clipboard from '../../clipboard';
 import { LinkIcon } from '../../icons';
@@ -19,12 +19,12 @@ type PropTypes = {
   isMedWidth?: boolean,
   isReadOnly?: boolean,
   isWarning?: boolean,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   onClick?: () => mixed,
   value?: ?string
 };
 
-export default function InputLink ({ className, copyValue, href, icon, isInternal, isInverted, isMedWidth, isReadOnly, isWarning, onClick, value }: PropTypes): React.Element<any> {
+export default function InputLink ({ className, copyValue, href, icon, isInternal, isInverted, isMedWidth, isReadOnly, isWarning, onClick, value }: PropTypes): Element<any> {
   const _onClick = (event: Event) => {
     if (onClick) {
       event.preventDefault();
@@ -34,7 +34,7 @@ export default function InputLink ({ className, copyValue, href, icon, isInterna
     }
   };
 
-  const link: React.Element<any> = (
+  const link: Element<any> = (
     <a
       href={ href || '#' }
       onClick={ _onClick }

@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import InfoPopup from '../infoPopup';
 
@@ -20,7 +20,7 @@ type PropTypes = {
   errors: Array<ErrorType>
 };
 
-export default function Errors ({ className, errors }: PropTypes): ?React.Element<any> {
+export default function Errors ({ className, errors }: PropTypes): ?Element<any> {
   if (!errors.length) {
     return null;
   }

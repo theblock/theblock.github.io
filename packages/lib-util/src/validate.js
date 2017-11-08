@@ -43,8 +43,12 @@ export function isEnsName (_address: ?string): boolean {
     parts[parts.length - 2].length >= 7;
 }
 
+export function hasHexPrefix (hex: ?string): boolean {
+  return !!(hex && hex.substr(0, 2) === '0x');
+}
+
 export function isHexValid (hex: ?string): boolean {
-  if (hex && hex.substr(0, 2) === '0x' && hex.length % 2 === 0) {
+  if (hex && hasHexPrefix(hex) && hex.length % 2 === 0) {
     return hex === '0x' || /^0x[0-9a-fA-F]+$/.test(hex);
   }
 

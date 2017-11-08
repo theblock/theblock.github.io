@@ -2,18 +2,18 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 
 import styles from './overlay.scss';
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string,
   isVisible?: boolean,
   onClick?: (Event) => mixed
 };
 
-export default function Overlay ({ children, className, isVisible, onClick }: PropTypes): ?React.Element<any> {
+export default function Overlay ({ children, className, isVisible, onClick }: PropTypes): ?Element<any> {
   if (!isVisible) {
     return null;
   }

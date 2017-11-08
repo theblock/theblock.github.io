@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 
 import styles from './infoBar.scss';
 
@@ -13,11 +13,11 @@ export type ErrorType = {
 };
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string
 };
 
-export default function InfoBar ({ children, className }: PropTypes): React.Element<any> {
+export default function InfoBar ({ children, className }: PropTypes): Element<any> {
   return (
     <div
       className={

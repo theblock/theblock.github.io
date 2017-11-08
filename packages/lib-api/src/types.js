@@ -55,10 +55,13 @@ export interface ProviderInterface {
   +chainId: number;
   +name: string;
 
-  constructor (chainId: number, options: TransportOptionsType): ProviderInterface;
-
   send (methodName: string, params: Array<any>, callback: (error: ?Error, result: ?any) => void): Promise<void>;
 }
+
+export interface ProviderStandardInterface extends ProviderInterface {
+  constructor (chainId: number, options: TransportOptionsType): any;
+}
+
 export type ProviderCallbackType = (error: ?Error, result: ?any) => void;
 
 export type MiddleWareHandlerType = (provider: ProviderInterface, method: string, params: Array<any>, callback: ProviderCallbackType) => void;

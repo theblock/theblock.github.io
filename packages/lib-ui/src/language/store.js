@@ -22,7 +22,7 @@ const LANGUAGES: Array<SelectableInterface> = Object.keys(languages).map((key) =
 
 const defaultLanguage: { selectedKey: string } = getStorage(LS_LANGUAGE);
 
-export class LanguageStore extends SelectStore {
+export class LanguageStore extends SelectStore<SelectableInterface> {
   i18next: { changeLanguage: (string) => void };
 
   constructor () {

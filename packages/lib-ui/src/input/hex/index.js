@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import Input from '../index';
 
@@ -12,7 +12,7 @@ type PropTypes = {
   className?: string,
   example?: string,
   hint?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isDisabled?: boolean,
   isError?: boolean,
   isReadOnly?: boolean,
@@ -24,7 +24,7 @@ type PropTypes = {
   valueDisplay?: ?string,
 };
 
-export default function InputHex ({ className, example, hint, icon, isDisabled, isError, isReadOnly, isWarning, label, onChange, value, valueDisplay }: PropTypes): React.Element<any> {
+export default function InputHex ({ className, example, hint, icon, isDisabled, isError, isReadOnly, isWarning, label, onChange, value, valueDisplay }: PropTypes): Element<any> {
   const _onChange = (_value: string): void => {
     const value: string = _value.replace('0x0x', '0x'); // in the case of case of pasting
 
