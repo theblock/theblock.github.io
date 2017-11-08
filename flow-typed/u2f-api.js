@@ -1,7 +1,9 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import type { U2FApiResultType } from '../src/types'; // eslint-disable-line
+/* eslint-disable no-unused-vars */
+
+import type { U2FApiResultType } from '../src/types';
 
 declare module 'u2f-api' {
   declare module.exports: {

@@ -1,7 +1,9 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-type IdnaOptionsType = { // eslint-disable-line
+/* eslint-disable no-unused-vars */
+
+type IdnaOptionsType = {
   transitional: boolean,
   useStd3ASCII: boolean,
   verifyDnsLength: boolean

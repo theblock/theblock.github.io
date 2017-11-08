@@ -1,7 +1,9 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-type HDNodeType = { // eslint-disable-line
+/* eslint-disable no-unused-vars */
+
+type HDNodeType = {
   derive: (index: number) => HDNodeType;
   deriveHardened: (index: number) => HDNodeType;
   derivePath: (path: string) => HDNodeType;
@@ -13,7 +15,7 @@ type HDNodeType = { // eslint-disable-line
   }
 };
 
-type NetworkType = { // eslint-disable-line
+type NetworkType = {
 };
 
 declare module 'bitcoinjs-lib' {

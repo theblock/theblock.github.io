@@ -1,7 +1,9 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import type { TransactionType } from '../packages/lib-util/src/types'; // eslint-disable-line
+/* eslint-disable no-unused-vars */
+
+import type { TransactionType } from '../packages/lib-util/src/types';
 
 declare module 'ethereumjs-tx' {
   declare class EthereumTx {

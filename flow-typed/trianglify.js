@@ -1,7 +1,9 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-type TriOptionsType = { // eslint-disable-line
+/* eslint-disable no-unused-vars */
+
+type TriOptionsType = {
   [string]: any
 };
 
