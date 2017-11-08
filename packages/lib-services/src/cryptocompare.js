@@ -36,10 +36,13 @@ export async function getTokenPrice (token: string, currencies: Array<string>): 
 
   cache.price[token] = {};
 
-  const response: Response = await fetch(createUrl('price', {
-    fsym: token,
-    tsyms: currencies.join(',')
-  }), GET_HEADERS);
+  const response: Response = await fetch(
+    createUrl('price', {
+      fsym: token,
+      tsyms: currencies.join(',')
+    }),
+    GET_HEADERS
+  );
 
   if (!response.ok) {
     throw new Error(response.status);
@@ -49,6 +52,7 @@ export async function getTokenPrice (token: string, currencies: Array<string>): 
 
   cache.price[token] = (currencies.reduce((result, currency) => {
     result[currency] = new BN((price[currency] || 0) * 10000);
+
     return result;
   }, {}): PriceResultType);
 

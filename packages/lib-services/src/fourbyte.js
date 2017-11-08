@@ -52,9 +52,12 @@ export async function getMethodSignature (_signature: ?string): Promise<Signatur
 
   cache.signatures[signature] = decodeMethodString();
 
-  const response: Response = await fetch(createUrl('signatures', {
-    hex_signature: signature
-  }), GET_HEADERS);
+  const response: Response = await fetch(
+    createUrl('signatures', {
+      hex_signature: signature
+    }),
+    GET_HEADERS
+  );
 
   if (!response.ok) {
     throw new Error(response.status);
