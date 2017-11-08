@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import React, { type Element } from 'react';
+import { type Element } from 'react';
 
 export interface SelectableInterface {
   hint?: ?string,
