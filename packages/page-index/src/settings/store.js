@@ -7,6 +7,8 @@ import patternStore, { toPatternSeed } from '@theblock/lib-ui/src/img/pattern/st
 
 let counter = Date.now();
 
+const MAX_SEEDS: number = (12 - 1);
+
 class Store {
   @observable seeds: Array<string> = [];
 
@@ -21,7 +23,7 @@ class Store {
   @action generateSeeds = (start: number) => {
     const seeds: Array<string> = this.seeds.filter((seed, index) => index > start);
 
-    while (seeds.length !== 14) {
+    while (seeds.length !== MAX_SEEDS) {
       seeds.push(toPatternSeed(`${this.seed}${counter++}`));
     }
 
