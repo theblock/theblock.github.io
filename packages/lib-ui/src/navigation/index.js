@@ -7,12 +7,9 @@ import { translate } from 'react-i18next';
 
 import Block from '../block';
 import ImgPattern from '../img/pattern';
-import InputLink from '../input/link';
 import Language from '../language';
 
 import styles from './navigation.scss';
-
-const LINKS: Array<string> = ['wallet'];
 
 type PropTypes = {
   children?: React.Element<any>,
@@ -22,8 +19,6 @@ type PropTypes = {
 };
 
 function Navigation ({ children, className, links, t }: PropTypes): React.Element<any> {
-  const path: string = window.location.pathname.split('/')[2];
-
   return (
     <nav
       className={
@@ -35,17 +30,6 @@ function Navigation ({ children, className, links, t }: PropTypes): React.Elemen
       <ImgPattern>
         <div className={ styles.topbar }>
           <div className={ styles.navigation }>
-            {
-              LINKS.map((link) => (
-                <InputLink
-                  href={ `/x/${link}` }
-                  isInternal
-                  isReadOnly={ path === link }
-                  key={ link }
-                  value={ t(`ui:navigation.${link}`) }
-                />
-              ))
-            }
             <Block className={ styles.logo } />
           </div>
           <div className={ styles.links }>

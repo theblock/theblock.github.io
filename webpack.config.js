@@ -4,6 +4,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+const HtmlHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -19,7 +20,7 @@ const VERSION = isProduction
   ? pkgjson.version.split('.').map((v) => `000${v}`.slice(-3)).join('.')
   : 'development';
 
-const HASH_PATH = `y/z/${VERSION}/[name]`; // [name]/[chunkhash] or [hash]/[name]
+const HASH_PATH = `${VERSION}/[name]`; // [name]/[chunkhash] or [hash]/[name]
 
 function resolve (modulePath) {
   return path.resolve(__dirname, modulePath);
@@ -29,8 +30,8 @@ module.exports = {
   output: {
     chunkFilename: `${HASH_PATH}.js`,
     filename: `${HASH_PATH}.js`,
-    path: path.join(__dirname, 'x'),
-    publicPath: `x/`
+    path: path.join(__dirname, 'build'),
+    publicPath: 'build/'
   },
   devServer: {
     quiet: false,
@@ -208,6 +209,7 @@ module.exports = {
       })
     ],
     PAGES.map((page) => new HtmlPlugin({
+      alwaysWriteToDisk: true,
       chunks: [
         'common',
         'ethereum',
@@ -225,11 +227,12 @@ module.exports = {
         removeStyleLinkTypeAttributes: true,
         sortAttributes: true
       },
-      template: './index.ejs',
+      template: path.join(__dirname, 'index.ejs'),
       title: page === 'index'
         ? 'wallet'
         : page
     })),
+    new HtmlHarddiskPlugin(),
     [
       new ScriptExtHtmlWebpackPlugin({
         defaultAttribute: 'defer'

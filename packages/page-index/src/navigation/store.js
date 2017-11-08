@@ -34,7 +34,7 @@ class NavigationStore extends SelectStore {
   }
 
   @computed get filtered (): Array<SelectableInterface> {
-    return this.items.filter(({ key }) => accounts.hasAccounts || key === 'importAccount');
+    return this.items.filter(({ key }) => accounts.hasAccounts || ['importAccount', 'settings'].includes(key));
   }
 }
 

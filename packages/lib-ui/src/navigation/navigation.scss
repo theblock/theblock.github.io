@@ -26,11 +26,8 @@
     }
 
     .navigation {
-      padding-left: 4em;
-      position: relative;
-
       .logo {
-        left: 0;
+        left: 1em;
         position: absolute;
         top: 0;
         transform: scale(0.186) translateX(0) translateY(1.9em); // magic :(
