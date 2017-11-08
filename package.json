@@ -92,7 +92,6 @@
     "@theblock/lib-util": "file:packages/lib-util",
     "@theblock/meta-contracts": "file:packages/meta-contracts",
     "@theblock/page-404": "file:packages/page-404",
-    "@theblock/page-home": "file:packages/page-home",
     "@theblock/page-settings": "file:packages/page-settings",
     "@theblock/page-wallet": "file:packages/page-wallet",
     "babel-runtime": "^6.23.0",
