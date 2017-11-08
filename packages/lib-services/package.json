@@ -8,7 +8,7 @@
   "devDependencies": {
   },
   "dependencies": {
-    "query-string": "^4.3.4"
+    "query-string": "~5.0.0"
   },
   "peerDependencies": {
     "@theblock/lib-util": "*"

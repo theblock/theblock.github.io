@@ -8,7 +8,7 @@
   "devDependencies": {
   },
   "dependencies": {
-    "moment": "^2.18.1"
+    "moment": "~2.19.0"
   },
   "peerDependencies": {
     "@theblock/lib-api": "*",

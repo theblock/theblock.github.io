@@ -8,7 +8,7 @@
   "devDependencies": {
   },
   "dependencies": {
-    "idna-uts46": "^1.1.0"
+    "idna-uts46": "~1.1.0"
   },
   "peerDependencies": {
     "@theblock/lib-api": "*",
