@@ -7,9 +7,13 @@ import type { StorageValueType, StorageNameType } from './types';
 
 const PREFIX = `theBlock`;
 
-export function getStorage (suffix: StorageNameType): StorageValueType {
+function getKey (key: StorageNameType): string {
+  return `${PREFIX}:${key}`;
+}
+
+export function getStorage (key: StorageNameType): StorageValueType {
   try {
-    const lzjson: ?string = localStorage.getItem(`${PREFIX}:${suffix}`);
+    const lzjson: ?string = localStorage.getItem(getKey(key));
 
     if (!lzjson || !lzjson.length) {
       return {};
@@ -26,12 +30,12 @@ export function getStorage (suffix: StorageNameType): StorageValueType {
   return {};
 }
 
-export function setStorage (suffix: StorageNameType, item: StorageValueType): void {
+export function setStorage (key: StorageNameType, item: StorageValueType): void {
   try {
     const json: string = JSON.stringify(item || {});
     const lzjson: string = lz.compressToUTF16(json);
 
-    localStorage.setItem(`${PREFIX}:${suffix}`, lzjson);
+    localStorage.setItem(getKey(key), lzjson);
   } catch (error) {
     console.error('setStorage', error);
   }
