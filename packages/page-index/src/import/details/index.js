@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import Bip from './bip';
@@ -17,7 +17,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Details ({ className, store, t }: PropTypes): ?React.Element<any> {
+function Details ({ className, store, t }: PropTypes): ?Element<any> {
   switch (store.storeType.selected.key) {
     case 'bipPhrase':
       return <Bip store={ store } />;

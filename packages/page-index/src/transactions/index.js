@@ -3,7 +3,7 @@
 
 import compact from 'lodash.compact';
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import transactions from '../store/transactions';
 import Transaction from './transaction';
@@ -13,7 +13,7 @@ type PropTypes = {
   className?: string
 };
 
-function Transactions ({ className }: PropTypes): React.Element<any> {
+function Transactions ({ className }: PropTypes): Element<any> {
   return (
     <div
       className={

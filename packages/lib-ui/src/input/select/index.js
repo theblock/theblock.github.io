@@ -3,7 +3,7 @@
 
 import compact from 'lodash.compact';
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import type { SelectableInterface } from '../../types';
@@ -22,7 +22,7 @@ type PropTypes = {
   example?: string,
   hideIcon?: boolean,
   hint?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isBusy?: boolean,
   isDisabled?: boolean,
   isError?: boolean,
@@ -35,7 +35,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Select ({ className, copyValue, displayKey, example, hideIcon, hint, icon, isBusy, isDisabled, isError, isInverted, isMaxWidth, isReadOnly, label, onChange, store, t }: PropTypes): React.Element<any> {
+function Select ({ className, copyValue, displayKey, example, hideIcon, hint, icon, isBusy, isDisabled, isError, isInverted, isMaxWidth, isReadOnly, label, onChange, store, t }: PropTypes): Element<any> {
   const _onBlur = (event) => {
     store.setOpen(false);
   };

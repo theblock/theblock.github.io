@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 import { translate } from 'react-i18next';
 
 import Block from '../block';
@@ -12,14 +12,14 @@ import Language from '../language';
 import styles from './navigation.scss';
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string,
   empty?: boolean,
-  links?: React.Element<any>,
+  links?: Element<any>,
   t: (string) => string
 };
 
-function Navigation ({ children, className, empty, links, t }: PropTypes): React.Element<any> {
+function Navigation ({ children, className, empty, links, t }: PropTypes): Element<any> {
   return (
     <nav
       className={

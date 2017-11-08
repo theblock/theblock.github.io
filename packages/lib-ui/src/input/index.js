@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 
 import Clipboard from '../clipboard';
 import { BusyIcon, EditIcon } from '../icons';
@@ -10,15 +10,15 @@ import { BusyIcon, EditIcon } from '../icons';
 import styles from './input.scss';
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string,
   copyValue?: ?string,
   example?: string,
   hideIcon?: boolean,
   hint?: string,
-  icon?: ?React.Element<any>,
-  iconAction?: ?React.Element<any>,
-  iconExtra?: ?React.Element<any>,
+  icon?: ?Element<any>,
+  iconAction?: ?Element<any>,
+  iconExtra?: ?Element<any>,
   inputProps?: { [string]: any },
   isBusy?: boolean,
   isDisabled?: boolean,
@@ -37,7 +37,7 @@ type PropTypes = {
   valueDisplay?: ?string
 };
 
-export default function Input ({ children, className, copyValue, example, hideIcon, hint, icon, iconAction, iconExtra, inputProps = {}, isBusy, isDisabled, isError, isInverted, isLink, isMaxWidth, isMedWidth, isReadOnly, isWarning, label, onBlur, onChange, type = 'text', value, valueDisplay }: PropTypes): React.Element<any> {
+export default function Input ({ children, className, copyValue, example, hideIcon, hint, icon, iconAction, iconExtra, inputProps = {}, isBusy, isDisabled, isError, isInverted, isLink, isMaxWidth, isMedWidth, isReadOnly, isWarning, label, onBlur, onChange, type = 'text', value, valueDisplay }: PropTypes): Element<any> {
   const _onBlur = (): void => {
     onBlur && onBlur();
   };

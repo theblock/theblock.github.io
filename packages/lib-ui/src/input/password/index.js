@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import { EyeIcon } from '../../icons';
@@ -17,7 +17,7 @@ type PropTypes = {
   className?: string,
   example?: string,
   hint?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isDisabled?: boolean,
   isError?: boolean,
   isInteger?: boolean,
@@ -30,7 +30,7 @@ type PropTypes = {
   valueDisplay?: ?string,
 };
 
-function InputPassword ({ className, example, hint, icon, isDisabled, isError, isInteger, isReadOnly, isWarning, label, onChange, t, value, valueDisplay }: PropTypes): React.Element<any> {
+function InputPassword ({ className, example, hint, icon, isDisabled, isError, isInteger, isReadOnly, isWarning, label, onChange, t, value, valueDisplay }: PropTypes): Element<any> {
   let text = valueDisplay;
 
   if (!text) {

@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import React from 'react';
+import React, { type Element } from 'react';
 import { observer } from 'mobx-react';
 import { translate } from 'react-i18next';
 
@@ -15,7 +15,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function WalletNavigation ({ className, t }: PropTypes): React.Element<any> {
+function WalletNavigation ({ className, t }: PropTypes): Element<any> {
   return (
     <Navigation empty>
       {

@@ -3,7 +3,7 @@
 // Adapted from http://blog.learningspaces.io/animated-loading-indicator-with-isometric-cubes/
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import styles from './block.scss';
 
@@ -11,7 +11,7 @@ type PropTypes = {
   className?: string
 };
 
-export default function Block ({ className }: PropTypes): React.Element<any> {
+export default function Block ({ className }: PropTypes): Element<any> {
   return (
     <div
       className={

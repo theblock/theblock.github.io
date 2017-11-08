@@ -18,5 +18,5 @@ ReactDOM.render(
   <I18nextProvider i18n={ i18n }>
     <Index />
   </I18nextProvider>,
-  document.getElementById('content')
+  ((document.getElementById('content'): any): Element)
 );

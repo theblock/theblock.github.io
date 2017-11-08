@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import Input from '@theblock/lib-ui/src/input';
@@ -15,7 +15,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Account ({ account, onEditDone, t }: PropTypes): React.Element<any> {
+function Account ({ account, onEditDone, t }: PropTypes): Element<any> {
   const _onBlurName = () => account.toggleAccountName(onEditDone);
 
   return (

@@ -2,7 +2,7 @@
 // @flow
 
 import { action, observable } from 'mobx';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
@@ -14,7 +14,7 @@ type AddressType = 'account' | 'address';
 export default class AddressStore implements SelectableInterface {
   @observable addressType: AddressType = 'address';
   @observable hint: ?string = '';
-  @observable icon: ?React.Element<any> = null;
+  @observable icon: ?Element<any> = null;
   @observable key: string = '';
   @observable label: ?string = '';
   @observable name: string = '';

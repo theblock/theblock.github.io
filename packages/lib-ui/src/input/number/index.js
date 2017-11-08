@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import Input from '../index';
 
@@ -12,7 +12,7 @@ type PropTypes = {
   className?: string,
   example?: string,
   hint?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isDisabled?: boolean,
   isError?: boolean,
   isInteger?: boolean,
@@ -27,7 +27,7 @@ type PropTypes = {
   valueDisplay?: ?string,
 };
 
-export default function InputNumber ({ className, example, hint, icon, isDisabled, isError, isInteger, isReadOnly, isWarning, label, max, min = 0, onChange, step = 0.01, value, valueDisplay }: PropTypes): React.Element<any> {
+export default function InputNumber ({ className, example, hint, icon, isDisabled, isError, isInteger, isReadOnly, isWarning, label, max, min = 0, onChange, step = 0.01, value, valueDisplay }: PropTypes): Element<any> {
   const _onChange = (value: string): void => {
     if (value && !/^[0-9]+([.]?[0-9]*)?$/.test(value)) {
       return;

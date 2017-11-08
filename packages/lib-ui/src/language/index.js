@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import Select from '../input/select';
@@ -17,7 +17,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Language ({ className, i18n, isInverted, t }: PropTypes): React.Element<any> {
+function Language ({ className, i18n, isInverted, t }: PropTypes): Element<any> {
   store.setI18Next(i18n);
 
   return (

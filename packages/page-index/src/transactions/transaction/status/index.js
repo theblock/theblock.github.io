@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Button from '@theblock/lib-ui/src/button';
@@ -19,7 +19,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Status ({ className, item, t }: PropTypes): ?React.Element<any> {
+function Status ({ className, item, t }: PropTypes): ?Element<any> {
   switch (item.state) {
     case 'completed':
       return (

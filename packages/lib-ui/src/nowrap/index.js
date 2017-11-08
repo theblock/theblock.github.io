@@ -2,16 +2,16 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 
 import styles from './nowrap.scss';
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string
 };
 
-export default function Nowrap ({ children, className }: PropTypes): React.Element<any> {
+export default function Nowrap ({ children, className }: PropTypes): Element<any> {
   return (
     <div
       className={

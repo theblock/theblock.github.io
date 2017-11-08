@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Field from '@theblock/lib-ui/src/field';
@@ -16,7 +16,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Brain ({ className, store, t }: PropTypes): React.Element<any> {
+function Brain ({ className, store, t }: PropTypes): Element<any> {
   return (
     <Field>
       <Interpolate

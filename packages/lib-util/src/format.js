@@ -73,10 +73,12 @@ export function padHex (hex: string): string {
 }
 
 export function removeHexPrefix (hex?: ?string): string {
-  if (hasHexPrefix(hex)) {
-    return hex.substr(2);
-  } else if (hex) {
-    return hex;
+  if (hex) {
+    if (hasHexPrefix(hex)) {
+      return hex.substr(2);
+    } else {
+      return hex;
+    }
   }
 
   return '';

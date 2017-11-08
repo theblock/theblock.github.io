@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import type { PopupColorType } from '@theblock/lib-ui/src/infoPopup/types';
@@ -27,7 +27,7 @@ const colors: { [TxStateType]: PopupColorType } = {
   'rejected': 'red'
 };
 
-function Transaction ({ className, item, t }: PropTypes): ?React.Element<any> {
+function Transaction ({ className, item, t }: PropTypes): ?Element<any> {
   if (!item.isVisible) {
     return null;
   }

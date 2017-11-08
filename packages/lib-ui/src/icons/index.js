@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import styles from './icons.scss';
 
@@ -12,7 +12,7 @@ type PropTypes = {
   style?: { [string]: string }
 };
 
-function createIcon (type: string, { className, onClick, style }: PropTypes): React.Element<any> {
+function createIcon (type: string, { className, onClick, style }: PropTypes): Element<any> {
   return (
     <i
       className={

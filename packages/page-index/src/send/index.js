@@ -3,7 +3,7 @@
 
 import compact from 'lodash.compact';
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import Button from '@theblock/lib-ui/src/button';
@@ -25,7 +25,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Send ({ className, t }: PropTypes): React.Element<any> {
+function Send ({ className, t }: PropTypes): Element<any> {
   return (
     <main
       className={

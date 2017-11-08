@@ -3,7 +3,7 @@
 
 import blockies from 'blockies';
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import { isAddressValid } from '@theblock/lib-util/src/validate';
 
@@ -36,7 +36,7 @@ export function createImgIdentity (address: ?string, size: SizeType = 'normal'):
   }).toDataURL('image/png');
 }
 
-export default function ImgIdentity ({ className, size = 'normal', value }: PropTypes): React.Element<any> {
+export default function ImgIdentity ({ className, size = 'normal', value }: PropTypes): Element<any> {
   const classes = compact([
     styles.ui, styles[size], className
   ]).join(' ');

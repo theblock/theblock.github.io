@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import InfoBar from '@theblock/lib-ui/src/infoBar';
@@ -17,7 +17,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Busy ({ className, store, t }: PropTypes): ?React.Element<any> {
+function Busy ({ className, store, t }: PropTypes): ?Element<any> {
   if (['empty', 'error'].includes(store.state)) {
     return null;
   }

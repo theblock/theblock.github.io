@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { translate } from 'react-i18next';
 
 import navStore from './navigation/store';
@@ -16,7 +16,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Body ({ className, t }: PropTypes): ?React.Element<any> {
+function Body ({ className, t }: PropTypes): ?Element<any> {
   switch (navStore.selected.key) {
     case 'listAccounts':
       return <Accounts />;

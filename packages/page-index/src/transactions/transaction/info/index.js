@@ -2,7 +2,7 @@
 // @flow
 
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import ImgIdentity from '@theblock/lib-ui/src/img/identity';
@@ -20,7 +20,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Info ({ className, item, t }: PropTypes): React.Element<any> {
+function Info ({ className, item, t }: PropTypes): Element<any> {
   return (
     <section>
       <div className={ styles.root }>

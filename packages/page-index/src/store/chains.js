@@ -4,7 +4,7 @@
 import compact from 'lodash.compact';
 import flatten from 'lodash.flatten';
 import { autorun } from 'mobx';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import type { ProviderInterface } from '@theblock/lib-api/src/types';
 import type { ExplorerInterface } from '@theblock/lib-services/src/types';
@@ -31,7 +31,7 @@ type ProviderType = Class<ProviderInterface>; // eslint-disable-line no-undef
 
 type ChainType = {
   chainId: number,
-  icon: React.Element<any>,
+  icon: Element<any>,
   name: string,
   explorer: ExplorerType,
   providers: Array<ProviderType>,

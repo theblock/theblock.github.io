@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 // import { GitHubIcon, RedditIcon, TwitterIcon } from '../icons';
@@ -34,7 +34,7 @@ console.log('v', process.env.APP_VERSION);
 //   </a>
 // }
 
-function Footer ({ className, t }: PropTypes): React.Element<any> {
+function Footer ({ className, t }: PropTypes): Element<any> {
   return (
     <footer
       className={

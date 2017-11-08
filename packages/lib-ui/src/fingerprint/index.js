@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import ImgFingerprint from '../img/fingerprint';
 
@@ -12,7 +12,7 @@ type PropTypes = {
   className?: string
 };
 
-export default function Fingerprint ({ className }: PropTypes): React.Element<any> {
+export default function Fingerprint ({ className }: PropTypes): Element<any> {
   return (
     <ImgFingerprint
       className={

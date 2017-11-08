@@ -3,7 +3,7 @@
 
 import compact from 'lodash.compact';
 import { observer } from 'mobx-react';
-import React from 'react';
+import React, { type Element } from 'react';
 
 import backgroundStore from './store';
 import styles from './background.scss';
@@ -12,7 +12,7 @@ type PropTypes = {
   className?: string
 };
 
-function Background ({ className }: PropTypes): ?React.Element<any> {
+function Background ({ className }: PropTypes): ?Element<any> {
   if (!backgroundStore.isLoaded) {
     return null;
   }

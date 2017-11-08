@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element, type Node } from 'react';
 
 import { CloseIcon } from '../icons';
 import Overlay from '../overlay';
@@ -11,14 +11,14 @@ import type { PopupColorType } from './types';
 import styles from './infoPopup.scss';
 
 type PropTypes = {
-  children?: React.Element<any>,
+  children?: Node,
   className?: string,
   color?: PopupColorType,
   onClose?: () => mixed,
   title?: string
 };
 
-export default function InfoPopup ({ children, className, color, onClose, title }: PropTypes): React.Element<any> {
+export default function InfoPopup ({ children, className, color, onClose, title }: PropTypes): Element<any> {
   return (
     <div
       className={

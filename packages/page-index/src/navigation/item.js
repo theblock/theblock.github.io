@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import React from 'react';
+import React, { type Element } from 'react';
 
 import type { SelectableInterface } from '@theblock/lib-ui/src/types';
 
@@ -14,7 +14,7 @@ type PropTypes = {
   onSelect?: (string) => void
 };
 
-export default function Item ({ className, isSelected, item: { key, label }, onSelect }: PropTypes): React.Element<any> {
+export default function Item ({ className, isSelected, item: { key, label }, onSelect }: PropTypes): Element<any> {
   const _onClick = () => {
     onSelect && onSelect(key);
   };

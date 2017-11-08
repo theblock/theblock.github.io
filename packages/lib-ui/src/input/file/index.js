@@ -2,7 +2,7 @@
 // @flow
 
 import compact from 'lodash.compact';
-import React from 'react';
+import React, { type Element } from 'react';
 import Dropzone from 'react-dropzone';
 import { translate } from 'react-i18next';
 
@@ -13,7 +13,7 @@ import styles from './file.scss';
 
 type PropTypes = {
   className?: string,
-  icon?: ?React.Element<any>,
+  icon?: ?Element<any>,
   isError?: boolean,
   isWarning?: boolean,
   onChange: (name: string, contents: string) => mixed,
@@ -21,7 +21,7 @@ type PropTypes = {
   value?: ?string
 };
 
-function InputFile ({ className, icon, isError, isWarning, onChange, t, value }: PropTypes): React.Element<any> {
+function InputFile ({ className, icon, isError, isWarning, onChange, t, value }: PropTypes): Element<any> {
   const _onDrop = (files?: Array<File>) => {
     if (files && files.length) {
       const reader = new FileReader();

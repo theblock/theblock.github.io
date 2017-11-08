@@ -3,7 +3,7 @@
 
 import { observer } from 'mobx-react';
 import moment from 'moment';
-import React from 'react';
+import React, { type Element } from 'react';
 import { Interpolate, translate } from 'react-i18next';
 
 import { ReceiveIcon, SendIcon } from '@theblock/lib-ui/src/icons';
@@ -19,7 +19,7 @@ type PropTypes = {
   t: (string) => string
 };
 
-function Transaction ({ address, t, transaction: { hash, to, from, timeStamp, value } }: PropTypes): React.Element<any> {
+function Transaction ({ address, t, transaction: { hash, to, from, timeStamp, value } }: PropTypes): Element<any> {
   const isSent: boolean = from === address;
 
   return (
