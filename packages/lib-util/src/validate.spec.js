@@ -1,7 +1,7 @@
 // GPLv3, Copyright (C) 2017, theBlock, https://theblock.io
 // @flow
 
-import { isAddressChecksumValid, isAddressValid, isEnsName, isHexValid, isMnemonicValid } from './validate';
+import { isAddressChecksumValid, isAddressValid, isEnsName, isHexValid, isMnemonicValid, hasHexPrefix } from './validate';
 
 const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
 
@@ -120,6 +120,16 @@ describe('validate', () => {
 
     it('returns true on extra-whitespaced mnemonics', () => {
       expect(isMnemonicValid(` ${MNE_VALID.split(' ').join('  ')}  `)).toBe(true);
+    });
+  });
+
+  describe('hasHexPrefix', () => {
+    it('returns true when 0x is available', () => {
+      expect(hasHexPrefix('0x12')).toBe(true);
+    });
+
+    it('returns false when 0x is not available', () => {
+      expect(hasHexPrefix('12')).toBe(false);
     });
   });
 });
