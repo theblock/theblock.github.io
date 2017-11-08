@@ -17,7 +17,7 @@ const SOURCES: Array<string> = [
   'baby-009-960.jpg',
   'baby-010-960.jpg',
   'baby-011-960.jpg'
-].map((image) => `/assets/404/${image}`);
+].map((image) => `assets/404/${image}`);
 
 export class BackgroundStore {
   @observable index: number = 0;

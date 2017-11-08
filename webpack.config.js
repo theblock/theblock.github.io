@@ -12,7 +12,7 @@ const pkgjson = require('./package.json');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const PAGES = [
-  '404', 'wallet'
+  '404', 'index'
 ];
 
 const VERSION = isProduction
@@ -30,7 +30,7 @@ module.exports = {
     chunkFilename: `${HASH_PATH}.js`,
     filename: `${HASH_PATH}.js`,
     path: path.join(__dirname, 'x'),
-    publicPath: `/x/`
+    publicPath: `x/`
   },
   devServer: {
     quiet: false,
@@ -215,7 +215,7 @@ module.exports = {
         'manifest',
         page
       ],
-      filename: `${page}/index.html`,
+      filename: `../${page}.html`,
       minify: {
         collapseBooleanAttributes: true,
         collapseWhitespace: true,
@@ -226,7 +226,9 @@ module.exports = {
         sortAttributes: true
       },
       template: './index.ejs',
-      title: page
+      title: page === 'index'
+        ? 'wallet'
+        : page
     })),
     [
       new ScriptExtHtmlWebpackPlugin({

@@ -7,8 +7,8 @@ import { I18nextProvider } from 'react-i18next';
 
 import '@theblock/lib-ui/src/ui.scss';
 
-import resources from '@theblock/page-wallet/i18n';
-import Wallet from '@theblock/page-wallet/src';
+import resources from '@theblock/page-index/i18n';
+import Index from '@theblock/page-index/src';
 
 import initI18N from './i18n';
 
@@ -16,7 +16,7 @@ const i18n = initI18N(resources);
 
 ReactDOM.render(
   <I18nextProvider i18n={ i18n }>
-    <Wallet />
+    <Index />
   </I18nextProvider>,
   document.getElementById('content')
 );

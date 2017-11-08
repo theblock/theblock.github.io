@@ -81,7 +81,7 @@
     "webpack": "^3.2.0",
     "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-server": "^2.5.1",
-    "worker-loader": "^0.8.1"
+    "worker-loader": "^1.1.0"
   },
   "dependencies": {
     "@theblock/lib-api": "file:packages/lib-api",
@@ -92,7 +92,7 @@
     "@theblock/lib-util": "file:packages/lib-util",
     "@theblock/meta-contracts": "file:packages/meta-contracts",
     "@theblock/page-404": "file:packages/page-404",
-    "@theblock/page-wallet": "file:packages/page-wallet",
+    "@theblock/page-index": "file:packages/page-index",
     "babel-runtime": "^6.23.0",
     "lodash.flatten": "^4.4.0",
     "lodash.uniq": "^4.5.0",
