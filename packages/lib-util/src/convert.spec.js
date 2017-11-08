@@ -43,8 +43,12 @@ describe('convert', () => {
   });
 
   describe('fromDecToBn', () => {
-    it('converts to decimal BN', () => {
+    it('converts to BN', () => {
       expect(fromDecToBn(10).toNumber()).toBe(10);
+    });
+
+    it('converts empty to BN === 0', () => {
+      expect(fromDecToBn().toNumber()).toBe(0);
     });
   });
 
@@ -55,12 +59,16 @@ describe('convert', () => {
   });
 
   describe('fromHexToBn', () => {
-    it('converts to decimal BN', () => {
+    it('converts to BN', () => {
       expect(fromHexToBn('a').toNumber()).toBe(10);
     });
 
-    it('converts to decimal BN (with 0x prefix)', () => {
+    it('converts to BN (with 0x prefix)', () => {
       expect(fromHexToBn('0xa').toNumber()).toBe(10);
+    });
+
+    it('converts empty to BN === 0', () => {
+      expect(fromHexToBn().toNumber()).toBe(0);
     });
   });
 });

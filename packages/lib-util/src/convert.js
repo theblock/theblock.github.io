@@ -41,7 +41,7 @@ export function fromBytesToHex (bytes: Array<number> | Buffer): string {
 }
 
 export function fromDecToBn (value?: any): BN {
-  return new BN(value, 10);
+  return new BN(value || '0', 10);
 }
 
 export function fromDecToHex (value?: any): string {
