@@ -9,6 +9,7 @@ import navStore from './navigation/store';
 import Accounts from './accounts';
 import Import from './import';
 import Send from './send';
+import Settings from './settings';
 
 type PropTypes = {
   className?: string,
@@ -25,6 +26,9 @@ function Body ({ className, t }: PropTypes): ?React.Element<any> {
 
     case 'send':
       return <Send />;
+
+    case 'settings':
+      return <Settings />;
 
     default:
       return null;

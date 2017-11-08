@@ -21,6 +21,10 @@ const TYPES: Array<SelectableInterface> = [
   {
     key: 'listAccounts',
     label: i18n.t('navigation:location.options.listAccounts')
+  },
+  {
+    key: 'settings',
+    label: i18n.t('navigation:location.options.settings')
   }
 ];
 

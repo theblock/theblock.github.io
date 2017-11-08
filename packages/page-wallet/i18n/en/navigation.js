@@ -7,7 +7,8 @@ export default {
     options: {
       listAccounts: 'view my accounts',
       importAccount: 'add an account',
-      send: 'send a transaction'
+      send: 'send a transaction',
+      settings: 'settings'
     }
   }
 };

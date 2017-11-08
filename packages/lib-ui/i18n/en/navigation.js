@@ -2,8 +2,5 @@
 // @flow
 
 export default {
-  blog: 'blog',
-  home: 'home',
-  settings: 'settings',
   wallet: 'wallet'
 };

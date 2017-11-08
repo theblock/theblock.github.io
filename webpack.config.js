@@ -12,7 +12,7 @@ const pkgjson = require('./package.json');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const PAGES = [
-  '404', 'settings', 'wallet'
+  '404', 'wallet'
 ];
 
 const VERSION = isProduction

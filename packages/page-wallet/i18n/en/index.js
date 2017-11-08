@@ -6,6 +6,7 @@ import defaults from './defaults';
 import importI18n from './import';
 import navigation from './navigation';
 import send from './send';
+import settings from './settings';
 import tx from './tx';
 
 export default {
@@ -14,5 +15,6 @@ export default {
   import: importI18n,
   navigation,
   send,
+  settings,
   tx
 };
