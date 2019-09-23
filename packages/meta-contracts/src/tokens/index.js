@@ -27,6 +27,7 @@ import polkadot from './definitions/polkadot';
 import singularDtv from './definitions/singularDtv';
 import status from './definitions/status';
 import tenx from './definitions/tenx';
+import unibright from './definitions/unibright';
 import wings from './definitions/wings';
 
 export default ([
@@ -54,5 +55,6 @@ export default ([
   singularDtv,
   status,
   tenx,
+  unibright,
   wings
 ]: Array<TokenType>);
