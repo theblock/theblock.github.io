@@ -29,6 +29,7 @@ import status from './definitions/status';
 import tenx from './definitions/tenx';
 import unibright from './definitions/unibright';
 import wings from './definitions/wings';
+import zebicoin from './definitions/zebicoin';
 
 export default ([
   aion,
@@ -56,5 +57,6 @@ export default ([
   status,
   tenx,
   unibright,
-  wings
+  wings,
+  zebicoin
 ]: Array<TokenType>);
