@@ -1,6 +1,6 @@
 {
   "name": "theblock",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": "xavieryvez@users.noreply.github.com",
   "license": "GPL-3.0",
   "repository": {
@@ -8,6 +8,7 @@
     "url": "git://github.com/theblock/theblock.github.io.git"
   },
   "scripts": {
+    "build:new": "npm --no-git-tag-version version patch && npm run ci:build && git add -f package.json package-lock.json build *.html",
     "check": "npm run clean:local && npm run install:modules && npm-run-all --serial check:*",
     "check:csslint": "stylelint ./src/**/*.scss ./packages/**/src/**/*.scss",
     "check:jslint": "eslint ./i18n/**/*.js ./src/**/*.js ./packages/**/i18n/**/*.js ./packages/**/src/**/*.js",
