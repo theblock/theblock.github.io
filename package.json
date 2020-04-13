@@ -83,7 +83,7 @@
     "stylelint-scss": "~2.1.0",
     "webpack": "~3.8.0",
     "webpack-bundle-analyzer": "~2.9.0",
-    "webpack-dev-server": "~2.9.0",
+    "webpack-dev-server": "~3.1.11",
     "worker-loader": "~1.1.0"
   },
   "dependencies": {
