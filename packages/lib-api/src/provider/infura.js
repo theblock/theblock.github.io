@@ -10,16 +10,16 @@ import JsonRpcProvider from './jsonrpc';
 function chainIdToUrl (chainId: number): string {
   switch (chainId) {
     case 1:
-      return `https://mainnet.infura.io/${APIKEY}`;
+      return `https://mainnet.infura.io/v3/${APIKEY}`;
 
     case 3:
-      return `https://ropsten.infura.io/${APIKEY}`;
+      return `https://ropsten.infura.io/v3/${APIKEY}`;
 
     case 4:
-      return `https://rinkeby.infura.io/${APIKEY}`;
+      return `https://rinkeby.infura.io/v3/${APIKEY}`;
 
     case 42:
-      return `https://kovan.infura.io/${APIKEY}`;
+      return `https://kovan.infura.io/v3/${APIKEY}`;
 
     default:
       throw new Error(`ChainId ${chainId} is not supported`);
