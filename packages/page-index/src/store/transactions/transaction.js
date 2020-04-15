@@ -174,6 +174,8 @@ export default class Transaction {
         this.setState('propagating');
       })
       .catch((error: Error) => {
+        console.error('confirm', error);
+
         this.setState('error');
         this.setError(error);
 
@@ -219,7 +221,7 @@ export default class Transaction {
         }
       })
       .catch((error) => {
-        console.error('pollTxHash', error);
+        console.error('getReceipt', error);
 
         this.pollTxId = setTimeout(this.pollTxHash, TX_POLL_TIMEOUT);
       });
@@ -234,8 +236,10 @@ export default class Transaction {
 
     return accountStore
       .unlockAccount(this.tx.from, this.password)
-      .catch(({ message }: Error) => {
-        throw new Error(i18n.t('tx:errors.decrypt', { message }));
+      .catch((error: Error) => {
+        console.error('unlockAccount', error);
+
+        throw new Error(i18n.t('tx:errors.decrypt', { message: error.message }));
       });
   }
 
@@ -247,6 +251,8 @@ export default class Transaction {
     return this.api
       .getNonce(from)
       .catch((error) => {
+        console.error('getNonce', error);
+
         throw new Error(i18n.t('tx:errors.nonce', { message: error.message }));
       })
       .then((nonce) => {
@@ -272,6 +278,8 @@ export default class Transaction {
             v: Buffer.from([0])
           })
           .catch((error) => {
+            console.error('signTransaction', error);
+
             throw new Error(i18n.t('tx:errors.sign', { message: error.message }));
           })
           .then((rawTx: string) => {
@@ -285,6 +293,8 @@ export default class Transaction {
                 return txHash;
               })
               .catch((error) => {
+                console.error('sendRawTransaction', error);
+
                 throw new Error(i18n.t('tx:errors.sendRaw', { message: error.message }));
               });
           });

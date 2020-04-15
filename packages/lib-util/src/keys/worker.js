@@ -20,6 +20,6 @@ registerPromiseWorker(async function (data) {
       return newKeyObject(data.password);
 
     default:
-      throw new Error(`worker:keys unkown action ${data.action}`);
+      throw new Error(`worker:keys unknown action ${data.action}`);
   }
 });
